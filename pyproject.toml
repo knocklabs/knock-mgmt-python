@@ -34,8 +34,8 @@ classifiers = [
 ]
 
 [project.urls]
-Homepage = "https://github.com/stainless-sdks/knock-mapi-python"
-Repository = "https://github.com/stainless-sdks/knock-mapi-python"
+Homepage = "https://github.com/knocklabs/knock-mgmt-python"
+Repository = "https://github.com/knocklabs/knock-mgmt-python"
 
 
 [tool.rye]
@@ -121,7 +121,7 @@ path = "README.md"
 [[tool.hatch.metadata.hooks.fancy-pypi-readme.substitutions]]
 # replace relative links with absolute links
 pattern = '\[(.+?)\]\(((?!https?://)\S+?)\)'
-replacement = '[\1](https://github.com/stainless-sdks/knock-mapi-python/tree/main/\g<2>)'
+replacement = '[\1](https://github.com/knocklabs/knock-mgmt-python/tree/main/\g<2>)'
 
 [tool.pytest.ini_options]
 testpaths = ["tests"]
