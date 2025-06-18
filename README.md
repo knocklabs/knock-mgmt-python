@@ -1,6 +1,6 @@
 # Knock Mgmt Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/knock_mapi.svg)](https://pypi.org/project/knock_mapi/)
+[![PyPI version](<https://img.shields.io/pypi/v/knock_mapi.svg?label=pypi%20(stable)>)](https://pypi.org/project/knock_mapi/)
 
 The Knock Mgmt Python library provides convenient access to the Knock Mgmt REST API from any Python 3.8+
 application. The library includes type definitions for all request params and response fields,
