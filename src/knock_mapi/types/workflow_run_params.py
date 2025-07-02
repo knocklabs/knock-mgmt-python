@@ -5,7 +5,13 @@ from __future__ import annotations
 from typing import Dict, List, Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["WorkflowRunParams", "Recipient", "RecipientUnionMember1", "Actor", "ActorUnionMember1"]
+__all__ = [
+    "WorkflowRunParams",
+    "Recipient",
+    "RecipientObjectRecipientReference",
+    "Actor",
+    "ActorObjectRecipientReference",
+]
 
 
 class WorkflowRunParams(TypedDict, total=False):
@@ -31,19 +37,19 @@ class WorkflowRunParams(TypedDict, total=False):
     """The tenant to associate the workflow run with."""
 
 
-class RecipientUnionMember1(TypedDict, total=False):
+class RecipientObjectRecipientReference(TypedDict, total=False):
     id: Required[str]
 
     collection: Required[str]
 
 
-Recipient: TypeAlias = Union[str, RecipientUnionMember1]
+Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference]
 
 
-class ActorUnionMember1(TypedDict, total=False):
+class ActorObjectRecipientReference(TypedDict, total=False):
     id: Required[str]
 
     collection: Required[str]
 
 
-Actor: TypeAlias = Union[str, ActorUnionMember1]
+Actor: TypeAlias = Union[str, ActorObjectRecipientReference]

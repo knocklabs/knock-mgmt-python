@@ -312,7 +312,7 @@ class TestGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
@@ -463,7 +463,7 @@ class TestGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
@@ -864,7 +864,7 @@ class TestAsyncGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
@@ -1015,7 +1015,7 @@ class TestAsyncGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
