@@ -5,13 +5,7 @@ from __future__ import annotations
 from typing import Dict, Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = [
-    "StepPreviewTemplateParams",
-    "Recipient",
-    "RecipientObjectRecipientReference",
-    "Actor",
-    "ActorObjectRecipientReference",
-]
+__all__ = ["StepPreviewTemplateParams", "Recipient", "RecipientUnionMember1", "Actor", "ActorUnionMember1"]
 
 
 class StepPreviewTemplateParams(TypedDict, total=False):
@@ -39,19 +33,19 @@ class StepPreviewTemplateParams(TypedDict, total=False):
     """The tenant to associate the workflow with."""
 
 
-class RecipientObjectRecipientReference(TypedDict, total=False):
+class RecipientUnionMember1(TypedDict, total=False):
     id: Required[str]
 
     collection: Required[str]
 
 
-Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference]
+Recipient: TypeAlias = Union[str, RecipientUnionMember1]
 
 
-class ActorObjectRecipientReference(TypedDict, total=False):
+class ActorUnionMember1(TypedDict, total=False):
     id: Required[str]
 
     collection: Required[str]
 
 
-Actor: TypeAlias = Union[str, ActorObjectRecipientReference]
+Actor: TypeAlias = Union[str, ActorUnionMember1]
