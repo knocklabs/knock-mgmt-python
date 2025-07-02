@@ -238,3 +238,25 @@ from knock_mapi.types import Variable
 Methods:
 
 - <code title="get /v1/variables">client.variables.<a href="./src/knock_mapi/resources/variables.py">list</a>(\*\*<a href="src/knock_mapi/types/variable_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/variable.py">SyncEntriesCursor[Variable]</a></code>
+
+# Guides
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Guide,
+    GuideStep,
+    GuideActivateResponse,
+    GuideUpsertResponse,
+    GuideValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">retrieve</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide.py">Guide</a></code>
+- <code title="get /v1/guides">client.guides.<a href="./src/knock_mapi/resources/guides.py">list</a>(\*\*<a href="src/knock_mapi/types/guide_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide.py">SyncEntriesCursor[Guide]</a></code>
+- <code title="put /v1/guides/{guide_key}/activate">client.guides.<a href="./src/knock_mapi/resources/guides.py">activate</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_activate_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_activate_response.py">GuideActivateResponse</a></code>
+- <code title="put /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">upsert</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_upsert_response.py">GuideUpsertResponse</a></code>
+- <code title="put /v1/guides/{guide_key}/validate">client.guides.<a href="./src/knock_mapi/resources/guides.py">validate</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_validate_response.py">GuideValidateResponse</a></code>

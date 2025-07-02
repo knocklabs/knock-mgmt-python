@@ -8,6 +8,14 @@ from .auth import (
     AuthResourceWithStreamingResponse,
     AsyncAuthResourceWithStreamingResponse,
 )
+from .guides import (
+    GuidesResource,
+    AsyncGuidesResource,
+    GuidesResourceWithRawResponse,
+    AsyncGuidesResourceWithRawResponse,
+    GuidesResourceWithStreamingResponse,
+    AsyncGuidesResourceWithStreamingResponse,
+)
 from .commits import (
     CommitsResource,
     AsyncCommitsResource,
@@ -170,4 +178,10 @@ __all__ = [
     "AsyncVariablesResourceWithRawResponse",
     "VariablesResourceWithStreamingResponse",
     "AsyncVariablesResourceWithStreamingResponse",
+    "GuidesResource",
+    "AsyncGuidesResource",
+    "GuidesResourceWithRawResponse",
+    "AsyncGuidesResourceWithRawResponse",
+    "GuidesResourceWithStreamingResponse",
+    "AsyncGuidesResourceWithStreamingResponse",
 ]
