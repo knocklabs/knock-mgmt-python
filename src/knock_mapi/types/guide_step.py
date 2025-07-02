@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Optional
 
 from .._models import BaseModel
 
@@ -27,7 +27,7 @@ class GuideStep(BaseModel):
     name: Optional[str] = None
     """A name for the step."""
 
-    values: Optional[Dict[str, object]] = None
+    values: Optional[object] = None
     """A map of values that make up the step's content.
 
     Each value must conform to its respective template schema field settings.

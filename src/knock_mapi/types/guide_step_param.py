@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from typing import Dict
 from typing_extensions import Required, TypedDict
 
 __all__ = ["GuideStepParam"]
@@ -28,7 +27,7 @@ class GuideStepParam(TypedDict, total=False):
     name: str
     """A name for the step."""
 
-    values: Dict[str, object]
+    values: object
     """A map of values that make up the step's content.
 
     Each value must conform to its respective template schema field settings.
