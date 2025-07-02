@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from .guide import Guide as Guide
 from .commit import Commit as Commit
 from .shared import PageInfo as PageInfo
 from .channel import Channel as Channel
@@ -10,6 +11,7 @@ from .duration import Duration as Duration
 from .variable import Variable as Variable
 from .workflow import Workflow as Workflow
 from .condition import Condition as Condition
+from .guide_step import GuideStep as GuideStep
 from .environment import Environment as Environment
 from .send_window import SendWindow as SendWindow
 from .translation import Translation as Translation
@@ -24,14 +26,17 @@ from .duration_param import DurationParam as DurationParam
 from .email_template import EmailTemplate as EmailTemplate
 from .condition_group import ConditionGroup as ConditionGroup
 from .condition_param import ConditionParam as ConditionParam
+from .guide_step_param import GuideStepParam as GuideStepParam
 from .request_template import RequestTemplate as RequestTemplate
 from .webhook_template import WebhookTemplate as WebhookTemplate
+from .guide_list_params import GuideListParams as GuideListParams
 from .send_window_param import SendWindowParam as SendWindowParam
 from .channel_group_rule import ChannelGroupRule as ChannelGroupRule
 from .commit_list_params import CommitListParams as CommitListParams
 from .sms_template_param import SMSTemplateParam as SMSTemplateParam
 from .channel_list_params import ChannelListParams as ChannelListParams
 from .chat_template_param import ChatTemplateParam as ChatTemplateParam
+from .guide_upsert_params import GuideUpsertParams as GuideUpsertParams
 from .partial_list_params import PartialListParams as PartialListParams
 from .push_template_param import PushTemplateParam as PushTemplateParam
 from .workflow_batch_step import WorkflowBatchStep as WorkflowBatchStep
@@ -49,6 +54,10 @@ from .workflow_branch_step import WorkflowBranchStep as WorkflowBranchStep
 from .workflow_list_params import WorkflowListParams as WorkflowListParams
 from .chat_channel_settings import ChatChannelSettings as ChatChannelSettings
 from .condition_group_param import ConditionGroupParam as ConditionGroupParam
+from .guide_activate_params import GuideActivateParams as GuideActivateParams
+from .guide_retrieve_params import GuideRetrieveParams as GuideRetrieveParams
+from .guide_upsert_response import GuideUpsertResponse as GuideUpsertResponse
+from .guide_validate_params import GuideValidateParams as GuideValidateParams
 from .partial_upsert_params import PartialUpsertParams as PartialUpsertParams
 from .push_channel_settings import PushChannelSettings as PushChannelSettings
 from .workflow_channel_step import WorkflowChannelStep as WorkflowChannelStep
@@ -60,6 +69,8 @@ from .workflow_throttle_step import WorkflowThrottleStep as WorkflowThrottleStep
 from .workflow_upsert_params import WorkflowUpsertParams as WorkflowUpsertParams
 from .api_key_exchange_params import APIKeyExchangeParams as APIKeyExchangeParams
 from .environment_list_params import EnvironmentListParams as EnvironmentListParams
+from .guide_activate_response import GuideActivateResponse as GuideActivateResponse
+from .guide_validate_response import GuideValidateResponse as GuideValidateResponse
 from .message_type_text_field import MessageTypeTextField as MessageTypeTextField
 from .partial_retrieve_params import PartialRetrieveParams as PartialRetrieveParams
 from .partial_upsert_response import PartialUpsertResponse as PartialUpsertResponse
