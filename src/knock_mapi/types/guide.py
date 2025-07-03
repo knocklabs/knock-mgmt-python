@@ -66,13 +66,19 @@ class Guide(BaseModel):
     """A list of guide step objects in the guide."""
 
     target_audience_id: Optional[str] = None
-    """The ID of the target audience for the guide."""
+    """The ID of the target audience for the guide.
+
+    When not set, will default to targeting all users.
+    """
 
     target_property_conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
     type: Optional[str] = None
-    """The type of the guide."""
+    """The type of the guide.
+
+    This is derived from the message type of the guide steps.
+    """
 
     valid: Optional[bool] = None
     """Whether the guide is valid."""

@@ -312,7 +312,7 @@ class TestGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
@@ -324,7 +324,6 @@ class TestGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "semver": "semver",
                 "target_audience_id": None,
                 "target_property_conditions": {
                     "all": [
@@ -335,7 +334,6 @@ class TestGuides:
                         }
                     ]
                 },
-                "type": "type",
             },
             annotate=True,
             commit=True,
@@ -463,7 +461,7 @@ class TestGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
@@ -475,7 +473,6 @@ class TestGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "semver": "semver",
                 "target_audience_id": None,
                 "target_property_conditions": {
                     "all": [
@@ -486,7 +483,6 @@ class TestGuides:
                         }
                     ]
                 },
-                "type": "type",
             },
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
@@ -864,7 +860,7 @@ class TestAsyncGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
@@ -876,7 +872,6 @@ class TestAsyncGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "semver": "semver",
                 "target_audience_id": None,
                 "target_property_conditions": {
                     "all": [
@@ -887,7 +882,6 @@ class TestAsyncGuides:
                         }
                     ]
                 },
-                "type": "type",
             },
             annotate=True,
             commit=True,
@@ -1015,7 +1009,7 @@ class TestAsyncGuides:
                         "schema_semver": "1.0.0",
                         "schema_variant_key": "default",
                         "name": "Welcome to the App",
-                        "values": {"text_field": "value"},
+                        "values": {"text_field": "bar"},
                     }
                 ],
                 "activation_location_rules": [
@@ -1027,7 +1021,6 @@ class TestAsyncGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "semver": "semver",
                 "target_audience_id": None,
                 "target_property_conditions": {
                     "all": [
@@ -1038,7 +1031,6 @@ class TestAsyncGuides:
                         }
                     ]
                 },
-                "type": "type",
             },
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])

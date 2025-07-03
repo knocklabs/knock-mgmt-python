@@ -60,14 +60,11 @@ class Guide(TypedDict, total=False):
     characters allowed.
     """
 
-    semver: str
-    """The semver of the guide."""
-
     target_audience_id: Optional[str]
-    """The ID of the target audience for the guide."""
+    """The ID of the target audience for the guide.
+
+    When not set, will default to targeting all users.
+    """
 
     target_property_conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
-
-    type: str
-    """The type of the guide."""
