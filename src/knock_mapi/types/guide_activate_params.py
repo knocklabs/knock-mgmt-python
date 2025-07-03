@@ -8,10 +8,10 @@ from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
 from .._utils import PropertyInfo
 
-__all__ = ["GuideActivateParams", "Variant0", "Variant1"]
+__all__ = ["GuideActivateParams", "GuideBooleanActivationParams", "GuideScheduledActivationParams"]
 
 
-class Variant0(TypedDict, total=False):
+class GuideBooleanActivationParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
@@ -19,7 +19,7 @@ class Variant0(TypedDict, total=False):
     """Whether to activate or deactivate the guide."""
 
 
-class Variant1(TypedDict, total=False):
+class GuideScheduledActivationParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
@@ -38,4 +38,4 @@ class Variant1(TypedDict, total=False):
     """
 
 
-GuideActivateParams: TypeAlias = Union[Variant0, Variant1]
+GuideActivateParams: TypeAlias = Union[GuideBooleanActivationParams, GuideScheduledActivationParams]
