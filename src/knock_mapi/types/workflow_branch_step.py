@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .condition_group import ConditionGroup
 
@@ -47,10 +46,3 @@ class WorkflowBranchStep(BaseModel):
 
 
 from .workflow_step import WorkflowStep
-
-if PYDANTIC_V2:
-    WorkflowBranchStep.model_rebuild()
-    Branch.model_rebuild()
-else:
-    WorkflowBranchStep.update_forward_refs()  # type: ignore
-    Branch.update_forward_refs()  # type: ignore

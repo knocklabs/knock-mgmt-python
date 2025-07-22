@@ -2,7 +2,6 @@
 
 from __future__ import annotations
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["WorkflowUpsertResponse"]
@@ -14,8 +13,3 @@ class WorkflowUpsertResponse(BaseModel):
 
 
 from .workflow import Workflow
-
-if PYDANTIC_V2:
-    WorkflowUpsertResponse.model_rebuild()
-else:
-    WorkflowUpsertResponse.update_forward_refs()  # type: ignore
