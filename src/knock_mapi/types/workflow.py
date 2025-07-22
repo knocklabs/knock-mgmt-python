@@ -6,7 +6,6 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .condition_group import ConditionGroup
 
@@ -101,10 +100,3 @@ class Workflow(BaseModel):
 
 
 from .workflow_step import WorkflowStep
-
-if PYDANTIC_V2:
-    Workflow.model_rebuild()
-    Settings.model_rebuild()
-else:
-    Workflow.update_forward_refs()  # type: ignore
-    Settings.update_forward_refs()  # type: ignore

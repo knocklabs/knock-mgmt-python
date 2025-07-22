@@ -2,6 +2,14 @@
 
 from __future__ import annotations
 
+from . import (
+    workflow,
+    workflow_branch_step,
+    workflow_upsert_response,
+    workflow_activate_response,
+    workflow_validate_response,
+)
+from .. import _compat
 from .guide import Guide as Guide
 from .commit import Commit as Commit
 from .shared import PageInfo as PageInfo
@@ -127,3 +135,20 @@ from .workflow_trigger_workflow_step import WorkflowTriggerWorkflowStep as Workf
 from .in_app_feed_channel_settings_param import InAppFeedChannelSettingsParam as InAppFeedChannelSettingsParam
 from .guide_activation_location_rule_param import GuideActivationLocationRuleParam as GuideActivationLocationRuleParam
 from .workflow_trigger_workflow_step_param import WorkflowTriggerWorkflowStepParam as WorkflowTriggerWorkflowStepParam
+
+# Rebuild cyclical models only after all modules are imported.
+# This ensures that, when building the deferred (due to cyclical references) model schema,
+# Pydantic can resolve the necessary references.
+# See: https://github.com/pydantic/pydantic/issues/11250 for more context.
+if _compat.PYDANTIC_V2:
+    workflow.Workflow.model_rebuild(_parent_namespace_depth=0)
+    workflow_branch_step.WorkflowBranchStep.model_rebuild(_parent_namespace_depth=0)
+    workflow_activate_response.WorkflowActivateResponse.model_rebuild(_parent_namespace_depth=0)
+    workflow_upsert_response.WorkflowUpsertResponse.model_rebuild(_parent_namespace_depth=0)
+    workflow_validate_response.WorkflowValidateResponse.model_rebuild(_parent_namespace_depth=0)
+else:
+    workflow.Workflow.update_forward_refs()  # type: ignore
+    workflow_branch_step.WorkflowBranchStep.update_forward_refs()  # type: ignore
+    workflow_activate_response.WorkflowActivateResponse.update_forward_refs()  # type: ignore
+    workflow_upsert_response.WorkflowUpsertResponse.update_forward_refs()  # type: ignore
+    workflow_validate_response.WorkflowValidateResponse.update_forward_refs()  # type: ignore
