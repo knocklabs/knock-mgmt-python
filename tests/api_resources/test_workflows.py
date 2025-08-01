@@ -291,14 +291,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
@@ -313,54 +306,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {
-                            "markdown_body": "Hello **{{ recipient.name }}**",
-                            "action_buttons": [
-                                {
-                                    "action": "https://example.com",
-                                    "label": "Button 1",
-                                }
-                            ],
-                            "action_url": "{{ vars.app_url }}",
-                        },
-                        "type": "channel",
-                        "channel_group_key": "email",
-                        "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
-                        "conditions": {
-                            "all": [
-                                {
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
-                                    "argument": "some_property",
-                                }
-                            ]
-                        },
-                        "description": "Delay for 10 seconds",
-                        "send_windows": [
-                            {
-                                "day": "monday",
-                                "type": "send",
-                                "from": "from",
-                                "until": "until",
-                            }
-                        ],
-                    }
-                ],
+                "steps": [],
                 "categories": ["string"],
                 "conditions": {
                     "all": [
@@ -395,14 +341,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
 
@@ -421,14 +360,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         ) as response:
             assert not response.is_closed
@@ -450,14 +382,7 @@ class TestWorkflows:
                 environment="development",
                 workflow={
                     "name": "My Workflow",
-                    "steps": [
-                        {
-                            "name": "Channel 1",
-                            "ref": "channel_1",
-                            "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                            "type": "channel",
-                        }
-                    ],
+                    "steps": [],
                 },
             )
 
@@ -471,14 +396,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
@@ -493,54 +411,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {
-                            "markdown_body": "Hello **{{ recipient.name }}**",
-                            "action_buttons": [
-                                {
-                                    "action": "https://example.com",
-                                    "label": "Button 1",
-                                }
-                            ],
-                            "action_url": "{{ vars.app_url }}",
-                        },
-                        "type": "channel",
-                        "channel_group_key": "email",
-                        "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
-                        "conditions": {
-                            "all": [
-                                {
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
-                                    "argument": "some_property",
-                                }
-                            ]
-                        },
-                        "description": "Delay for 10 seconds",
-                        "send_windows": [
-                            {
-                                "day": "monday",
-                                "type": "send",
-                                "from": "from",
-                                "until": "until",
-                            }
-                        ],
-                    }
-                ],
+                "steps": [],
                 "categories": ["string"],
                 "conditions": {
                     "all": [
@@ -572,14 +443,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
 
@@ -598,14 +462,7 @@ class TestWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         ) as response:
             assert not response.is_closed
@@ -627,14 +484,7 @@ class TestWorkflows:
                 environment="development",
                 workflow={
                     "name": "My Workflow",
-                    "steps": [
-                        {
-                            "name": "Channel 1",
-                            "ref": "channel_1",
-                            "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                            "type": "channel",
-                        }
-                    ],
+                    "steps": [],
                 },
             )
 
@@ -911,14 +761,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
@@ -933,54 +776,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {
-                            "markdown_body": "Hello **{{ recipient.name }}**",
-                            "action_buttons": [
-                                {
-                                    "action": "https://example.com",
-                                    "label": "Button 1",
-                                }
-                            ],
-                            "action_url": "{{ vars.app_url }}",
-                        },
-                        "type": "channel",
-                        "channel_group_key": "email",
-                        "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
-                        "conditions": {
-                            "all": [
-                                {
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
-                                    "argument": "some_property",
-                                }
-                            ]
-                        },
-                        "description": "Delay for 10 seconds",
-                        "send_windows": [
-                            {
-                                "day": "monday",
-                                "type": "send",
-                                "from": "from",
-                                "until": "until",
-                            }
-                        ],
-                    }
-                ],
+                "steps": [],
                 "categories": ["string"],
                 "conditions": {
                     "all": [
@@ -1015,14 +811,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
 
@@ -1041,14 +830,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         ) as response:
             assert not response.is_closed
@@ -1070,14 +852,7 @@ class TestAsyncWorkflows:
                 environment="development",
                 workflow={
                     "name": "My Workflow",
-                    "steps": [
-                        {
-                            "name": "Channel 1",
-                            "ref": "channel_1",
-                            "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                            "type": "channel",
-                        }
-                    ],
+                    "steps": [],
                 },
             )
 
@@ -1091,14 +866,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
@@ -1113,54 +881,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {
-                            "markdown_body": "Hello **{{ recipient.name }}**",
-                            "action_buttons": [
-                                {
-                                    "action": "https://example.com",
-                                    "label": "Button 1",
-                                }
-                            ],
-                            "action_url": "{{ vars.app_url }}",
-                        },
-                        "type": "channel",
-                        "channel_group_key": "email",
-                        "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
-                        "conditions": {
-                            "all": [
-                                {
-                                    "operator": "equal_to",
-                                    "variable": "recipient.property",
-                                    "argument": "some_property",
-                                }
-                            ]
-                        },
-                        "description": "Delay for 10 seconds",
-                        "send_windows": [
-                            {
-                                "day": "monday",
-                                "type": "send",
-                                "from": "from",
-                                "until": "until",
-                            }
-                        ],
-                    }
-                ],
+                "steps": [],
                 "categories": ["string"],
                 "conditions": {
                     "all": [
@@ -1192,14 +913,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         )
 
@@ -1218,14 +932,7 @@ class TestAsyncWorkflows:
             environment="development",
             workflow={
                 "name": "My Workflow",
-                "steps": [
-                    {
-                        "name": "Channel 1",
-                        "ref": "channel_1",
-                        "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                        "type": "channel",
-                    }
-                ],
+                "steps": [],
             },
         ) as response:
             assert not response.is_closed
@@ -1247,13 +954,6 @@ class TestAsyncWorkflows:
                 environment="development",
                 workflow={
                     "name": "My Workflow",
-                    "steps": [
-                        {
-                            "name": "Channel 1",
-                            "ref": "channel_1",
-                            "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
-                            "type": "channel",
-                        }
-                    ],
+                    "steps": [],
                 },
             )
