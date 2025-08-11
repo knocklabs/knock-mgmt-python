@@ -24,9 +24,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestWorkflows:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         workflow = client.workflows.retrieve(
@@ -35,9 +33,7 @@ class TestWorkflows:
         )
         assert_matches_type(Workflow, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.retrieve(
@@ -48,9 +44,7 @@ class TestWorkflows:
         )
         assert_matches_type(Workflow, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.retrieve(
@@ -63,9 +57,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert_matches_type(Workflow, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.retrieve(
@@ -80,9 +72,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_path_params_retrieve(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -91,9 +81,7 @@ class TestWorkflows:
                 environment="development",
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
         workflow = client.workflows.list(
@@ -101,9 +89,7 @@ class TestWorkflows:
         )
         assert_matches_type(SyncEntriesCursor[Workflow], workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.list(
@@ -116,9 +102,7 @@ class TestWorkflows:
         )
         assert_matches_type(SyncEntriesCursor[Workflow], workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.list(
@@ -130,9 +114,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert_matches_type(SyncEntriesCursor[Workflow], workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.list(
@@ -146,9 +128,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_activate(self, client: KnockMgmt) -> None:
         workflow = client.workflows.activate(
@@ -158,9 +138,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_activate(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.activate(
@@ -174,9 +152,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_activate(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.activate(
@@ -192,9 +168,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_path_params_activate(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -204,9 +178,7 @@ class TestWorkflows:
                 status=True,
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_run(self, client: KnockMgmt) -> None:
         workflow = client.workflows.run(
@@ -216,9 +188,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_run_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.run(
@@ -235,9 +205,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_run(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.run(
@@ -251,9 +219,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_run(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.run(
@@ -269,9 +235,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_path_params_run(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -281,9 +245,7 @@ class TestWorkflows:
                 recipients=["dnedry"],
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_upsert(self, client: KnockMgmt) -> None:
         workflow = client.workflows.upsert(
@@ -296,9 +258,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.upsert(
@@ -331,9 +291,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.upsert(
@@ -350,9 +308,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.upsert(
@@ -371,9 +327,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_path_params_upsert(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -386,9 +340,7 @@ class TestWorkflows:
                 },
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_validate(self, client: KnockMgmt) -> None:
         workflow = client.workflows.validate(
@@ -401,9 +353,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.validate(
@@ -433,9 +383,7 @@ class TestWorkflows:
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.validate(
@@ -452,9 +400,7 @@ class TestWorkflows:
         workflow = response.parse()
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.validate(
@@ -473,9 +419,7 @@ class TestWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_path_params_validate(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -494,9 +438,7 @@ class TestAsyncWorkflows:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.retrieve(
@@ -505,9 +447,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(Workflow, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.retrieve(
@@ -518,9 +458,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(Workflow, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.retrieve(
@@ -533,9 +471,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert_matches_type(Workflow, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.retrieve(
@@ -550,9 +486,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -561,9 +495,7 @@ class TestAsyncWorkflows:
                 environment="development",
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.list(
@@ -571,9 +503,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(AsyncEntriesCursor[Workflow], workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.list(
@@ -586,9 +516,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(AsyncEntriesCursor[Workflow], workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.list(
@@ -600,9 +528,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Workflow], workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.list(
@@ -616,9 +542,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_activate(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.activate(
@@ -628,9 +552,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_activate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.activate(
@@ -644,9 +566,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_activate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.activate(
@@ -662,9 +582,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_path_params_activate(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -674,9 +592,7 @@ class TestAsyncWorkflows:
                 status=True,
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_run(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.run(
@@ -686,9 +602,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_run_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.run(
@@ -705,9 +619,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_run(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.run(
@@ -721,9 +633,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_run(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.run(
@@ -739,9 +649,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_path_params_run(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -751,9 +659,7 @@ class TestAsyncWorkflows:
                 recipients=["dnedry"],
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.upsert(
@@ -766,9 +672,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.upsert(
@@ -801,9 +705,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.upsert(
@@ -820,9 +722,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.upsert(
@@ -841,9 +741,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_path_params_upsert(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -856,9 +754,7 @@ class TestAsyncWorkflows:
                 },
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.validate(
@@ -871,9 +767,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.validate(
@@ -903,9 +797,7 @@ class TestAsyncWorkflows:
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.validate(
@@ -922,9 +814,7 @@ class TestAsyncWorkflows:
         workflow = await response.parse()
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.validate(
@@ -943,9 +833,7 @@ class TestAsyncWorkflows:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):

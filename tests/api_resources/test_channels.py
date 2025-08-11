@@ -18,17 +18,13 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestChannels:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
         channel = client.channels.list()
         assert_matches_type(SyncEntriesCursor[Channel], channel, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         channel = client.channels.list(
@@ -38,9 +34,7 @@ class TestChannels:
         )
         assert_matches_type(SyncEntriesCursor[Channel], channel, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
         response = client.channels.with_raw_response.list()
@@ -50,9 +44,7 @@ class TestChannels:
         channel = response.parse()
         assert_matches_type(SyncEntriesCursor[Channel], channel, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
         with client.channels.with_streaming_response.list() as response:
@@ -70,17 +62,13 @@ class TestAsyncChannels:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
         channel = await async_client.channels.list()
         assert_matches_type(AsyncEntriesCursor[Channel], channel, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         channel = await async_client.channels.list(
@@ -90,9 +78,7 @@ class TestAsyncChannels:
         )
         assert_matches_type(AsyncEntriesCursor[Channel], channel, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.channels.with_raw_response.list()
@@ -102,9 +88,7 @@ class TestAsyncChannels:
         channel = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Channel], channel, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.channels.with_streaming_response.list() as response:
