@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import commit_list_params, commit_commit_all_params, commit_promote_all_params
@@ -86,6 +88,9 @@ class CommitsResource(SyncAPIResource):
         before: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         promoted: bool | NotGiven = NOT_GIVEN,
+        resource_id: str | NotGiven = NOT_GIVEN,
+        resource_type: Literal["email_layout", "guide", "message_type", "partial", "translation", "workflow"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -110,6 +115,13 @@ class CommitsResource(SyncAPIResource):
           promoted: Whether to show commits in the given environment that have not been promoted to
               the subsequent environment (false) or commits which have been promoted (true).
 
+          resource_id: Filter commits by resource identifier. Must be used together with resource_type.
+              For most resources, this will be the resource key. In the case of translations,
+              this will be the locale code and namespace, separated by a `/`. For example,
+              `en/courses` or `en`.
+
+          resource_type: Filter commits by resource type. Must be used together with resource_id.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -133,6 +145,8 @@ class CommitsResource(SyncAPIResource):
                         "before": before,
                         "limit": limit,
                         "promoted": promoted,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_list_params.CommitListParams,
                 ),
@@ -328,6 +342,9 @@ class AsyncCommitsResource(AsyncAPIResource):
         before: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
         promoted: bool | NotGiven = NOT_GIVEN,
+        resource_id: str | NotGiven = NOT_GIVEN,
+        resource_type: Literal["email_layout", "guide", "message_type", "partial", "translation", "workflow"]
+        | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -352,6 +369,13 @@ class AsyncCommitsResource(AsyncAPIResource):
           promoted: Whether to show commits in the given environment that have not been promoted to
               the subsequent environment (false) or commits which have been promoted (true).
 
+          resource_id: Filter commits by resource identifier. Must be used together with resource_type.
+              For most resources, this will be the resource key. In the case of translations,
+              this will be the locale code and namespace, separated by a `/`. For example,
+              `en/courses` or `en`.
+
+          resource_type: Filter commits by resource type. Must be used together with resource_id.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -375,6 +399,8 @@ class AsyncCommitsResource(AsyncAPIResource):
                         "before": before,
                         "limit": limit,
                         "promoted": promoted,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_list_params.CommitListParams,
                 ),

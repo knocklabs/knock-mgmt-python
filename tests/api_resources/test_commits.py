@@ -82,6 +82,8 @@ class TestCommits:
             before="before",
             limit=0,
             promoted=True,
+            resource_id="resource_id",
+            resource_type="email_layout",
         )
         assert_matches_type(SyncEntriesCursor[Commit], commit, path=["response"])
 
@@ -295,6 +297,8 @@ class TestAsyncCommits:
             before="before",
             limit=0,
             promoted=True,
+            resource_id="resource_id",
+            resource_type="email_layout",
         )
         assert_matches_type(AsyncEntriesCursor[Commit], commit, path=["response"])
 
