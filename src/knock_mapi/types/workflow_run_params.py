@@ -34,7 +34,7 @@ class WorkflowRunParams(TypedDict, total=False):
     """A map of data to be used in the workflow run."""
 
     tenant: str
-    """The tenant to associate the workflow run with."""
+    """The tenant to associate the workflow run with. Must not contain whitespace."""
 
 
 class RecipientObjectRecipientReference(TypedDict, total=False):
