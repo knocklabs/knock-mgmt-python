@@ -74,7 +74,7 @@ class StepsResource(SyncAPIResource):
 
           data: The data to pass to the workflow template for rendering.
 
-          tenant: The tenant to associate the workflow with.
+          tenant: The tenant to associate the workflow with. Must not contain whitespace.
 
           extra_headers: Send extra headers
 
@@ -163,7 +163,7 @@ class AsyncStepsResource(AsyncAPIResource):
 
           data: The data to pass to the workflow template for rendering.
 
-          tenant: The tenant to associate the workflow with.
+          tenant: The tenant to associate the workflow with. Must not contain whitespace.
 
           extra_headers: Send extra headers
 

@@ -36,7 +36,7 @@ class StepPreviewTemplateParams(TypedDict, total=False):
     """The data to pass to the workflow template for rendering."""
 
     tenant: Optional[str]
-    """The tenant to associate the workflow with."""
+    """The tenant to associate the workflow with. Must not contain whitespace."""
 
 
 class RecipientObjectRecipientReference(TypedDict, total=False):

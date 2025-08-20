@@ -270,7 +270,7 @@ class WorkflowsResource(SyncAPIResource):
 
           data: A map of data to be used in the workflow run.
 
-          tenant: The tenant to associate the workflow run with.
+          tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
 
@@ -646,7 +646,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
 
           data: A map of data to be used in the workflow run.
 
-          tenant: The tenant to associate the workflow run with.
+          tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
 
