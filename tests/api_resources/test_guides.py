@@ -275,7 +275,7 @@ class TestGuides:
                         "values": {"text_field": "bar"},
                     }
                 ],
-                "activation_location_rules": [
+                "activation_url_patterns": [
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
@@ -414,7 +414,7 @@ class TestGuides:
                         "values": {"text_field": "bar"},
                     }
                 ],
-                "activation_location_rules": [
+                "activation_url_patterns": [
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
@@ -767,7 +767,7 @@ class TestAsyncGuides:
                         "values": {"text_field": "bar"},
                     }
                 ],
-                "activation_location_rules": [
+                "activation_url_patterns": [
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
@@ -906,7 +906,7 @@ class TestAsyncGuides:
                         "values": {"text_field": "bar"},
                     }
                 ],
-                "activation_location_rules": [
+                "activation_url_patterns": [
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
