@@ -4,14 +4,13 @@ from __future__ import annotations
 
 from typing import Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Literal, Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .guide_step_param import GuideStepParam
 from .condition_group_param import ConditionGroupParam
-from .guide_activation_location_rule_param import GuideActivationLocationRuleParam
 
-__all__ = ["GuideValidateParams", "Guide"]
+__all__ = ["GuideValidateParams", "Guide", "GuideActivationURLPattern"]
 
 
 class GuideValidateParams(TypedDict, total=False):
@@ -20,6 +19,14 @@ class GuideValidateParams(TypedDict, total=False):
 
     guide: Required[Guide]
     """A request to create or update a guide."""
+
+
+class GuideActivationURLPattern(TypedDict, total=False):
+    directive: Required[Literal["allow", "block"]]
+    """Whether to allow or block the guide at the specified pathname."""
+
+    pathname: Required[str]
+    """The URL pathname pattern to match against. Must be a valid URI path."""
 
 
 class Guide(TypedDict, total=False):
@@ -32,11 +39,8 @@ class Guide(TypedDict, total=False):
     steps: Required[Iterable[GuideStepParam]]
     """A list of guide step objects in the guide."""
 
-    activation_location_rules: Iterable[GuideActivationLocationRuleParam]
-    """
-    A list of activation location rules that describe when the guide should be
-    shown.
-    """
+    activation_url_patterns: Iterable[GuideActivationURLPattern]
+    """A list of activation url patterns that describe when the guide should be shown."""
 
     archived_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The timestamp of when the guide was archived."""

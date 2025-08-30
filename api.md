@@ -246,7 +246,6 @@ Types:
 ```python
 from knock_mapi.types import (
     Guide,
-    GuideActivationLocationRule,
     GuideStep,
     GuideActivateResponse,
     GuideUpsertResponse,
