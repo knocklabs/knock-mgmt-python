@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .message_type_text_field_param import MessageTypeTextFieldParam
 
 __all__ = [
@@ -171,7 +172,7 @@ class FieldMessageTypeMultiSelectFieldSettingsOption(TypedDict, total=False):
 
 
 class FieldMessageTypeMultiSelectFieldSettings(TypedDict, total=False):
-    default: Optional[List[str]]
+    default: Optional[SequenceNotStr[str]]
     """The default values for the multi-select field."""
 
     description: str

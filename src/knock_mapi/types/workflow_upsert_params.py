@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .condition_group_param import ConditionGroupParam
 
 __all__ = ["WorkflowUpsertParams", "Workflow", "WorkflowSettings"]
@@ -46,7 +47,7 @@ class Workflow(TypedDict, total=False):
     steps: Required[Iterable["WorkflowStepParam"]]
     """A list of workflow step objects in the workflow."""
 
-    categories: List[str]
+    categories: SequenceNotStr[str]
     """
     A list of
     [categories](https://docs.knock.app/concepts/workflows#workflow-categories) that

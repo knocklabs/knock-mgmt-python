@@ -2,8 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
+
+from .._types import SequenceNotStr
 
 __all__ = [
     "WorkflowRunParams",
@@ -18,7 +20,7 @@ class WorkflowRunParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
-    recipients: Required[List[Recipient]]
+    recipients: Required[SequenceNotStr[Recipient]]
     """A list of recipients to run the workflow for."""
 
     actor: Optional[Actor]
