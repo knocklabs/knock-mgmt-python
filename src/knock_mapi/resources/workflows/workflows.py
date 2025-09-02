@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -22,7 +22,7 @@ from ...types import (
     workflow_retrieve_params,
     workflow_validate_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -242,7 +242,7 @@ class WorkflowsResource(SyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        recipients: List[workflow_run_params.Recipient],
+        recipients: SequenceNotStr[workflow_run_params.Recipient],
         actor: Optional[workflow_run_params.Actor] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Dict[str, object] | NotGiven = NOT_GIVEN,
@@ -618,7 +618,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        recipients: List[workflow_run_params.Recipient],
+        recipients: SequenceNotStr[workflow_run_params.Recipient],
         actor: Optional[workflow_run_params.Actor] | NotGiven = NOT_GIVEN,
         cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
         data: Dict[str, object] | NotGiven = NOT_GIVEN,
