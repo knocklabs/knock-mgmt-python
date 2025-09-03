@@ -138,15 +138,15 @@ from .workflow_trigger_workflow_step_param import WorkflowTriggerWorkflowStepPar
 # This ensures that, when building the deferred (due to cyclical references) model schema,
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
-if _compat.PYDANTIC_V2:
-    workflow.Workflow.model_rebuild(_parent_namespace_depth=0)
-    workflow_branch_step.WorkflowBranchStep.model_rebuild(_parent_namespace_depth=0)
-    workflow_activate_response.WorkflowActivateResponse.model_rebuild(_parent_namespace_depth=0)
-    workflow_upsert_response.WorkflowUpsertResponse.model_rebuild(_parent_namespace_depth=0)
-    workflow_validate_response.WorkflowValidateResponse.model_rebuild(_parent_namespace_depth=0)
-else:
+if _compat.PYDANTIC_V1:
     workflow.Workflow.update_forward_refs()  # type: ignore
     workflow_branch_step.WorkflowBranchStep.update_forward_refs()  # type: ignore
     workflow_activate_response.WorkflowActivateResponse.update_forward_refs()  # type: ignore
     workflow_upsert_response.WorkflowUpsertResponse.update_forward_refs()  # type: ignore
     workflow_validate_response.WorkflowValidateResponse.update_forward_refs()  # type: ignore
+else:
+    workflow.Workflow.model_rebuild(_parent_namespace_depth=0)
+    workflow_branch_step.WorkflowBranchStep.model_rebuild(_parent_namespace_depth=0)
+    workflow_activate_response.WorkflowActivateResponse.model_rebuild(_parent_namespace_depth=0)
+    workflow_upsert_response.WorkflowUpsertResponse.model_rebuild(_parent_namespace_depth=0)
+    workflow_validate_response.WorkflowValidateResponse.model_rebuild(_parent_namespace_depth=0)
