@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import TYPE_CHECKING, Union
 from typing_extensions import TypeAlias, TypeAliasType
 
-from .._compat import PYDANTIC_V2
+from .._compat import PYDANTIC_V1
 from .workflow_batch_step_param import WorkflowBatchStepParam
 from .workflow_delay_step_param import WorkflowDelayStepParam
 from .workflow_fetch_step_param import WorkflowFetchStepParam
@@ -15,7 +15,7 @@ from .workflow_trigger_workflow_step_param import WorkflowTriggerWorkflowStepPar
 
 __all__ = ["WorkflowStepParam"]
 
-if TYPE_CHECKING or PYDANTIC_V2:
+if TYPE_CHECKING or not PYDANTIC_V1:
     WorkflowStepParam = TypeAliasType(
         "WorkflowStepParam",
         Union[
