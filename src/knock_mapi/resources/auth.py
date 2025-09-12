@@ -49,7 +49,11 @@ class AuthResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AuthVerifyResponse:
-        """Return information about the current service token."""
+        """Return information about the current calling scope.
+
+        Will either be a service
+        token or from an OAuth context.
+        """
         return self._get(
             "/v1/whoami",
             options=make_request_options(
@@ -89,7 +93,11 @@ class AsyncAuthResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
     ) -> AuthVerifyResponse:
-        """Return information about the current service token."""
+        """Return information about the current calling scope.
+
+        Will either be a service
+        token or from an OAuth context.
+        """
         return await self._get(
             "/v1/whoami",
             options=make_request_options(
