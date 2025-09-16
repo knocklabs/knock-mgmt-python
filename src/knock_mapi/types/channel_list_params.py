@@ -8,6 +8,9 @@ __all__ = ["ChannelListParams"]
 
 
 class ChannelListParams(TypedDict, total=False):
+    id: str
+    """A channel id to filter the results by."""
+
     after: str
     """The cursor to fetch entries after."""
 

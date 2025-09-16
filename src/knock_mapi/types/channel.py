@@ -10,6 +10,9 @@ __all__ = ["Channel"]
 
 
 class Channel(BaseModel):
+    id: str
+    """The unique identifier for the channel."""
+
     created_at: datetime
     """The timestamp of when the channel was created."""
 

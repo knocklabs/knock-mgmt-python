@@ -45,6 +45,7 @@ class ChannelsResource(SyncAPIResource):
     def list(
         self,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -61,6 +62,8 @@ class ChannelsResource(SyncAPIResource):
         entire account, not scoped to an environment.
 
         Args:
+          id: A channel id to filter the results by.
+
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
@@ -85,6 +88,7 @@ class ChannelsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
                         "limit": limit,
@@ -119,6 +123,7 @@ class AsyncChannelsResource(AsyncAPIResource):
     def list(
         self,
         *,
+        id: str | NotGiven = NOT_GIVEN,
         after: str | NotGiven = NOT_GIVEN,
         before: str | NotGiven = NOT_GIVEN,
         limit: int | NotGiven = NOT_GIVEN,
@@ -135,6 +140,8 @@ class AsyncChannelsResource(AsyncAPIResource):
         entire account, not scoped to an environment.
 
         Args:
+          id: A channel id to filter the results by.
+
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
@@ -159,6 +166,7 @@ class AsyncChannelsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
                         "limit": limit,

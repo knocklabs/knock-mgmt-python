@@ -28,6 +28,7 @@ class TestChannels:
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         channel = client.channels.list(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             after="after",
             before="before",
             limit=0,
@@ -72,6 +73,7 @@ class TestAsyncChannels:
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         channel = await async_client.channels.list(
+            id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             after="after",
             before="before",
             limit=0,
