@@ -12,7 +12,7 @@ from ..types import (
     translation_retrieve_params,
     translation_validate_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -57,16 +57,16 @@ class TranslationsResource(SyncAPIResource):
         locale_code: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        format: Literal["json", "po"] | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        namespace: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        format: Literal["json", "po"] | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        namespace: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationRetrieveResponse:
         """
         Retrieve a translation by its locale and namespace, in a given environment.
@@ -119,20 +119,20 @@ class TranslationsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        format: Literal["json", "po"] | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        locale_code: str | NotGiven = NOT_GIVEN,
-        namespace: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        format: Literal["json", "po"] | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
+        locale_code: str | Omit = omit,
+        namespace: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Translation]:
         """Returns a paginated list of translations available in a given environment.
 
@@ -201,16 +201,16 @@ class TranslationsResource(SyncAPIResource):
         environment: str,
         namespace: str,
         translation: translation_upsert_params.Translation,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
-        format: Literal["json", "po"] | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        format: Literal["json", "po"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationUpsertResponse:
         """
         Updates a translation of a given locale code + namespace, or creates a new one
@@ -280,7 +280,7 @@ class TranslationsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationValidateResponse:
         """
         Validates a translation payload without persisting it.
@@ -345,16 +345,16 @@ class AsyncTranslationsResource(AsyncAPIResource):
         locale_code: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        format: Literal["json", "po"] | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        namespace: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        format: Literal["json", "po"] | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        namespace: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationRetrieveResponse:
         """
         Retrieve a translation by its locale and namespace, in a given environment.
@@ -407,20 +407,20 @@ class AsyncTranslationsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        format: Literal["json", "po"] | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        locale_code: str | NotGiven = NOT_GIVEN,
-        namespace: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        format: Literal["json", "po"] | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
+        locale_code: str | Omit = omit,
+        namespace: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Translation, AsyncEntriesCursor[Translation]]:
         """Returns a paginated list of translations available in a given environment.
 
@@ -489,16 +489,16 @@ class AsyncTranslationsResource(AsyncAPIResource):
         environment: str,
         namespace: str,
         translation: translation_upsert_params.Translation,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
-        format: Literal["json", "po"] | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        format: Literal["json", "po"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationUpsertResponse:
         """
         Updates a translation of a given locale code + namespace, or creates a new one
@@ -570,7 +570,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> TranslationValidateResponse:
         """
         Validates a translation payload without persisting it.

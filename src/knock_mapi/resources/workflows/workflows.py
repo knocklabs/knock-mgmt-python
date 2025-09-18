@@ -22,7 +22,7 @@ from ...types import (
     workflow_retrieve_params,
     workflow_validate_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven, SequenceNotStr
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -72,14 +72,14 @@ class WorkflowsResource(SyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Workflow:
         """
         Retrieve a workflow by its key in a given environment.
@@ -125,17 +125,17 @@ class WorkflowsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Workflow]:
         """Returns a paginated list of workflows available in a given environment.
 
@@ -198,7 +198,7 @@ class WorkflowsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowActivateResponse:
         """Activates (or deactivates) a workflow in a given environment.
 
@@ -243,16 +243,16 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         recipients: SequenceNotStr[workflow_run_params.Recipient],
-        actor: Optional[workflow_run_params.Actor] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
+        actor: Optional[workflow_run_params.Actor] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowRunResponse:
         """
         Runs the latest version of a committed workflow in a given environment using the
@@ -310,15 +310,15 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         workflow: workflow_upsert_params.Workflow,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowUpsertResponse:
         """
         Updates a workflow of a given key, or creates a new one if it does not yet
@@ -379,7 +379,7 @@ class WorkflowsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowValidateResponse:
         """Validates a workflow payload without persisting it.
 
@@ -446,14 +446,14 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Workflow:
         """
         Retrieve a workflow by its key in a given environment.
@@ -499,17 +499,17 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Workflow, AsyncEntriesCursor[Workflow]]:
         """Returns a paginated list of workflows available in a given environment.
 
@@ -572,7 +572,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowActivateResponse:
         """Activates (or deactivates) a workflow in a given environment.
 
@@ -619,16 +619,16 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         recipients: SequenceNotStr[workflow_run_params.Recipient],
-        actor: Optional[workflow_run_params.Actor] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
+        actor: Optional[workflow_run_params.Actor] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowRunResponse:
         """
         Runs the latest version of a committed workflow in a given environment using the
@@ -686,15 +686,15 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         workflow: workflow_upsert_params.Workflow,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowUpsertResponse:
         """
         Updates a workflow of a given key, or creates a new one if it does not yet
@@ -755,7 +755,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowValidateResponse:
         """Validates a workflow payload without persisting it.
 
