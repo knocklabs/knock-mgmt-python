@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import partial_list_params, partial_upsert_params, partial_retrieve_params, partial_validate_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -49,14 +49,14 @@ class PartialsResource(SyncAPIResource):
         partial_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Partial:
         """
         Get a partial by its key.
@@ -102,17 +102,17 @@ class PartialsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Partial]:
         """
         List all partials for a given environment.
@@ -168,15 +168,15 @@ class PartialsResource(SyncAPIResource):
         *,
         environment: str,
         partial: partial_upsert_params.Partial,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartialUpsertResponse:
         """
         Updates a partial of a given key, or creates a new one if it does not yet exist.
@@ -236,7 +236,7 @@ class PartialsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartialValidateResponse:
         """
         Validates a partial payload without persisting it.
@@ -297,14 +297,14 @@ class AsyncPartialsResource(AsyncAPIResource):
         partial_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Partial:
         """
         Get a partial by its key.
@@ -350,17 +350,17 @@ class AsyncPartialsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Partial, AsyncEntriesCursor[Partial]]:
         """
         List all partials for a given environment.
@@ -416,15 +416,15 @@ class AsyncPartialsResource(AsyncAPIResource):
         *,
         environment: str,
         partial: partial_upsert_params.Partial,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartialUpsertResponse:
         """
         Updates a partial of a given key, or creates a new one if it does not yet exist.
@@ -484,7 +484,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> PartialValidateResponse:
         """
         Validates a partial payload without persisting it.

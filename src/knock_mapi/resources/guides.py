@@ -15,7 +15,7 @@ from ..types import (
     guide_retrieve_params,
     guide_validate_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -60,14 +60,14 @@ class GuidesResource(SyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Guide:
         """
         Get a guide by its key.
@@ -113,17 +113,17 @@ class GuidesResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Guide]:
         """
         Returns a paginated list of guides available in a given environment.
@@ -185,7 +185,7 @@ class GuidesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideActivateResponse:
         """Activates (or deactivates) a guide in a given environment.
 
@@ -216,14 +216,14 @@ class GuidesResource(SyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        from_: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideActivateResponse:
         """Activates (or deactivates) a guide in a given environment.
 
@@ -258,15 +258,15 @@ class GuidesResource(SyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        status: bool | NotGiven = NOT_GIVEN,
-        from_: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        status: bool | Omit = omit,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideActivateResponse:
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
@@ -296,15 +296,15 @@ class GuidesResource(SyncAPIResource):
         *,
         environment: str,
         guide: guide_upsert_params.Guide,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideUpsertResponse:
         """
         Updates a guide of a given key, or creates a new one if it does not yet exist.
@@ -364,7 +364,7 @@ class GuidesResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideValidateResponse:
         """
         Validates a guide payload without persisting it.
@@ -425,14 +425,14 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Guide:
         """
         Get a guide by its key.
@@ -478,17 +478,17 @@ class AsyncGuidesResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Guide, AsyncEntriesCursor[Guide]]:
         """
         Returns a paginated list of guides available in a given environment.
@@ -550,7 +550,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideActivateResponse:
         """Activates (or deactivates) a guide in a given environment.
 
@@ -581,14 +581,14 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        from_: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideActivateResponse:
         """Activates (or deactivates) a guide in a given environment.
 
@@ -623,15 +623,15 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        status: bool | NotGiven = NOT_GIVEN,
-        from_: Union[str, datetime] | NotGiven = NOT_GIVEN,
-        until: Union[str, datetime] | NotGiven = NOT_GIVEN,
+        status: bool | Omit = omit,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideActivateResponse:
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
@@ -663,15 +663,15 @@ class AsyncGuidesResource(AsyncAPIResource):
         *,
         environment: str,
         guide: guide_upsert_params.Guide,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideUpsertResponse:
         """
         Updates a guide of a given key, or creates a new one if it does not yet exist.
@@ -731,7 +731,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GuideValidateResponse:
         """
         Validates a guide payload without persisting it.

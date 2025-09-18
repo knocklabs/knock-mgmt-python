@@ -7,7 +7,7 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import commit_list_params, commit_commit_all_params, commit_promote_all_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -56,7 +56,7 @@ class CommitsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Commit:
         """
         Retrieve a single commit by its ID.
@@ -84,19 +84,19 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        promoted: bool | NotGiven = NOT_GIVEN,
-        resource_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        promoted: bool | Omit = omit,
+        resource_id: str | Omit = omit,
         resource_type: Literal["email_layout", "guide", "message_type", "partial", "translation", "workflow"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Commit]:
         """Returns a paginated list of commits in a given environment.
 
@@ -158,13 +158,13 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitCommitAllResponse:
         """
         Commit all changes across all resources in the development environment.
@@ -209,7 +209,7 @@ class CommitsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteAllResponse:
         """
         Promote all changes across all resources to the target environment from its
@@ -256,7 +256,7 @@ class CommitsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteOneResponse:
         """
         Promotes one change to the subsequent environment.
@@ -310,7 +310,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Commit:
         """
         Retrieve a single commit by its ID.
@@ -338,19 +338,19 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        promoted: bool | NotGiven = NOT_GIVEN,
-        resource_id: str | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        limit: int | Omit = omit,
+        promoted: bool | Omit = omit,
+        resource_id: str | Omit = omit,
         resource_type: Literal["email_layout", "guide", "message_type", "partial", "translation", "workflow"]
-        | NotGiven = NOT_GIVEN,
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Commit, AsyncEntriesCursor[Commit]]:
         """Returns a paginated list of commits in a given environment.
 
@@ -412,13 +412,13 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitCommitAllResponse:
         """
         Commit all changes across all resources in the development environment.
@@ -463,7 +463,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteAllResponse:
         """
         Promote all changes across all resources to the target environment from its
@@ -510,7 +510,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteOneResponse:
         """
         Promotes one change to the subsequent environment.

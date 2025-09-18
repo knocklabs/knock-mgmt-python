@@ -10,7 +10,7 @@ from ..types import (
     email_layout_retrieve_params,
     email_layout_validate_params,
 )
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -54,14 +54,14 @@ class EmailLayoutsResource(SyncAPIResource):
         email_layout_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailLayout:
         """
         Retrieve an email layout by its key, in a given environment.
@@ -107,17 +107,17 @@ class EmailLayoutsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[EmailLayout]:
         """
         Returns a paginated list of email layouts available in a given environment.
@@ -173,15 +173,15 @@ class EmailLayoutsResource(SyncAPIResource):
         *,
         environment: str,
         email_layout: email_layout_upsert_params.EmailLayout,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailLayoutUpsertResponse:
         """
         Updates an email layout, or creates a new one if it does not yet exist.
@@ -241,7 +241,7 @@ class EmailLayoutsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailLayoutValidateResponse:
         """
         Validates an email layout payload without persisting it.
@@ -306,14 +306,14 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         email_layout_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailLayout:
         """
         Retrieve an email layout by its key, in a given environment.
@@ -359,17 +359,17 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[EmailLayout, AsyncEntriesCursor[EmailLayout]]:
         """
         Returns a paginated list of email layouts available in a given environment.
@@ -425,15 +425,15 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         *,
         environment: str,
         email_layout: email_layout_upsert_params.EmailLayout,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailLayoutUpsertResponse:
         """
         Updates an email layout, or creates a new one if it does not yet exist.
@@ -495,7 +495,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> EmailLayoutValidateResponse:
         """
         Validates an email layout payload without persisting it.

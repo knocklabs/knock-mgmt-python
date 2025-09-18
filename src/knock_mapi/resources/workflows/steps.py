@@ -6,7 +6,7 @@ from typing import Dict, Optional
 
 import httpx
 
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from ..._utils import maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
@@ -50,15 +50,15 @@ class StepsResource(SyncAPIResource):
         workflow_key: str,
         environment: str,
         recipient: step_preview_template_params.Recipient,
-        actor: Optional[step_preview_template_params.Actor] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        actor: Optional[step_preview_template_params.Actor] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StepPreviewTemplateResponse:
         """
         Generates a rendered template for a given channel step in a workflow.
@@ -139,15 +139,15 @@ class AsyncStepsResource(AsyncAPIResource):
         workflow_key: str,
         environment: str,
         recipient: step_preview_template_params.Recipient,
-        actor: Optional[step_preview_template_params.Actor] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: Optional[str] | NotGiven = NOT_GIVEN,
+        actor: Optional[step_preview_template_params.Actor] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> StepPreviewTemplateResponse:
         """
         Generates a rendered template for a given channel step in a workflow.
