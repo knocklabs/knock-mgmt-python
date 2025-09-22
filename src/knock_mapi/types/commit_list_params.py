@@ -34,5 +34,7 @@ class CommitListParams(TypedDict, total=False):
     namespace, separated by a `/`. For example, `en/courses` or `en`.
     """
 
-    resource_type: Literal["email_layout", "guide", "message_type", "partial", "translation", "workflow"]
+    resource_type: Literal[
+        "dynamic_audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"
+    ]
     """Filter commits by resource type. Must be used together with resource_id."""
