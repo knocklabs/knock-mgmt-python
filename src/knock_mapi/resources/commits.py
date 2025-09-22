@@ -89,7 +89,9 @@ class CommitsResource(SyncAPIResource):
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
-        resource_type: Literal["email_layout", "guide", "message_type", "partial", "translation", "workflow"]
+        resource_type: Literal[
+            "dynamic_audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"
+        ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -343,7 +345,9 @@ class AsyncCommitsResource(AsyncAPIResource):
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
-        resource_type: Literal["email_layout", "guide", "message_type", "partial", "translation", "workflow"]
+        resource_type: Literal[
+            "dynamic_audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"
+        ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
