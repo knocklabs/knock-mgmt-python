@@ -19,6 +19,7 @@ class Condition(BaseModel):
         "contains",
         "not_contains",
         "contains_all",
+        "not_contains_all",
         "empty",
         "not_empty",
         "is_audience_member",
