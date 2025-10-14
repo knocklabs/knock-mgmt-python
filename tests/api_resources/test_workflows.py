@@ -14,6 +14,7 @@ from knock_mapi.types import (
     WorkflowRunResponse,
     WorkflowUpsertResponse,
     WorkflowActivateResponse,
+    WorkflowRetrieveResponse,
     WorkflowValidateResponse,
 )
 from knock_mapi.pagination import SyncEntriesCursor, AsyncEntriesCursor
@@ -31,7 +32,7 @@ class TestWorkflows:
             workflow_key="workflow_key",
             environment="development",
         )
-        assert_matches_type(Workflow, workflow, path=["response"])
+        assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -42,7 +43,7 @@ class TestWorkflows:
             annotate=True,
             hide_uncommitted_changes=True,
         )
-        assert_matches_type(Workflow, workflow, path=["response"])
+        assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -55,7 +56,7 @@ class TestWorkflows:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         workflow = response.parse()
-        assert_matches_type(Workflow, workflow, path=["response"])
+        assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -68,7 +69,7 @@ class TestWorkflows:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             workflow = response.parse()
-            assert_matches_type(Workflow, workflow, path=["response"])
+            assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -595,7 +596,7 @@ class TestAsyncWorkflows:
             workflow_key="workflow_key",
             environment="development",
         )
-        assert_matches_type(Workflow, workflow, path=["response"])
+        assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -606,7 +607,7 @@ class TestAsyncWorkflows:
             annotate=True,
             hide_uncommitted_changes=True,
         )
-        assert_matches_type(Workflow, workflow, path=["response"])
+        assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -619,7 +620,7 @@ class TestAsyncWorkflows:
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
         workflow = await response.parse()
-        assert_matches_type(Workflow, workflow, path=["response"])
+        assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
     @parametrize
@@ -632,7 +633,7 @@ class TestAsyncWorkflows:
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
             workflow = await response.parse()
-            assert_matches_type(Workflow, workflow, path=["response"])
+            assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

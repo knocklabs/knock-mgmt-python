@@ -110,6 +110,7 @@ from knock_mapi.types import (
     WorkflowStep,
     WorkflowThrottleStep,
     WorkflowTriggerWorkflowStep,
+    WorkflowRetrieveResponse,
     WorkflowActivateResponse,
     WorkflowRunResponse,
     WorkflowUpsertResponse,
@@ -119,7 +120,7 @@ from knock_mapi.types import (
 
 Methods:
 
-- <code title="get /v1/workflows/{workflow_key}">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">retrieve</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow.py">Workflow</a></code>
+- <code title="get /v1/workflows/{workflow_key}">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">retrieve</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow_retrieve_response.py">WorkflowRetrieveResponse</a></code>
 - <code title="get /v1/workflows">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">list</a>(\*\*<a href="src/knock_mapi/types/workflow_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow.py">SyncEntriesCursor[Workflow]</a></code>
 - <code title="put /v1/workflows/{workflow_key}/activate">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">activate</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_activate_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow_activate_response.py">WorkflowActivateResponse</a></code>
 - <code title="put /v1/workflows/{workflow_key}/run">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">run</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_run_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow_run_response.py">WorkflowRunResponse</a></code>
