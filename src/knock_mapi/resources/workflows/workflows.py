@@ -38,6 +38,7 @@ from ...types.workflow import Workflow
 from ...types.workflow_run_response import WorkflowRunResponse
 from ...types.workflow_upsert_response import WorkflowUpsertResponse
 from ...types.workflow_activate_response import WorkflowActivateResponse
+from ...types.workflow_retrieve_response import WorkflowRetrieveResponse
 from ...types.workflow_validate_response import WorkflowValidateResponse
 
 __all__ = ["WorkflowsResource", "AsyncWorkflowsResource"]
@@ -80,7 +81,7 @@ class WorkflowsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Workflow:
+    ) -> WorkflowRetrieveResponse:
         """
         Retrieve a workflow by its key in a given environment.
 
@@ -118,7 +119,7 @@ class WorkflowsResource(SyncAPIResource):
                     workflow_retrieve_params.WorkflowRetrieveParams,
                 ),
             ),
-            cast_to=Workflow,
+            cast_to=WorkflowRetrieveResponse,
         )
 
     def list(
@@ -454,7 +455,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> Workflow:
+    ) -> WorkflowRetrieveResponse:
         """
         Retrieve a workflow by its key in a given environment.
 
@@ -492,7 +493,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     workflow_retrieve_params.WorkflowRetrieveParams,
                 ),
             ),
-            cast_to=Workflow,
+            cast_to=WorkflowRetrieveResponse,
         )
 
     def list(

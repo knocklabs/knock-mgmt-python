@@ -7,6 +7,7 @@ from . import (
     workflow_branch_step,
     workflow_upsert_response,
     workflow_activate_response,
+    workflow_retrieve_response,
     workflow_validate_response,
 )
 from .. import _compat
@@ -107,6 +108,7 @@ from .message_type_variant_param import MessageTypeVariantParam as MessageTypeVa
 from .sms_channel_settings_param import SMSChannelSettingsParam as SMSChannelSettingsParam
 from .workflow_activate_response import WorkflowActivateResponse as WorkflowActivateResponse
 from .workflow_branch_step_param import WorkflowBranchStepParam as WorkflowBranchStepParam
+from .workflow_retrieve_response import WorkflowRetrieveResponse as WorkflowRetrieveResponse
 from .workflow_validate_response import WorkflowValidateResponse as WorkflowValidateResponse
 from .chat_channel_settings_param import ChatChannelSettingsParam as ChatChannelSettingsParam
 from .commit_promote_all_response import CommitPromoteAllResponse as CommitPromoteAllResponse
@@ -141,12 +143,14 @@ from .workflow_trigger_workflow_step_param import WorkflowTriggerWorkflowStepPar
 if _compat.PYDANTIC_V1:
     workflow.Workflow.update_forward_refs()  # type: ignore
     workflow_branch_step.WorkflowBranchStep.update_forward_refs()  # type: ignore
+    workflow_retrieve_response.WorkflowRetrieveResponse.update_forward_refs()  # type: ignore
     workflow_activate_response.WorkflowActivateResponse.update_forward_refs()  # type: ignore
     workflow_upsert_response.WorkflowUpsertResponse.update_forward_refs()  # type: ignore
     workflow_validate_response.WorkflowValidateResponse.update_forward_refs()  # type: ignore
 else:
     workflow.Workflow.model_rebuild(_parent_namespace_depth=0)
     workflow_branch_step.WorkflowBranchStep.model_rebuild(_parent_namespace_depth=0)
+    workflow_retrieve_response.WorkflowRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
     workflow_activate_response.WorkflowActivateResponse.model_rebuild(_parent_namespace_depth=0)
     workflow_upsert_response.WorkflowUpsertResponse.model_rebuild(_parent_namespace_depth=0)
     workflow_validate_response.WorkflowValidateResponse.model_rebuild(_parent_namespace_depth=0)
