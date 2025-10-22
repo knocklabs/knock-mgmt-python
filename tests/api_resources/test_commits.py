@@ -127,6 +127,8 @@ class TestCommits:
         commit = client.commits.commit_all(
             environment="development",
             commit_message="commit_message",
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
@@ -161,6 +163,16 @@ class TestCommits:
     def test_method_promote_all(self, client: KnockMgmt) -> None:
         commit = client.commits.promote_all(
             to_environment="to_environment",
+        )
+        assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_method_promote_all_with_all_params(self, client: KnockMgmt) -> None:
+        commit = client.commits.promote_all(
+            to_environment="to_environment",
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
 
@@ -342,6 +354,8 @@ class TestAsyncCommits:
         commit = await async_client.commits.commit_all(
             environment="development",
             commit_message="commit_message",
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
@@ -376,6 +390,16 @@ class TestAsyncCommits:
     async def test_method_promote_all(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.promote_all(
             to_environment="to_environment",
+        )
+        assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_method_promote_all_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        commit = await async_client.commits.promote_all(
+            to_environment="to_environment",
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
 

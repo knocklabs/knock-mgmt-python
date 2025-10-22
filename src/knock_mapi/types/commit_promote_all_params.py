@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import List, Union
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["CommitPromoteAllParams"]
 
@@ -18,4 +19,20 @@ class CommitPromoteAllParams(TypedDict, total=False):
     all commits not currently in production from staging.
 
     Note: This must be a non-development environment.
+    """
+
+    resource_id: str
+    """Filter commits to promote by resource identifier.
+
+    Must be used together with resource_type.
+    """
+
+    resource_type: Union[
+        Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+        List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+    ]
+    """Filter commits to promote by resource type(s).
+
+    Accepts a single type or array of types. Can be combined with resource_id to
+    filter for specific resources.
     """
