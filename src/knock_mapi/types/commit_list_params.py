@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List, Union
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["CommitListParams"]
@@ -34,5 +35,12 @@ class CommitListParams(TypedDict, total=False):
     namespace, separated by a `/`. For example, `en/courses` or `en`.
     """
 
-    resource_type: Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]
-    """Filter commits by resource type. Must be used together with resource_id."""
+    resource_type: Union[
+        Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+        List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+    ]
+    """Filter commits by resource type(s).
+
+    Accepts a single type or array of types. Can be combined with resource_id to
+    filter for specific resources.
+    """

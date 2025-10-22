@@ -2,6 +2,7 @@
 
 from __future__ import annotations
 
+from typing import List, Union
 from typing_extensions import Literal
 
 import httpx
@@ -89,8 +90,9 @@ class CommitsResource(SyncAPIResource):
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
-        resource_type: Literal[
-            "audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -122,7 +124,8 @@ class CommitsResource(SyncAPIResource):
               this will be the locale code and namespace, separated by a `/`. For example,
               `en/courses` or `en`.
 
-          resource_type: Filter commits by resource type. Must be used together with resource_id.
+          resource_type: Filter commits by resource type(s). Accepts a single type or array of types. Can
+              be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -161,6 +164,12 @@ class CommitsResource(SyncAPIResource):
         *,
         environment: str,
         commit_message: str | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -175,6 +184,12 @@ class CommitsResource(SyncAPIResource):
           environment: The environment slug.
 
           commit_message: An optional message to include in a commit.
+
+          resource_id: Filter changes to commit by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter changes to commit by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -195,6 +210,8 @@ class CommitsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "commit_message": commit_message,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_commit_all_params.CommitCommitAllParams,
                 ),
@@ -206,6 +223,12 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         to_environment: str,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -227,6 +250,12 @@ class CommitsResource(SyncAPIResource):
 
               Note: This must be a non-development environment.
 
+          resource_id: Filter commits to promote by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter commits to promote by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -243,7 +272,12 @@ class CommitsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"to_environment": to_environment}, commit_promote_all_params.CommitPromoteAllParams
+                    {
+                        "to_environment": to_environment,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
+                    },
+                    commit_promote_all_params.CommitPromoteAllParams,
                 ),
             ),
             cast_to=CommitPromoteAllResponse,
@@ -345,8 +379,9 @@ class AsyncCommitsResource(AsyncAPIResource):
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
-        resource_type: Literal[
-            "audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -378,7 +413,8 @@ class AsyncCommitsResource(AsyncAPIResource):
               this will be the locale code and namespace, separated by a `/`. For example,
               `en/courses` or `en`.
 
-          resource_type: Filter commits by resource type. Must be used together with resource_id.
+          resource_type: Filter commits by resource type(s). Accepts a single type or array of types. Can
+              be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -417,6 +453,12 @@ class AsyncCommitsResource(AsyncAPIResource):
         *,
         environment: str,
         commit_message: str | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -431,6 +473,12 @@ class AsyncCommitsResource(AsyncAPIResource):
           environment: The environment slug.
 
           commit_message: An optional message to include in a commit.
+
+          resource_id: Filter changes to commit by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter changes to commit by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -451,6 +499,8 @@ class AsyncCommitsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "commit_message": commit_message,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_commit_all_params.CommitCommitAllParams,
                 ),
@@ -462,6 +512,12 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         to_environment: str,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -483,6 +539,12 @@ class AsyncCommitsResource(AsyncAPIResource):
 
               Note: This must be a non-development environment.
 
+          resource_id: Filter commits to promote by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter commits to promote by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -499,7 +561,12 @@ class AsyncCommitsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"to_environment": to_environment}, commit_promote_all_params.CommitPromoteAllParams
+                    {
+                        "to_environment": to_environment,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
+                    },
+                    commit_promote_all_params.CommitPromoteAllParams,
                 ),
             ),
             cast_to=CommitPromoteAllResponse,
