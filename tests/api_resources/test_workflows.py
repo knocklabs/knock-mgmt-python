@@ -291,17 +291,7 @@ class TestWorkflows:
                         "type": "channel",
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
+                        "channel_overrides": {"link_tracking": True},
                         "conditions": {
                             "all": [
                                 {
@@ -461,17 +451,7 @@ class TestWorkflows:
                         "type": "channel",
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
+                        "channel_overrides": {"link_tracking": True},
                         "conditions": {
                             "all": [
                                 {
@@ -855,17 +835,7 @@ class TestAsyncWorkflows:
                         "type": "channel",
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
+                        "channel_overrides": {"link_tracking": True},
                         "conditions": {
                             "all": [
                                 {
@@ -1025,17 +995,7 @@ class TestAsyncWorkflows:
                         "type": "channel",
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
-                        "channel_overrides": {
-                            "bcc_address": None,
-                            "cc_address": None,
-                            "from_address": "hello@example.com",
-                            "from_name": "John Doe",
-                            "json_overrides": '{"some_override": true}',
-                            "link_tracking": True,
-                            "open_tracking": True,
-                            "reply_to_address": None,
-                            "to_address": "hello@example.com",
-                        },
+                        "channel_overrides": {"link_tracking": True},
                         "conditions": {
                             "all": [
                                 {
