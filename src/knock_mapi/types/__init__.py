@@ -69,7 +69,6 @@ from .guide_upsert_response import GuideUpsertResponse as GuideUpsertResponse
 from .guide_validate_params import GuideValidateParams as GuideValidateParams
 from .partial_upsert_params import PartialUpsertParams as PartialUpsertParams
 from .push_channel_settings import PushChannelSettings as PushChannelSettings
-from .workflow_channel_step import WorkflowChannelStep as WorkflowChannelStep
 from .workflow_run_response import WorkflowRunResponse as WorkflowRunResponse
 from .email_channel_settings import EmailChannelSettings as EmailChannelSettings
 from .request_template_param import RequestTemplateParam as RequestTemplateParam
@@ -117,7 +116,6 @@ from .push_channel_settings_param import PushChannelSettingsParam as PushChannel
 from .translation_retrieve_params import TranslationRetrieveParams as TranslationRetrieveParams
 from .translation_upsert_response import TranslationUpsertResponse as TranslationUpsertResponse
 from .translation_validate_params import TranslationValidateParams as TranslationValidateParams
-from .workflow_channel_step_param import WorkflowChannelStepParam as WorkflowChannelStepParam
 from .email_channel_settings_param import EmailChannelSettingsParam as EmailChannelSettingsParam
 from .email_layout_retrieve_params import EmailLayoutRetrieveParams as EmailLayoutRetrieveParams
 from .email_layout_upsert_response import EmailLayoutUpsertResponse as EmailLayoutUpsertResponse

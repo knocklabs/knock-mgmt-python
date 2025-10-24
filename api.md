@@ -104,7 +104,6 @@ from knock_mapi.types import (
     Workflow,
     WorkflowBatchStep,
     WorkflowBranchStep,
-    WorkflowChannelStep,
     WorkflowDelayStep,
     WorkflowFetchStep,
     WorkflowStep,
