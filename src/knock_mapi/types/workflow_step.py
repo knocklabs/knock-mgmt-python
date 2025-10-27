@@ -38,9 +38,6 @@ __all__ = [
 
 
 class WorkflowWebhookStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -68,6 +65,9 @@ class WorkflowWebhookStep(BaseModel):
     both.
     """
 
+    channel_type: Optional[Literal["http"]] = None
+    """The type of the channel step. Always `http` for webhook steps."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -77,6 +77,9 @@ class WorkflowWebhookStep(BaseModel):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str] = None
+    """A name for the workflow step."""
+
     send_windows: Optional[List[SendWindow]] = None
     """A list of send window objects.
 
@@ -85,9 +88,6 @@ class WorkflowWebhookStep(BaseModel):
 
 
 class WorkflowInAppFeedStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -117,6 +117,9 @@ class WorkflowInAppFeedStep(BaseModel):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Optional[Literal["in_app_feed"]] = None
+    """The type of the channel step. Always `in_app_feed` for in-app feed steps."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -126,6 +129,9 @@ class WorkflowInAppFeedStep(BaseModel):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str] = None
+    """A name for the workflow step."""
+
     send_windows: Optional[List[SendWindow]] = None
     """A list of send window objects.
 
@@ -134,9 +140,6 @@ class WorkflowInAppFeedStep(BaseModel):
 
 
 class WorkflowChatStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -166,6 +169,9 @@ class WorkflowChatStep(BaseModel):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Optional[Literal["chat"]] = None
+    """The type of the channel step. Always `chat` for chat steps."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -175,6 +181,9 @@ class WorkflowChatStep(BaseModel):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str] = None
+    """A name for the workflow step."""
+
     send_windows: Optional[List[SendWindow]] = None
     """A list of send window objects.
 
@@ -183,9 +192,6 @@ class WorkflowChatStep(BaseModel):
 
 
 class WorkflowSMSStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -215,6 +221,9 @@ class WorkflowSMSStep(BaseModel):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Optional[Literal["sms"]] = None
+    """The type of the channel step. Always `sms` for SMS steps."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -224,6 +233,9 @@ class WorkflowSMSStep(BaseModel):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str] = None
+    """A name for the workflow step."""
+
     send_windows: Optional[List[SendWindow]] = None
     """A list of send window objects.
 
@@ -232,9 +244,6 @@ class WorkflowSMSStep(BaseModel):
 
 
 class WorkflowPushStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -264,6 +273,9 @@ class WorkflowPushStep(BaseModel):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Optional[Literal["push"]] = None
+    """The type of the channel step. Always `push` for push steps."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -273,6 +285,9 @@ class WorkflowPushStep(BaseModel):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str] = None
+    """A name for the workflow step."""
+
     send_windows: Optional[List[SendWindow]] = None
     """A list of send window objects.
 
@@ -281,9 +296,6 @@ class WorkflowPushStep(BaseModel):
 
 
 class WorkflowEmailStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -313,6 +325,9 @@ class WorkflowEmailStep(BaseModel):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Optional[Literal["email"]] = None
+    """The type of the channel step. Always `email` for email steps."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -321,6 +336,9 @@ class WorkflowEmailStep(BaseModel):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str] = None
+    """A name for the workflow step."""
 
     send_windows: Optional[List[SendWindow]] = None
     """A list of send window objects.
