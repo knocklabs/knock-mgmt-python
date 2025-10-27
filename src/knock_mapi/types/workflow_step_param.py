@@ -37,9 +37,6 @@ __all__ = [
 
 
 class WorkflowWebhookStep(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -67,6 +64,9 @@ class WorkflowWebhookStep(TypedDict, total=False):
     both.
     """
 
+    channel_type: Literal["http"]
+    """The type of the channel step. Always `http` for webhook steps."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -76,6 +76,9 @@ class WorkflowWebhookStep(TypedDict, total=False):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str]
+    """A name for the workflow step."""
+
     send_windows: Optional[Iterable[SendWindowParam]]
     """A list of send window objects.
 
@@ -84,9 +87,6 @@ class WorkflowWebhookStep(TypedDict, total=False):
 
 
 class WorkflowInAppFeedStep(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -116,6 +116,9 @@ class WorkflowInAppFeedStep(TypedDict, total=False):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Literal["in_app_feed"]
+    """The type of the channel step. Always `in_app_feed` for in-app feed steps."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -125,6 +128,9 @@ class WorkflowInAppFeedStep(TypedDict, total=False):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str]
+    """A name for the workflow step."""
+
     send_windows: Optional[Iterable[SendWindowParam]]
     """A list of send window objects.
 
@@ -133,9 +139,6 @@ class WorkflowInAppFeedStep(TypedDict, total=False):
 
 
 class WorkflowChatStep(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -165,6 +168,9 @@ class WorkflowChatStep(TypedDict, total=False):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Literal["chat"]
+    """The type of the channel step. Always `chat` for chat steps."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -174,6 +180,9 @@ class WorkflowChatStep(TypedDict, total=False):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str]
+    """A name for the workflow step."""
+
     send_windows: Optional[Iterable[SendWindowParam]]
     """A list of send window objects.
 
@@ -182,9 +191,6 @@ class WorkflowChatStep(TypedDict, total=False):
 
 
 class WorkflowSMSStep(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -214,6 +220,9 @@ class WorkflowSMSStep(TypedDict, total=False):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Literal["sms"]
+    """The type of the channel step. Always `sms` for SMS steps."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -223,6 +232,9 @@ class WorkflowSMSStep(TypedDict, total=False):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str]
+    """A name for the workflow step."""
+
     send_windows: Optional[Iterable[SendWindowParam]]
     """A list of send window objects.
 
@@ -231,9 +243,6 @@ class WorkflowSMSStep(TypedDict, total=False):
 
 
 class WorkflowPushStep(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -263,6 +272,9 @@ class WorkflowPushStep(TypedDict, total=False):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Literal["push"]
+    """The type of the channel step. Always `push` for push steps."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -272,6 +284,9 @@ class WorkflowPushStep(TypedDict, total=False):
     Useful for adding notes about the workflow for internal purposes.
     """
 
+    name: Optional[str]
+    """A name for the workflow step."""
+
     send_windows: Optional[Iterable[SendWindowParam]]
     """A list of send window objects.
 
@@ -280,9 +295,6 @@ class WorkflowPushStep(TypedDict, total=False):
 
 
 class WorkflowEmailStep(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -312,6 +324,9 @@ class WorkflowEmailStep(TypedDict, total=False):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Literal["email"]
+    """The type of the channel step. Always `email` for email steps."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -320,6 +335,9 @@ class WorkflowEmailStep(TypedDict, total=False):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str]
+    """A name for the workflow step."""
 
     send_windows: Optional[Iterable[SendWindowParam]]
     """A list of send window objects.

@@ -29,20 +29,20 @@ class WorkflowBranchStep(BaseModel):
     branches: List[Branch]
     """A list of workflow branches to be evaluated."""
 
-    description: str
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
-    """
-
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
     type: Literal["branch"]
     """The type of step."""
+
+    description: Optional[str] = None
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: Optional[str] = None
+    """A name for the workflow step."""
 
 
 from .workflow_step import WorkflowStep
