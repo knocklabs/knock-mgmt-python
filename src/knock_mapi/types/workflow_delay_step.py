@@ -22,6 +22,18 @@ class Settings(BaseModel):
 
 
 class WorkflowDelayStep(BaseModel):
+    conditions: Optional[ConditionGroup] = None
+    """A group of conditions to be evaluated."""
+
+    description: Optional[str] = None
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: str
+    """A name for the workflow step."""
+
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -34,15 +46,3 @@ class WorkflowDelayStep(BaseModel):
 
     type: Literal["delay"]
     """The type of the workflow step."""
-
-    conditions: Optional[ConditionGroup] = None
-    """A group of conditions to be evaluated."""
-
-    description: Optional[str] = None
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
-    """
-
-    name: Optional[str] = None
-    """A name for the workflow step."""

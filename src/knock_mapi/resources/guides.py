@@ -29,6 +29,7 @@ from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..types.guide import Guide
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.guide_upsert_response import GuideUpsertResponse
+from ..types.guide_archive_response import GuideArchiveResponse
 from ..types.guide_activate_response import GuideActivateResponse
 from ..types.guide_validate_response import GuideValidateResponse
 
@@ -288,6 +289,39 @@ class GuidesResource(SyncAPIResource):
                 query=maybe_transform({"environment": environment}, guide_activate_params.GuideActivateParams),
             ),
             cast_to=GuideActivateResponse,
+        )
+
+    def archive(
+        self,
+        guide_key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideArchiveResponse:
+        """
+        Archives a given guide across all environments.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return self._delete(
+            f"/v1/guides/{guide_key}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GuideArchiveResponse,
         )
 
     def upsert(
@@ -657,6 +691,39 @@ class AsyncGuidesResource(AsyncAPIResource):
             cast_to=GuideActivateResponse,
         )
 
+    async def archive(
+        self,
+        guide_key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideArchiveResponse:
+        """
+        Archives a given guide across all environments.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return await self._delete(
+            f"/v1/guides/{guide_key}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GuideArchiveResponse,
+        )
+
     async def upsert(
         self,
         guide_key: str,
@@ -782,6 +849,9 @@ class GuidesResourceWithRawResponse:
         self.activate = to_raw_response_wrapper(
             guides.activate,
         )
+        self.archive = to_raw_response_wrapper(
+            guides.archive,
+        )
         self.upsert = to_raw_response_wrapper(
             guides.upsert,
         )
@@ -802,6 +872,9 @@ class AsyncGuidesResourceWithRawResponse:
         )
         self.activate = async_to_raw_response_wrapper(
             guides.activate,
+        )
+        self.archive = async_to_raw_response_wrapper(
+            guides.archive,
         )
         self.upsert = async_to_raw_response_wrapper(
             guides.upsert,
@@ -824,6 +897,9 @@ class GuidesResourceWithStreamingResponse:
         self.activate = to_streamed_response_wrapper(
             guides.activate,
         )
+        self.archive = to_streamed_response_wrapper(
+            guides.archive,
+        )
         self.upsert = to_streamed_response_wrapper(
             guides.upsert,
         )
@@ -844,6 +920,9 @@ class AsyncGuidesResourceWithStreamingResponse:
         )
         self.activate = async_to_streamed_response_wrapper(
             guides.activate,
+        )
+        self.archive = async_to_streamed_response_wrapper(
+            guides.archive,
         )
         self.upsert = async_to_streamed_response_wrapper(
             guides.upsert,

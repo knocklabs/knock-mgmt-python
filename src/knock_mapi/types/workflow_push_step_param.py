@@ -1,0 +1,62 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Iterable, Optional
+from typing_extensions import Literal, Required, TypedDict
+
+from .send_window_param import SendWindowParam
+from .push_template_param import PushTemplateParam
+from .condition_group_param import ConditionGroupParam
+from .push_channel_settings_param import PushChannelSettingsParam
+
+__all__ = ["WorkflowPushStepParam"]
+
+
+class WorkflowPushStepParam(TypedDict, total=False):
+    name: Required[str]
+    """A name for the workflow step."""
+
+    ref: Required[str]
+    """The reference key of the workflow step. Must be unique per workflow."""
+
+    template: Required[PushTemplateParam]
+    """A push notification template."""
+
+    type: Required[Literal["channel"]]
+    """The type of the workflow step."""
+
+    channel_group_key: Optional[str]
+    """
+    The key of the channel group to which the channel step will be sending a
+    notification. A channel step can have either a channel key or a channel group
+    key, but not both.
+    """
+
+    channel_key: Optional[str]
+    """The key of the channel to which the channel step will be sending a notification.
+
+    A channel step can have either a channel key or a channel group key, but not
+    both.
+    """
+
+    channel_overrides: Optional[PushChannelSettingsParam]
+    """Push channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
+    conditions: Optional[ConditionGroupParam]
+    """A group of conditions to be evaluated."""
+
+    description: Optional[str]
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    send_windows: Optional[Iterable[SendWindowParam]]
+    """A list of send window objects.
+
+    Must include one send window object per day of the week.
+    """

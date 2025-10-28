@@ -256,6 +256,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -275,6 +276,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {
                             "markdown_body": "Hello **{{ recipient.name }}**",
@@ -290,7 +292,6 @@ class TestWorkflows:
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
                         "channel_overrides": {"link_tracking": True},
-                        "channel_type": "in_app_feed",
                         "conditions": {
                             "all": [
                                 {
@@ -301,7 +302,6 @@ class TestWorkflows:
                             ]
                         },
                         "description": "This is a description of the channel step",
-                        "name": "Channel 1",
                         "send_windows": [
                             {
                                 "day": "monday",
@@ -346,6 +346,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -369,6 +370,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -395,6 +397,7 @@ class TestWorkflows:
                     "name": "My Workflow",
                     "steps": [
                         {
+                            "name": "Channel 1",
                             "ref": "channel_1",
                             "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                             "type": "channel",
@@ -413,6 +416,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -432,6 +436,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {
                             "markdown_body": "Hello **{{ recipient.name }}**",
@@ -447,7 +452,6 @@ class TestWorkflows:
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
                         "channel_overrides": {"link_tracking": True},
-                        "channel_type": "in_app_feed",
                         "conditions": {
                             "all": [
                                 {
@@ -458,7 +462,6 @@ class TestWorkflows:
                             ]
                         },
                         "description": "This is a description of the channel step",
-                        "name": "Channel 1",
                         "send_windows": [
                             {
                                 "day": "monday",
@@ -500,6 +503,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -523,6 +527,7 @@ class TestWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -549,6 +554,7 @@ class TestWorkflows:
                     "name": "My Workflow",
                     "steps": [
                         {
+                            "name": "Channel 1",
                             "ref": "channel_1",
                             "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                             "type": "channel",
@@ -794,6 +800,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -813,6 +820,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {
                             "markdown_body": "Hello **{{ recipient.name }}**",
@@ -828,7 +836,6 @@ class TestAsyncWorkflows:
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
                         "channel_overrides": {"link_tracking": True},
-                        "channel_type": "in_app_feed",
                         "conditions": {
                             "all": [
                                 {
@@ -839,7 +846,6 @@ class TestAsyncWorkflows:
                             ]
                         },
                         "description": "This is a description of the channel step",
-                        "name": "Channel 1",
                         "send_windows": [
                             {
                                 "day": "monday",
@@ -884,6 +890,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -907,6 +914,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -933,6 +941,7 @@ class TestAsyncWorkflows:
                     "name": "My Workflow",
                     "steps": [
                         {
+                            "name": "Channel 1",
                             "ref": "channel_1",
                             "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                             "type": "channel",
@@ -951,6 +960,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -970,6 +980,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {
                             "markdown_body": "Hello **{{ recipient.name }}**",
@@ -985,7 +996,6 @@ class TestAsyncWorkflows:
                         "channel_group_key": None,
                         "channel_key": "in-app-feed",
                         "channel_overrides": {"link_tracking": True},
-                        "channel_type": "in_app_feed",
                         "conditions": {
                             "all": [
                                 {
@@ -996,7 +1006,6 @@ class TestAsyncWorkflows:
                             ]
                         },
                         "description": "This is a description of the channel step",
-                        "name": "Channel 1",
                         "send_windows": [
                             {
                                 "day": "monday",
@@ -1038,6 +1047,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -1061,6 +1071,7 @@ class TestAsyncWorkflows:
                 "name": "My Workflow",
                 "steps": [
                     {
+                        "name": "Channel 1",
                         "ref": "channel_1",
                         "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                         "type": "channel",
@@ -1087,6 +1098,7 @@ class TestAsyncWorkflows:
                     "name": "My Workflow",
                     "steps": [
                         {
+                            "name": "Channel 1",
                             "ref": "channel_1",
                             "template": {"markdown_body": "Hello **{{ recipient.name }}**"},
                             "type": "channel",
