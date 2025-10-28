@@ -28,20 +28,20 @@ class WorkflowBranchStepParam(TypedDict, total=False):
     branches: Required[Iterable[Branch]]
     """A list of workflow branches to be evaluated."""
 
-    ref: Required[str]
-    """The reference key of the workflow step. Must be unique per workflow."""
-
-    type: Required[Literal["branch"]]
-    """The type of step."""
-
-    description: str
+    description: Required[str]
     """An arbitrary string attached to a workflow step.
 
     Useful for adding notes about the workflow for internal purposes.
     """
 
-    name: Optional[str]
+    name: Required[str]
     """A name for the workflow step."""
+
+    ref: Required[str]
+    """The reference key of the workflow step. Must be unique per workflow."""
+
+    type: Required[Literal["branch"]]
+    """The type of step."""
 
 
 from .workflow_step_param import WorkflowStepParam

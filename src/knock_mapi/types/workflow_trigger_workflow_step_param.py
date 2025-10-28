@@ -31,6 +31,9 @@ class Settings(TypedDict, total=False):
 
 
 class WorkflowTriggerWorkflowStepParam(TypedDict, total=False):
+    name: Required[str]
+    """A name for the workflow step."""
+
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -43,8 +46,5 @@ class WorkflowTriggerWorkflowStepParam(TypedDict, total=False):
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
-    description: Optional[str]
+    description: str
     """A description for the workflow step."""
-
-    name: Optional[str]
-    """A name for the workflow step."""

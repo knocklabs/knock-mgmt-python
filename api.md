@@ -104,11 +104,16 @@ from knock_mapi.types import (
     Workflow,
     WorkflowBatchStep,
     WorkflowBranchStep,
+    WorkflowChatStep,
     WorkflowDelayStep,
+    WorkflowEmailStep,
     WorkflowFetchStep,
+    WorkflowPushStep,
+    WorkflowSMSStep,
     WorkflowStep,
     WorkflowThrottleStep,
     WorkflowTriggerWorkflowStep,
+    WorkflowWebhookStep,
     WorkflowRetrieveResponse,
     WorkflowActivateResponse,
     WorkflowRunResponse,
@@ -246,8 +251,10 @@ Types:
 ```python
 from knock_mapi.types import (
     Guide,
+    GuideActivationURLPattern,
     GuideStep,
     GuideActivateResponse,
+    GuideArchiveResponse,
     GuideUpsertResponse,
     GuideValidateResponse,
 )
@@ -258,5 +265,6 @@ Methods:
 - <code title="get /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">retrieve</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide.py">Guide</a></code>
 - <code title="get /v1/guides">client.guides.<a href="./src/knock_mapi/resources/guides.py">list</a>(\*\*<a href="src/knock_mapi/types/guide_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide.py">SyncEntriesCursor[Guide]</a></code>
 - <code title="put /v1/guides/{guide_key}/activate">client.guides.<a href="./src/knock_mapi/resources/guides.py">activate</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_activate_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_activate_response.py">GuideActivateResponse</a></code>
+- <code title="delete /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">archive</a>(guide_key) -> <a href="./src/knock_mapi/types/guide_archive_response.py">GuideArchiveResponse</a></code>
 - <code title="put /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">upsert</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_upsert_response.py">GuideUpsertResponse</a></code>
 - <code title="put /v1/guides/{guide_key}/validate">client.guides.<a href="./src/knock_mapi/resources/guides.py">validate</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_validate_response.py">GuideValidateResponse</a></code>

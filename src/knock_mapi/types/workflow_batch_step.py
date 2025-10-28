@@ -55,6 +55,15 @@ class Settings(BaseModel):
 
 
 class WorkflowBatchStep(BaseModel):
+    description: Optional[str] = None
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: str
+    """A name for the workflow step."""
+
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -63,12 +72,3 @@ class WorkflowBatchStep(BaseModel):
 
     type: Literal["batch"]
     """The type of the workflow step."""
-
-    description: Optional[str] = None
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
-    """
-
-    name: Optional[str] = None
-    """A name for the workflow step."""

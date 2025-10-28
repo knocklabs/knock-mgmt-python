@@ -4,13 +4,14 @@ from __future__ import annotations
 
 from typing import Union, Iterable, Optional
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Required, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 from .guide_step_param import GuideStepParam
 from .condition_group_param import ConditionGroupParam
+from .guide_activation_url_pattern_param import GuideActivationURLPatternParam
 
-__all__ = ["GuideUpsertParams", "Guide", "GuideActivationURLPattern"]
+__all__ = ["GuideUpsertParams", "Guide"]
 
 
 class GuideUpsertParams(TypedDict, total=False):
@@ -30,14 +31,6 @@ class GuideUpsertParams(TypedDict, total=False):
     """The message to commit the resource with, only used if `commit` is `true`."""
 
 
-class GuideActivationURLPattern(TypedDict, total=False):
-    directive: Required[Literal["allow", "block"]]
-    """Whether to allow or block the guide at the specified pathname."""
-
-    pathname: Required[str]
-    """The URL pathname pattern to match against. Must be a valid URI path."""
-
-
 class Guide(TypedDict, total=False):
     channel_key: Required[str]
     """The key of the channel in which the guide exists."""
@@ -48,7 +41,7 @@ class Guide(TypedDict, total=False):
     steps: Required[Iterable[GuideStepParam]]
     """A list of guide step objects in the guide."""
 
-    activation_url_patterns: Iterable[GuideActivationURLPattern]
+    activation_url_patterns: Iterable[GuideActivationURLPatternParam]
     """A list of activation url patterns that describe when the guide should be shown."""
 
     archived_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]

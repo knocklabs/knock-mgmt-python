@@ -56,6 +56,15 @@ class Settings(TypedDict, total=False):
 
 
 class WorkflowBatchStepParam(TypedDict, total=False):
+    description: Required[Optional[str]]
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: Required[str]
+    """A name for the workflow step."""
+
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -64,12 +73,3 @@ class WorkflowBatchStepParam(TypedDict, total=False):
 
     type: Required[Literal["batch"]]
     """The type of the workflow step."""
-
-    description: Optional[str]
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
-    """
-
-    name: Optional[str]
-    """A name for the workflow step."""

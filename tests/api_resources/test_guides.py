@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from knock_mapi.types import (
     Guide,
     GuideUpsertResponse,
+    GuideArchiveResponse,
     GuideActivateResponse,
     GuideValidateResponse,
 )
@@ -233,6 +234,48 @@ class TestGuides:
             client.guides.with_raw_response.activate(
                 guide_key="",
                 environment="development",
+            )
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_method_archive(self, client: KnockMgmt) -> None:
+        guide = client.guides.archive(
+            "guide_key",
+        )
+        assert_matches_type(GuideArchiveResponse, guide, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_raw_response_archive(self, client: KnockMgmt) -> None:
+        response = client.guides.with_raw_response.archive(
+            "guide_key",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        guide = response.parse()
+        assert_matches_type(GuideArchiveResponse, guide, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_streaming_response_archive(self, client: KnockMgmt) -> None:
+        with client.guides.with_streaming_response.archive(
+            "guide_key",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            guide = response.parse()
+            assert_matches_type(GuideArchiveResponse, guide, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_path_params_archive(self, client: KnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
+            client.guides.with_raw_response.archive(
+                "",
             )
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
@@ -725,6 +768,48 @@ class TestAsyncGuides:
             await async_client.guides.with_raw_response.activate(
                 guide_key="",
                 environment="development",
+            )
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_method_archive(self, async_client: AsyncKnockMgmt) -> None:
+        guide = await async_client.guides.archive(
+            "guide_key",
+        )
+        assert_matches_type(GuideArchiveResponse, guide, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_raw_response_archive(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.guides.with_raw_response.archive(
+            "guide_key",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        guide = await response.parse()
+        assert_matches_type(GuideArchiveResponse, guide, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_streaming_response_archive(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.guides.with_streaming_response.archive(
+            "guide_key",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            guide = await response.parse()
+            assert_matches_type(GuideArchiveResponse, guide, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_path_params_archive(self, async_client: AsyncKnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
+            await async_client.guides.with_raw_response.archive(
+                "",
             )
 
     @pytest.mark.skip(reason="Prism doesn't support callbacks yet")

@@ -32,6 +32,9 @@ class Settings(BaseModel):
 
 
 class WorkflowThrottleStep(BaseModel):
+    name: str
+    """A name for the workflow step."""
+
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -49,6 +52,3 @@ class WorkflowThrottleStep(BaseModel):
 
     Useful for adding notes about the workflow for internal purposes.
     """
-
-    name: Optional[str] = None
-    """A name for the workflow step."""
