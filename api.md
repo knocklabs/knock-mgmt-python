@@ -108,6 +108,7 @@ from knock_mapi.types import (
     WorkflowDelayStep,
     WorkflowEmailStep,
     WorkflowFetchStep,
+    WorkflowInAppFeedStep,
     WorkflowPushStep,
     WorkflowSMSStep,
     WorkflowStep,
