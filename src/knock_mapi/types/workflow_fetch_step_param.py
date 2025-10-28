@@ -12,16 +12,13 @@ __all__ = ["WorkflowFetchStepParam"]
 
 
 class WorkflowFetchStepParam(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
     settings: Required[RequestTemplateParam]
     """A request template for a fetch function step."""
 
-    type: Required[Literal["fetch"]]
+    type: Required[Literal["http_fetch"]]
     """The type of the workflow step."""
 
     conditions: Optional[ConditionGroupParam]
@@ -32,3 +29,6 @@ class WorkflowFetchStepParam(TypedDict, total=False):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str]
+    """A name for the workflow step."""

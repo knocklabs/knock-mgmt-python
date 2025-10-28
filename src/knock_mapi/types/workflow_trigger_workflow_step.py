@@ -30,9 +30,6 @@ class Settings(BaseModel):
 
 
 class WorkflowTriggerWorkflowStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -47,3 +44,6 @@ class WorkflowTriggerWorkflowStep(BaseModel):
 
     description: Optional[str] = None
     """A description for the workflow step."""
+
+    name: Optional[str] = None
+    """A name for the workflow step."""

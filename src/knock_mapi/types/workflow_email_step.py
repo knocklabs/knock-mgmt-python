@@ -13,9 +13,6 @@ __all__ = ["WorkflowEmailStep"]
 
 
 class WorkflowEmailStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
-
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -45,6 +42,9 @@ class WorkflowEmailStep(BaseModel):
     Only used as configuration as part of a workflow channel step.
     """
 
+    channel_type: Optional[Literal["email"]] = None
+    """The type of the channel step. Always `email` for email steps."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -53,6 +53,9 @@ class WorkflowEmailStep(BaseModel):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str] = None
+    """A name for the workflow step."""
 
     send_windows: Optional[List[SendWindow]] = None
     """A list of send window objects.

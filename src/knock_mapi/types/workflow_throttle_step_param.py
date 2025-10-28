@@ -33,9 +33,6 @@ class Settings(TypedDict, total=False):
 
 
 class WorkflowThrottleStepParam(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -53,3 +50,6 @@ class WorkflowThrottleStepParam(TypedDict, total=False):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str]
+    """A name for the workflow step."""
