@@ -13,9 +13,6 @@ __all__ = ["WorkflowWebhookStepParam"]
 
 
 class WorkflowWebhookStepParam(TypedDict, total=False):
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -43,6 +40,9 @@ class WorkflowWebhookStepParam(TypedDict, total=False):
     both.
     """
 
+    channel_type: Literal["http"]
+    """The type of the channel step. Always `http` for webhook steps."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -51,6 +51,9 @@ class WorkflowWebhookStepParam(TypedDict, total=False):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str]
+    """A name for the workflow step."""
 
     send_windows: Optional[Iterable[SendWindowParam]]
     """A list of send window objects.

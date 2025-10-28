@@ -23,18 +23,6 @@ class Settings(TypedDict, total=False):
 
 
 class WorkflowDelayStepParam(TypedDict, total=False):
-    conditions: Required[Optional[ConditionGroupParam]]
-    """A group of conditions to be evaluated."""
-
-    description: Required[Optional[str]]
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
-    """
-
-    name: Required[str]
-    """A name for the workflow step."""
-
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
@@ -47,3 +35,15 @@ class WorkflowDelayStepParam(TypedDict, total=False):
 
     type: Required[Literal["delay"]]
     """The type of the workflow step."""
+
+    conditions: Optional[ConditionGroupParam]
+    """A group of conditions to be evaluated."""
+
+    description: Optional[str]
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: Optional[str]
+    """A name for the workflow step."""
