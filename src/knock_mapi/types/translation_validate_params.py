@@ -17,6 +17,12 @@ class TranslationValidateParams(TypedDict, total=False):
     translation.
     """
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class Translation(TypedDict, total=False):
     content: Required[str]

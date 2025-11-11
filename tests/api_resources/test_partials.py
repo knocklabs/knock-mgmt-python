@@ -38,6 +38,7 @@ class TestPartials:
             partial_key="partial_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Partial, partial, path=["response"])
@@ -95,6 +96,7 @@ class TestPartials:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -155,6 +157,7 @@ class TestPartials:
                 "visual_block_enabled": False,
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -240,6 +243,7 @@ class TestPartials:
                 "icon_name": "icon_name",
                 "visual_block_enabled": False,
             },
+            branch="feature-branch",
         )
         assert_matches_type(PartialValidateResponse, partial, path=["response"])
 
@@ -317,6 +321,7 @@ class TestAsyncPartials:
             partial_key="partial_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Partial, partial, path=["response"])
@@ -374,6 +379,7 @@ class TestAsyncPartials:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -434,6 +440,7 @@ class TestAsyncPartials:
                 "visual_block_enabled": False,
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -519,6 +526,7 @@ class TestAsyncPartials:
                 "icon_name": "icon_name",
                 "visual_block_enabled": False,
             },
+            branch="feature-branch",
         )
         assert_matches_type(PartialValidateResponse, partial, path=["response"])
 

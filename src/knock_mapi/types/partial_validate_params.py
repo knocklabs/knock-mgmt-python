@@ -15,6 +15,12 @@ class PartialValidateParams(TypedDict, total=False):
     partial: Required[Partial]
     """A partial object with attributes to update or create a partial."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class Partial(TypedDict, total=False):
     content: Required[str]

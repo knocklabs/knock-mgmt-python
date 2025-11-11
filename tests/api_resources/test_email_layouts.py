@@ -38,6 +38,7 @@ class TestEmailLayouts:
             email_layout_key="email_layout_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(EmailLayout, email_layout, path=["response"])
@@ -95,6 +96,7 @@ class TestEmailLayouts:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -158,6 +160,7 @@ class TestEmailLayouts:
                 ],
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -246,6 +249,7 @@ class TestEmailLayouts:
                     }
                 ],
             },
+            branch="feature-branch",
         )
         assert_matches_type(EmailLayoutValidateResponse, email_layout, path=["response"])
 
@@ -323,6 +327,7 @@ class TestAsyncEmailLayouts:
             email_layout_key="email_layout_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(EmailLayout, email_layout, path=["response"])
@@ -380,6 +385,7 @@ class TestAsyncEmailLayouts:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -443,6 +449,7 @@ class TestAsyncEmailLayouts:
                 ],
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -531,6 +538,7 @@ class TestAsyncEmailLayouts:
                     }
                 ],
             },
+            branch="feature-branch",
         )
         assert_matches_type(EmailLayoutValidateResponse, email_layout, path=["response"])
 

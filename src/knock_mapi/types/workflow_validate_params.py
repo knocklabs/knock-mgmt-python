@@ -18,6 +18,12 @@ class WorkflowValidateParams(TypedDict, total=False):
     workflow: Required[Workflow]
     """A workflow request for upserting a workflow."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class WorkflowSettings(TypedDict, total=False):
     is_commercial: bool

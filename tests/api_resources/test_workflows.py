@@ -41,6 +41,7 @@ class TestWorkflows:
             workflow_key="workflow_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
@@ -98,6 +99,7 @@ class TestWorkflows:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -136,6 +138,17 @@ class TestWorkflows:
             workflow_key="workflow_key",
             environment="development",
             status=True,
+        )
+        assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_method_activate_with_all_params(self, client: KnockMgmt) -> None:
+        workflow = client.workflows.activate(
+            workflow_key="workflow_key",
+            environment="development",
+            status=True,
+            branch="feature-branch",
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
@@ -196,6 +209,7 @@ class TestWorkflows:
             workflow_key="workflow_key",
             environment="development",
             recipients=["dnedry"],
+            branch="feature-branch",
             actor={
                 "id": "project_1",
                 "collection": "projects",
@@ -331,6 +345,7 @@ class TestWorkflows:
                 "trigger_frequency": "every_trigger",
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -487,6 +502,7 @@ class TestWorkflows:
                 "trigger_data_json_schema": {"foo": "bar"},
                 "trigger_frequency": "every_trigger",
             },
+            branch="feature-branch",
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
@@ -579,6 +595,7 @@ class TestAsyncWorkflows:
             workflow_key="workflow_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
@@ -636,6 +653,7 @@ class TestAsyncWorkflows:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -674,6 +692,17 @@ class TestAsyncWorkflows:
             workflow_key="workflow_key",
             environment="development",
             status=True,
+        )
+        assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_method_activate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        workflow = await async_client.workflows.activate(
+            workflow_key="workflow_key",
+            environment="development",
+            status=True,
+            branch="feature-branch",
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
@@ -734,6 +763,7 @@ class TestAsyncWorkflows:
             workflow_key="workflow_key",
             environment="development",
             recipients=["dnedry"],
+            branch="feature-branch",
             actor={
                 "id": "project_1",
                 "collection": "projects",
@@ -869,6 +899,7 @@ class TestAsyncWorkflows:
                 "trigger_frequency": "every_trigger",
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -1025,6 +1056,7 @@ class TestAsyncWorkflows:
                 "trigger_data_json_schema": {"foo": "bar"},
                 "trigger_frequency": "every_trigger",
             },
+            branch="feature-branch",
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 

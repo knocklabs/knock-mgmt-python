@@ -18,10 +18,22 @@ class GuideBooleanActivationParams(TypedDict, total=False):
     status: Required[bool]
     """Whether to activate or deactivate the guide."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class GuideScheduledActivationParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
+
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
 
     from_: Annotated[Union[str, datetime], PropertyInfo(alias="from", format="iso8601")]
     """When to activate the guide.

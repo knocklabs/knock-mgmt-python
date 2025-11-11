@@ -39,6 +39,7 @@ class TestTranslations:
             locale_code="locale_code",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             format="json",
             hide_uncommitted_changes=True,
             namespace="namespace",
@@ -98,6 +99,7 @@ class TestTranslations:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             format="json",
             hide_uncommitted_changes=True,
             limit=0,
@@ -158,6 +160,7 @@ class TestTranslations:
                 "format": "json",
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
             format="json",
@@ -226,6 +229,20 @@ class TestTranslations:
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
             },
+        )
+        assert_matches_type(TranslationValidateResponse, translation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
+        translation = client.translations.validate(
+            locale_code="locale_code",
+            environment="development",
+            translation={
+                "content": '{"hello":"Hello, world!"}',
+                "format": "json",
+            },
+            branch="feature-branch",
         )
         assert_matches_type(TranslationValidateResponse, translation, path=["response"])
 
@@ -300,6 +317,7 @@ class TestAsyncTranslations:
             locale_code="locale_code",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             format="json",
             hide_uncommitted_changes=True,
             namespace="namespace",
@@ -359,6 +377,7 @@ class TestAsyncTranslations:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             format="json",
             hide_uncommitted_changes=True,
             limit=0,
@@ -419,6 +438,7 @@ class TestAsyncTranslations:
                 "format": "json",
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
             format="json",
@@ -487,6 +507,20 @@ class TestAsyncTranslations:
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
             },
+        )
+        assert_matches_type(TranslationValidateResponse, translation, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        translation = await async_client.translations.validate(
+            locale_code="locale_code",
+            environment="development",
+            translation={
+                "content": '{"hello":"Hello, world!"}',
+                "format": "json",
+            },
+            branch="feature-branch",
         )
         assert_matches_type(TranslationValidateResponse, translation, path=["response"])
 

@@ -12,6 +12,12 @@ class CommitCommitAllParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     commit_message: str
     """An optional message to include in a commit."""
 

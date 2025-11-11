@@ -23,6 +23,12 @@ class WorkflowRunParams(TypedDict, total=False):
     recipients: Required[SequenceNotStr[Recipient]]
     """A list of recipients to run the workflow for."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     actor: Optional[Actor]
     """
     A recipient reference, used when referencing a recipient by either their ID (for

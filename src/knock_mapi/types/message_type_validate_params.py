@@ -17,6 +17,12 @@ class MessageTypeValidateParams(TypedDict, total=False):
     message_type: Required[MessageType]
     """A request to create a message type."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class MessageType(TypedDict, total=False):
     description: Required[Optional[str]]
