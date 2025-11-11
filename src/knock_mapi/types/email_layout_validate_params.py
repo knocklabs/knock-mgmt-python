@@ -15,6 +15,12 @@ class EmailLayoutValidateParams(TypedDict, total=False):
     email_layout: Required[EmailLayout]
     """A request to update or create an email layout."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class EmailLayoutFooterLink(TypedDict, total=False):
     text: Required[str]

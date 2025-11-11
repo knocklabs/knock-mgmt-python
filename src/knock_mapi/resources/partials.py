@@ -50,6 +50,7 @@ class PartialsResource(SyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -65,6 +66,9 @@ class PartialsResource(SyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -90,6 +94,7 @@ class PartialsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     partial_retrieve_params.PartialRetrieveParams,
@@ -105,6 +110,7 @@ class PartialsResource(SyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -125,6 +131,9 @@ class PartialsResource(SyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -153,6 +162,7 @@ class PartialsResource(SyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -169,6 +179,7 @@ class PartialsResource(SyncAPIResource):
         environment: str,
         partial: partial_upsert_params.Partial,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -189,6 +200,9 @@ class PartialsResource(SyncAPIResource):
           partial: A partial object with attributes to update or create a partial.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -216,6 +230,7 @@ class PartialsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -231,6 +246,7 @@ class PartialsResource(SyncAPIResource):
         *,
         environment: str,
         partial: partial_validate_params.Partial,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -247,6 +263,9 @@ class PartialsResource(SyncAPIResource):
           environment: The environment slug.
 
           partial: A partial object with attributes to update or create a partial.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -266,7 +285,13 @@ class PartialsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, partial_validate_params.PartialValidateParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    partial_validate_params.PartialValidateParams,
+                ),
             ),
             cast_to=PartialValidateResponse,
         )
@@ -298,6 +323,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -313,6 +339,9 @@ class AsyncPartialsResource(AsyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -338,6 +367,7 @@ class AsyncPartialsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     partial_retrieve_params.PartialRetrieveParams,
@@ -353,6 +383,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -373,6 +404,9 @@ class AsyncPartialsResource(AsyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -401,6 +435,7 @@ class AsyncPartialsResource(AsyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -417,6 +452,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         environment: str,
         partial: partial_upsert_params.Partial,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -437,6 +473,9 @@ class AsyncPartialsResource(AsyncAPIResource):
           partial: A partial object with attributes to update or create a partial.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -464,6 +503,7 @@ class AsyncPartialsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -479,6 +519,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         *,
         environment: str,
         partial: partial_validate_params.Partial,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -495,6 +536,9 @@ class AsyncPartialsResource(AsyncAPIResource):
           environment: The environment slug.
 
           partial: A partial object with attributes to update or create a partial.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -515,7 +559,11 @@ class AsyncPartialsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, partial_validate_params.PartialValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    partial_validate_params.PartialValidateParams,
                 ),
             ),
             cast_to=PartialValidateResponse,

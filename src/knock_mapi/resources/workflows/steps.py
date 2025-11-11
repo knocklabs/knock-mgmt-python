@@ -50,6 +50,7 @@ class StepsResource(SyncAPIResource):
         workflow_key: str,
         environment: str,
         recipient: step_preview_template_params.Recipient,
+        branch: str | Omit = omit,
         actor: Optional[step_preview_template_params.Actor] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
@@ -68,6 +69,9 @@ class StepsResource(SyncAPIResource):
 
           recipient: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
@@ -105,7 +109,11 @@ class StepsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment}, step_preview_template_params.StepPreviewTemplateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    step_preview_template_params.StepPreviewTemplateParams,
                 ),
             ),
             cast_to=StepPreviewTemplateResponse,
@@ -139,6 +147,7 @@ class AsyncStepsResource(AsyncAPIResource):
         workflow_key: str,
         environment: str,
         recipient: step_preview_template_params.Recipient,
+        branch: str | Omit = omit,
         actor: Optional[step_preview_template_params.Actor] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
@@ -157,6 +166,9 @@ class AsyncStepsResource(AsyncAPIResource):
 
           recipient: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
@@ -194,7 +206,11 @@ class AsyncStepsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, step_preview_template_params.StepPreviewTemplateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    step_preview_template_params.StepPreviewTemplateParams,
                 ),
             ),
             cast_to=StepPreviewTemplateResponse,

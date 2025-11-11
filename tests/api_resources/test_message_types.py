@@ -38,6 +38,7 @@ class TestMessageTypes:
             message_type_key="email",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(MessageType, message_type, path=["response"])
@@ -95,6 +96,7 @@ class TestMessageTypes:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -174,6 +176,7 @@ class TestMessageTypes:
                 ],
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -278,6 +281,7 @@ class TestMessageTypes:
                     }
                 ],
             },
+            branch="feature-branch",
         )
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 
@@ -355,6 +359,7 @@ class TestAsyncMessageTypes:
             message_type_key="email",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(MessageType, message_type, path=["response"])
@@ -412,6 +417,7 @@ class TestAsyncMessageTypes:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -491,6 +497,7 @@ class TestAsyncMessageTypes:
                 ],
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -595,6 +602,7 @@ class TestAsyncMessageTypes:
                     }
                 ],
             },
+            branch="feature-branch",
         )
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 

@@ -87,6 +87,7 @@ class CommitsResource(SyncAPIResource):
         environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
@@ -113,6 +114,9 @@ class CommitsResource(SyncAPIResource):
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           limit: The number of entries to fetch per-page.
 
@@ -148,6 +152,7 @@ class CommitsResource(SyncAPIResource):
                         "environment": environment,
                         "after": after,
                         "before": before,
+                        "branch": branch,
                         "limit": limit,
                         "promoted": promoted,
                         "resource_id": resource_id,
@@ -163,6 +168,7 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         environment: str,
+        branch: str | Omit = omit,
         commit_message: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
@@ -182,6 +188,9 @@ class CommitsResource(SyncAPIResource):
 
         Args:
           environment: The environment slug.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit_message: An optional message to include in a commit.
 
@@ -209,6 +218,7 @@ class CommitsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "environment": environment,
+                        "branch": branch,
                         "commit_message": commit_message,
                         "resource_id": resource_id,
                         "resource_type": resource_type,
@@ -376,6 +386,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
@@ -402,6 +413,9 @@ class AsyncCommitsResource(AsyncAPIResource):
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           limit: The number of entries to fetch per-page.
 
@@ -437,6 +451,7 @@ class AsyncCommitsResource(AsyncAPIResource):
                         "environment": environment,
                         "after": after,
                         "before": before,
+                        "branch": branch,
                         "limit": limit,
                         "promoted": promoted,
                         "resource_id": resource_id,
@@ -452,6 +467,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
+        branch: str | Omit = omit,
         commit_message: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
@@ -471,6 +487,9 @@ class AsyncCommitsResource(AsyncAPIResource):
 
         Args:
           environment: The environment slug.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit_message: An optional message to include in a commit.
 
@@ -498,6 +517,7 @@ class AsyncCommitsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "environment": environment,
+                        "branch": branch,
                         "commit_message": commit_message,
                         "resource_id": resource_id,
                         "resource_type": resource_type,

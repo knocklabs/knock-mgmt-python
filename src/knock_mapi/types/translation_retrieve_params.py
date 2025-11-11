@@ -14,6 +14,12 @@ class TranslationRetrieveParams(TypedDict, total=False):
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     format: Literal["json", "po"]
     """Optionally specify the returned content format.
 

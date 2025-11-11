@@ -26,6 +26,12 @@ class StepPreviewTemplateParams(TypedDict, total=False):
     a user), or by a reference for an object.
     """
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     actor: Optional[Actor]
     """
     A recipient reference, used when referencing a recipient by either their ID (for

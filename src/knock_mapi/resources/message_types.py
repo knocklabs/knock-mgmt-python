@@ -55,6 +55,7 @@ class MessageTypesResource(SyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,6 +71,9 @@ class MessageTypesResource(SyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -95,6 +99,7 @@ class MessageTypesResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     message_type_retrieve_params.MessageTypeRetrieveParams,
@@ -110,6 +115,7 @@ class MessageTypesResource(SyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -130,6 +136,9 @@ class MessageTypesResource(SyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -158,6 +167,7 @@ class MessageTypesResource(SyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -174,6 +184,7 @@ class MessageTypesResource(SyncAPIResource):
         environment: str,
         message_type: message_type_upsert_params.MessageType,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -194,6 +205,9 @@ class MessageTypesResource(SyncAPIResource):
           message_type: A request to create a message type.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -221,6 +235,7 @@ class MessageTypesResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -236,6 +251,7 @@ class MessageTypesResource(SyncAPIResource):
         *,
         environment: str,
         message_type: message_type_validate_params.MessageType,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -253,6 +269,9 @@ class MessageTypesResource(SyncAPIResource):
           environment: The environment slug.
 
           message_type: A request to create a message type.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -275,7 +294,11 @@ class MessageTypesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment}, message_type_validate_params.MessageTypeValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    message_type_validate_params.MessageTypeValidateParams,
                 ),
             ),
             cast_to=MessageTypeValidateResponse,
@@ -308,6 +331,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -323,6 +347,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -348,6 +375,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     message_type_retrieve_params.MessageTypeRetrieveParams,
@@ -363,6 +391,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -383,6 +412,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -411,6 +443,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -427,6 +460,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         environment: str,
         message_type: message_type_upsert_params.MessageType,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -447,6 +481,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
           message_type: A request to create a message type.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -476,6 +513,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -491,6 +529,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         *,
         environment: str,
         message_type: message_type_validate_params.MessageType,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -508,6 +547,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
           environment: The environment slug.
 
           message_type: A request to create a message type.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -530,7 +572,11 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, message_type_validate_params.MessageTypeValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    message_type_validate_params.MessageTypeValidateParams,
                 ),
             ),
             cast_to=MessageTypeValidateResponse,

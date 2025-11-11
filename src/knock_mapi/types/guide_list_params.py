@@ -20,6 +20,12 @@ class GuideListParams(TypedDict, total=False):
     before: str
     """The cursor to fetch entries before."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     hide_uncommitted_changes: bool
     """Whether to hide uncommitted changes.
 

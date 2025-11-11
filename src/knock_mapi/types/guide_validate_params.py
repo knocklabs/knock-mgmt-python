@@ -21,6 +21,12 @@ class GuideValidateParams(TypedDict, total=False):
     guide: Required[Guide]
     """A request to create or update a guide."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class Guide(TypedDict, total=False):
     channel_key: Required[str]

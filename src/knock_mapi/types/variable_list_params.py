@@ -17,5 +17,11 @@ class VariableListParams(TypedDict, total=False):
     before: str
     """The cursor to fetch entries before."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     limit: int
     """The number of entries to fetch per-page."""

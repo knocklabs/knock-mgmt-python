@@ -58,6 +58,7 @@ class TranslationsResource(SyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         namespace: str | Omit = omit,
@@ -75,6 +76,9 @@ class TranslationsResource(SyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
@@ -105,6 +109,7 @@ class TranslationsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "format": format,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "namespace": namespace,
@@ -122,6 +127,7 @@ class TranslationsResource(SyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
@@ -147,6 +153,9 @@ class TranslationsResource(SyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
@@ -182,6 +191,7 @@ class TranslationsResource(SyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "format": format,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
@@ -202,6 +212,7 @@ class TranslationsResource(SyncAPIResource):
         namespace: str,
         translation: translation_upsert_params.Translation,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
@@ -228,6 +239,9 @@ class TranslationsResource(SyncAPIResource):
               translation.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -259,6 +273,7 @@ class TranslationsResource(SyncAPIResource):
                         "environment": environment,
                         "namespace": namespace,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                         "format": format,
@@ -275,6 +290,7 @@ class TranslationsResource(SyncAPIResource):
         *,
         environment: str,
         translation: translation_validate_params.Translation,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -293,6 +309,9 @@ class TranslationsResource(SyncAPIResource):
 
           translation: A translation object with a content attribute used to update or create a
               translation.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -313,7 +332,11 @@ class TranslationsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment}, translation_validate_params.TranslationValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    translation_validate_params.TranslationValidateParams,
                 ),
             ),
             cast_to=TranslationValidateResponse,
@@ -346,6 +369,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         namespace: str | Omit = omit,
@@ -363,6 +387,9 @@ class AsyncTranslationsResource(AsyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
@@ -393,6 +420,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "format": format,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "namespace": namespace,
@@ -410,6 +438,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
@@ -435,6 +464,9 @@ class AsyncTranslationsResource(AsyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
@@ -470,6 +502,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "format": format,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
@@ -490,6 +523,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         namespace: str,
         translation: translation_upsert_params.Translation,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
@@ -516,6 +550,9 @@ class AsyncTranslationsResource(AsyncAPIResource):
               translation.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -549,6 +586,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                         "environment": environment,
                         "namespace": namespace,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                         "format": format,
@@ -565,6 +603,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         *,
         environment: str,
         translation: translation_validate_params.Translation,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -583,6 +622,9 @@ class AsyncTranslationsResource(AsyncAPIResource):
 
           translation: A translation object with a content attribute used to update or create a
               translation.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -605,7 +647,11 @@ class AsyncTranslationsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, translation_validate_params.TranslationValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    translation_validate_params.TranslationValidateParams,
                 ),
             ),
             cast_to=TranslationValidateResponse,

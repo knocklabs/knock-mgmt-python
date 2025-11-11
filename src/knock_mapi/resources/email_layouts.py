@@ -55,6 +55,7 @@ class EmailLayoutsResource(SyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -70,6 +71,9 @@ class EmailLayoutsResource(SyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -95,6 +99,7 @@ class EmailLayoutsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     email_layout_retrieve_params.EmailLayoutRetrieveParams,
@@ -110,6 +115,7 @@ class EmailLayoutsResource(SyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -130,6 +136,9 @@ class EmailLayoutsResource(SyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -158,6 +167,7 @@ class EmailLayoutsResource(SyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -174,6 +184,7 @@ class EmailLayoutsResource(SyncAPIResource):
         environment: str,
         email_layout: email_layout_upsert_params.EmailLayout,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -194,6 +205,9 @@ class EmailLayoutsResource(SyncAPIResource):
           email_layout: A request to update or create an email layout.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -221,6 +235,7 @@ class EmailLayoutsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -236,6 +251,7 @@ class EmailLayoutsResource(SyncAPIResource):
         *,
         environment: str,
         email_layout: email_layout_validate_params.EmailLayout,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -252,6 +268,9 @@ class EmailLayoutsResource(SyncAPIResource):
           environment: The environment slug.
 
           email_layout: A request to update or create an email layout.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -274,7 +293,11 @@ class EmailLayoutsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment}, email_layout_validate_params.EmailLayoutValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    email_layout_validate_params.EmailLayoutValidateParams,
                 ),
             ),
             cast_to=EmailLayoutValidateResponse,
@@ -307,6 +330,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -322,6 +346,9 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -347,6 +374,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     email_layout_retrieve_params.EmailLayoutRetrieveParams,
@@ -362,6 +390,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -382,6 +411,9 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -410,6 +442,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -426,6 +459,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         environment: str,
         email_layout: email_layout_upsert_params.EmailLayout,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -446,6 +480,9 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
           email_layout: A request to update or create an email layout.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -475,6 +512,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -490,6 +528,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         *,
         environment: str,
         email_layout: email_layout_validate_params.EmailLayout,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -506,6 +545,9 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
           environment: The environment slug.
 
           email_layout: A request to update or create an email layout.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -528,7 +570,11 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, email_layout_validate_params.EmailLayoutValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    email_layout_validate_params.EmailLayoutValidateParams,
                 ),
             ),
             cast_to=EmailLayoutValidateResponse,

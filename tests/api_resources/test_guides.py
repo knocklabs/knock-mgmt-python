@@ -41,6 +41,7 @@ class TestGuides:
             guide_key="guide_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Guide, guide, path=["response"])
@@ -98,6 +99,7 @@ class TestGuides:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -136,6 +138,17 @@ class TestGuides:
             guide_key="guide_key",
             environment="development",
             status=True,
+        )
+        assert_matches_type(GuideActivateResponse, guide, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    def test_method_activate_with_all_params_overload_1(self, client: KnockMgmt) -> None:
+        guide = client.guides.activate(
+            guide_key="guide_key",
+            environment="development",
+            status=True,
+            branch="feature-branch",
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
@@ -194,6 +207,7 @@ class TestGuides:
         guide = client.guides.activate(
             guide_key="guide_key",
             environment="development",
+            branch="feature-branch",
             from_=parse_datetime("2024-03-20T10:00:00Z"),
             until=parse_datetime("2024-03-21T10:00:00Z"),
         )
@@ -339,6 +353,7 @@ class TestGuides:
                 },
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -477,6 +492,7 @@ class TestGuides:
                     ]
                 },
             },
+            branch="feature-branch",
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
@@ -575,6 +591,7 @@ class TestAsyncGuides:
             guide_key="guide_key",
             environment="development",
             annotate=True,
+            branch="feature-branch",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Guide, guide, path=["response"])
@@ -632,6 +649,7 @@ class TestAsyncGuides:
             after="after",
             annotate=True,
             before="before",
+            branch="feature-branch",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -670,6 +688,17 @@ class TestAsyncGuides:
             guide_key="guide_key",
             environment="development",
             status=True,
+        )
+        assert_matches_type(GuideActivateResponse, guide, path=["response"])
+
+    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @parametrize
+    async def test_method_activate_with_all_params_overload_1(self, async_client: AsyncKnockMgmt) -> None:
+        guide = await async_client.guides.activate(
+            guide_key="guide_key",
+            environment="development",
+            status=True,
+            branch="feature-branch",
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
@@ -728,6 +757,7 @@ class TestAsyncGuides:
         guide = await async_client.guides.activate(
             guide_key="guide_key",
             environment="development",
+            branch="feature-branch",
             from_=parse_datetime("2024-03-20T10:00:00Z"),
             until=parse_datetime("2024-03-21T10:00:00Z"),
         )
@@ -873,6 +903,7 @@ class TestAsyncGuides:
                 },
             },
             annotate=True,
+            branch="feature-branch",
             commit=True,
             commit_message="commit_message",
         )
@@ -1011,6 +1042,7 @@ class TestAsyncGuides:
                     ]
                 },
             },
+            branch="feature-branch",
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 

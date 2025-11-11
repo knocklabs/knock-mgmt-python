@@ -48,6 +48,7 @@ class VariablesResource(SyncAPIResource):
         environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -65,6 +66,9 @@ class VariablesResource(SyncAPIResource):
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           limit: The number of entries to fetch per-page.
 
@@ -89,6 +93,7 @@ class VariablesResource(SyncAPIResource):
                         "environment": environment,
                         "after": after,
                         "before": before,
+                        "branch": branch,
                         "limit": limit,
                     },
                     variable_list_params.VariableListParams,
@@ -124,6 +129,7 @@ class AsyncVariablesResource(AsyncAPIResource):
         environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -141,6 +147,9 @@ class AsyncVariablesResource(AsyncAPIResource):
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           limit: The number of entries to fetch per-page.
 
@@ -165,6 +174,7 @@ class AsyncVariablesResource(AsyncAPIResource):
                         "environment": environment,
                         "after": after,
                         "before": before,
+                        "branch": branch,
                         "limit": limit,
                     },
                     variable_list_params.VariableListParams,

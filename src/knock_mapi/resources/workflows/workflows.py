@@ -74,6 +74,7 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -89,6 +90,9 @@ class WorkflowsResource(SyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -114,6 +118,7 @@ class WorkflowsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     workflow_retrieve_params.WorkflowRetrieveParams,
@@ -129,6 +134,7 @@ class WorkflowsResource(SyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -151,6 +157,9 @@ class WorkflowsResource(SyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -179,6 +188,7 @@ class WorkflowsResource(SyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -194,6 +204,7 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         status: bool,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -215,6 +226,9 @@ class WorkflowsResource(SyncAPIResource):
           status: Whether to activate or deactivate the workflow. Set to `true` by default, which
               will activate the workflow.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -233,7 +247,13 @@ class WorkflowsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, workflow_activate_params.WorkflowActivateParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_activate_params.WorkflowActivateParams,
+                ),
             ),
             cast_to=WorkflowActivateResponse,
         )
@@ -244,6 +264,7 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         recipients: SequenceNotStr[workflow_run_params.Recipient],
+        branch: str | Omit = omit,
         actor: Optional[workflow_run_params.Actor] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
@@ -263,6 +284,9 @@ class WorkflowsResource(SyncAPIResource):
           environment: The environment slug.
 
           recipients: A list of recipients to run the workflow for.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
@@ -300,7 +324,13 @@ class WorkflowsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, workflow_run_params.WorkflowRunParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_run_params.WorkflowRunParams,
+                ),
             ),
             cast_to=WorkflowRunResponse,
         )
@@ -312,6 +342,7 @@ class WorkflowsResource(SyncAPIResource):
         environment: str,
         workflow: workflow_upsert_params.Workflow,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -333,6 +364,9 @@ class WorkflowsResource(SyncAPIResource):
           workflow: A workflow request for upserting a workflow.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -360,6 +394,7 @@ class WorkflowsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -375,6 +410,7 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         workflow: workflow_validate_params.Workflow,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -394,6 +430,9 @@ class WorkflowsResource(SyncAPIResource):
 
           workflow: A workflow request for upserting a workflow.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -412,7 +451,13 @@ class WorkflowsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, workflow_validate_params.WorkflowValidateParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_validate_params.WorkflowValidateParams,
+                ),
             ),
             cast_to=WorkflowValidateResponse,
         )
@@ -448,6 +493,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -463,6 +509,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -488,6 +537,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     workflow_retrieve_params.WorkflowRetrieveParams,
@@ -503,6 +553,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
+        branch: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -525,6 +576,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -553,6 +607,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -568,6 +623,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         status: bool,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -589,6 +645,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           status: Whether to activate or deactivate the workflow. Set to `true` by default, which
               will activate the workflow.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -608,7 +667,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, workflow_activate_params.WorkflowActivateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_activate_params.WorkflowActivateParams,
                 ),
             ),
             cast_to=WorkflowActivateResponse,
@@ -620,6 +683,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         recipients: SequenceNotStr[workflow_run_params.Recipient],
+        branch: str | Omit = omit,
         actor: Optional[workflow_run_params.Actor] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
@@ -639,6 +703,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           environment: The environment slug.
 
           recipients: A list of recipients to run the workflow for.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
@@ -676,7 +743,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"environment": environment}, workflow_run_params.WorkflowRunParams),
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_run_params.WorkflowRunParams,
+                ),
             ),
             cast_to=WorkflowRunResponse,
         )
@@ -688,6 +761,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         environment: str,
         workflow: workflow_upsert_params.Workflow,
         annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -709,6 +783,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           workflow: A workflow request for upserting a workflow.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
@@ -736,6 +813,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
                     },
@@ -751,6 +829,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         workflow: workflow_validate_params.Workflow,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -769,6 +848,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           environment: The environment slug.
 
           workflow: A workflow request for upserting a workflow.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           extra_headers: Send extra headers
 
@@ -789,7 +871,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, workflow_validate_params.WorkflowValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_validate_params.WorkflowValidateParams,
                 ),
             ),
             cast_to=WorkflowValidateResponse,
