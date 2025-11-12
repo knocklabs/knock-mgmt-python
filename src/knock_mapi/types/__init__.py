@@ -12,6 +12,7 @@ from . import (
 )
 from .. import _compat
 from .guide import Guide as Guide
+from .branch import Branch as Branch
 from .commit import Commit as Commit
 from .shared import PageInfo as PageInfo
 from .channel import Channel as Channel
@@ -41,6 +42,7 @@ from .webhook_template import WebhookTemplate as WebhookTemplate
 from .guide_list_params import GuideListParams as GuideListParams
 from .send_window_param import SendWindowParam as SendWindowParam
 from .workflow_sms_step import WorkflowSMSStep as WorkflowSMSStep
+from .branch_list_params import BranchListParams as BranchListParams
 from .channel_group_rule import ChannelGroupRule as ChannelGroupRule
 from .commit_list_params import CommitListParams as CommitListParams
 from .sms_template_param import SMSTemplateParam as SMSTemplateParam
@@ -58,6 +60,8 @@ from .workflow_fetch_step import WorkflowFetchStep as WorkflowFetchStep
 from .workflow_run_params import WorkflowRunParams as WorkflowRunParams
 from .workflow_step_param import WorkflowStepParam as WorkflowStepParam
 from .auth_verify_response import AuthVerifyResponse as AuthVerifyResponse
+from .branch_create_params import BranchCreateParams as BranchCreateParams
+from .branch_delete_params import BranchDeleteParams as BranchDeleteParams
 from .email_template_param import EmailTemplateParam as EmailTemplateParam
 from .in_app_feed_template import InAppFeedTemplate as InAppFeedTemplate
 from .message_type_variant import MessageTypeVariant as MessageTypeVariant
@@ -75,6 +79,7 @@ from .partial_upsert_params import PartialUpsertParams as PartialUpsertParams
 from .push_channel_settings import PushChannelSettings as PushChannelSettings
 from .workflow_run_response import WorkflowRunResponse as WorkflowRunResponse
 from .workflow_webhook_step import WorkflowWebhookStep as WorkflowWebhookStep
+from .branch_retrieve_params import BranchRetrieveParams as BranchRetrieveParams
 from .email_channel_settings import EmailChannelSettings as EmailChannelSettings
 from .guide_archive_response import GuideArchiveResponse as GuideArchiveResponse
 from .request_template_param import RequestTemplateParam as RequestTemplateParam
