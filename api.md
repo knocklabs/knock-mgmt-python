@@ -269,3 +269,18 @@ Methods:
 - <code title="delete /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">archive</a>(guide_key) -> <a href="./src/knock_mapi/types/guide_archive_response.py">GuideArchiveResponse</a></code>
 - <code title="put /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">upsert</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_upsert_response.py">GuideUpsertResponse</a></code>
 - <code title="put /v1/guides/{guide_key}/validate">client.guides.<a href="./src/knock_mapi/resources/guides.py">validate</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_validate_response.py">GuideValidateResponse</a></code>
+
+# Branches
+
+Types:
+
+```python
+from knock_mapi.types import Branch
+```
+
+Methods:
+
+- <code title="post /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">create</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_create_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">Branch</a></code>
+- <code title="get /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">retrieve</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">Branch</a></code>
+- <code title="get /v1/branches">client.branches.<a href="./src/knock_mapi/resources/branches.py">list</a>(\*\*<a href="src/knock_mapi/types/branch_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">SyncEntriesCursor[Branch]</a></code>
+- <code title="delete /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">delete</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_delete_params.py">params</a>) -> None</code>

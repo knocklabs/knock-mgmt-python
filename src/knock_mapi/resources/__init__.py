@@ -32,6 +32,14 @@ from .api_keys import (
     APIKeysResourceWithStreamingResponse,
     AsyncAPIKeysResourceWithStreamingResponse,
 )
+from .branches import (
+    BranchesResource,
+    AsyncBranchesResource,
+    BranchesResourceWithRawResponse,
+    AsyncBranchesResourceWithRawResponse,
+    BranchesResourceWithStreamingResponse,
+    AsyncBranchesResourceWithStreamingResponse,
+)
 from .channels import (
     ChannelsResource,
     AsyncChannelsResource,
@@ -184,4 +192,10 @@ __all__ = [
     "AsyncGuidesResourceWithRawResponse",
     "GuidesResourceWithStreamingResponse",
     "AsyncGuidesResourceWithStreamingResponse",
+    "BranchesResource",
+    "AsyncBranchesResource",
+    "BranchesResourceWithRawResponse",
+    "AsyncBranchesResourceWithRawResponse",
+    "BranchesResourceWithStreamingResponse",
+    "AsyncBranchesResourceWithStreamingResponse",
 ]
