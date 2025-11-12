@@ -233,6 +233,7 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         to_environment: str,
+        branch: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
             Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
@@ -258,7 +259,10 @@ class CommitsResource(SyncAPIResource):
               “production” (in that order), setting this param to “production” will promote
               all commits not currently in production from staging.
 
-              Note: This must be a non-development environment.
+              When this param is set to `"development"`, the `"branch"` param must be
+              provided.
+
+          branch: The slug of the branch to promote all changes from.
 
           resource_id: Filter commits to promote by resource identifier. Must be used together with
               resource_type.
@@ -284,6 +288,7 @@ class CommitsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "to_environment": to_environment,
+                        "branch": branch,
                         "resource_id": resource_id,
                         "resource_type": resource_type,
                     },
@@ -532,6 +537,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         to_environment: str,
+        branch: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
             Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
@@ -557,7 +563,10 @@ class AsyncCommitsResource(AsyncAPIResource):
               “production” (in that order), setting this param to “production” will promote
               all commits not currently in production from staging.
 
-              Note: This must be a non-development environment.
+              When this param is set to `"development"`, the `"branch"` param must be
+              provided.
+
+          branch: The slug of the branch to promote all changes from.
 
           resource_id: Filter commits to promote by resource identifier. Must be used together with
               resource_type.
@@ -583,6 +592,7 @@ class AsyncCommitsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "to_environment": to_environment,
+                        "branch": branch,
                         "resource_id": resource_id,
                         "resource_type": resource_type,
                     },

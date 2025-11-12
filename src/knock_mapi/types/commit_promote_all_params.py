@@ -18,8 +18,12 @@ class CommitPromoteAllParams(TypedDict, total=False):
     “production” (in that order), setting this param to “production” will promote
     all commits not currently in production from staging.
 
-    Note: This must be a non-development environment.
+    When this param is set to `"development"`, the `"branch"` param must be
+    provided.
     """
+
+    branch: str
+    """The slug of the branch to promote all changes from."""
 
     resource_id: str
     """Filter commits to promote by resource identifier.

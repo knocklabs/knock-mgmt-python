@@ -173,6 +173,7 @@ class TestCommits:
     def test_method_promote_all_with_all_params(self, client: KnockMgmt) -> None:
         commit = client.commits.promote_all(
             to_environment="to_environment",
+            branch="branch",
             resource_id="resource_id",
             resource_type="audience",
         )
@@ -402,6 +403,7 @@ class TestAsyncCommits:
     async def test_method_promote_all_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.promote_all(
             to_environment="to_environment",
+            branch="branch",
             resource_id="resource_id",
             resource_type="audience",
         )
