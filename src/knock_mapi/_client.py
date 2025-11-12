@@ -30,6 +30,7 @@ from .resources import (
     channels,
     partials,
     variables,
+    broadcasts,
     environments,
     translations,
     email_layouts,
@@ -72,6 +73,7 @@ class KnockMgmt(SyncAPIClient):
     variables: variables.VariablesResource
     guides: guides.GuidesResource
     branches: branches.BranchesResource
+    broadcasts: broadcasts.BroadcastsResource
     with_raw_response: KnockMgmtWithRawResponse
     with_streaming_response: KnockMgmtWithStreamedResponse
 
@@ -143,6 +145,7 @@ class KnockMgmt(SyncAPIClient):
         self.variables = variables.VariablesResource(self)
         self.guides = guides.GuidesResource(self)
         self.branches = branches.BranchesResource(self)
+        self.broadcasts = broadcasts.BroadcastsResource(self)
         self.with_raw_response = KnockMgmtWithRawResponse(self)
         self.with_streaming_response = KnockMgmtWithStreamedResponse(self)
 
@@ -266,6 +269,7 @@ class AsyncKnockMgmt(AsyncAPIClient):
     variables: variables.AsyncVariablesResource
     guides: guides.AsyncGuidesResource
     branches: branches.AsyncBranchesResource
+    broadcasts: broadcasts.AsyncBroadcastsResource
     with_raw_response: AsyncKnockMgmtWithRawResponse
     with_streaming_response: AsyncKnockMgmtWithStreamedResponse
 
@@ -337,6 +341,7 @@ class AsyncKnockMgmt(AsyncAPIClient):
         self.variables = variables.AsyncVariablesResource(self)
         self.guides = guides.AsyncGuidesResource(self)
         self.branches = branches.AsyncBranchesResource(self)
+        self.broadcasts = broadcasts.AsyncBroadcastsResource(self)
         self.with_raw_response = AsyncKnockMgmtWithRawResponse(self)
         self.with_streaming_response = AsyncKnockMgmtWithStreamedResponse(self)
 
@@ -461,6 +466,7 @@ class KnockMgmtWithRawResponse:
         self.variables = variables.VariablesResourceWithRawResponse(client.variables)
         self.guides = guides.GuidesResourceWithRawResponse(client.guides)
         self.branches = branches.BranchesResourceWithRawResponse(client.branches)
+        self.broadcasts = broadcasts.BroadcastsResourceWithRawResponse(client.broadcasts)
 
 
 class AsyncKnockMgmtWithRawResponse:
@@ -479,6 +485,7 @@ class AsyncKnockMgmtWithRawResponse:
         self.variables = variables.AsyncVariablesResourceWithRawResponse(client.variables)
         self.guides = guides.AsyncGuidesResourceWithRawResponse(client.guides)
         self.branches = branches.AsyncBranchesResourceWithRawResponse(client.branches)
+        self.broadcasts = broadcasts.AsyncBroadcastsResourceWithRawResponse(client.broadcasts)
 
 
 class KnockMgmtWithStreamedResponse:
@@ -497,6 +504,7 @@ class KnockMgmtWithStreamedResponse:
         self.variables = variables.VariablesResourceWithStreamingResponse(client.variables)
         self.guides = guides.GuidesResourceWithStreamingResponse(client.guides)
         self.branches = branches.BranchesResourceWithStreamingResponse(client.branches)
+        self.broadcasts = broadcasts.BroadcastsResourceWithStreamingResponse(client.broadcasts)
 
 
 class AsyncKnockMgmtWithStreamedResponse:
@@ -515,6 +523,7 @@ class AsyncKnockMgmtWithStreamedResponse:
         self.variables = variables.AsyncVariablesResourceWithStreamingResponse(client.variables)
         self.guides = guides.AsyncGuidesResourceWithStreamingResponse(client.guides)
         self.branches = branches.AsyncBranchesResourceWithStreamingResponse(client.branches)
+        self.broadcasts = broadcasts.AsyncBroadcastsResourceWithStreamingResponse(client.broadcasts)
 
 
 Client = KnockMgmt

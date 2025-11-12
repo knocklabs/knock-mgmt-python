@@ -4,11 +4,16 @@ from __future__ import annotations
 
 from . import (
     workflow,
+    broadcast,
     workflow_branch_step,
+    broadcast_send_response,
     workflow_upsert_response,
+    broadcast_cancel_response,
+    broadcast_upsert_response,
     workflow_activate_response,
     workflow_retrieve_response,
     workflow_validate_response,
+    broadcast_validate_response,
 )
 from .. import _compat
 from .guide import Guide as Guide
@@ -20,6 +25,7 @@ from .partial import Partial as Partial
 from .duration import Duration as Duration
 from .variable import Variable as Variable
 from .workflow import Workflow as Workflow
+from .broadcast import Broadcast as Broadcast
 from .condition import Condition as Condition
 from .guide_step import GuideStep as GuideStep
 from .environment import Environment as Environment
@@ -69,6 +75,8 @@ from .sms_channel_settings import SMSChannelSettings as SMSChannelSettings
 from .variable_list_params import VariableListParams as VariableListParams
 from .workflow_branch_step import WorkflowBranchStep as WorkflowBranchStep
 from .workflow_list_params import WorkflowListParams as WorkflowListParams
+from .broadcast_list_params import BroadcastListParams as BroadcastListParams
+from .broadcast_send_params import BroadcastSendParams as BroadcastSendParams
 from .chat_channel_settings import ChatChannelSettings as ChatChannelSettings
 from .condition_group_param import ConditionGroupParam as ConditionGroupParam
 from .guide_activate_params import GuideActivateParams as GuideActivateParams
@@ -87,6 +95,10 @@ from .webhook_template_param import WebhookTemplateParam as WebhookTemplateParam
 from .workflow_throttle_step import WorkflowThrottleStep as WorkflowThrottleStep
 from .workflow_upsert_params import WorkflowUpsertParams as WorkflowUpsertParams
 from .api_key_exchange_params import APIKeyExchangeParams as APIKeyExchangeParams
+from .broadcast_cancel_params import BroadcastCancelParams as BroadcastCancelParams
+from .broadcast_request_param import BroadcastRequestParam as BroadcastRequestParam
+from .broadcast_send_response import BroadcastSendResponse as BroadcastSendResponse
+from .broadcast_upsert_params import BroadcastUpsertParams as BroadcastUpsertParams
 from .environment_list_params import EnvironmentListParams as EnvironmentListParams
 from .guide_activate_response import GuideActivateResponse as GuideActivateResponse
 from .guide_validate_response import GuideValidateResponse as GuideValidateResponse
@@ -106,6 +118,10 @@ from .workflow_retrieve_params import WorkflowRetrieveParams as WorkflowRetrieve
 from .workflow_upsert_response import WorkflowUpsertResponse as WorkflowUpsertResponse
 from .workflow_validate_params import WorkflowValidateParams as WorkflowValidateParams
 from .api_key_exchange_response import APIKeyExchangeResponse as APIKeyExchangeResponse
+from .broadcast_cancel_response import BroadcastCancelResponse as BroadcastCancelResponse
+from .broadcast_retrieve_params import BroadcastRetrieveParams as BroadcastRetrieveParams
+from .broadcast_upsert_response import BroadcastUpsertResponse as BroadcastUpsertResponse
+from .broadcast_validate_params import BroadcastValidateParams as BroadcastValidateParams
 from .channel_group_list_params import ChannelGroupListParams as ChannelGroupListParams
 from .commit_promote_all_params import CommitPromoteAllParams as CommitPromoteAllParams
 from .partial_validate_response import PartialValidateResponse as PartialValidateResponse
@@ -125,6 +141,7 @@ from .workflow_activate_response import WorkflowActivateResponse as WorkflowActi
 from .workflow_branch_step_param import WorkflowBranchStepParam as WorkflowBranchStepParam
 from .workflow_retrieve_response import WorkflowRetrieveResponse as WorkflowRetrieveResponse
 from .workflow_validate_response import WorkflowValidateResponse as WorkflowValidateResponse
+from .broadcast_validate_response import BroadcastValidateResponse as BroadcastValidateResponse
 from .chat_channel_settings_param import ChatChannelSettingsParam as ChatChannelSettingsParam
 from .commit_promote_all_response import CommitPromoteAllResponse as CommitPromoteAllResponse
 from .commit_promote_one_response import CommitPromoteOneResponse as CommitPromoteOneResponse
@@ -165,6 +182,11 @@ if _compat.PYDANTIC_V1:
     workflow_activate_response.WorkflowActivateResponse.update_forward_refs()  # type: ignore
     workflow_upsert_response.WorkflowUpsertResponse.update_forward_refs()  # type: ignore
     workflow_validate_response.WorkflowValidateResponse.update_forward_refs()  # type: ignore
+    broadcast.Broadcast.update_forward_refs()  # type: ignore
+    broadcast_cancel_response.BroadcastCancelResponse.update_forward_refs()  # type: ignore
+    broadcast_send_response.BroadcastSendResponse.update_forward_refs()  # type: ignore
+    broadcast_upsert_response.BroadcastUpsertResponse.update_forward_refs()  # type: ignore
+    broadcast_validate_response.BroadcastValidateResponse.update_forward_refs()  # type: ignore
 else:
     workflow.Workflow.model_rebuild(_parent_namespace_depth=0)
     workflow_branch_step.WorkflowBranchStep.model_rebuild(_parent_namespace_depth=0)
@@ -172,3 +194,8 @@ else:
     workflow_activate_response.WorkflowActivateResponse.model_rebuild(_parent_namespace_depth=0)
     workflow_upsert_response.WorkflowUpsertResponse.model_rebuild(_parent_namespace_depth=0)
     workflow_validate_response.WorkflowValidateResponse.model_rebuild(_parent_namespace_depth=0)
+    broadcast.Broadcast.model_rebuild(_parent_namespace_depth=0)
+    broadcast_cancel_response.BroadcastCancelResponse.model_rebuild(_parent_namespace_depth=0)
+    broadcast_send_response.BroadcastSendResponse.model_rebuild(_parent_namespace_depth=0)
+    broadcast_upsert_response.BroadcastUpsertResponse.model_rebuild(_parent_namespace_depth=0)
+    broadcast_validate_response.BroadcastValidateResponse.model_rebuild(_parent_namespace_depth=0)

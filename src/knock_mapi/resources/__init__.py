@@ -72,6 +72,14 @@ from .workflows import (
     WorkflowsResourceWithStreamingResponse,
     AsyncWorkflowsResourceWithStreamingResponse,
 )
+from .broadcasts import (
+    BroadcastsResource,
+    AsyncBroadcastsResource,
+    BroadcastsResourceWithRawResponse,
+    AsyncBroadcastsResourceWithRawResponse,
+    BroadcastsResourceWithStreamingResponse,
+    AsyncBroadcastsResourceWithStreamingResponse,
+)
 from .environments import (
     EnvironmentsResource,
     AsyncEnvironmentsResource,
@@ -198,4 +206,10 @@ __all__ = [
     "AsyncBranchesResourceWithRawResponse",
     "BranchesResourceWithStreamingResponse",
     "AsyncBranchesResourceWithStreamingResponse",
+    "BroadcastsResource",
+    "AsyncBroadcastsResource",
+    "BroadcastsResourceWithRawResponse",
+    "AsyncBroadcastsResourceWithRawResponse",
+    "BroadcastsResourceWithStreamingResponse",
+    "AsyncBroadcastsResourceWithStreamingResponse",
 ]
