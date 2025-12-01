@@ -30,6 +30,9 @@ class AccountFeatures(BaseModel):
     guides_monthly_notified_recipients_limit: Optional[int] = None
     """Monthly limit for guide notification recipients, null for unlimited."""
 
+    guides_per_tenant_scope_allowed: Optional[bool] = None
+    """Whether per-tenant scope for guide messages is allowed."""
+
     heap_extension_allowed: Optional[bool] = None
     """Whether Heap integration extension is available."""
 
