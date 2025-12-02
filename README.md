@@ -86,6 +86,7 @@ pip install 'knock_mapi[aiohttp] @ git+ssh://git@github.com/knocklabs/knock-mgmt
 Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
 
 ```python
+import os
 import asyncio
 from knock_mapi import DefaultAioHttpClient
 from knock_mapi import AsyncKnockMgmt
@@ -93,7 +94,9 @@ from knock_mapi import AsyncKnockMgmt
 
 async def main() -> None:
     async with AsyncKnockMgmt(
-        service_token="My Service Token",
+        service_token=os.environ.get(
+            "KNOCK_SERVICE_TOKEN"
+        ),  # This is the default and can be omitted
         http_client=DefaultAioHttpClient(),
     ) as client:
         page = await client.workflows.list(
