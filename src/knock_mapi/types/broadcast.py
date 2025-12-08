@@ -30,6 +30,8 @@ Step: TypeAlias = Union[
 
 
 class Settings(BaseModel):
+    """A map of broadcast settings."""
+
     is_commercial: Optional[bool] = None
     """Whether the broadcast is commercial. Defaults to true."""
 
@@ -42,6 +44,8 @@ class Settings(BaseModel):
 
 
 class Broadcast(BaseModel):
+    """A broadcast object."""
+
     created_at: datetime
     """The timestamp of when the broadcast was created. (read-only)."""
 

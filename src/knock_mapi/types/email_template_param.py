@@ -28,6 +28,10 @@ __all__ = [
 
 
 class Settings(TypedDict, total=False):
+    """
+    The [settings](https://docs.knock.app/integrations/email/settings) for the email template.
+    """
+
     attachment_key: Optional[str]
     """
     The object path in the data payload (of the workflow trigger call) to resolve
@@ -45,6 +49,8 @@ class Settings(TypedDict, total=False):
 
 
 class VisualBlockEmailButtonSetBlockButtonSizeAttrs(TypedDict, total=False):
+    """The size attributes of the button."""
+
     is_fullwidth: bool
     """Whether the button is full width."""
 
@@ -53,6 +59,8 @@ class VisualBlockEmailButtonSetBlockButtonSizeAttrs(TypedDict, total=False):
 
 
 class VisualBlockEmailButtonSetBlockButtonStyleAttrs(TypedDict, total=False):
+    """The style attributes of the button."""
+
     background_color: str
     """The background color of the button."""
 
@@ -70,6 +78,8 @@ class VisualBlockEmailButtonSetBlockButtonStyleAttrs(TypedDict, total=False):
 
 
 class VisualBlockEmailButtonSetBlockButton(TypedDict, total=False):
+    """A button in a button set block."""
+
     action: Required[str]
     """The action of the button."""
 
@@ -87,6 +97,8 @@ class VisualBlockEmailButtonSetBlockButton(TypedDict, total=False):
 
 
 class VisualBlockEmailButtonSetBlockLayoutAttrs(TypedDict, total=False):
+    """The layout attributes of the block."""
+
     column_gap: Required[int]
     """The column_gap layout attribute of the block."""
 
@@ -107,6 +119,8 @@ class VisualBlockEmailButtonSetBlockLayoutAttrs(TypedDict, total=False):
 
 
 class VisualBlockEmailButtonSetBlock(TypedDict, total=False):
+    """A button set block in an email template."""
+
     id: Required[str]
     """The ID of the block."""
 
@@ -124,6 +138,8 @@ class VisualBlockEmailButtonSetBlock(TypedDict, total=False):
 
 
 class VisualBlockEmailDividerBlockLayoutAttrs(TypedDict, total=False):
+    """The layout attributes of the block."""
+
     padding_bottom: Required[int]
     """The padding_bottom layout attribute of the block."""
 
@@ -138,6 +154,8 @@ class VisualBlockEmailDividerBlockLayoutAttrs(TypedDict, total=False):
 
 
 class VisualBlockEmailDividerBlock(TypedDict, total=False):
+    """A divider block in an email template."""
+
     id: Required[str]
     """The ID of the block."""
 
@@ -152,6 +170,8 @@ class VisualBlockEmailDividerBlock(TypedDict, total=False):
 
 
 class VisualBlockEmailHTMLBlock(TypedDict, total=False):
+    """An HTML block in an email template."""
+
     id: Required[str]
     """The ID of the block."""
 
@@ -166,6 +186,8 @@ class VisualBlockEmailHTMLBlock(TypedDict, total=False):
 
 
 class VisualBlockEmailImageBlockLayoutAttrs(TypedDict, total=False):
+    """The layout attributes of the block."""
+
     horizontal_align: Required[Literal["left", "center", "right"]]
     """The horizontal alignment of the block."""
 
@@ -183,11 +205,15 @@ class VisualBlockEmailImageBlockLayoutAttrs(TypedDict, total=False):
 
 
 class VisualBlockEmailImageBlockStyleAttrs(TypedDict, total=False):
+    """The style attributes of the image."""
+
     width: str
     """The width of the image."""
 
 
 class VisualBlockEmailImageBlock(TypedDict, total=False):
+    """An image block in an email template."""
+
     id: Required[str]
     """The ID of the block."""
 
@@ -214,6 +240,8 @@ class VisualBlockEmailImageBlock(TypedDict, total=False):
 
 
 class VisualBlockEmailMarkdownBlockLayoutAttrs(TypedDict, total=False):
+    """The layout attributes of the block."""
+
     padding_bottom: Required[int]
     """The padding_bottom layout attribute of the block."""
 
@@ -228,6 +256,8 @@ class VisualBlockEmailMarkdownBlockLayoutAttrs(TypedDict, total=False):
 
 
 class VisualBlockEmailMarkdownBlock(TypedDict, total=False):
+    """A markdown block in an email template."""
+
     id: Required[str]
     """The ID of the block."""
 
@@ -248,6 +278,8 @@ class VisualBlockEmailMarkdownBlock(TypedDict, total=False):
 
 
 class VisualBlockEmailPartialBlockLayoutAttrs(TypedDict, total=False):
+    """The layout attributes of the block."""
+
     padding_bottom: Required[int]
     """The padding_bottom layout attribute of the block."""
 
@@ -262,6 +294,10 @@ class VisualBlockEmailPartialBlockLayoutAttrs(TypedDict, total=False):
 
 
 class VisualBlockEmailPartialBlock(TypedDict, total=False):
+    """
+    A partial block in an email template, used to render a reusable partial component.
+    """
+
     id: Required[str]
     """The ID of the block."""
 
@@ -295,6 +331,8 @@ VisualBlock: TypeAlias = Union[
 
 
 class EmailTemplateParam(TypedDict, total=False):
+    """An email message template."""
+
     subject: Required[str]
     """The subject of the email."""
 

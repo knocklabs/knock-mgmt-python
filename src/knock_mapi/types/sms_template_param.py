@@ -9,6 +9,10 @@ __all__ = ["SMSTemplateParam", "Settings"]
 
 
 class Settings(TypedDict, total=False):
+    """
+    The [settings](https://docs.knock.app/integrations/sms/settings-and-overrides) for the SMS template.
+    """
+
     payload_overrides: Optional[str]
     """A JSON object that overrides the payload sent to the SMS provider."""
 
@@ -20,6 +24,8 @@ class Settings(TypedDict, total=False):
 
 
 class SMSTemplateParam(TypedDict, total=False):
+    """An SMS template."""
+
     text_body: Required[str]
     """The message of the SMS."""
 

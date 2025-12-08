@@ -13,6 +13,11 @@ __all__ = ["WorkflowInAppFeedStep"]
 
 
 class WorkflowInAppFeedStep(BaseModel):
+    """An in-app feed step within a workflow.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/channel-step).
+    """
+
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 

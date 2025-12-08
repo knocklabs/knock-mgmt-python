@@ -40,6 +40,8 @@ class EmailLayoutFooterLink(TypedDict, total=False):
 
 
 class EmailLayout(TypedDict, total=False):
+    """A request to update or create an email layout."""
+
     html_layout: Required[str]
     """The complete HTML content of the email layout."""
 

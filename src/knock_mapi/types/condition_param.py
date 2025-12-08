@@ -9,6 +9,8 @@ __all__ = ["ConditionParam"]
 
 
 class ConditionParam(TypedDict, total=False):
+    """A condition to be evaluated."""
+
     operator: Required[
         Literal[
             "equal_to",

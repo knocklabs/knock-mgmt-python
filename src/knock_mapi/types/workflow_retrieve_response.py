@@ -13,6 +13,8 @@ __all__ = ["WorkflowRetrieveResponse", "CreatedBy", "Settings", "UpdatedBy"]
 
 
 class CreatedBy(BaseModel):
+    """User information."""
+
     id: str
     """The user's unique identifier."""
 
@@ -24,6 +26,8 @@ class CreatedBy(BaseModel):
 
 
 class Settings(BaseModel):
+    """A map of workflow settings."""
+
     is_commercial: Optional[bool] = None
     """Whether the workflow is commercial. Defaults to false."""
 
@@ -36,6 +40,8 @@ class Settings(BaseModel):
 
 
 class UpdatedBy(BaseModel):
+    """User information."""
+
     id: str
     """The user's unique identifier."""
 
@@ -47,6 +53,8 @@ class UpdatedBy(BaseModel):
 
 
 class WorkflowRetrieveResponse(BaseModel):
+    """A workflow object."""
+
     active: bool
     """
     Whether the workflow is

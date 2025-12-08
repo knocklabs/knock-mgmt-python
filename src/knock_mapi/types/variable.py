@@ -10,6 +10,8 @@ __all__ = ["Variable"]
 
 
 class Variable(BaseModel):
+    """An environment variable object."""
+
     inserted_at: datetime
     """The timestamp of when the variable was created."""
 

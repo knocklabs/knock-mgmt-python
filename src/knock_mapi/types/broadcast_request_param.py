@@ -31,6 +31,8 @@ Step: TypeAlias = Union[
 
 
 class Settings(TypedDict, total=False):
+    """A map of broadcast settings."""
+
     is_commercial: bool
     """Whether the broadcast is commercial. Defaults to true."""
 
@@ -43,6 +45,8 @@ class Settings(TypedDict, total=False):
 
 
 class BroadcastRequestParam(TypedDict, total=False):
+    """A broadcast request for upserting a broadcast."""
+
     name: Required[str]
     """A name for the broadcast. Must be at maximum 255 characters in length."""
 

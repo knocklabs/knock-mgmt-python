@@ -14,6 +14,11 @@ __all__ = ["WorkflowPushStepParam"]
 
 
 class WorkflowPushStepParam(TypedDict, total=False):
+    """A push step within a workflow.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/channel-step).
+    """
+
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 

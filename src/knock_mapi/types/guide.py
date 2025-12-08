@@ -12,6 +12,10 @@ __all__ = ["Guide"]
 
 
 class Guide(BaseModel):
+    """
+    A guide defines an in-app guide that can be displayed to users based on priority and other conditions.
+    """
+
     active: bool
     """Whether the guide is active."""
 

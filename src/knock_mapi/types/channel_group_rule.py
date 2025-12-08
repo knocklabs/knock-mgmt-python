@@ -11,6 +11,10 @@ __all__ = ["ChannelGroupRule"]
 
 
 class ChannelGroupRule(BaseModel):
+    """
+    A rule that determines if a channel should be executed as part of a channel group.
+    """
+
     channel: Channel
     """A configured channel, which is a way to route messages to a provider."""
 

@@ -9,6 +9,11 @@ __all__ = ["EmailChannelSettingsParam"]
 
 
 class EmailChannelSettingsParam(TypedDict, total=False):
+    """Email channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
     bcc_address: Optional[str]
     """The BCC address on email notifications. Supports liquid."""
 

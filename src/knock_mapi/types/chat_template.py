@@ -8,6 +8,8 @@ __all__ = ["ChatTemplate"]
 
 
 class ChatTemplate(BaseModel):
+    """A chat template."""
+
     markdown_body: str
     """The markdown body of the chat template."""
 

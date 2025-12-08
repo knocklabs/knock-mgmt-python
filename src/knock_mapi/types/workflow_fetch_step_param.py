@@ -12,6 +12,11 @@ __all__ = ["WorkflowFetchStepParam"]
 
 
 class WorkflowFetchStepParam(TypedDict, total=False):
+    """A fetch function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/fetch-function).
+    """
+
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 

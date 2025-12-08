@@ -8,6 +8,11 @@ __all__ = ["PushChannelSettingsParam"]
 
 
 class PushChannelSettingsParam(TypedDict, total=False):
+    """Push channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
     token_deregistration: bool
     """Whether to deregister a push-token when a push send hard bounces.
 

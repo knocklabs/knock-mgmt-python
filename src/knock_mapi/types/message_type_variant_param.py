@@ -35,6 +35,8 @@ __all__ = [
 
 
 class FieldMessageTypeBooleanFieldSettings(TypedDict, total=False):
+    """Settings for the boolean field."""
+
     default: bool
     """The default value of the boolean field."""
 
@@ -45,6 +47,8 @@ class FieldMessageTypeBooleanFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeBooleanField(TypedDict, total=False):
+    """A boolean field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 
@@ -59,6 +63,8 @@ class FieldMessageTypeBooleanField(TypedDict, total=False):
 
 
 class FieldMessageTypeButtonFieldSettings(TypedDict, total=False):
+    """Settings for the button field."""
+
     description: str
 
     required: bool
@@ -66,6 +72,8 @@ class FieldMessageTypeButtonFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeButtonField(TypedDict, total=False):
+    """A button field used in a message type."""
+
     action: Required[MessageTypeTextFieldParam]
     """A text field used in a message type."""
 
@@ -86,6 +94,8 @@ class FieldMessageTypeButtonField(TypedDict, total=False):
 
 
 class FieldMessageTypeImageFieldURLSettings(TypedDict, total=False):
+    """Settings for the url field."""
+
     default: Optional[str]
     """The default value of the URL field."""
 
@@ -96,6 +106,8 @@ class FieldMessageTypeImageFieldURLSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeImageFieldURL(TypedDict, total=False):
+    """A URL field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 
@@ -110,6 +122,8 @@ class FieldMessageTypeImageFieldURL(TypedDict, total=False):
 
 
 class FieldMessageTypeImageFieldSettings(TypedDict, total=False):
+    """Settings for the image field."""
+
     description: str
 
     required: bool
@@ -117,6 +131,8 @@ class FieldMessageTypeImageFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeImageField(TypedDict, total=False):
+    """An image field used in a message type."""
+
     action: Required[MessageTypeTextFieldParam]
     """A text field used in a message type."""
 
@@ -140,6 +156,8 @@ class FieldMessageTypeImageField(TypedDict, total=False):
 
 
 class FieldMessageTypeMarkdownFieldSettings(TypedDict, total=False):
+    """Settings for the markdown field."""
+
     default: str
     """The default value of the markdown field."""
 
@@ -150,6 +168,8 @@ class FieldMessageTypeMarkdownFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeMarkdownField(TypedDict, total=False):
+    """A markdown field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 
@@ -172,6 +192,8 @@ class FieldMessageTypeMultiSelectFieldSettingsOption(TypedDict, total=False):
 
 
 class FieldMessageTypeMultiSelectFieldSettings(TypedDict, total=False):
+    """Settings for the multi_select field."""
+
     default: Optional[SequenceNotStr[str]]
     """The default values for the multi-select field."""
 
@@ -185,6 +207,8 @@ class FieldMessageTypeMultiSelectFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeMultiSelectField(TypedDict, total=False):
+    """A multi-select field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 
@@ -207,6 +231,8 @@ class FieldMessageTypeSelectFieldSettingsOption(TypedDict, total=False):
 
 
 class FieldMessageTypeSelectFieldSettings(TypedDict, total=False):
+    """Settings for the select field."""
+
     default: Optional[str]
     """The default value for the select field."""
 
@@ -220,6 +246,8 @@ class FieldMessageTypeSelectFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeSelectField(TypedDict, total=False):
+    """A select field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 
@@ -234,6 +262,8 @@ class FieldMessageTypeSelectField(TypedDict, total=False):
 
 
 class FieldMessageTypeTextareaFieldSettings(TypedDict, total=False):
+    """Settings for the textarea field."""
+
     default: Optional[str]
     """The default value of the textarea field."""
 
@@ -248,6 +278,8 @@ class FieldMessageTypeTextareaFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeTextareaField(TypedDict, total=False):
+    """A textarea field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 
@@ -262,6 +294,8 @@ class FieldMessageTypeTextareaField(TypedDict, total=False):
 
 
 class FieldMessageTypeURLFieldSettings(TypedDict, total=False):
+    """Settings for the url field."""
+
     default: Optional[str]
     """The default value of the URL field."""
 
@@ -272,6 +306,8 @@ class FieldMessageTypeURLFieldSettings(TypedDict, total=False):
 
 
 class FieldMessageTypeURLField(TypedDict, total=False):
+    """A URL field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 
@@ -299,6 +335,8 @@ Field: TypeAlias = Union[
 
 
 class MessageTypeVariantParam(TypedDict, total=False):
+    """A variant of a message type."""
+
     fields: Required[Iterable[Field]]
     """The field types available for the variant."""
 

@@ -8,6 +8,10 @@ __all__ = ["GuideActivationURLPatternParam"]
 
 
 class GuideActivationURLPatternParam(TypedDict, total=False):
+    """
+    A rule that controls when a guide should be shown based on the user's location in the application.
+    """
+
     directive: Required[Literal["allow", "block"]]
     """Whether to allow or block the guide at the specified pathname."""
 

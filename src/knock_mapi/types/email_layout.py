@@ -17,6 +17,8 @@ class FooterLink(BaseModel):
 
 
 class EmailLayout(BaseModel):
+    """A versioned email layout used within an environment."""
+
     created_at: datetime
     """The timestamp of when the email layout was created."""
 

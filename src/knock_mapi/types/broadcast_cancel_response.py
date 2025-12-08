@@ -8,6 +8,8 @@ __all__ = ["BroadcastCancelResponse"]
 
 
 class BroadcastCancelResponse(BaseModel):
+    """Wraps the Broadcast response under the `broadcast` key."""
+
     broadcast: "Broadcast"
     """A broadcast object."""
 

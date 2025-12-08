@@ -10,6 +10,8 @@ __all__ = ["Commit", "Author", "Resource"]
 
 
 class Author(BaseModel):
+    """The author of the commit."""
+
     email: str
     """The email address of the commit author."""
 
@@ -18,6 +20,8 @@ class Author(BaseModel):
 
 
 class Resource(BaseModel):
+    """The resource object associated with the commit."""
+
     identifier: str
     """The unique identifier for the resource."""
 
@@ -26,6 +30,8 @@ class Resource(BaseModel):
 
 
 class Commit(BaseModel):
+    """A commit is a change to a resource within an environment, made by an author."""
+
     id: str
     """The unique identifier for the commit."""
 

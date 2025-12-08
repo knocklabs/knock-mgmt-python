@@ -9,6 +9,8 @@ __all__ = ["Branch"]
 
 
 class Branch(BaseModel):
+    """A branch object."""
+
     created_at: datetime
     """The timestamp of when the branch was created."""
 

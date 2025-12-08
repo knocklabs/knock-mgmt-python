@@ -14,6 +14,11 @@ __all__ = ["WorkflowSMSStepParam"]
 
 
 class WorkflowSMSStepParam(TypedDict, total=False):
+    """A SMS step within a workflow.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/channel-step).
+    """
+
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 

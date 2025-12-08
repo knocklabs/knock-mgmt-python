@@ -25,6 +25,8 @@ class QueryParamsUnionMember1(BaseModel):
 
 
 class RequestTemplate(BaseModel):
+    """A request template for a fetch function step."""
+
     method: Literal["get", "post", "put", "delete", "patch"]
     """The HTTP method of the request."""
 

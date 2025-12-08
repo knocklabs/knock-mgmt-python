@@ -25,6 +25,8 @@ class MessageTypeValidateParams(TypedDict, total=False):
 
 
 class MessageType(TypedDict, total=False):
+    """A request to create a message type."""
+
     description: Required[Optional[str]]
     """An arbitrary string attached to a message type object.
 

@@ -10,6 +10,8 @@ __all__ = ["Partial"]
 
 
 class Partial(BaseModel):
+    """A partial is a reusable piece of content that can be used in a template."""
+
     content: str
     """The partial content."""
 

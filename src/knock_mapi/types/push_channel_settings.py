@@ -8,6 +8,11 @@ __all__ = ["PushChannelSettings"]
 
 
 class PushChannelSettings(BaseModel):
+    """Push channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
     token_deregistration: Optional[bool] = None
     """Whether to deregister a push-token when a push send hard bounces.
 

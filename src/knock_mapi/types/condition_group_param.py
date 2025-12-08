@@ -17,11 +17,15 @@ __all__ = [
 
 
 class ConditionGroupAllMatch(TypedDict, total=False):
+    """A group of conditions that must all be met."""
+
     all: Iterable[ConditionParam]
     """A list of conditions."""
 
 
 class ConditionGroupAnyMatchAnyConditionGroupAllMatch(TypedDict, total=False):
+    """A group of conditions that must all be met."""
+
     all: Iterable[ConditionParam]
     """A list of conditions."""
 
@@ -30,6 +34,8 @@ ConditionGroupAnyMatchAny: TypeAlias = Union[ConditionParam, ConditionGroupAnyMa
 
 
 class ConditionGroupAnyMatch(TypedDict, total=False):
+    """A group of conditions that any must be met. Can contain nested alls."""
+
     any: Iterable[ConditionGroupAnyMatchAny]
     """An array of conditions or nested condition groups to evaluate."""
 

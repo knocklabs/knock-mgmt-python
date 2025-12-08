@@ -11,6 +11,11 @@ __all__ = ["WorkflowFetchStep"]
 
 
 class WorkflowFetchStep(BaseModel):
+    """A fetch function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/fetch-function).
+    """
+
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 

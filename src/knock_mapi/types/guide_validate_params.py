@@ -29,6 +29,8 @@ class GuideValidateParams(TypedDict, total=False):
 
 
 class Guide(TypedDict, total=False):
+    """A request to create or update a guide."""
+
     channel_key: Required[str]
     """The key of the channel in which the guide exists."""
 

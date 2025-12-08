@@ -9,6 +9,8 @@ __all__ = ["Translation"]
 
 
 class Translation(BaseModel):
+    """A translation object."""
+
     content: str
     """
     A JSON encoded string containing the key-value pairs of translation references

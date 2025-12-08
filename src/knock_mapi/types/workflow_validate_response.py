@@ -8,6 +8,8 @@ __all__ = ["WorkflowValidateResponse"]
 
 
 class WorkflowValidateResponse(BaseModel):
+    """Wraps the Workflow response under the `workflow` key."""
+
     workflow: "Workflow"
     """A workflow object."""
 

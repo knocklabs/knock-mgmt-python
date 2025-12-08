@@ -11,6 +11,8 @@ __all__ = ["WorkflowBranchStepParam", "Branch"]
 
 
 class Branch(TypedDict, total=False):
+    """A branch in a branch step."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -25,6 +27,11 @@ class Branch(TypedDict, total=False):
 
 
 class WorkflowBranchStepParam(TypedDict, total=False):
+    """A branch function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/branch-function).
+    """
+
     branches: Required[Iterable[Branch]]
     """A list of workflow branches to be evaluated."""
 

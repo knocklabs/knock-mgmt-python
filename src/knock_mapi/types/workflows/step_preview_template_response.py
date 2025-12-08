@@ -17,6 +17,8 @@ Template: TypeAlias = Union[EmailTemplate, InAppFeedTemplate, PushTemplate, Chat
 
 
 class StepPreviewTemplateResponse(BaseModel):
+    """A response to a preview workflow template request."""
+
     content_type: Literal["email", "in_app_feed", "push", "chat", "sms", "http"]
     """The content type of the preview."""
 

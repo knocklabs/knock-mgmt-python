@@ -33,6 +33,8 @@ __all__ = [
 
 
 class FieldMessageTypeBooleanFieldSettings(BaseModel):
+    """Settings for the boolean field."""
+
     default: Optional[bool] = None
     """The default value of the boolean field."""
 
@@ -43,6 +45,8 @@ class FieldMessageTypeBooleanFieldSettings(BaseModel):
 
 
 class FieldMessageTypeBooleanField(BaseModel):
+    """A boolean field used in a message type."""
+
     key: str
     """The unique key of the field."""
 
@@ -57,6 +61,8 @@ class FieldMessageTypeBooleanField(BaseModel):
 
 
 class FieldMessageTypeButtonFieldSettings(BaseModel):
+    """Settings for the button field."""
+
     description: Optional[str] = None
 
     required: Optional[bool] = None
@@ -64,6 +70,8 @@ class FieldMessageTypeButtonFieldSettings(BaseModel):
 
 
 class FieldMessageTypeButtonField(BaseModel):
+    """A button field used in a message type."""
+
     action: MessageTypeTextField
     """A text field used in a message type."""
 
@@ -84,6 +92,8 @@ class FieldMessageTypeButtonField(BaseModel):
 
 
 class FieldMessageTypeImageFieldURLSettings(BaseModel):
+    """Settings for the url field."""
+
     default: Optional[str] = None
     """The default value of the URL field."""
 
@@ -94,6 +104,8 @@ class FieldMessageTypeImageFieldURLSettings(BaseModel):
 
 
 class FieldMessageTypeImageFieldURL(BaseModel):
+    """A URL field used in a message type."""
+
     key: str
     """The unique key of the field."""
 
@@ -108,6 +120,8 @@ class FieldMessageTypeImageFieldURL(BaseModel):
 
 
 class FieldMessageTypeImageFieldSettings(BaseModel):
+    """Settings for the image field."""
+
     description: Optional[str] = None
 
     required: Optional[bool] = None
@@ -115,6 +129,8 @@ class FieldMessageTypeImageFieldSettings(BaseModel):
 
 
 class FieldMessageTypeImageField(BaseModel):
+    """An image field used in a message type."""
+
     action: MessageTypeTextField
     """A text field used in a message type."""
 
@@ -138,6 +154,8 @@ class FieldMessageTypeImageField(BaseModel):
 
 
 class FieldMessageTypeMarkdownFieldSettings(BaseModel):
+    """Settings for the markdown field."""
+
     default: Optional[str] = None
     """The default value of the markdown field."""
 
@@ -148,6 +166,8 @@ class FieldMessageTypeMarkdownFieldSettings(BaseModel):
 
 
 class FieldMessageTypeMarkdownField(BaseModel):
+    """A markdown field used in a message type."""
+
     key: str
     """The unique key of the field."""
 
@@ -170,6 +190,8 @@ class FieldMessageTypeMultiSelectFieldSettingsOption(BaseModel):
 
 
 class FieldMessageTypeMultiSelectFieldSettings(BaseModel):
+    """Settings for the multi_select field."""
+
     default: Optional[List[str]] = None
     """The default values for the multi-select field."""
 
@@ -183,6 +205,8 @@ class FieldMessageTypeMultiSelectFieldSettings(BaseModel):
 
 
 class FieldMessageTypeMultiSelectField(BaseModel):
+    """A multi-select field used in a message type."""
+
     key: str
     """The unique key of the field."""
 
@@ -205,6 +229,8 @@ class FieldMessageTypeSelectFieldSettingsOption(BaseModel):
 
 
 class FieldMessageTypeSelectFieldSettings(BaseModel):
+    """Settings for the select field."""
+
     default: Optional[str] = None
     """The default value for the select field."""
 
@@ -218,6 +244,8 @@ class FieldMessageTypeSelectFieldSettings(BaseModel):
 
 
 class FieldMessageTypeSelectField(BaseModel):
+    """A select field used in a message type."""
+
     key: str
     """The unique key of the field."""
 
@@ -232,6 +260,8 @@ class FieldMessageTypeSelectField(BaseModel):
 
 
 class FieldMessageTypeTextareaFieldSettings(BaseModel):
+    """Settings for the textarea field."""
+
     default: Optional[str] = None
     """The default value of the textarea field."""
 
@@ -246,6 +276,8 @@ class FieldMessageTypeTextareaFieldSettings(BaseModel):
 
 
 class FieldMessageTypeTextareaField(BaseModel):
+    """A textarea field used in a message type."""
+
     key: str
     """The unique key of the field."""
 
@@ -260,6 +292,8 @@ class FieldMessageTypeTextareaField(BaseModel):
 
 
 class FieldMessageTypeURLFieldSettings(BaseModel):
+    """Settings for the url field."""
+
     default: Optional[str] = None
     """The default value of the URL field."""
 
@@ -270,6 +304,8 @@ class FieldMessageTypeURLFieldSettings(BaseModel):
 
 
 class FieldMessageTypeURLField(BaseModel):
+    """A URL field used in a message type."""
+
     key: str
     """The unique key of the field."""
 
@@ -297,6 +333,8 @@ Field: TypeAlias = Union[
 
 
 class MessageTypeVariant(BaseModel):
+    """A variant of a message type."""
+
     fields: List[Field]
     """The field types available for the variant."""
 

@@ -11,6 +11,8 @@ __all__ = ["SendWindow"]
 
 
 class SendWindow(BaseModel):
+    """A send window time for a notification. Describes a single day."""
+
     day: Literal["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
     """The day of the week."""
 

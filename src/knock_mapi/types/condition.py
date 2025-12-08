@@ -9,6 +9,8 @@ __all__ = ["Condition"]
 
 
 class Condition(BaseModel):
+    """A condition to be evaluated."""
+
     operator: Literal[
         "equal_to",
         "not_equal_to",
