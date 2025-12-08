@@ -28,6 +28,10 @@ __all__ = [
 
 
 class Settings(BaseModel):
+    """
+    The [settings](https://docs.knock.app/integrations/email/settings) for the email template.
+    """
+
     attachment_key: Optional[str] = None
     """
     The object path in the data payload (of the workflow trigger call) to resolve
@@ -45,6 +49,8 @@ class Settings(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlockButtonSizeAttrs(BaseModel):
+    """The size attributes of the button."""
+
     is_fullwidth: Optional[bool] = None
     """Whether the button is full width."""
 
@@ -53,6 +59,8 @@ class VisualBlockEmailButtonSetBlockButtonSizeAttrs(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlockButtonStyleAttrs(BaseModel):
+    """The style attributes of the button."""
+
     background_color: Optional[str] = None
     """The background color of the button."""
 
@@ -70,6 +78,8 @@ class VisualBlockEmailButtonSetBlockButtonStyleAttrs(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlockButton(BaseModel):
+    """A button in a button set block."""
+
     action: str
     """The action of the button."""
 
@@ -87,6 +97,8 @@ class VisualBlockEmailButtonSetBlockButton(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     column_gap: int
     """The column_gap layout attribute of the block."""
 
@@ -107,6 +119,8 @@ class VisualBlockEmailButtonSetBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlock(BaseModel):
+    """A button set block in an email template."""
+
     id: str
     """The ID of the block."""
 
@@ -124,6 +138,8 @@ class VisualBlockEmailButtonSetBlock(BaseModel):
 
 
 class VisualBlockEmailDividerBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     padding_bottom: int
     """The padding_bottom layout attribute of the block."""
 
@@ -138,6 +154,8 @@ class VisualBlockEmailDividerBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailDividerBlock(BaseModel):
+    """A divider block in an email template."""
+
     id: str
     """The ID of the block."""
 
@@ -152,6 +170,8 @@ class VisualBlockEmailDividerBlock(BaseModel):
 
 
 class VisualBlockEmailHTMLBlock(BaseModel):
+    """An HTML block in an email template."""
+
     id: str
     """The ID of the block."""
 
@@ -166,6 +186,8 @@ class VisualBlockEmailHTMLBlock(BaseModel):
 
 
 class VisualBlockEmailImageBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     horizontal_align: Literal["left", "center", "right"]
     """The horizontal alignment of the block."""
 
@@ -183,11 +205,15 @@ class VisualBlockEmailImageBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailImageBlockStyleAttrs(BaseModel):
+    """The style attributes of the image."""
+
     width: Optional[str] = None
     """The width of the image."""
 
 
 class VisualBlockEmailImageBlock(BaseModel):
+    """An image block in an email template."""
+
     id: str
     """The ID of the block."""
 
@@ -214,6 +240,8 @@ class VisualBlockEmailImageBlock(BaseModel):
 
 
 class VisualBlockEmailMarkdownBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     padding_bottom: int
     """The padding_bottom layout attribute of the block."""
 
@@ -228,6 +256,8 @@ class VisualBlockEmailMarkdownBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailMarkdownBlock(BaseModel):
+    """A markdown block in an email template."""
+
     id: str
     """The ID of the block."""
 
@@ -248,6 +278,8 @@ class VisualBlockEmailMarkdownBlock(BaseModel):
 
 
 class VisualBlockEmailPartialBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     padding_bottom: int
     """The padding_bottom layout attribute of the block."""
 
@@ -262,6 +294,10 @@ class VisualBlockEmailPartialBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailPartialBlock(BaseModel):
+    """
+    A partial block in an email template, used to render a reusable partial component.
+    """
+
     id: str
     """The ID of the block."""
 
@@ -295,6 +331,8 @@ VisualBlock: TypeAlias = Union[
 
 
 class EmailTemplate(BaseModel):
+    """An email message template."""
+
     subject: str
     """The subject of the email."""
 

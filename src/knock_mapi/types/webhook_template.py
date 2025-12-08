@@ -25,6 +25,11 @@ class QueryParam(BaseModel):
 
 
 class WebhookTemplate(BaseModel):
+    """A webhook template.
+
+    By default, a webhook step will use the request settings you configured in your webhook channel. You can override this as you see fit on a per-step basis.
+    """
+
     method: Literal["get", "post", "put", "delete", "patch"]
     """The HTTP method of the webhook."""
 

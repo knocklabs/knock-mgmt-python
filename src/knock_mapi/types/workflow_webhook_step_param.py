@@ -13,6 +13,11 @@ __all__ = ["WorkflowWebhookStepParam"]
 
 
 class WorkflowWebhookStepParam(TypedDict, total=False):
+    """A webhook step within a workflow.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/channel-step).
+    """
+
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 

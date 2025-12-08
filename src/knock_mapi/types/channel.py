@@ -10,6 +10,8 @@ __all__ = ["Channel"]
 
 
 class Channel(BaseModel):
+    """A configured channel, which is a way to route messages to a provider."""
+
     id: str
     """The unique identifier for the channel."""
 

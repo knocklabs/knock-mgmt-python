@@ -6,5 +6,7 @@ __all__ = ["GuideArchiveResponse"]
 
 
 class GuideArchiveResponse(BaseModel):
+    """The response from archiving a guide."""
+
     result: str
     """The result of the promote operation."""

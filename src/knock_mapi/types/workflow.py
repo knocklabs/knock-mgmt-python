@@ -13,6 +13,8 @@ __all__ = ["Workflow", "Settings"]
 
 
 class Settings(BaseModel):
+    """A map of workflow settings."""
+
     is_commercial: Optional[bool] = None
     """Whether the workflow is commercial. Defaults to false."""
 
@@ -25,6 +27,8 @@ class Settings(BaseModel):
 
 
 class Workflow(BaseModel):
+    """A workflow object."""
+
     active: bool
     """
     Whether the workflow is

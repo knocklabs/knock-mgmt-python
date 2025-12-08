@@ -12,6 +12,8 @@ __all__ = ["WorkflowBranchStep", "Branch"]
 
 
 class Branch(BaseModel):
+    """A branch in a branch step."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -26,6 +28,11 @@ class Branch(BaseModel):
 
 
 class WorkflowBranchStep(BaseModel):
+    """A branch function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/branch-function).
+    """
+
     branches: List[Branch]
     """A list of workflow branches to be evaluated."""
 

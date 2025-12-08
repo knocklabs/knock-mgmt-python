@@ -9,6 +9,10 @@ __all__ = ["PushTemplateParam", "Settings"]
 
 
 class Settings(TypedDict, total=False):
+    """
+    The [settings](https://docs.knock.app/integrations/sms/settings-and-overrides) for the push template. Can be omitted.
+    """
+
     delivery_type: Literal["silent", "content"]
     """The delivery type of the push notification.
 
@@ -21,6 +25,8 @@ class Settings(TypedDict, total=False):
 
 
 class PushTemplateParam(TypedDict, total=False):
+    """A push notification template."""
+
     text_body: Required[str]
     """The body of the push notification."""
 

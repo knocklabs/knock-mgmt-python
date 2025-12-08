@@ -6,5 +6,7 @@ __all__ = ["CommitCommitAllResponse"]
 
 
 class CommitCommitAllResponse(BaseModel):
+    """The response from committing all changes."""
+
     result: str
     """The result of the commit operation."""

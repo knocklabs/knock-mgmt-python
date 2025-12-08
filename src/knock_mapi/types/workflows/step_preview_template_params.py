@@ -46,6 +46,8 @@ class StepPreviewTemplateParams(TypedDict, total=False):
 
 
 class RecipientObjectRecipientReference(TypedDict, total=False):
+    """An object reference."""
+
     id: Required[str]
     """The ID of the object."""
 
@@ -57,6 +59,8 @@ Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference]
 
 
 class ActorObjectRecipientReference(TypedDict, total=False):
+    """An object reference."""
+
     id: Required[str]
     """The ID of the object."""
 

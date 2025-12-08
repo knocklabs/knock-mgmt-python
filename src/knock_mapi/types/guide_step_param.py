@@ -9,6 +9,8 @@ __all__ = ["GuideStepParam"]
 
 
 class GuideStepParam(TypedDict, total=False):
+    """A step in a guide that corresponds to a piece of UI and its content."""
+
     ref: Required[str]
     """The unique reference string for the step.
 

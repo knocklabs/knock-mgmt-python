@@ -9,6 +9,8 @@ __all__ = ["AuthVerifyResponse", "AccountFeatures"]
 
 
 class AccountFeatures(BaseModel):
+    """Account plan features and limits."""
+
     batch_items_render_limit_allowed: Optional[bool] = None
     """Whether batch rendering limits can be configured."""
 
@@ -65,6 +67,8 @@ class AccountFeatures(BaseModel):
 
 
 class AuthVerifyResponse(BaseModel):
+    """Information about the current calling scope."""
+
     account_features: AccountFeatures
     """Account plan features and limits."""
 

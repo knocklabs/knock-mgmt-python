@@ -10,6 +10,8 @@ __all__ = ["Environment"]
 
 
 class Environment(BaseModel):
+    """An environment object."""
+
     created_at: datetime
     """The timestamp of when the environment was created."""
 

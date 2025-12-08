@@ -8,6 +8,8 @@ __all__ = ["Duration"]
 
 
 class Duration(BaseModel):
+    """A duration of time, represented as a unit and a value."""
+
     unit: Literal["minutes", "hours", "days", "weeks", "months"]
     """The unit of time."""
 

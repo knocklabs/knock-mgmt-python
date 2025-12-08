@@ -35,6 +35,8 @@ class WorkflowUpsertParams(TypedDict, total=False):
 
 
 class WorkflowSettings(TypedDict, total=False):
+    """A map of workflow settings."""
+
     is_commercial: bool
     """Whether the workflow is commercial. Defaults to false."""
 
@@ -47,6 +49,8 @@ class WorkflowSettings(TypedDict, total=False):
 
 
 class Workflow(TypedDict, total=False):
+    """A workflow request for upserting a workflow."""
+
     name: Required[str]
     """A name for the workflow. Must be at maximum 255 characters in length."""
 

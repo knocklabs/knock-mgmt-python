@@ -11,6 +11,8 @@ __all__ = ["ChannelGroup"]
 
 
 class ChannelGroup(BaseModel):
+    """A group of channels with rules for when they are applicable."""
+
     channel_rules: List[ChannelGroupRule]
     """Rules for determining which channels should be used."""
 

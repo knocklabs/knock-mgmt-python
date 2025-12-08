@@ -7,6 +7,8 @@ __all__ = ["GuideValidateResponse"]
 
 
 class GuideValidateResponse(BaseModel):
+    """Wraps the Guide response under the `guide` key."""
+
     guide: Guide
     """
     A guide defines an in-app guide that can be displayed to users based on priority

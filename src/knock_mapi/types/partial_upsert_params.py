@@ -32,6 +32,8 @@ class PartialUpsertParams(TypedDict, total=False):
 
 
 class Partial(TypedDict, total=False):
+    """A partial object with attributes to update or create a partial."""
+
     content: Required[str]
     """The content of the partial."""
 

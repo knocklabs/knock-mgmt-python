@@ -8,6 +8,8 @@ __all__ = ["GuideStep"]
 
 
 class GuideStep(BaseModel):
+    """A step in a guide that corresponds to a piece of UI and its content."""
+
     ref: str
     """The unique reference string for the step.
 

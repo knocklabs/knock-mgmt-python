@@ -11,6 +11,10 @@ __all__ = ["MessageType"]
 
 
 class MessageType(BaseModel):
+    """
+    A message type is a schema for a message that maps to a UI component or element within your application.
+    """
+
     created_at: datetime
     """The timestamp of when the message type was created."""
 

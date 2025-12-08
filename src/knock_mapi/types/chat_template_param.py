@@ -9,6 +9,8 @@ __all__ = ["ChatTemplateParam"]
 
 
 class ChatTemplateParam(TypedDict, total=False):
+    """A chat template."""
+
     markdown_body: Required[str]
     """The markdown body of the chat template."""
 

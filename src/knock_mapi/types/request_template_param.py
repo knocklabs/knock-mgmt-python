@@ -25,6 +25,8 @@ class QueryParamsUnionMember1(TypedDict, total=False):
 
 
 class RequestTemplateParam(TypedDict, total=False):
+    """A request template for a fetch function step."""
+
     method: Required[Literal["get", "post", "put", "delete", "patch"]]
     """The HTTP method of the request."""
 

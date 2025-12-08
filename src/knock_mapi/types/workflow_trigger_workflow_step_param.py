@@ -11,6 +11,8 @@ __all__ = ["WorkflowTriggerWorkflowStepParam", "Settings"]
 
 
 class Settings(TypedDict, total=False):
+    """The settings for the workflow trigger workflow step."""
+
     actor: str
     """The actor to trigger the workflow with. Supports liquid."""
 
@@ -31,6 +33,11 @@ class Settings(TypedDict, total=False):
 
 
 class WorkflowTriggerWorkflowStepParam(TypedDict, total=False):
+    """A workflow trigger function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/trigger-workflow-function).
+    """
+
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 

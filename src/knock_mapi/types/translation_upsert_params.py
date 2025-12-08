@@ -43,6 +43,10 @@ class TranslationUpsertParams(TypedDict, total=False):
 
 
 class Translation(TypedDict, total=False):
+    """
+    A translation object with a content attribute used to update or create a translation.
+    """
+
     content: Required[str]
     """
     A JSON encoded string containing the key-value pairs of translation references

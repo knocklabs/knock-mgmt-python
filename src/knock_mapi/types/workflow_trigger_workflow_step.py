@@ -10,6 +10,8 @@ __all__ = ["WorkflowTriggerWorkflowStep", "Settings"]
 
 
 class Settings(BaseModel):
+    """The settings for the workflow trigger workflow step."""
+
     actor: Optional[str] = None
     """The actor to trigger the workflow with. Supports liquid."""
 
@@ -30,6 +32,11 @@ class Settings(BaseModel):
 
 
 class WorkflowTriggerWorkflowStep(BaseModel):
+    """A workflow trigger function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/trigger-workflow-function).
+    """
+
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 

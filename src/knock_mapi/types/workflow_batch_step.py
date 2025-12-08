@@ -10,6 +10,8 @@ __all__ = ["WorkflowBatchStep", "Settings"]
 
 
 class Settings(BaseModel):
+    """The settings for the batch step."""
+
     batch_execution_mode: Optional[Literal["accumulate", "flush_leading"]] = None
     """The execution mode of the batch step.
 
@@ -55,6 +57,11 @@ class Settings(BaseModel):
 
 
 class WorkflowBatchStep(BaseModel):
+    """A batch function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/batch-function).
+    """
+
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
 
