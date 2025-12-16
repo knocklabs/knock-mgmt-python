@@ -3,7 +3,7 @@
 from __future__ import annotations
 
 import os
-from typing import Any, Mapping
+from typing import TYPE_CHECKING, Any, Mapping
 from typing_extensions import Self, override
 
 import httpx
@@ -20,23 +20,8 @@ from ._types import (
     not_given,
 )
 from ._utils import is_given, get_async_library
+from ._compat import cached_property
 from ._version import __version__
-from .resources import (
-    auth,
-    guides,
-    commits,
-    api_keys,
-    branches,
-    channels,
-    partials,
-    variables,
-    broadcasts,
-    environments,
-    translations,
-    email_layouts,
-    message_types,
-    channel_groups,
-)
 from ._streaming import Stream as Stream, AsyncStream as AsyncStream
 from ._exceptions import APIStatusError, KnockMgmtError
 from ._base_client import (
@@ -44,7 +29,40 @@ from ._base_client import (
     SyncAPIClient,
     AsyncAPIClient,
 )
-from .resources.workflows import workflows
+
+if TYPE_CHECKING:
+    from .resources import (
+        auth,
+        guides,
+        commits,
+        api_keys,
+        branches,
+        channels,
+        partials,
+        variables,
+        workflows,
+        broadcasts,
+        environments,
+        translations,
+        email_layouts,
+        message_types,
+        channel_groups,
+    )
+    from .resources.auth import AuthResource, AsyncAuthResource
+    from .resources.guides import GuidesResource, AsyncGuidesResource
+    from .resources.commits import CommitsResource, AsyncCommitsResource
+    from .resources.api_keys import APIKeysResource, AsyncAPIKeysResource
+    from .resources.branches import BranchesResource, AsyncBranchesResource
+    from .resources.channels import ChannelsResource, AsyncChannelsResource
+    from .resources.partials import PartialsResource, AsyncPartialsResource
+    from .resources.variables import VariablesResource, AsyncVariablesResource
+    from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
+    from .resources.environments import EnvironmentsResource, AsyncEnvironmentsResource
+    from .resources.translations import TranslationsResource, AsyncTranslationsResource
+    from .resources.email_layouts import EmailLayoutsResource, AsyncEmailLayoutsResource
+    from .resources.message_types import MessageTypesResource, AsyncMessageTypesResource
+    from .resources.channel_groups import ChannelGroupsResource, AsyncChannelGroupsResource
+    from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
 
 __all__ = [
     "Timeout",
@@ -59,24 +77,6 @@ __all__ = [
 
 
 class KnockMgmt(SyncAPIClient):
-    email_layouts: email_layouts.EmailLayoutsResource
-    commits: commits.CommitsResource
-    partials: partials.PartialsResource
-    translations: translations.TranslationsResource
-    workflows: workflows.WorkflowsResource
-    message_types: message_types.MessageTypesResource
-    auth: auth.AuthResource
-    api_keys: api_keys.APIKeysResource
-    channel_groups: channel_groups.ChannelGroupsResource
-    channels: channels.ChannelsResource
-    environments: environments.EnvironmentsResource
-    variables: variables.VariablesResource
-    guides: guides.GuidesResource
-    branches: branches.BranchesResource
-    broadcasts: broadcasts.BroadcastsResource
-    with_raw_response: KnockMgmtWithRawResponse
-    with_streaming_response: KnockMgmtWithStreamedResponse
-
     # client options
     service_token: str
 
@@ -131,23 +131,103 @@ class KnockMgmt(SyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.email_layouts = email_layouts.EmailLayoutsResource(self)
-        self.commits = commits.CommitsResource(self)
-        self.partials = partials.PartialsResource(self)
-        self.translations = translations.TranslationsResource(self)
-        self.workflows = workflows.WorkflowsResource(self)
-        self.message_types = message_types.MessageTypesResource(self)
-        self.auth = auth.AuthResource(self)
-        self.api_keys = api_keys.APIKeysResource(self)
-        self.channel_groups = channel_groups.ChannelGroupsResource(self)
-        self.channels = channels.ChannelsResource(self)
-        self.environments = environments.EnvironmentsResource(self)
-        self.variables = variables.VariablesResource(self)
-        self.guides = guides.GuidesResource(self)
-        self.branches = branches.BranchesResource(self)
-        self.broadcasts = broadcasts.BroadcastsResource(self)
-        self.with_raw_response = KnockMgmtWithRawResponse(self)
-        self.with_streaming_response = KnockMgmtWithStreamedResponse(self)
+    @cached_property
+    def email_layouts(self) -> EmailLayoutsResource:
+        from .resources.email_layouts import EmailLayoutsResource
+
+        return EmailLayoutsResource(self)
+
+    @cached_property
+    def commits(self) -> CommitsResource:
+        from .resources.commits import CommitsResource
+
+        return CommitsResource(self)
+
+    @cached_property
+    def partials(self) -> PartialsResource:
+        from .resources.partials import PartialsResource
+
+        return PartialsResource(self)
+
+    @cached_property
+    def translations(self) -> TranslationsResource:
+        from .resources.translations import TranslationsResource
+
+        return TranslationsResource(self)
+
+    @cached_property
+    def workflows(self) -> WorkflowsResource:
+        from .resources.workflows import WorkflowsResource
+
+        return WorkflowsResource(self)
+
+    @cached_property
+    def message_types(self) -> MessageTypesResource:
+        from .resources.message_types import MessageTypesResource
+
+        return MessageTypesResource(self)
+
+    @cached_property
+    def auth(self) -> AuthResource:
+        from .resources.auth import AuthResource
+
+        return AuthResource(self)
+
+    @cached_property
+    def api_keys(self) -> APIKeysResource:
+        from .resources.api_keys import APIKeysResource
+
+        return APIKeysResource(self)
+
+    @cached_property
+    def channel_groups(self) -> ChannelGroupsResource:
+        from .resources.channel_groups import ChannelGroupsResource
+
+        return ChannelGroupsResource(self)
+
+    @cached_property
+    def channels(self) -> ChannelsResource:
+        from .resources.channels import ChannelsResource
+
+        return ChannelsResource(self)
+
+    @cached_property
+    def environments(self) -> EnvironmentsResource:
+        from .resources.environments import EnvironmentsResource
+
+        return EnvironmentsResource(self)
+
+    @cached_property
+    def variables(self) -> VariablesResource:
+        from .resources.variables import VariablesResource
+
+        return VariablesResource(self)
+
+    @cached_property
+    def guides(self) -> GuidesResource:
+        from .resources.guides import GuidesResource
+
+        return GuidesResource(self)
+
+    @cached_property
+    def branches(self) -> BranchesResource:
+        from .resources.branches import BranchesResource
+
+        return BranchesResource(self)
+
+    @cached_property
+    def broadcasts(self) -> BroadcastsResource:
+        from .resources.broadcasts import BroadcastsResource
+
+        return BroadcastsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> KnockMgmtWithRawResponse:
+        return KnockMgmtWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> KnockMgmtWithStreamedResponse:
+        return KnockMgmtWithStreamedResponse(self)
 
     @property
     @override
@@ -255,24 +335,6 @@ class KnockMgmt(SyncAPIClient):
 
 
 class AsyncKnockMgmt(AsyncAPIClient):
-    email_layouts: email_layouts.AsyncEmailLayoutsResource
-    commits: commits.AsyncCommitsResource
-    partials: partials.AsyncPartialsResource
-    translations: translations.AsyncTranslationsResource
-    workflows: workflows.AsyncWorkflowsResource
-    message_types: message_types.AsyncMessageTypesResource
-    auth: auth.AsyncAuthResource
-    api_keys: api_keys.AsyncAPIKeysResource
-    channel_groups: channel_groups.AsyncChannelGroupsResource
-    channels: channels.AsyncChannelsResource
-    environments: environments.AsyncEnvironmentsResource
-    variables: variables.AsyncVariablesResource
-    guides: guides.AsyncGuidesResource
-    branches: branches.AsyncBranchesResource
-    broadcasts: broadcasts.AsyncBroadcastsResource
-    with_raw_response: AsyncKnockMgmtWithRawResponse
-    with_streaming_response: AsyncKnockMgmtWithStreamedResponse
-
     # client options
     service_token: str
 
@@ -327,23 +389,103 @@ class AsyncKnockMgmt(AsyncAPIClient):
             _strict_response_validation=_strict_response_validation,
         )
 
-        self.email_layouts = email_layouts.AsyncEmailLayoutsResource(self)
-        self.commits = commits.AsyncCommitsResource(self)
-        self.partials = partials.AsyncPartialsResource(self)
-        self.translations = translations.AsyncTranslationsResource(self)
-        self.workflows = workflows.AsyncWorkflowsResource(self)
-        self.message_types = message_types.AsyncMessageTypesResource(self)
-        self.auth = auth.AsyncAuthResource(self)
-        self.api_keys = api_keys.AsyncAPIKeysResource(self)
-        self.channel_groups = channel_groups.AsyncChannelGroupsResource(self)
-        self.channels = channels.AsyncChannelsResource(self)
-        self.environments = environments.AsyncEnvironmentsResource(self)
-        self.variables = variables.AsyncVariablesResource(self)
-        self.guides = guides.AsyncGuidesResource(self)
-        self.branches = branches.AsyncBranchesResource(self)
-        self.broadcasts = broadcasts.AsyncBroadcastsResource(self)
-        self.with_raw_response = AsyncKnockMgmtWithRawResponse(self)
-        self.with_streaming_response = AsyncKnockMgmtWithStreamedResponse(self)
+    @cached_property
+    def email_layouts(self) -> AsyncEmailLayoutsResource:
+        from .resources.email_layouts import AsyncEmailLayoutsResource
+
+        return AsyncEmailLayoutsResource(self)
+
+    @cached_property
+    def commits(self) -> AsyncCommitsResource:
+        from .resources.commits import AsyncCommitsResource
+
+        return AsyncCommitsResource(self)
+
+    @cached_property
+    def partials(self) -> AsyncPartialsResource:
+        from .resources.partials import AsyncPartialsResource
+
+        return AsyncPartialsResource(self)
+
+    @cached_property
+    def translations(self) -> AsyncTranslationsResource:
+        from .resources.translations import AsyncTranslationsResource
+
+        return AsyncTranslationsResource(self)
+
+    @cached_property
+    def workflows(self) -> AsyncWorkflowsResource:
+        from .resources.workflows import AsyncWorkflowsResource
+
+        return AsyncWorkflowsResource(self)
+
+    @cached_property
+    def message_types(self) -> AsyncMessageTypesResource:
+        from .resources.message_types import AsyncMessageTypesResource
+
+        return AsyncMessageTypesResource(self)
+
+    @cached_property
+    def auth(self) -> AsyncAuthResource:
+        from .resources.auth import AsyncAuthResource
+
+        return AsyncAuthResource(self)
+
+    @cached_property
+    def api_keys(self) -> AsyncAPIKeysResource:
+        from .resources.api_keys import AsyncAPIKeysResource
+
+        return AsyncAPIKeysResource(self)
+
+    @cached_property
+    def channel_groups(self) -> AsyncChannelGroupsResource:
+        from .resources.channel_groups import AsyncChannelGroupsResource
+
+        return AsyncChannelGroupsResource(self)
+
+    @cached_property
+    def channels(self) -> AsyncChannelsResource:
+        from .resources.channels import AsyncChannelsResource
+
+        return AsyncChannelsResource(self)
+
+    @cached_property
+    def environments(self) -> AsyncEnvironmentsResource:
+        from .resources.environments import AsyncEnvironmentsResource
+
+        return AsyncEnvironmentsResource(self)
+
+    @cached_property
+    def variables(self) -> AsyncVariablesResource:
+        from .resources.variables import AsyncVariablesResource
+
+        return AsyncVariablesResource(self)
+
+    @cached_property
+    def guides(self) -> AsyncGuidesResource:
+        from .resources.guides import AsyncGuidesResource
+
+        return AsyncGuidesResource(self)
+
+    @cached_property
+    def branches(self) -> AsyncBranchesResource:
+        from .resources.branches import AsyncBranchesResource
+
+        return AsyncBranchesResource(self)
+
+    @cached_property
+    def broadcasts(self) -> AsyncBroadcastsResource:
+        from .resources.broadcasts import AsyncBroadcastsResource
+
+        return AsyncBroadcastsResource(self)
+
+    @cached_property
+    def with_raw_response(self) -> AsyncKnockMgmtWithRawResponse:
+        return AsyncKnockMgmtWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncKnockMgmtWithStreamedResponse:
+        return AsyncKnockMgmtWithStreamedResponse(self)
 
     @property
     @override
@@ -451,79 +593,391 @@ class AsyncKnockMgmt(AsyncAPIClient):
 
 
 class KnockMgmtWithRawResponse:
+    _client: KnockMgmt
+
     def __init__(self, client: KnockMgmt) -> None:
-        self.email_layouts = email_layouts.EmailLayoutsResourceWithRawResponse(client.email_layouts)
-        self.commits = commits.CommitsResourceWithRawResponse(client.commits)
-        self.partials = partials.PartialsResourceWithRawResponse(client.partials)
-        self.translations = translations.TranslationsResourceWithRawResponse(client.translations)
-        self.workflows = workflows.WorkflowsResourceWithRawResponse(client.workflows)
-        self.message_types = message_types.MessageTypesResourceWithRawResponse(client.message_types)
-        self.auth = auth.AuthResourceWithRawResponse(client.auth)
-        self.api_keys = api_keys.APIKeysResourceWithRawResponse(client.api_keys)
-        self.channel_groups = channel_groups.ChannelGroupsResourceWithRawResponse(client.channel_groups)
-        self.channels = channels.ChannelsResourceWithRawResponse(client.channels)
-        self.environments = environments.EnvironmentsResourceWithRawResponse(client.environments)
-        self.variables = variables.VariablesResourceWithRawResponse(client.variables)
-        self.guides = guides.GuidesResourceWithRawResponse(client.guides)
-        self.branches = branches.BranchesResourceWithRawResponse(client.branches)
-        self.broadcasts = broadcasts.BroadcastsResourceWithRawResponse(client.broadcasts)
+        self._client = client
+
+    @cached_property
+    def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithRawResponse:
+        from .resources.email_layouts import EmailLayoutsResourceWithRawResponse
+
+        return EmailLayoutsResourceWithRawResponse(self._client.email_layouts)
+
+    @cached_property
+    def commits(self) -> commits.CommitsResourceWithRawResponse:
+        from .resources.commits import CommitsResourceWithRawResponse
+
+        return CommitsResourceWithRawResponse(self._client.commits)
+
+    @cached_property
+    def partials(self) -> partials.PartialsResourceWithRawResponse:
+        from .resources.partials import PartialsResourceWithRawResponse
+
+        return PartialsResourceWithRawResponse(self._client.partials)
+
+    @cached_property
+    def translations(self) -> translations.TranslationsResourceWithRawResponse:
+        from .resources.translations import TranslationsResourceWithRawResponse
+
+        return TranslationsResourceWithRawResponse(self._client.translations)
+
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithRawResponse:
+        from .resources.workflows import WorkflowsResourceWithRawResponse
+
+        return WorkflowsResourceWithRawResponse(self._client.workflows)
+
+    @cached_property
+    def message_types(self) -> message_types.MessageTypesResourceWithRawResponse:
+        from .resources.message_types import MessageTypesResourceWithRawResponse
+
+        return MessageTypesResourceWithRawResponse(self._client.message_types)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithRawResponse:
+        from .resources.auth import AuthResourceWithRawResponse
+
+        return AuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def api_keys(self) -> api_keys.APIKeysResourceWithRawResponse:
+        from .resources.api_keys import APIKeysResourceWithRawResponse
+
+        return APIKeysResourceWithRawResponse(self._client.api_keys)
+
+    @cached_property
+    def channel_groups(self) -> channel_groups.ChannelGroupsResourceWithRawResponse:
+        from .resources.channel_groups import ChannelGroupsResourceWithRawResponse
+
+        return ChannelGroupsResourceWithRawResponse(self._client.channel_groups)
+
+    @cached_property
+    def channels(self) -> channels.ChannelsResourceWithRawResponse:
+        from .resources.channels import ChannelsResourceWithRawResponse
+
+        return ChannelsResourceWithRawResponse(self._client.channels)
+
+    @cached_property
+    def environments(self) -> environments.EnvironmentsResourceWithRawResponse:
+        from .resources.environments import EnvironmentsResourceWithRawResponse
+
+        return EnvironmentsResourceWithRawResponse(self._client.environments)
+
+    @cached_property
+    def variables(self) -> variables.VariablesResourceWithRawResponse:
+        from .resources.variables import VariablesResourceWithRawResponse
+
+        return VariablesResourceWithRawResponse(self._client.variables)
+
+    @cached_property
+    def guides(self) -> guides.GuidesResourceWithRawResponse:
+        from .resources.guides import GuidesResourceWithRawResponse
+
+        return GuidesResourceWithRawResponse(self._client.guides)
+
+    @cached_property
+    def branches(self) -> branches.BranchesResourceWithRawResponse:
+        from .resources.branches import BranchesResourceWithRawResponse
+
+        return BranchesResourceWithRawResponse(self._client.branches)
+
+    @cached_property
+    def broadcasts(self) -> broadcasts.BroadcastsResourceWithRawResponse:
+        from .resources.broadcasts import BroadcastsResourceWithRawResponse
+
+        return BroadcastsResourceWithRawResponse(self._client.broadcasts)
 
 
 class AsyncKnockMgmtWithRawResponse:
+    _client: AsyncKnockMgmt
+
     def __init__(self, client: AsyncKnockMgmt) -> None:
-        self.email_layouts = email_layouts.AsyncEmailLayoutsResourceWithRawResponse(client.email_layouts)
-        self.commits = commits.AsyncCommitsResourceWithRawResponse(client.commits)
-        self.partials = partials.AsyncPartialsResourceWithRawResponse(client.partials)
-        self.translations = translations.AsyncTranslationsResourceWithRawResponse(client.translations)
-        self.workflows = workflows.AsyncWorkflowsResourceWithRawResponse(client.workflows)
-        self.message_types = message_types.AsyncMessageTypesResourceWithRawResponse(client.message_types)
-        self.auth = auth.AsyncAuthResourceWithRawResponse(client.auth)
-        self.api_keys = api_keys.AsyncAPIKeysResourceWithRawResponse(client.api_keys)
-        self.channel_groups = channel_groups.AsyncChannelGroupsResourceWithRawResponse(client.channel_groups)
-        self.channels = channels.AsyncChannelsResourceWithRawResponse(client.channels)
-        self.environments = environments.AsyncEnvironmentsResourceWithRawResponse(client.environments)
-        self.variables = variables.AsyncVariablesResourceWithRawResponse(client.variables)
-        self.guides = guides.AsyncGuidesResourceWithRawResponse(client.guides)
-        self.branches = branches.AsyncBranchesResourceWithRawResponse(client.branches)
-        self.broadcasts = broadcasts.AsyncBroadcastsResourceWithRawResponse(client.broadcasts)
+        self._client = client
+
+    @cached_property
+    def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithRawResponse:
+        from .resources.email_layouts import AsyncEmailLayoutsResourceWithRawResponse
+
+        return AsyncEmailLayoutsResourceWithRawResponse(self._client.email_layouts)
+
+    @cached_property
+    def commits(self) -> commits.AsyncCommitsResourceWithRawResponse:
+        from .resources.commits import AsyncCommitsResourceWithRawResponse
+
+        return AsyncCommitsResourceWithRawResponse(self._client.commits)
+
+    @cached_property
+    def partials(self) -> partials.AsyncPartialsResourceWithRawResponse:
+        from .resources.partials import AsyncPartialsResourceWithRawResponse
+
+        return AsyncPartialsResourceWithRawResponse(self._client.partials)
+
+    @cached_property
+    def translations(self) -> translations.AsyncTranslationsResourceWithRawResponse:
+        from .resources.translations import AsyncTranslationsResourceWithRawResponse
+
+        return AsyncTranslationsResourceWithRawResponse(self._client.translations)
+
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithRawResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
+
+        return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
+
+    @cached_property
+    def message_types(self) -> message_types.AsyncMessageTypesResourceWithRawResponse:
+        from .resources.message_types import AsyncMessageTypesResourceWithRawResponse
+
+        return AsyncMessageTypesResourceWithRawResponse(self._client.message_types)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        from .resources.auth import AsyncAuthResourceWithRawResponse
+
+        return AsyncAuthResourceWithRawResponse(self._client.auth)
+
+    @cached_property
+    def api_keys(self) -> api_keys.AsyncAPIKeysResourceWithRawResponse:
+        from .resources.api_keys import AsyncAPIKeysResourceWithRawResponse
+
+        return AsyncAPIKeysResourceWithRawResponse(self._client.api_keys)
+
+    @cached_property
+    def channel_groups(self) -> channel_groups.AsyncChannelGroupsResourceWithRawResponse:
+        from .resources.channel_groups import AsyncChannelGroupsResourceWithRawResponse
+
+        return AsyncChannelGroupsResourceWithRawResponse(self._client.channel_groups)
+
+    @cached_property
+    def channels(self) -> channels.AsyncChannelsResourceWithRawResponse:
+        from .resources.channels import AsyncChannelsResourceWithRawResponse
+
+        return AsyncChannelsResourceWithRawResponse(self._client.channels)
+
+    @cached_property
+    def environments(self) -> environments.AsyncEnvironmentsResourceWithRawResponse:
+        from .resources.environments import AsyncEnvironmentsResourceWithRawResponse
+
+        return AsyncEnvironmentsResourceWithRawResponse(self._client.environments)
+
+    @cached_property
+    def variables(self) -> variables.AsyncVariablesResourceWithRawResponse:
+        from .resources.variables import AsyncVariablesResourceWithRawResponse
+
+        return AsyncVariablesResourceWithRawResponse(self._client.variables)
+
+    @cached_property
+    def guides(self) -> guides.AsyncGuidesResourceWithRawResponse:
+        from .resources.guides import AsyncGuidesResourceWithRawResponse
+
+        return AsyncGuidesResourceWithRawResponse(self._client.guides)
+
+    @cached_property
+    def branches(self) -> branches.AsyncBranchesResourceWithRawResponse:
+        from .resources.branches import AsyncBranchesResourceWithRawResponse
+
+        return AsyncBranchesResourceWithRawResponse(self._client.branches)
+
+    @cached_property
+    def broadcasts(self) -> broadcasts.AsyncBroadcastsResourceWithRawResponse:
+        from .resources.broadcasts import AsyncBroadcastsResourceWithRawResponse
+
+        return AsyncBroadcastsResourceWithRawResponse(self._client.broadcasts)
 
 
 class KnockMgmtWithStreamedResponse:
+    _client: KnockMgmt
+
     def __init__(self, client: KnockMgmt) -> None:
-        self.email_layouts = email_layouts.EmailLayoutsResourceWithStreamingResponse(client.email_layouts)
-        self.commits = commits.CommitsResourceWithStreamingResponse(client.commits)
-        self.partials = partials.PartialsResourceWithStreamingResponse(client.partials)
-        self.translations = translations.TranslationsResourceWithStreamingResponse(client.translations)
-        self.workflows = workflows.WorkflowsResourceWithStreamingResponse(client.workflows)
-        self.message_types = message_types.MessageTypesResourceWithStreamingResponse(client.message_types)
-        self.auth = auth.AuthResourceWithStreamingResponse(client.auth)
-        self.api_keys = api_keys.APIKeysResourceWithStreamingResponse(client.api_keys)
-        self.channel_groups = channel_groups.ChannelGroupsResourceWithStreamingResponse(client.channel_groups)
-        self.channels = channels.ChannelsResourceWithStreamingResponse(client.channels)
-        self.environments = environments.EnvironmentsResourceWithStreamingResponse(client.environments)
-        self.variables = variables.VariablesResourceWithStreamingResponse(client.variables)
-        self.guides = guides.GuidesResourceWithStreamingResponse(client.guides)
-        self.branches = branches.BranchesResourceWithStreamingResponse(client.branches)
-        self.broadcasts = broadcasts.BroadcastsResourceWithStreamingResponse(client.broadcasts)
+        self._client = client
+
+    @cached_property
+    def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithStreamingResponse:
+        from .resources.email_layouts import EmailLayoutsResourceWithStreamingResponse
+
+        return EmailLayoutsResourceWithStreamingResponse(self._client.email_layouts)
+
+    @cached_property
+    def commits(self) -> commits.CommitsResourceWithStreamingResponse:
+        from .resources.commits import CommitsResourceWithStreamingResponse
+
+        return CommitsResourceWithStreamingResponse(self._client.commits)
+
+    @cached_property
+    def partials(self) -> partials.PartialsResourceWithStreamingResponse:
+        from .resources.partials import PartialsResourceWithStreamingResponse
+
+        return PartialsResourceWithStreamingResponse(self._client.partials)
+
+    @cached_property
+    def translations(self) -> translations.TranslationsResourceWithStreamingResponse:
+        from .resources.translations import TranslationsResourceWithStreamingResponse
+
+        return TranslationsResourceWithStreamingResponse(self._client.translations)
+
+    @cached_property
+    def workflows(self) -> workflows.WorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import WorkflowsResourceWithStreamingResponse
+
+        return WorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def message_types(self) -> message_types.MessageTypesResourceWithStreamingResponse:
+        from .resources.message_types import MessageTypesResourceWithStreamingResponse
+
+        return MessageTypesResourceWithStreamingResponse(self._client.message_types)
+
+    @cached_property
+    def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        from .resources.auth import AuthResourceWithStreamingResponse
+
+        return AuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def api_keys(self) -> api_keys.APIKeysResourceWithStreamingResponse:
+        from .resources.api_keys import APIKeysResourceWithStreamingResponse
+
+        return APIKeysResourceWithStreamingResponse(self._client.api_keys)
+
+    @cached_property
+    def channel_groups(self) -> channel_groups.ChannelGroupsResourceWithStreamingResponse:
+        from .resources.channel_groups import ChannelGroupsResourceWithStreamingResponse
+
+        return ChannelGroupsResourceWithStreamingResponse(self._client.channel_groups)
+
+    @cached_property
+    def channels(self) -> channels.ChannelsResourceWithStreamingResponse:
+        from .resources.channels import ChannelsResourceWithStreamingResponse
+
+        return ChannelsResourceWithStreamingResponse(self._client.channels)
+
+    @cached_property
+    def environments(self) -> environments.EnvironmentsResourceWithStreamingResponse:
+        from .resources.environments import EnvironmentsResourceWithStreamingResponse
+
+        return EnvironmentsResourceWithStreamingResponse(self._client.environments)
+
+    @cached_property
+    def variables(self) -> variables.VariablesResourceWithStreamingResponse:
+        from .resources.variables import VariablesResourceWithStreamingResponse
+
+        return VariablesResourceWithStreamingResponse(self._client.variables)
+
+    @cached_property
+    def guides(self) -> guides.GuidesResourceWithStreamingResponse:
+        from .resources.guides import GuidesResourceWithStreamingResponse
+
+        return GuidesResourceWithStreamingResponse(self._client.guides)
+
+    @cached_property
+    def branches(self) -> branches.BranchesResourceWithStreamingResponse:
+        from .resources.branches import BranchesResourceWithStreamingResponse
+
+        return BranchesResourceWithStreamingResponse(self._client.branches)
+
+    @cached_property
+    def broadcasts(self) -> broadcasts.BroadcastsResourceWithStreamingResponse:
+        from .resources.broadcasts import BroadcastsResourceWithStreamingResponse
+
+        return BroadcastsResourceWithStreamingResponse(self._client.broadcasts)
 
 
 class AsyncKnockMgmtWithStreamedResponse:
+    _client: AsyncKnockMgmt
+
     def __init__(self, client: AsyncKnockMgmt) -> None:
-        self.email_layouts = email_layouts.AsyncEmailLayoutsResourceWithStreamingResponse(client.email_layouts)
-        self.commits = commits.AsyncCommitsResourceWithStreamingResponse(client.commits)
-        self.partials = partials.AsyncPartialsResourceWithStreamingResponse(client.partials)
-        self.translations = translations.AsyncTranslationsResourceWithStreamingResponse(client.translations)
-        self.workflows = workflows.AsyncWorkflowsResourceWithStreamingResponse(client.workflows)
-        self.message_types = message_types.AsyncMessageTypesResourceWithStreamingResponse(client.message_types)
-        self.auth = auth.AsyncAuthResourceWithStreamingResponse(client.auth)
-        self.api_keys = api_keys.AsyncAPIKeysResourceWithStreamingResponse(client.api_keys)
-        self.channel_groups = channel_groups.AsyncChannelGroupsResourceWithStreamingResponse(client.channel_groups)
-        self.channels = channels.AsyncChannelsResourceWithStreamingResponse(client.channels)
-        self.environments = environments.AsyncEnvironmentsResourceWithStreamingResponse(client.environments)
-        self.variables = variables.AsyncVariablesResourceWithStreamingResponse(client.variables)
-        self.guides = guides.AsyncGuidesResourceWithStreamingResponse(client.guides)
-        self.branches = branches.AsyncBranchesResourceWithStreamingResponse(client.branches)
-        self.broadcasts = broadcasts.AsyncBroadcastsResourceWithStreamingResponse(client.broadcasts)
+        self._client = client
+
+    @cached_property
+    def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithStreamingResponse:
+        from .resources.email_layouts import AsyncEmailLayoutsResourceWithStreamingResponse
+
+        return AsyncEmailLayoutsResourceWithStreamingResponse(self._client.email_layouts)
+
+    @cached_property
+    def commits(self) -> commits.AsyncCommitsResourceWithStreamingResponse:
+        from .resources.commits import AsyncCommitsResourceWithStreamingResponse
+
+        return AsyncCommitsResourceWithStreamingResponse(self._client.commits)
+
+    @cached_property
+    def partials(self) -> partials.AsyncPartialsResourceWithStreamingResponse:
+        from .resources.partials import AsyncPartialsResourceWithStreamingResponse
+
+        return AsyncPartialsResourceWithStreamingResponse(self._client.partials)
+
+    @cached_property
+    def translations(self) -> translations.AsyncTranslationsResourceWithStreamingResponse:
+        from .resources.translations import AsyncTranslationsResourceWithStreamingResponse
+
+        return AsyncTranslationsResourceWithStreamingResponse(self._client.translations)
+
+    @cached_property
+    def workflows(self) -> workflows.AsyncWorkflowsResourceWithStreamingResponse:
+        from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
+
+        return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
+
+    @cached_property
+    def message_types(self) -> message_types.AsyncMessageTypesResourceWithStreamingResponse:
+        from .resources.message_types import AsyncMessageTypesResourceWithStreamingResponse
+
+        return AsyncMessageTypesResourceWithStreamingResponse(self._client.message_types)
+
+    @cached_property
+    def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        from .resources.auth import AsyncAuthResourceWithStreamingResponse
+
+        return AsyncAuthResourceWithStreamingResponse(self._client.auth)
+
+    @cached_property
+    def api_keys(self) -> api_keys.AsyncAPIKeysResourceWithStreamingResponse:
+        from .resources.api_keys import AsyncAPIKeysResourceWithStreamingResponse
+
+        return AsyncAPIKeysResourceWithStreamingResponse(self._client.api_keys)
+
+    @cached_property
+    def channel_groups(self) -> channel_groups.AsyncChannelGroupsResourceWithStreamingResponse:
+        from .resources.channel_groups import AsyncChannelGroupsResourceWithStreamingResponse
+
+        return AsyncChannelGroupsResourceWithStreamingResponse(self._client.channel_groups)
+
+    @cached_property
+    def channels(self) -> channels.AsyncChannelsResourceWithStreamingResponse:
+        from .resources.channels import AsyncChannelsResourceWithStreamingResponse
+
+        return AsyncChannelsResourceWithStreamingResponse(self._client.channels)
+
+    @cached_property
+    def environments(self) -> environments.AsyncEnvironmentsResourceWithStreamingResponse:
+        from .resources.environments import AsyncEnvironmentsResourceWithStreamingResponse
+
+        return AsyncEnvironmentsResourceWithStreamingResponse(self._client.environments)
+
+    @cached_property
+    def variables(self) -> variables.AsyncVariablesResourceWithStreamingResponse:
+        from .resources.variables import AsyncVariablesResourceWithStreamingResponse
+
+        return AsyncVariablesResourceWithStreamingResponse(self._client.variables)
+
+    @cached_property
+    def guides(self) -> guides.AsyncGuidesResourceWithStreamingResponse:
+        from .resources.guides import AsyncGuidesResourceWithStreamingResponse
+
+        return AsyncGuidesResourceWithStreamingResponse(self._client.guides)
+
+    @cached_property
+    def branches(self) -> branches.AsyncBranchesResourceWithStreamingResponse:
+        from .resources.branches import AsyncBranchesResourceWithStreamingResponse
+
+        return AsyncBranchesResourceWithStreamingResponse(self._client.branches)
+
+    @cached_property
+    def broadcasts(self) -> broadcasts.AsyncBroadcastsResourceWithStreamingResponse:
+        from .resources.broadcasts import AsyncBroadcastsResourceWithStreamingResponse
+
+        return AsyncBroadcastsResourceWithStreamingResponse(self._client.broadcasts)
 
 
 Client = KnockMgmt
