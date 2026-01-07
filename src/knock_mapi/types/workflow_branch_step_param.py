@@ -23,7 +23,10 @@ class Branch(TypedDict, total=False):
     """A list of steps that will be executed if the branch is chosen."""
 
     terminates: bool
-    """If the workflow should halt at the end of the branch."""
+    """If the workflow should halt at the end of the branch.
+
+    Defaults to false if not provided.
+    """
 
 
 class WorkflowBranchStepParam(TypedDict, total=False):
