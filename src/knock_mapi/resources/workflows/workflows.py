@@ -293,7 +293,10 @@ class WorkflowsResource(SyncAPIResource):
 
           cancellation_key: A key to cancel the workflow run.
 
-          data: A map of data to be used in the workflow run.
+          data: A map of data to be used in the workflow run. The structure should conform to
+              the workflow's `trigger_data_json_schema` if one is defined. Available in
+              templates as `{{ data.field_name }}`. See
+              [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
 
           tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 
@@ -712,7 +715,10 @@ class AsyncWorkflowsResource(AsyncAPIResource):
 
           cancellation_key: A key to cancel the workflow run.
 
-          data: A map of data to be used in the workflow run.
+          data: A map of data to be used in the workflow run. The structure should conform to
+              the workflow's `trigger_data_json_schema` if one is defined. Available in
+              templates as `{{ data.field_name }}`. See
+              [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
 
           tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 

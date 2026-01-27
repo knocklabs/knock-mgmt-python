@@ -13,7 +13,7 @@ __all__ = ["WorkflowFetchStep"]
 class WorkflowFetchStep(BaseModel):
     """A fetch function step.
 
-    Read more in the [docs](https://docs.knock.app/designing-workflows/fetch-function).
+    Retrieves data from an external source and merges it into the workflow's `data` scope for use in later steps. Read more in the [docs](https://docs.knock.app/designing-workflows/fetch-function).
     """
 
     ref: str

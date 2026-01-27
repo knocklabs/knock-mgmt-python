@@ -13,7 +13,10 @@ __all__ = ["WorkflowRetrieveResponse", "CreatedBy", "Settings", "UpdatedBy"]
 
 
 class CreatedBy(BaseModel):
-    """User information."""
+    """Information about a user within the Knock dashboard.
+
+    Not to be confused with an external user (recipient) of a workflow.
+    """
 
     id: str
     """The user's unique identifier."""
@@ -40,7 +43,10 @@ class Settings(BaseModel):
 
 
 class UpdatedBy(BaseModel):
-    """User information."""
+    """Information about a user within the Knock dashboard.
+
+    Not to be confused with an external user (recipient) of a workflow.
+    """
 
     id: str
     """The user's unique identifier."""
@@ -101,7 +107,10 @@ class WorkflowRetrieveResponse(BaseModel):
     """A group of conditions to be evaluated."""
 
     created_by: Optional[CreatedBy] = None
-    """User information."""
+    """Information about a user within the Knock dashboard.
+
+    Not to be confused with an external user (recipient) of a workflow.
+    """
 
     deleted_at: Optional[datetime] = None
     """The timestamp of when the workflow was deleted. (read-only)."""
@@ -117,9 +126,10 @@ class WorkflowRetrieveResponse(BaseModel):
     """A map of workflow settings."""
 
     trigger_data_json_schema: Optional[Dict[str, object]] = None
-    """A JSON schema for the expected structure of the workflow trigger's data payload.
-
-    Used to validate trigger requests. Read more in the
+    """
+    A JSON schema for the expected structure of the workflow trigger's `data`
+    payload (available in templates as `{{ data.field_name }}`). Used to validate
+    trigger requests. Read more in the
     [docs](https://docs.knock.app/developer-tools/validating-trigger-data).
     """
 
@@ -132,7 +142,10 @@ class WorkflowRetrieveResponse(BaseModel):
     """
 
     updated_by: Optional[UpdatedBy] = None
-    """User information."""
+    """Information about a user within the Knock dashboard.
+
+    Not to be confused with an external user (recipient) of a workflow.
+    """
 
 
 from .workflow_step import WorkflowStep

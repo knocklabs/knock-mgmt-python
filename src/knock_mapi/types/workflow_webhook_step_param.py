@@ -13,7 +13,7 @@ __all__ = ["WorkflowWebhookStepParam"]
 
 
 class WorkflowWebhookStepParam(TypedDict, total=False):
-    """A webhook step within a workflow.
+    """A webhook step within a workflow to send an HTTP request to a generic channel.
 
     Read more in the [docs](https://docs.knock.app/designing-workflows/channel-step).
     """
@@ -34,15 +34,15 @@ class WorkflowWebhookStepParam(TypedDict, total=False):
     channel_group_key: Optional[str]
     """
     The key of the channel group to which the channel step will be sending a
-    notification. A channel step can have either a channel key or a channel group
-    key, but not both.
+    notification. Either `channel_key` or `channel_group_key` must be provided, but
+    not both.
     """
 
     channel_key: Optional[str]
-    """The key of the channel to which the channel step will be sending a notification.
-
-    A channel step can have either a channel key or a channel group key, but not
-    both.
+    """
+    The key of a specific configured channel instance (e.g., 'knock-email',
+    'postmark', 'sendgrid-marketing') to send the notification through. Either
+    `channel_key` or `channel_group_key` must be provided, but not both.
     """
 
     channel_type: Literal["http"]

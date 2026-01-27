@@ -30,15 +30,15 @@ class WorkflowEmailStep(BaseModel):
     channel_group_key: Optional[str] = None
     """
     The key of the channel group to which the channel step will be sending a
-    notification. A channel step can have either a channel key or a channel group
-    key, but not both.
+    notification. Either `channel_key` or `channel_group_key` must be provided, but
+    not both.
     """
 
     channel_key: Optional[str] = None
-    """The key of the channel to which the channel step will be sending a notification.
-
-    A channel step can have either a channel key or a channel group key, but not
-    both.
+    """
+    The key of a specific configured channel instance (e.g., 'knock-email',
+    'postmark', 'sendgrid-marketing') to send the notification through. Either
+    `channel_key` or `channel_group_key` must be provided, but not both.
     """
 
     channel_overrides: Optional[EmailChannelSettings] = None
@@ -48,7 +48,12 @@ class WorkflowEmailStep(BaseModel):
     """
 
     channel_type: Optional[Literal["email"]] = None
-    """The type of the channel step. Always `email` for email steps."""
+    """The category of channel for this step.
+
+    Always `email` for email steps. This identifies the type of notification (email,
+    sms, push, etc.) while `channel_key` specifies which configured provider
+    instance to use.
+    """
 
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""

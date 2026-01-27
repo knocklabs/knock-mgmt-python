@@ -11,7 +11,10 @@ class WorkflowValidateResponse(BaseModel):
     """Wraps the Workflow response under the `workflow` key."""
 
     workflow: "Workflow"
-    """A workflow object."""
+    """A workflow object.
+
+    Read more in the [docs](https://docs.knock.app/concepts/workflows).
+    """
 
 
 from .workflow import Workflow
