@@ -30,15 +30,15 @@ class WorkflowInAppFeedStep(BaseModel):
     channel_group_key: Optional[str] = None
     """
     The key of the channel group to which the channel step will be sending a
-    notification. A channel step can have either a channel key or a channel group
-    key, but not both.
+    notification. Either `channel_key` or `channel_group_key` must be provided, but
+    not both.
     """
 
     channel_key: Optional[str] = None
-    """The key of the channel to which the channel step will be sending a notification.
-
-    A channel step can have either a channel key or a channel group key, but not
-    both.
+    """
+    The key of a specific configured channel instance (e.g., 'knock-email',
+    'postmark', 'sendgrid-marketing') to send the notification through. Either
+    `channel_key` or `channel_group_key` must be provided, but not both.
     """
 
     channel_overrides: Optional[InAppFeedChannelSettings] = None

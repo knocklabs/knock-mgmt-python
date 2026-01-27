@@ -39,7 +39,12 @@ class WorkflowRunParams(TypedDict, total=False):
     """A key to cancel the workflow run."""
 
     data: Dict[str, object]
-    """A map of data to be used in the workflow run."""
+    """A map of data to be used in the workflow run.
+
+    The structure should conform to the workflow's `trigger_data_json_schema` if one
+    is defined. Available in templates as `{{ data.field_name }}`. See
+    [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
+    """
 
     tenant: str
     """The tenant to associate the workflow run with. Must not contain whitespace."""

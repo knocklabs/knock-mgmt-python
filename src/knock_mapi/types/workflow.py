@@ -27,7 +27,10 @@ class Settings(BaseModel):
 
 
 class Workflow(BaseModel):
-    """A workflow object."""
+    """A workflow object.
+
+    Read more in the [docs](https://docs.knock.app/concepts/workflows).
+    """
 
     active: bool
     """
@@ -88,9 +91,10 @@ class Workflow(BaseModel):
     """A map of workflow settings."""
 
     trigger_data_json_schema: Optional[Dict[str, object]] = None
-    """A JSON schema for the expected structure of the workflow trigger's data payload.
-
-    Used to validate trigger requests. Read more in the
+    """
+    A JSON schema for the expected structure of the workflow trigger's `data`
+    payload (available in templates as `{{ data.field_name }}`). Used to validate
+    trigger requests. Read more in the
     [docs](https://docs.knock.app/developer-tools/validating-trigger-data).
     """
 
