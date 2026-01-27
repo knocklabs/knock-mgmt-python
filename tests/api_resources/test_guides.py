@@ -336,6 +336,7 @@ class TestGuides:
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
+                        "search": "tab=settings",
                     }
                 ],
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -476,6 +477,7 @@ class TestGuides:
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
+                        "search": "tab=settings",
                     }
                 ],
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -886,6 +888,7 @@ class TestAsyncGuides:
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
+                        "search": "tab=settings",
                     }
                 ],
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
@@ -1026,6 +1029,7 @@ class TestAsyncGuides:
                     {
                         "directive": "allow",
                         "pathname": "/dashboard/*",
+                        "search": "tab=settings",
                     }
                 ],
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
