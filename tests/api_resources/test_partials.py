@@ -152,9 +152,23 @@ class TestPartials:
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
                 "type": "html",
-                "description": "description",
+                "description": "This is a test partial",
                 "icon_name": "icon_name",
-                "visual_block_enabled": False,
+                "input_schema": [
+                    {
+                        "key": "text_field",
+                        "label": "My text field",
+                        "type": "text",
+                        "settings": {
+                            "default": "A placeholder",
+                            "description": "A description of the text field",
+                            "max_length": 100,
+                            "min_length": 10,
+                            "required": True,
+                        },
+                    }
+                ],
+                "visual_block_enabled": True,
             },
             annotate=True,
             branch="feature-branch",
@@ -239,9 +253,23 @@ class TestPartials:
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
                 "type": "html",
-                "description": "description",
+                "description": "This is a test partial",
                 "icon_name": "icon_name",
-                "visual_block_enabled": False,
+                "input_schema": [
+                    {
+                        "key": "text_field",
+                        "label": "My text field",
+                        "type": "text",
+                        "settings": {
+                            "default": "A placeholder",
+                            "description": "A description of the text field",
+                            "max_length": 100,
+                            "min_length": 10,
+                            "required": True,
+                        },
+                    }
+                ],
+                "visual_block_enabled": True,
             },
             branch="feature-branch",
         )
@@ -435,9 +463,23 @@ class TestAsyncPartials:
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
                 "type": "html",
-                "description": "description",
+                "description": "This is a test partial",
                 "icon_name": "icon_name",
-                "visual_block_enabled": False,
+                "input_schema": [
+                    {
+                        "key": "text_field",
+                        "label": "My text field",
+                        "type": "text",
+                        "settings": {
+                            "default": "A placeholder",
+                            "description": "A description of the text field",
+                            "max_length": 100,
+                            "min_length": 10,
+                            "required": True,
+                        },
+                    }
+                ],
+                "visual_block_enabled": True,
             },
             annotate=True,
             branch="feature-branch",
@@ -522,9 +564,23 @@ class TestAsyncPartials:
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
                 "type": "html",
-                "description": "description",
+                "description": "This is a test partial",
                 "icon_name": "icon_name",
-                "visual_block_enabled": False,
+                "input_schema": [
+                    {
+                        "key": "text_field",
+                        "label": "My text field",
+                        "type": "text",
+                        "settings": {
+                            "default": "A placeholder",
+                            "description": "A description of the text field",
+                            "max_length": 100,
+                            "min_length": 10,
+                            "required": True,
+                        },
+                    }
+                ],
+                "visual_block_enabled": True,
             },
             branch="feature-branch",
         )
