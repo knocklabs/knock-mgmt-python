@@ -24,7 +24,7 @@ class ConditionParam(TypedDict, total=False):
             "contains_all",
             "not_contains_all",
             "is_timestamp_before",
-            "is_timestamp_after",
+            "is_timestamp_on_or_after",
             "is_timestamp_between",
             "empty",
             "not_empty",
