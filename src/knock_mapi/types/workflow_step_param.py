@@ -235,6 +235,7 @@ if TYPE_CHECKING or not PYDANTIC_V1:
             WorkflowThrottleStepParam,
             "WorkflowBranchStepParam",
             WorkflowTriggerWorkflowStepParam,
+            object,
         ],
     )
 else:
@@ -255,6 +256,7 @@ else:
         WorkflowThrottleStepParam,
         "WorkflowBranchStepParam",
         WorkflowTriggerWorkflowStepParam,
+        object,
     ]
 
 from .workflow_branch_step_param import WorkflowBranchStepParam
