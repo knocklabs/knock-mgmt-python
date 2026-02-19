@@ -17,7 +17,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestSteps:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_preview_template(self, client: KnockMgmt) -> None:
         step = client.workflows.steps.preview_template(
@@ -28,7 +28,7 @@ class TestSteps:
         )
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_preview_template_with_all_params(self, client: KnockMgmt) -> None:
         step = client.workflows.steps.preview_template(
@@ -43,7 +43,7 @@ class TestSteps:
         )
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_preview_template(self, client: KnockMgmt) -> None:
         response = client.workflows.steps.with_raw_response.preview_template(
@@ -58,7 +58,7 @@ class TestSteps:
         step = response.parse()
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_preview_template(self, client: KnockMgmt) -> None:
         with client.workflows.steps.with_streaming_response.preview_template(
@@ -75,7 +75,7 @@ class TestSteps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_preview_template(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
@@ -100,7 +100,7 @@ class TestAsyncSteps:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_preview_template(self, async_client: AsyncKnockMgmt) -> None:
         step = await async_client.workflows.steps.preview_template(
@@ -111,7 +111,7 @@ class TestAsyncSteps:
         )
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_preview_template_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         step = await async_client.workflows.steps.preview_template(
@@ -126,7 +126,7 @@ class TestAsyncSteps:
         )
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_preview_template(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.steps.with_raw_response.preview_template(
@@ -141,7 +141,7 @@ class TestAsyncSteps:
         step = await response.parse()
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_preview_template(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.steps.with_streaming_response.preview_template(
@@ -158,7 +158,7 @@ class TestAsyncSteps:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_preview_template(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
