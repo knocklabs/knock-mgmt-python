@@ -25,7 +25,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestBroadcasts:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.retrieve(
@@ -34,7 +34,7 @@ class TestBroadcasts:
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.retrieve(
@@ -46,7 +46,7 @@ class TestBroadcasts:
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.retrieve(
@@ -59,7 +59,7 @@ class TestBroadcasts:
         broadcast = response.parse()
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.retrieve(
@@ -74,7 +74,7 @@ class TestBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_retrieve(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -83,7 +83,7 @@ class TestBroadcasts:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.list(
@@ -91,7 +91,7 @@ class TestBroadcasts:
         )
         assert_matches_type(SyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.list(
@@ -105,7 +105,7 @@ class TestBroadcasts:
         )
         assert_matches_type(SyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.list(
@@ -117,7 +117,7 @@ class TestBroadcasts:
         broadcast = response.parse()
         assert_matches_type(SyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.list(
@@ -131,7 +131,7 @@ class TestBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_cancel(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.cancel(
@@ -140,7 +140,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_cancel_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.cancel(
@@ -150,7 +150,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_cancel(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.cancel(
@@ -163,7 +163,7 @@ class TestBroadcasts:
         broadcast = response.parse()
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_cancel(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.cancel(
@@ -178,7 +178,7 @@ class TestBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_cancel(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -187,7 +187,7 @@ class TestBroadcasts:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_send(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.send(
@@ -196,7 +196,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_send_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.send(
@@ -207,7 +207,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_send(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.send(
@@ -220,7 +220,7 @@ class TestBroadcasts:
         broadcast = response.parse()
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_send(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.send(
@@ -235,7 +235,7 @@ class TestBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_send(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -244,7 +244,7 @@ class TestBroadcasts:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_upsert(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.upsert(
@@ -263,7 +263,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.upsert(
@@ -324,7 +324,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.upsert(
@@ -347,7 +347,7 @@ class TestBroadcasts:
         broadcast = response.parse()
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.upsert(
@@ -372,7 +372,7 @@ class TestBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_upsert(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -391,7 +391,7 @@ class TestBroadcasts:
                 },
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_validate(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.validate(
@@ -410,7 +410,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.validate(
@@ -470,7 +470,7 @@ class TestBroadcasts:
         )
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.validate(
@@ -493,7 +493,7 @@ class TestBroadcasts:
         broadcast = response.parse()
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.validate(
@@ -518,7 +518,7 @@ class TestBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_validate(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -543,7 +543,7 @@ class TestAsyncBroadcasts:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.retrieve(
@@ -552,7 +552,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.retrieve(
@@ -564,7 +564,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.retrieve(
@@ -577,7 +577,7 @@ class TestAsyncBroadcasts:
         broadcast = await response.parse()
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.retrieve(
@@ -592,7 +592,7 @@ class TestAsyncBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -601,7 +601,7 @@ class TestAsyncBroadcasts:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.list(
@@ -609,7 +609,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(AsyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.list(
@@ -623,7 +623,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(AsyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.list(
@@ -635,7 +635,7 @@ class TestAsyncBroadcasts:
         broadcast = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.list(
@@ -649,7 +649,7 @@ class TestAsyncBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_cancel(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.cancel(
@@ -658,7 +658,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_cancel_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.cancel(
@@ -668,7 +668,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_cancel(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.cancel(
@@ -681,7 +681,7 @@ class TestAsyncBroadcasts:
         broadcast = await response.parse()
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_cancel(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.cancel(
@@ -696,7 +696,7 @@ class TestAsyncBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_cancel(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -705,7 +705,7 @@ class TestAsyncBroadcasts:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_send(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.send(
@@ -714,7 +714,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_send_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.send(
@@ -725,7 +725,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_send(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.send(
@@ -738,7 +738,7 @@ class TestAsyncBroadcasts:
         broadcast = await response.parse()
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_send(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.send(
@@ -753,7 +753,7 @@ class TestAsyncBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_send(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -762,7 +762,7 @@ class TestAsyncBroadcasts:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.upsert(
@@ -781,7 +781,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.upsert(
@@ -842,7 +842,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.upsert(
@@ -865,7 +865,7 @@ class TestAsyncBroadcasts:
         broadcast = await response.parse()
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.upsert(
@@ -890,7 +890,7 @@ class TestAsyncBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_upsert(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
@@ -909,7 +909,7 @@ class TestAsyncBroadcasts:
                 },
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.validate(
@@ -928,7 +928,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.validate(
@@ -988,7 +988,7 @@ class TestAsyncBroadcasts:
         )
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.validate(
@@ -1011,7 +1011,7 @@ class TestAsyncBroadcasts:
         broadcast = await response.parse()
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.validate(
@@ -1036,7 +1036,7 @@ class TestAsyncBroadcasts:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):

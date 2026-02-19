@@ -25,7 +25,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestGuides:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         guide = client.guides.retrieve(
@@ -34,7 +34,7 @@ class TestGuides:
         )
         assert_matches_type(Guide, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.retrieve(
@@ -46,7 +46,7 @@ class TestGuides:
         )
         assert_matches_type(Guide, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.retrieve(
@@ -59,7 +59,7 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(Guide, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.retrieve(
@@ -74,7 +74,7 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_retrieve(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -83,7 +83,7 @@ class TestGuides:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
         guide = client.guides.list(
@@ -91,7 +91,7 @@ class TestGuides:
         )
         assert_matches_type(SyncEntriesCursor[Guide], guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.list(
@@ -105,7 +105,7 @@ class TestGuides:
         )
         assert_matches_type(SyncEntriesCursor[Guide], guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.list(
@@ -117,7 +117,7 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(SyncEntriesCursor[Guide], guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.list(
@@ -131,7 +131,7 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_activate_overload_1(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
@@ -141,7 +141,7 @@ class TestGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_activate_with_all_params_overload_1(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
@@ -152,7 +152,7 @@ class TestGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_activate_overload_1(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.activate(
@@ -166,7 +166,7 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_activate_overload_1(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.activate(
@@ -182,7 +182,7 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_activate_overload_1(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -192,7 +192,7 @@ class TestGuides:
                 status=True,
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_activate_overload_2(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
@@ -201,7 +201,7 @@ class TestGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_activate_with_all_params_overload_2(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
@@ -213,7 +213,7 @@ class TestGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_activate_overload_2(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.activate(
@@ -226,7 +226,7 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_activate_overload_2(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.activate(
@@ -241,7 +241,7 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_activate_overload_2(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -250,7 +250,7 @@ class TestGuides:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_archive(self, client: KnockMgmt) -> None:
         guide = client.guides.archive(
@@ -258,7 +258,7 @@ class TestGuides:
         )
         assert_matches_type(GuideArchiveResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_archive(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.archive(
@@ -270,7 +270,7 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideArchiveResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_archive(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.archive(
@@ -284,7 +284,7 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_archive(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -292,7 +292,7 @@ class TestGuides:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_upsert(self, client: KnockMgmt) -> None:
         guide = client.guides.upsert(
@@ -313,7 +313,7 @@ class TestGuides:
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.upsert(
@@ -360,7 +360,7 @@ class TestGuides:
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.upsert(
@@ -385,7 +385,7 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.upsert(
@@ -412,7 +412,7 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_upsert(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -433,7 +433,7 @@ class TestGuides:
                 },
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_validate(self, client: KnockMgmt) -> None:
         guide = client.guides.validate(
@@ -454,7 +454,7 @@ class TestGuides:
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.validate(
@@ -498,7 +498,7 @@ class TestGuides:
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.validate(
@@ -523,7 +523,7 @@ class TestGuides:
         guide = response.parse()
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.validate(
@@ -550,7 +550,7 @@ class TestGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     def test_path_params_validate(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -577,7 +577,7 @@ class TestAsyncGuides:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.retrieve(
@@ -586,7 +586,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(Guide, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.retrieve(
@@ -598,7 +598,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(Guide, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.retrieve(
@@ -611,7 +611,7 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(Guide, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.retrieve(
@@ -626,7 +626,7 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -635,7 +635,7 @@ class TestAsyncGuides:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.list(
@@ -643,7 +643,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(AsyncEntriesCursor[Guide], guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.list(
@@ -657,7 +657,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(AsyncEntriesCursor[Guide], guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.list(
@@ -669,7 +669,7 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Guide], guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.list(
@@ -683,7 +683,7 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_activate_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
@@ -693,7 +693,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_activate_with_all_params_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
@@ -704,7 +704,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_activate_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.activate(
@@ -718,7 +718,7 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_activate_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.activate(
@@ -734,7 +734,7 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_activate_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -744,7 +744,7 @@ class TestAsyncGuides:
                 status=True,
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_activate_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
@@ -753,7 +753,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_activate_with_all_params_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
@@ -765,7 +765,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_activate_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.activate(
@@ -778,7 +778,7 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_activate_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.activate(
@@ -793,7 +793,7 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_activate_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -802,7 +802,7 @@ class TestAsyncGuides:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_archive(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.archive(
@@ -810,7 +810,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideArchiveResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_archive(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.archive(
@@ -822,7 +822,7 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideArchiveResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_archive(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.archive(
@@ -836,7 +836,7 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_archive(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -844,7 +844,7 @@ class TestAsyncGuides:
                 "",
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.upsert(
@@ -865,7 +865,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.upsert(
@@ -912,7 +912,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.upsert(
@@ -937,7 +937,7 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.upsert(
@@ -964,7 +964,7 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_upsert(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
@@ -985,7 +985,7 @@ class TestAsyncGuides:
                 },
             )
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.validate(
@@ -1006,7 +1006,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.validate(
@@ -1050,7 +1050,7 @@ class TestAsyncGuides:
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.validate(
@@ -1075,7 +1075,7 @@ class TestAsyncGuides:
         guide = await response.parse()
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.validate(
@@ -1102,7 +1102,7 @@ class TestAsyncGuides:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Prism doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
