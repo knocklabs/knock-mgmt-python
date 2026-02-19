@@ -236,6 +236,7 @@ if TYPE_CHECKING or not PYDANTIC_V1:
             WorkflowThrottleStep,
             "WorkflowBranchStep",
             WorkflowTriggerWorkflowStep,
+            object,
         ],
     )
 else:
@@ -256,6 +257,7 @@ else:
         WorkflowThrottleStep,
         "WorkflowBranchStep",
         WorkflowTriggerWorkflowStep,
+        object,
     ]
 
 from .workflow_branch_step import WorkflowBranchStep
