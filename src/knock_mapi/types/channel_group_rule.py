@@ -53,6 +53,8 @@ class ChannelGroupRule(BaseModel):
             "is_timestamp_between",
             "empty",
             "not_empty",
+            "exists",
+            "not_exists",
             "is_timestamp",
             "is_audience_member",
             "is_not_audience_member",
