@@ -22,7 +22,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestMessageTypes:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         message_type = client.message_types.retrieve(
@@ -31,7 +31,7 @@ class TestMessageTypes:
         )
         assert_matches_type(MessageType, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         message_type = client.message_types.retrieve(
@@ -43,7 +43,7 @@ class TestMessageTypes:
         )
         assert_matches_type(MessageType, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.message_types.with_raw_response.retrieve(
@@ -56,7 +56,7 @@ class TestMessageTypes:
         message_type = response.parse()
         assert_matches_type(MessageType, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.message_types.with_streaming_response.retrieve(
@@ -71,7 +71,7 @@ class TestMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_type_key` but received ''"):
@@ -80,7 +80,7 @@ class TestMessageTypes:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
         message_type = client.message_types.list(
@@ -88,7 +88,7 @@ class TestMessageTypes:
         )
         assert_matches_type(SyncEntriesCursor[MessageType], message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         message_type = client.message_types.list(
@@ -102,7 +102,7 @@ class TestMessageTypes:
         )
         assert_matches_type(SyncEntriesCursor[MessageType], message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
         response = client.message_types.with_raw_response.list(
@@ -114,7 +114,7 @@ class TestMessageTypes:
         message_type = response.parse()
         assert_matches_type(SyncEntriesCursor[MessageType], message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
         with client.message_types.with_streaming_response.list(
@@ -128,7 +128,7 @@ class TestMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_upsert(self, client: KnockMgmt) -> None:
         message_type = client.message_types.upsert(
@@ -142,7 +142,7 @@ class TestMessageTypes:
         )
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         message_type = client.message_types.upsert(
@@ -182,7 +182,7 @@ class TestMessageTypes:
         )
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.message_types.with_raw_response.upsert(
@@ -200,7 +200,7 @@ class TestMessageTypes:
         message_type = response.parse()
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.message_types.with_streaming_response.upsert(
@@ -220,7 +220,7 @@ class TestMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_upsert(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_type_key` but received ''"):
@@ -234,7 +234,7 @@ class TestMessageTypes:
                 },
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_validate(self, client: KnockMgmt) -> None:
         message_type = client.message_types.validate(
@@ -248,7 +248,7 @@ class TestMessageTypes:
         )
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         message_type = client.message_types.validate(
@@ -285,7 +285,7 @@ class TestMessageTypes:
         )
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.message_types.with_raw_response.validate(
@@ -303,7 +303,7 @@ class TestMessageTypes:
         message_type = response.parse()
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.message_types.with_streaming_response.validate(
@@ -323,7 +323,7 @@ class TestMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_validate(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_type_key` but received ''"):
@@ -343,7 +343,7 @@ class TestAsyncMessageTypes:
         "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.retrieve(
@@ -352,7 +352,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(MessageType, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.retrieve(
@@ -364,7 +364,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(MessageType, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.message_types.with_raw_response.retrieve(
@@ -377,7 +377,7 @@ class TestAsyncMessageTypes:
         message_type = await response.parse()
         assert_matches_type(MessageType, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.message_types.with_streaming_response.retrieve(
@@ -392,7 +392,7 @@ class TestAsyncMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_type_key` but received ''"):
@@ -401,7 +401,7 @@ class TestAsyncMessageTypes:
                 environment="development",
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.list(
@@ -409,7 +409,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(AsyncEntriesCursor[MessageType], message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.list(
@@ -423,7 +423,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(AsyncEntriesCursor[MessageType], message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.message_types.with_raw_response.list(
@@ -435,7 +435,7 @@ class TestAsyncMessageTypes:
         message_type = await response.parse()
         assert_matches_type(AsyncEntriesCursor[MessageType], message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.message_types.with_streaming_response.list(
@@ -449,7 +449,7 @@ class TestAsyncMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.upsert(
@@ -463,7 +463,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.upsert(
@@ -503,7 +503,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.message_types.with_raw_response.upsert(
@@ -521,7 +521,7 @@ class TestAsyncMessageTypes:
         message_type = await response.parse()
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.message_types.with_streaming_response.upsert(
@@ -541,7 +541,7 @@ class TestAsyncMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_upsert(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_type_key` but received ''"):
@@ -555,7 +555,7 @@ class TestAsyncMessageTypes:
                 },
             )
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.validate(
@@ -569,7 +569,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         message_type = await async_client.message_types.validate(
@@ -606,7 +606,7 @@ class TestAsyncMessageTypes:
         )
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.message_types.with_raw_response.validate(
@@ -624,7 +624,7 @@ class TestAsyncMessageTypes:
         message_type = await response.parse()
         assert_matches_type(MessageTypeValidateResponse, message_type, path=["response"])
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.message_types.with_streaming_response.validate(
@@ -644,7 +644,7 @@ class TestAsyncMessageTypes:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(reason="Mock server doesn't support callbacks yet")
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_validate(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `message_type_key` but received ''"):
