@@ -57,7 +57,9 @@ class PartialInputSchemaMessageTypeBooleanFieldSettings(TypedDict, total=False):
     default: bool
     """The default value of the boolean field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -82,7 +84,9 @@ class PartialInputSchemaMessageTypeBooleanField(TypedDict, total=False):
 class PartialInputSchemaMessageTypeButtonFieldSettings(TypedDict, total=False):
     """Settings for the button field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -116,7 +120,9 @@ class PartialInputSchemaMessageTypeImageFieldURLSettings(TypedDict, total=False)
     default: Optional[str]
     """The default value of the URL field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -141,7 +147,9 @@ class PartialInputSchemaMessageTypeImageFieldURL(TypedDict, total=False):
 class PartialInputSchemaMessageTypeImageFieldSettings(TypedDict, total=False):
     """Settings for the image field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -178,7 +186,9 @@ class PartialInputSchemaMessageTypeJsonFieldSettings(TypedDict, total=False):
     default: Optional[object]
     """The default value of the JSON field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -212,7 +222,9 @@ class PartialInputSchemaMessageTypeMarkdownFieldSettings(TypedDict, total=False)
     default: str
     """The default value of the markdown field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -248,10 +260,12 @@ class PartialInputSchemaMessageTypeMultiSelectFieldSettings(TypedDict, total=Fal
     default: Optional[SequenceNotStr[str]]
     """The default values for the multi-select field."""
 
-    description: str
+    description: Optional[str]
 
     options: Iterable[PartialInputSchemaMessageTypeMultiSelectFieldSettingsOption]
     """The available options for the multi-select field."""
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -287,10 +301,12 @@ class PartialInputSchemaMessageTypeSelectFieldSettings(TypedDict, total=False):
     default: Optional[str]
     """The default value for the select field."""
 
-    description: str
+    description: Optional[str]
 
     options: Iterable[PartialInputSchemaMessageTypeSelectFieldSettingsOption]
     """The available options for the select field."""
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -318,11 +334,13 @@ class PartialInputSchemaMessageTypeTextareaFieldSettings(TypedDict, total=False)
     default: Optional[str]
     """The default value of the textarea field."""
 
-    description: str
+    description: Optional[str]
 
     max_length: int
 
     min_length: int
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -350,7 +368,9 @@ class PartialInputSchemaMessageTypeURLFieldSettings(TypedDict, total=False):
     default: Optional[str]
     """The default value of the URL field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""

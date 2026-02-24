@@ -166,6 +166,7 @@ class TestMessageTypes:
                                     "description": "A description of the text field",
                                     "max_length": 100,
                                     "min_length": 10,
+                                    "placeholder": "A placeholder for the field.",
                                     "required": True,
                                 },
                             }
@@ -272,6 +273,7 @@ class TestMessageTypes:
                                     "description": "A description of the text field",
                                     "max_length": 100,
                                     "min_length": 10,
+                                    "placeholder": "A placeholder for the field.",
                                     "required": True,
                                 },
                             }
@@ -487,6 +489,7 @@ class TestAsyncMessageTypes:
                                     "description": "A description of the text field",
                                     "max_length": 100,
                                     "min_length": 10,
+                                    "placeholder": "A placeholder for the field.",
                                     "required": True,
                                 },
                             }
@@ -593,6 +596,7 @@ class TestAsyncMessageTypes:
                                     "description": "A description of the text field",
                                     "max_length": 100,
                                     "min_length": 10,
+                                    "placeholder": "A placeholder for the field.",
                                     "required": True,
                                 },
                             }

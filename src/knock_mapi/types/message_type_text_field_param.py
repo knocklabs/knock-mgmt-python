@@ -14,11 +14,13 @@ class Settings(TypedDict, total=False):
     default: Optional[str]
     """The default value of the text field."""
 
-    description: str
+    description: Optional[str]
 
     max_length: int
 
     min_length: int
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
