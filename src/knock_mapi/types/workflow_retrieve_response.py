@@ -21,11 +21,20 @@ class CreatedBy(BaseModel):
     id: str
     """The user's unique identifier."""
 
+    created_at: datetime
+    """The timestamp of when the user was created."""
+
     email: str
     """The user's email address."""
 
+    updated_at: datetime
+    """The timestamp of when the user was last updated."""
+
+    avatar_url: Optional[str] = None
+    """The URL of the user's avatar image."""
+
     name: Optional[str] = None
-    """The user's name."""
+    """The user's display name."""
 
 
 class Settings(BaseModel):
@@ -51,11 +60,20 @@ class UpdatedBy(BaseModel):
     id: str
     """The user's unique identifier."""
 
+    created_at: datetime
+    """The timestamp of when the user was created."""
+
     email: str
     """The user's email address."""
 
+    updated_at: datetime
+    """The timestamp of when the user was last updated."""
+
+    avatar_url: Optional[str] = None
+    """The URL of the user's avatar image."""
+
     name: Optional[str] = None
-    """The user's name."""
+    """The user's display name."""
 
 
 class WorkflowRetrieveResponse(BaseModel):

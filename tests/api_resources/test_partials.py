@@ -164,6 +164,7 @@ class TestPartials:
                             "description": "A description of the text field",
                             "max_length": 100,
                             "min_length": 10,
+                            "placeholder": "A placeholder for the field.",
                             "required": True,
                         },
                     }
@@ -265,6 +266,7 @@ class TestPartials:
                             "description": "A description of the text field",
                             "max_length": 100,
                             "min_length": 10,
+                            "placeholder": "A placeholder for the field.",
                             "required": True,
                         },
                     }
@@ -475,6 +477,7 @@ class TestAsyncPartials:
                             "description": "A description of the text field",
                             "max_length": 100,
                             "min_length": 10,
+                            "placeholder": "A placeholder for the field.",
                             "required": True,
                         },
                     }
@@ -576,6 +579,7 @@ class TestAsyncPartials:
                             "description": "A description of the text field",
                             "max_length": 100,
                             "min_length": 10,
+                            "placeholder": "A placeholder for the field.",
                             "required": True,
                         },
                     }

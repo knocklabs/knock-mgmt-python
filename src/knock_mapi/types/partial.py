@@ -45,6 +45,8 @@ class InputSchemaMessageTypeBooleanFieldSettings(BaseModel):
 
     description: Optional[str] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -69,6 +71,8 @@ class InputSchemaMessageTypeButtonFieldSettings(BaseModel):
     """Settings for the button field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""
@@ -104,6 +108,8 @@ class InputSchemaMessageTypeImageFieldURLSettings(BaseModel):
 
     description: Optional[str] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -128,6 +134,8 @@ class InputSchemaMessageTypeImageFieldSettings(BaseModel):
     """Settings for the image field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""
@@ -166,6 +174,8 @@ class InputSchemaMessageTypeJsonFieldSettings(BaseModel):
 
     description: Optional[str] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -199,6 +209,8 @@ class InputSchemaMessageTypeMarkdownFieldSettings(BaseModel):
     """The default value of the markdown field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""
@@ -239,6 +251,8 @@ class InputSchemaMessageTypeMultiSelectFieldSettings(BaseModel):
     options: Optional[List[InputSchemaMessageTypeMultiSelectFieldSettingsOption]] = None
     """The available options for the multi-select field."""
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -278,6 +292,8 @@ class InputSchemaMessageTypeSelectFieldSettings(BaseModel):
     options: Optional[List[InputSchemaMessageTypeSelectFieldSettingsOption]] = None
     """The available options for the select field."""
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -310,6 +326,8 @@ class InputSchemaMessageTypeTextareaFieldSettings(BaseModel):
 
     min_length: Optional[int] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -337,6 +355,8 @@ class InputSchemaMessageTypeURLFieldSettings(BaseModel):
     """The default value of the URL field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""

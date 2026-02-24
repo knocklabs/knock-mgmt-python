@@ -20,6 +20,8 @@ class Settings(BaseModel):
 
     min_length: Optional[int] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 

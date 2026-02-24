@@ -44,6 +44,8 @@ class FieldMessageTypeBooleanFieldSettings(BaseModel):
 
     description: Optional[str] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -68,6 +70,8 @@ class FieldMessageTypeButtonFieldSettings(BaseModel):
     """Settings for the button field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""
@@ -103,6 +107,8 @@ class FieldMessageTypeImageFieldURLSettings(BaseModel):
 
     description: Optional[str] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -127,6 +133,8 @@ class FieldMessageTypeImageFieldSettings(BaseModel):
     """Settings for the image field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""
@@ -165,6 +173,8 @@ class FieldMessageTypeJsonFieldSettings(BaseModel):
 
     description: Optional[str] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -198,6 +208,8 @@ class FieldMessageTypeMarkdownFieldSettings(BaseModel):
     """The default value of the markdown field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""
@@ -238,6 +250,8 @@ class FieldMessageTypeMultiSelectFieldSettings(BaseModel):
     options: Optional[List[FieldMessageTypeMultiSelectFieldSettingsOption]] = None
     """The available options for the multi-select field."""
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -277,6 +291,8 @@ class FieldMessageTypeSelectFieldSettings(BaseModel):
     options: Optional[List[FieldMessageTypeSelectFieldSettingsOption]] = None
     """The available options for the select field."""
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -309,6 +325,8 @@ class FieldMessageTypeTextareaFieldSettings(BaseModel):
 
     min_length: Optional[int] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
@@ -336,6 +354,8 @@ class FieldMessageTypeURLFieldSettings(BaseModel):
     """The default value of the URL field."""
 
     description: Optional[str] = None
+
+    placeholder: Optional[str] = None
 
     required: Optional[bool] = None
     """Whether the field is required."""

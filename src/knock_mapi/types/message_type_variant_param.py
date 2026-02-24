@@ -42,7 +42,9 @@ class FieldMessageTypeBooleanFieldSettings(TypedDict, total=False):
     default: bool
     """The default value of the boolean field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -67,7 +69,9 @@ class FieldMessageTypeBooleanField(TypedDict, total=False):
 class FieldMessageTypeButtonFieldSettings(TypedDict, total=False):
     """Settings for the button field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -101,7 +105,9 @@ class FieldMessageTypeImageFieldURLSettings(TypedDict, total=False):
     default: Optional[str]
     """The default value of the URL field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -126,7 +132,9 @@ class FieldMessageTypeImageFieldURL(TypedDict, total=False):
 class FieldMessageTypeImageFieldSettings(TypedDict, total=False):
     """Settings for the image field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -163,7 +171,9 @@ class FieldMessageTypeJsonFieldSettings(TypedDict, total=False):
     default: Optional[object]
     """The default value of the JSON field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -197,7 +207,9 @@ class FieldMessageTypeMarkdownFieldSettings(TypedDict, total=False):
     default: str
     """The default value of the markdown field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -233,10 +245,12 @@ class FieldMessageTypeMultiSelectFieldSettings(TypedDict, total=False):
     default: Optional[SequenceNotStr[str]]
     """The default values for the multi-select field."""
 
-    description: str
+    description: Optional[str]
 
     options: Iterable[FieldMessageTypeMultiSelectFieldSettingsOption]
     """The available options for the multi-select field."""
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -272,10 +286,12 @@ class FieldMessageTypeSelectFieldSettings(TypedDict, total=False):
     default: Optional[str]
     """The default value for the select field."""
 
-    description: str
+    description: Optional[str]
 
     options: Iterable[FieldMessageTypeSelectFieldSettingsOption]
     """The available options for the select field."""
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -303,11 +319,13 @@ class FieldMessageTypeTextareaFieldSettings(TypedDict, total=False):
     default: Optional[str]
     """The default value of the textarea field."""
 
-    description: str
+    description: Optional[str]
 
     max_length: int
 
     min_length: int
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
@@ -335,7 +353,9 @@ class FieldMessageTypeURLFieldSettings(TypedDict, total=False):
     default: Optional[str]
     """The default value of the URL field."""
 
-    description: str
+    description: Optional[str]
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
