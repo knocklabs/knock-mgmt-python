@@ -20,6 +20,8 @@ __all__ = [
     "PartialInputSchemaMessageTypeImageFieldURL",
     "PartialInputSchemaMessageTypeImageFieldURLSettings",
     "PartialInputSchemaMessageTypeImageFieldSettings",
+    "PartialInputSchemaMessageTypeJsonField",
+    "PartialInputSchemaMessageTypeJsonFieldSettings",
     "PartialInputSchemaMessageTypeMarkdownField",
     "PartialInputSchemaMessageTypeMarkdownFieldSettings",
     "PartialInputSchemaMessageTypeMultiSelectField",
@@ -168,6 +170,40 @@ class PartialInputSchemaMessageTypeImageField(TypedDict, total=False):
 
     settings: PartialInputSchemaMessageTypeImageFieldSettings
     """Settings for the image field."""
+
+
+class PartialInputSchemaMessageTypeJsonFieldSettings(TypedDict, total=False):
+    """Settings for the json field."""
+
+    default: Optional[object]
+    """The default value of the JSON field."""
+
+    description: str
+
+    required: bool
+    """Whether the field is required."""
+
+    schema: Optional[object]
+    """A JSON schema used to validate the structure of the JSON provided.
+
+    Must be a valid JSON schema.
+    """
+
+
+class PartialInputSchemaMessageTypeJsonField(TypedDict, total=False):
+    """A JSON field used in a message type."""
+
+    key: Required[str]
+    """The unique key of the field."""
+
+    label: Required[Optional[str]]
+    """The label of the field."""
+
+    type: Required[Literal["json"]]
+    """The type of the field."""
+
+    settings: PartialInputSchemaMessageTypeJsonFieldSettings
+    """Settings for the json field."""
 
 
 class PartialInputSchemaMessageTypeMarkdownFieldSettings(TypedDict, total=False):
@@ -340,6 +376,7 @@ PartialInputSchema: TypeAlias = Union[
     PartialInputSchemaMessageTypeBooleanField,
     PartialInputSchemaMessageTypeButtonField,
     PartialInputSchemaMessageTypeImageField,
+    PartialInputSchemaMessageTypeJsonField,
     PartialInputSchemaMessageTypeMarkdownField,
     PartialInputSchemaMessageTypeMultiSelectField,
     PartialInputSchemaMessageTypeSelectField,
