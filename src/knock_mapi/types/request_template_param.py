@@ -5,10 +5,10 @@ from __future__ import annotations
 from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["RequestTemplateParam", "HeadersUnionMember1", "QueryParamsUnionMember1"]
+__all__ = ["RequestTemplateParam", "HeadersRequestTemplateHeadersArray", "QueryParamsRequestTemplateQueryParamsArray"]
 
 
-class HeadersUnionMember1(TypedDict, total=False):
+class HeadersRequestTemplateHeadersArray(TypedDict, total=False):
     key: Required[str]
     """The key of the header."""
 
@@ -16,7 +16,7 @@ class HeadersUnionMember1(TypedDict, total=False):
     """The value of the header."""
 
 
-class QueryParamsUnionMember1(TypedDict, total=False):
+class QueryParamsRequestTemplateQueryParamsArray(TypedDict, total=False):
     key: Required[str]
     """The key of the query param."""
 
@@ -36,13 +36,13 @@ class RequestTemplateParam(TypedDict, total=False):
     body: Optional[str]
     """The body of the request. Only used for POST or PUT requests."""
 
-    headers: Union[str, Iterable[HeadersUnionMember1]]
+    headers: Union[str, Iterable[HeadersRequestTemplateHeadersArray]]
     """The headers of the request.
 
     Can be a template string or a list of key-value pairs.
     """
 
-    query_params: Union[str, Iterable[QueryParamsUnionMember1]]
+    query_params: Union[str, Iterable[QueryParamsRequestTemplateQueryParamsArray]]
     """The query params of the request.
 
     Can be a template string or a list of key-value pairs.

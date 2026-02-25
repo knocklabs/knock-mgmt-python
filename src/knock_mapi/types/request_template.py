@@ -5,10 +5,10 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["RequestTemplate", "HeadersUnionMember1", "QueryParamsUnionMember1"]
+__all__ = ["RequestTemplate", "HeadersRequestTemplateHeadersArray", "QueryParamsRequestTemplateQueryParamsArray"]
 
 
-class HeadersUnionMember1(BaseModel):
+class HeadersRequestTemplateHeadersArray(BaseModel):
     key: str
     """The key of the header."""
 
@@ -16,7 +16,7 @@ class HeadersUnionMember1(BaseModel):
     """The value of the header."""
 
 
-class QueryParamsUnionMember1(BaseModel):
+class QueryParamsRequestTemplateQueryParamsArray(BaseModel):
     key: str
     """The key of the query param."""
 
@@ -36,13 +36,13 @@ class RequestTemplate(BaseModel):
     body: Optional[str] = None
     """The body of the request. Only used for POST or PUT requests."""
 
-    headers: Union[str, List[HeadersUnionMember1], None] = None
+    headers: Union[str, List[HeadersRequestTemplateHeadersArray], None] = None
     """The headers of the request.
 
     Can be a template string or a list of key-value pairs.
     """
 
-    query_params: Union[str, List[QueryParamsUnionMember1], None] = None
+    query_params: Union[str, List[QueryParamsRequestTemplateQueryParamsArray], None] = None
     """The query params of the request.
 
     Can be a template string or a list of key-value pairs.

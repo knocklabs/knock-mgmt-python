@@ -7,34 +7,10 @@ from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .member_user import MemberUser
 from .condition_group import ConditionGroup
 
-__all__ = ["WorkflowRetrieveResponse", "CreatedBy", "Settings", "UpdatedBy"]
-
-
-class CreatedBy(BaseModel):
-    """Information about a user within the Knock dashboard.
-
-    Not to be confused with an external user (recipient) of a workflow.
-    """
-
-    id: str
-    """The user's unique identifier."""
-
-    created_at: datetime
-    """The timestamp of when the user was created."""
-
-    email: str
-    """The user's email address."""
-
-    updated_at: datetime
-    """The timestamp of when the user was last updated."""
-
-    avatar_url: Optional[str] = None
-    """The URL of the user's avatar image."""
-
-    name: Optional[str] = None
-    """The user's display name."""
+__all__ = ["WorkflowRetrieveResponse", "Settings"]
 
 
 class Settings(BaseModel):
@@ -49,31 +25,6 @@ class Settings(BaseModel):
     If true, will send for every channel in the workflow even if the recipient has
     opted out of a certain kind. Defaults to false.
     """
-
-
-class UpdatedBy(BaseModel):
-    """Information about a user within the Knock dashboard.
-
-    Not to be confused with an external user (recipient) of a workflow.
-    """
-
-    id: str
-    """The user's unique identifier."""
-
-    created_at: datetime
-    """The timestamp of when the user was created."""
-
-    email: str
-    """The user's email address."""
-
-    updated_at: datetime
-    """The timestamp of when the user was last updated."""
-
-    avatar_url: Optional[str] = None
-    """The URL of the user's avatar image."""
-
-    name: Optional[str] = None
-    """The user's display name."""
 
 
 class WorkflowRetrieveResponse(BaseModel):
@@ -124,7 +75,7 @@ class WorkflowRetrieveResponse(BaseModel):
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
-    created_by: Optional[CreatedBy] = None
+    created_by: Optional[MemberUser] = None
     """Information about a user within the Knock dashboard.
 
     Not to be confused with an external user (recipient) of a workflow.
@@ -159,7 +110,7 @@ class WorkflowRetrieveResponse(BaseModel):
     [docs](https://docs.knock.app/send-notifications/triggering-workflows/overview#controlling-workflow-trigger-frequency).
     """
 
-    updated_by: Optional[UpdatedBy] = None
+    updated_by: Optional[MemberUser] = None
     """Information about a user within the Knock dashboard.
 
     Not to be confused with an external user (recipient) of a workflow.

@@ -110,10 +110,15 @@ from knock_mapi.types import (
     WorkflowFetchStep,
     WorkflowInAppFeedStep,
     WorkflowPushStep,
+    WorkflowRandomCohortStep,
     WorkflowSMSStep,
     WorkflowStep,
     WorkflowThrottleStep,
     WorkflowTriggerWorkflowStep,
+    WorkflowUpdateDataStep,
+    WorkflowUpdateObjectStep,
+    WorkflowUpdateTenantStep,
+    WorkflowUpdateUserStep,
     WorkflowWebhookStep,
     WorkflowRetrieveResponse,
     WorkflowActivateResponse,
@@ -194,12 +199,15 @@ Methods:
 Types:
 
 ```python
-from knock_mapi.types import ChannelGroup, ChannelGroupRule
+from knock_mapi.types import ChannelGroup, ChannelGroupRule, ChannelGroupUpsertResponse
 ```
 
 Methods:
 
+- <code title="get /v1/channel_groups/{channel_group_key}">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">retrieve</a>(channel_group_key) -> <a href="./src/knock_mapi/types/channel_group.py">ChannelGroup</a></code>
 - <code title="get /v1/channel_groups">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">list</a>(\*\*<a href="src/knock_mapi/types/channel_group_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/channel_group.py">SyncEntriesCursor[ChannelGroup]</a></code>
+- <code title="delete /v1/channel_groups/{channel_group_key}">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">delete</a>(channel_group_key) -> None</code>
+- <code title="put /v1/channel_groups/{channel_group_key}">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">upsert</a>(channel_group_key, \*\*<a href="src/knock_mapi/types/channel_group_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/channel_group_upsert_response.py">ChannelGroupUpsertResponse</a></code>
 
 # Channels
 
@@ -219,6 +227,20 @@ from knock_mapi.types import (
 Methods:
 
 - <code title="get /v1/channels">client.channels.<a href="./src/knock_mapi/resources/channels.py">list</a>(\*\*<a href="src/knock_mapi/types/channel_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/channel.py">SyncEntriesCursor[Channel]</a></code>
+
+# Members
+
+Types:
+
+```python
+from knock_mapi.types import Member, MemberUser
+```
+
+Methods:
+
+- <code title="get /v1/members/{id}">client.members.<a href="./src/knock_mapi/resources/members.py">retrieve</a>(id) -> <a href="./src/knock_mapi/types/member.py">Member</a></code>
+- <code title="get /v1/members">client.members.<a href="./src/knock_mapi/resources/members.py">list</a>(\*\*<a href="src/knock_mapi/types/member_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/member.py">SyncEntriesCursor[Member]</a></code>
+- <code title="delete /v1/members/{id}">client.members.<a href="./src/knock_mapi/resources/members.py">delete</a>(id) -> None</code>
 
 # Environments
 
