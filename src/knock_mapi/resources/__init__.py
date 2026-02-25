@@ -24,6 +24,14 @@ from .commits import (
     CommitsResourceWithStreamingResponse,
     AsyncCommitsResourceWithStreamingResponse,
 )
+from .members import (
+    MembersResource,
+    AsyncMembersResource,
+    MembersResourceWithRawResponse,
+    AsyncMembersResourceWithRawResponse,
+    MembersResourceWithStreamingResponse,
+    AsyncMembersResourceWithStreamingResponse,
+)
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -182,6 +190,12 @@ __all__ = [
     "AsyncChannelsResourceWithRawResponse",
     "ChannelsResourceWithStreamingResponse",
     "AsyncChannelsResourceWithStreamingResponse",
+    "MembersResource",
+    "AsyncMembersResource",
+    "MembersResourceWithRawResponse",
+    "AsyncMembersResourceWithRawResponse",
+    "MembersResourceWithStreamingResponse",
+    "AsyncMembersResourceWithStreamingResponse",
     "EnvironmentsResource",
     "AsyncEnvironmentsResource",
     "EnvironmentsResourceWithRawResponse",

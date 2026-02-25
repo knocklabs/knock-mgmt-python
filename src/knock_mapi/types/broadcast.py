@@ -14,6 +14,7 @@ from .workflow_delay_step import WorkflowDelayStep
 from .workflow_email_step import WorkflowEmailStep
 from .workflow_webhook_step import WorkflowWebhookStep
 from .workflow_in_app_feed_step import WorkflowInAppFeedStep
+from .workflow_random_cohort_step import WorkflowRandomCohortStep
 
 __all__ = ["Broadcast", "Step", "Settings"]
 
@@ -26,6 +27,7 @@ Step: TypeAlias = Union[
     WorkflowEmailStep,
     "WorkflowBranchStep",
     WorkflowDelayStep,
+    WorkflowRandomCohortStep,
 ]
 
 

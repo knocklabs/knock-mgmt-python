@@ -19,6 +19,7 @@ from .. import _compat
 from .guide import Guide as Guide
 from .branch import Branch as Branch
 from .commit import Commit as Commit
+from .member import Member as Member
 from .shared import PageInfo as PageInfo
 from .channel import Channel as Channel
 from .partial import Partial as Partial
@@ -29,6 +30,7 @@ from .broadcast import Broadcast as Broadcast
 from .condition import Condition as Condition
 from .guide_step import GuideStep as GuideStep
 from .environment import Environment as Environment
+from .member_user import MemberUser as MemberUser
 from .send_window import SendWindow as SendWindow
 from .translation import Translation as Translation
 from .email_layout import EmailLayout as EmailLayout
@@ -51,6 +53,7 @@ from .workflow_sms_step import WorkflowSMSStep as WorkflowSMSStep
 from .branch_list_params import BranchListParams as BranchListParams
 from .channel_group_rule import ChannelGroupRule as ChannelGroupRule
 from .commit_list_params import CommitListParams as CommitListParams
+from .member_list_params import MemberListParams as MemberListParams
 from .sms_template_param import SMSTemplateParam as SMSTemplateParam
 from .workflow_chat_step import WorkflowChatStep as WorkflowChatStep
 from .workflow_push_step import WorkflowPushStep as WorkflowPushStep
@@ -131,6 +134,8 @@ from .workflow_delay_step_param import WorkflowDelayStepParam as WorkflowDelaySt
 from .workflow_email_step_param import WorkflowEmailStepParam as WorkflowEmailStepParam
 from .workflow_fetch_step_param import WorkflowFetchStepParam as WorkflowFetchStepParam
 from .workflow_in_app_feed_step import WorkflowInAppFeedStep as WorkflowInAppFeedStep
+from .workflow_update_data_step import WorkflowUpdateDataStep as WorkflowUpdateDataStep
+from .workflow_update_user_step import WorkflowUpdateUserStep as WorkflowUpdateUserStep
 from .commit_commit_all_response import CommitCommitAllResponse as CommitCommitAllResponse
 from .email_layout_upsert_params import EmailLayoutUpsertParams as EmailLayoutUpsertParams
 from .in_app_feed_template_param import InAppFeedTemplateParam as InAppFeedTemplateParam
@@ -142,6 +147,7 @@ from .workflow_branch_step_param import WorkflowBranchStepParam as WorkflowBranc
 from .workflow_retrieve_response import WorkflowRetrieveResponse as WorkflowRetrieveResponse
 from .workflow_validate_response import WorkflowValidateResponse as WorkflowValidateResponse
 from .broadcast_validate_response import BroadcastValidateResponse as BroadcastValidateResponse
+from .channel_group_upsert_params import ChannelGroupUpsertParams as ChannelGroupUpsertParams
 from .chat_channel_settings_param import ChatChannelSettingsParam as ChatChannelSettingsParam
 from .commit_promote_all_response import CommitPromoteAllResponse as CommitPromoteAllResponse
 from .commit_promote_one_response import CommitPromoteOneResponse as CommitPromoteOneResponse
@@ -149,6 +155,9 @@ from .push_channel_settings_param import PushChannelSettingsParam as PushChannel
 from .translation_retrieve_params import TranslationRetrieveParams as TranslationRetrieveParams
 from .translation_upsert_response import TranslationUpsertResponse as TranslationUpsertResponse
 from .translation_validate_params import TranslationValidateParams as TranslationValidateParams
+from .workflow_random_cohort_step import WorkflowRandomCohortStep as WorkflowRandomCohortStep
+from .workflow_update_object_step import WorkflowUpdateObjectStep as WorkflowUpdateObjectStep
+from .workflow_update_tenant_step import WorkflowUpdateTenantStep as WorkflowUpdateTenantStep
 from .workflow_webhook_step_param import WorkflowWebhookStepParam as WorkflowWebhookStepParam
 from .email_channel_settings_param import EmailChannelSettingsParam as EmailChannelSettingsParam
 from .email_layout_retrieve_params import EmailLayoutRetrieveParams as EmailLayoutRetrieveParams
@@ -160,6 +169,7 @@ from .message_type_retrieve_params import MessageTypeRetrieveParams as MessageTy
 from .message_type_upsert_response import MessageTypeUpsertResponse as MessageTypeUpsertResponse
 from .message_type_validate_params import MessageTypeValidateParams as MessageTypeValidateParams
 from .workflow_throttle_step_param import WorkflowThrottleStepParam as WorkflowThrottleStepParam
+from .channel_group_upsert_response import ChannelGroupUpsertResponse as ChannelGroupUpsertResponse
 from .message_type_text_field_param import MessageTypeTextFieldParam as MessageTypeTextFieldParam
 from .translation_retrieve_response import TranslationRetrieveResponse as TranslationRetrieveResponse
 from .translation_validate_response import TranslationValidateResponse as TranslationValidateResponse
@@ -167,6 +177,11 @@ from .email_layout_validate_response import EmailLayoutValidateResponse as Email
 from .message_type_validate_response import MessageTypeValidateResponse as MessageTypeValidateResponse
 from .workflow_trigger_workflow_step import WorkflowTriggerWorkflowStep as WorkflowTriggerWorkflowStep
 from .workflow_in_app_feed_step_param import WorkflowInAppFeedStepParam as WorkflowInAppFeedStepParam
+from .workflow_update_data_step_param import WorkflowUpdateDataStepParam as WorkflowUpdateDataStepParam
+from .workflow_update_user_step_param import WorkflowUpdateUserStepParam as WorkflowUpdateUserStepParam
+from .workflow_random_cohort_step_param import WorkflowRandomCohortStepParam as WorkflowRandomCohortStepParam
+from .workflow_update_object_step_param import WorkflowUpdateObjectStepParam as WorkflowUpdateObjectStepParam
+from .workflow_update_tenant_step_param import WorkflowUpdateTenantStepParam as WorkflowUpdateTenantStepParam
 from .guide_activation_url_pattern_param import GuideActivationURLPatternParam as GuideActivationURLPatternParam
 from .in_app_feed_channel_settings_param import InAppFeedChannelSettingsParam as InAppFeedChannelSettingsParam
 from .workflow_trigger_workflow_step_param import WorkflowTriggerWorkflowStepParam as WorkflowTriggerWorkflowStepParam

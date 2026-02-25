@@ -35,6 +35,7 @@ if TYPE_CHECKING:
         auth,
         guides,
         commits,
+        members,
         api_keys,
         branches,
         channels,
@@ -51,6 +52,7 @@ if TYPE_CHECKING:
     from .resources.auth import AuthResource, AsyncAuthResource
     from .resources.guides import GuidesResource, AsyncGuidesResource
     from .resources.commits import CommitsResource, AsyncCommitsResource
+    from .resources.members import MembersResource, AsyncMembersResource
     from .resources.api_keys import APIKeysResource, AsyncAPIKeysResource
     from .resources.branches import BranchesResource, AsyncBranchesResource
     from .resources.channels import ChannelsResource, AsyncChannelsResource
@@ -190,6 +192,12 @@ class KnockMgmt(SyncAPIClient):
         from .resources.channels import ChannelsResource
 
         return ChannelsResource(self)
+
+    @cached_property
+    def members(self) -> MembersResource:
+        from .resources.members import MembersResource
+
+        return MembersResource(self)
 
     @cached_property
     def environments(self) -> EnvironmentsResource:
@@ -450,6 +458,12 @@ class AsyncKnockMgmt(AsyncAPIClient):
         return AsyncChannelsResource(self)
 
     @cached_property
+    def members(self) -> AsyncMembersResource:
+        from .resources.members import AsyncMembersResource
+
+        return AsyncMembersResource(self)
+
+    @cached_property
     def environments(self) -> AsyncEnvironmentsResource:
         from .resources.environments import AsyncEnvironmentsResource
 
@@ -659,6 +673,12 @@ class KnockMgmtWithRawResponse:
         return ChannelsResourceWithRawResponse(self._client.channels)
 
     @cached_property
+    def members(self) -> members.MembersResourceWithRawResponse:
+        from .resources.members import MembersResourceWithRawResponse
+
+        return MembersResourceWithRawResponse(self._client.members)
+
+    @cached_property
     def environments(self) -> environments.EnvironmentsResourceWithRawResponse:
         from .resources.environments import EnvironmentsResourceWithRawResponse
 
@@ -754,6 +774,12 @@ class AsyncKnockMgmtWithRawResponse:
         from .resources.channels import AsyncChannelsResourceWithRawResponse
 
         return AsyncChannelsResourceWithRawResponse(self._client.channels)
+
+    @cached_property
+    def members(self) -> members.AsyncMembersResourceWithRawResponse:
+        from .resources.members import AsyncMembersResourceWithRawResponse
+
+        return AsyncMembersResourceWithRawResponse(self._client.members)
 
     @cached_property
     def environments(self) -> environments.AsyncEnvironmentsResourceWithRawResponse:
@@ -853,6 +879,12 @@ class KnockMgmtWithStreamedResponse:
         return ChannelsResourceWithStreamingResponse(self._client.channels)
 
     @cached_property
+    def members(self) -> members.MembersResourceWithStreamingResponse:
+        from .resources.members import MembersResourceWithStreamingResponse
+
+        return MembersResourceWithStreamingResponse(self._client.members)
+
+    @cached_property
     def environments(self) -> environments.EnvironmentsResourceWithStreamingResponse:
         from .resources.environments import EnvironmentsResourceWithStreamingResponse
 
@@ -948,6 +980,12 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.channels import AsyncChannelsResourceWithStreamingResponse
 
         return AsyncChannelsResourceWithStreamingResponse(self._client.channels)
+
+    @cached_property
+    def members(self) -> members.AsyncMembersResourceWithStreamingResponse:
+        from .resources.members import AsyncMembersResourceWithStreamingResponse
+
+        return AsyncMembersResourceWithStreamingResponse(self._client.members)
 
     @cached_property
     def environments(self) -> environments.AsyncEnvironmentsResourceWithStreamingResponse:
