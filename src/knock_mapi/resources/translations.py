@@ -33,6 +33,8 @@ __all__ = ["TranslationsResource", "AsyncTranslationsResource"]
 
 
 class TranslationsResource(SyncAPIResource):
+    """Translations are per-locale string files that can be used in your templates."""
+
     @cached_property
     def with_raw_response(self) -> TranslationsResourceWithRawResponse:
         """
@@ -344,6 +346,8 @@ class TranslationsResource(SyncAPIResource):
 
 
 class AsyncTranslationsResource(AsyncAPIResource):
+    """Translations are per-locale string files that can be used in your templates."""
+
     @cached_property
     def with_raw_response(self) -> AsyncTranslationsResourceWithRawResponse:
         """

@@ -20,6 +20,8 @@ __all__ = ["AuthResource", "AsyncAuthResource"]
 
 
 class AuthResource(SyncAPIResource):
+    """Resources for managing your Knock account."""
+
     @cached_property
     def with_raw_response(self) -> AuthResourceWithRawResponse:
         """
@@ -64,6 +66,8 @@ class AuthResource(SyncAPIResource):
 
 
 class AsyncAuthResource(AsyncAPIResource):
+    """Resources for managing your Knock account."""
+
     @cached_property
     def with_raw_response(self) -> AsyncAuthResourceWithRawResponse:
         """

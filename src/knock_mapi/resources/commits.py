@@ -29,6 +29,8 @@ __all__ = ["CommitsResource", "AsyncCommitsResource"]
 
 
 class CommitsResource(SyncAPIResource):
+    """Commits are versioned changes to resources."""
+
     @cached_property
     def with_raw_response(self) -> CommitsResourceWithRawResponse:
         """
@@ -333,6 +335,8 @@ class CommitsResource(SyncAPIResource):
 
 
 class AsyncCommitsResource(AsyncAPIResource):
+    """Commits are versioned changes to resources."""
+
     @cached_property
     def with_raw_response(self) -> AsyncCommitsResourceWithRawResponse:
         """

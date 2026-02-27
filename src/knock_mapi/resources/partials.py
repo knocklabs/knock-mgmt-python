@@ -25,6 +25,8 @@ __all__ = ["PartialsResource", "AsyncPartialsResource"]
 
 
 class PartialsResource(SyncAPIResource):
+    """Partials allow you to reuse content across templates."""
+
     @cached_property
     def with_raw_response(self) -> PartialsResourceWithRawResponse:
         """
@@ -298,6 +300,8 @@ class PartialsResource(SyncAPIResource):
 
 
 class AsyncPartialsResource(AsyncAPIResource):
+    """Partials allow you to reuse content across templates."""
+
     @cached_property
     def with_raw_response(self) -> AsyncPartialsResourceWithRawResponse:
         """

@@ -37,6 +37,10 @@ __all__ = ["GuidesResource", "AsyncGuidesResource"]
 
 
 class GuidesResource(SyncAPIResource):
+    """
+    Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+    """
+
     @cached_property
     def with_raw_response(self) -> GuidesResourceWithRawResponse:
         """
@@ -475,6 +479,10 @@ class GuidesResource(SyncAPIResource):
 
 
 class AsyncGuidesResource(AsyncAPIResource):
+    """
+    Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncGuidesResourceWithRawResponse:
         """
