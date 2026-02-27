@@ -30,6 +30,10 @@ __all__ = ["MessageTypesResource", "AsyncMessageTypesResource"]
 
 
 class MessageTypesResource(SyncAPIResource):
+    """
+    A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+    """
+
     @cached_property
     def with_raw_response(self) -> MessageTypesResourceWithRawResponse:
         """
@@ -306,6 +310,10 @@ class MessageTypesResource(SyncAPIResource):
 
 
 class AsyncMessageTypesResource(AsyncAPIResource):
+    """
+    A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncMessageTypesResourceWithRawResponse:
         """

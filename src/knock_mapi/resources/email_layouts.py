@@ -30,6 +30,8 @@ __all__ = ["EmailLayoutsResource", "AsyncEmailLayoutsResource"]
 
 
 class EmailLayoutsResource(SyncAPIResource):
+    """Email layouts wrap your email templates and provide a consistent look and feel."""
+
     @cached_property
     def with_raw_response(self) -> EmailLayoutsResourceWithRawResponse:
         """
@@ -305,6 +307,8 @@ class EmailLayoutsResource(SyncAPIResource):
 
 
 class AsyncEmailLayoutsResource(AsyncAPIResource):
+    """Email layouts wrap your email templates and provide a consistent look and feel."""
+
     @cached_property
     def with_raw_response(self) -> AsyncEmailLayoutsResourceWithRawResponse:
         """

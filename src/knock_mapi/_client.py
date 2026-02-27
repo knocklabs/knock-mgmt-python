@@ -135,42 +135,51 @@ class KnockMgmt(SyncAPIClient):
 
     @cached_property
     def email_layouts(self) -> EmailLayoutsResource:
+        """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import EmailLayoutsResource
 
         return EmailLayoutsResource(self)
 
     @cached_property
     def commits(self) -> CommitsResource:
+        """Commits are versioned changes to resources."""
         from .resources.commits import CommitsResource
 
         return CommitsResource(self)
 
     @cached_property
     def partials(self) -> PartialsResource:
+        """Partials allow you to reuse content across templates."""
         from .resources.partials import PartialsResource
 
         return PartialsResource(self)
 
     @cached_property
     def translations(self) -> TranslationsResource:
+        """Translations are per-locale string files that can be used in your templates."""
         from .resources.translations import TranslationsResource
 
         return TranslationsResource(self)
 
     @cached_property
     def workflows(self) -> WorkflowsResource:
+        """Workflows let you express your cross-channel notification logic."""
         from .resources.workflows import WorkflowsResource
 
         return WorkflowsResource(self)
 
     @cached_property
     def message_types(self) -> MessageTypesResource:
+        """
+        A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+        """
         from .resources.message_types import MessageTypesResource
 
         return MessageTypesResource(self)
 
     @cached_property
     def auth(self) -> AuthResource:
+        """Resources for managing your Knock account."""
         from .resources.auth import AuthResource
 
         return AuthResource(self)
@@ -201,6 +210,9 @@ class KnockMgmt(SyncAPIClient):
 
     @cached_property
     def environments(self) -> EnvironmentsResource:
+        """
+        Environments are isolated instances of your account that map to your infrastructure.
+        """
         from .resources.environments import EnvironmentsResource
 
         return EnvironmentsResource(self)
@@ -213,12 +225,16 @@ class KnockMgmt(SyncAPIClient):
 
     @cached_property
     def guides(self) -> GuidesResource:
+        """
+        Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+        """
         from .resources.guides import GuidesResource
 
         return GuidesResource(self)
 
     @cached_property
     def branches(self) -> BranchesResource:
+        """Branches in Knock are a way to isolate changes to your Knock resources."""
         from .resources.branches import BranchesResource
 
         return BranchesResource(self)
@@ -399,42 +415,51 @@ class AsyncKnockMgmt(AsyncAPIClient):
 
     @cached_property
     def email_layouts(self) -> AsyncEmailLayoutsResource:
+        """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import AsyncEmailLayoutsResource
 
         return AsyncEmailLayoutsResource(self)
 
     @cached_property
     def commits(self) -> AsyncCommitsResource:
+        """Commits are versioned changes to resources."""
         from .resources.commits import AsyncCommitsResource
 
         return AsyncCommitsResource(self)
 
     @cached_property
     def partials(self) -> AsyncPartialsResource:
+        """Partials allow you to reuse content across templates."""
         from .resources.partials import AsyncPartialsResource
 
         return AsyncPartialsResource(self)
 
     @cached_property
     def translations(self) -> AsyncTranslationsResource:
+        """Translations are per-locale string files that can be used in your templates."""
         from .resources.translations import AsyncTranslationsResource
 
         return AsyncTranslationsResource(self)
 
     @cached_property
     def workflows(self) -> AsyncWorkflowsResource:
+        """Workflows let you express your cross-channel notification logic."""
         from .resources.workflows import AsyncWorkflowsResource
 
         return AsyncWorkflowsResource(self)
 
     @cached_property
     def message_types(self) -> AsyncMessageTypesResource:
+        """
+        A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+        """
         from .resources.message_types import AsyncMessageTypesResource
 
         return AsyncMessageTypesResource(self)
 
     @cached_property
     def auth(self) -> AsyncAuthResource:
+        """Resources for managing your Knock account."""
         from .resources.auth import AsyncAuthResource
 
         return AsyncAuthResource(self)
@@ -465,6 +490,9 @@ class AsyncKnockMgmt(AsyncAPIClient):
 
     @cached_property
     def environments(self) -> AsyncEnvironmentsResource:
+        """
+        Environments are isolated instances of your account that map to your infrastructure.
+        """
         from .resources.environments import AsyncEnvironmentsResource
 
         return AsyncEnvironmentsResource(self)
@@ -477,12 +505,16 @@ class AsyncKnockMgmt(AsyncAPIClient):
 
     @cached_property
     def guides(self) -> AsyncGuidesResource:
+        """
+        Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+        """
         from .resources.guides import AsyncGuidesResource
 
         return AsyncGuidesResource(self)
 
     @cached_property
     def branches(self) -> AsyncBranchesResource:
+        """Branches in Knock are a way to isolate changes to your Knock resources."""
         from .resources.branches import AsyncBranchesResource
 
         return AsyncBranchesResource(self)
@@ -614,42 +646,51 @@ class KnockMgmtWithRawResponse:
 
     @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithRawResponse:
+        """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import EmailLayoutsResourceWithRawResponse
 
         return EmailLayoutsResourceWithRawResponse(self._client.email_layouts)
 
     @cached_property
     def commits(self) -> commits.CommitsResourceWithRawResponse:
+        """Commits are versioned changes to resources."""
         from .resources.commits import CommitsResourceWithRawResponse
 
         return CommitsResourceWithRawResponse(self._client.commits)
 
     @cached_property
     def partials(self) -> partials.PartialsResourceWithRawResponse:
+        """Partials allow you to reuse content across templates."""
         from .resources.partials import PartialsResourceWithRawResponse
 
         return PartialsResourceWithRawResponse(self._client.partials)
 
     @cached_property
     def translations(self) -> translations.TranslationsResourceWithRawResponse:
+        """Translations are per-locale string files that can be used in your templates."""
         from .resources.translations import TranslationsResourceWithRawResponse
 
         return TranslationsResourceWithRawResponse(self._client.translations)
 
     @cached_property
     def workflows(self) -> workflows.WorkflowsResourceWithRawResponse:
+        """Workflows let you express your cross-channel notification logic."""
         from .resources.workflows import WorkflowsResourceWithRawResponse
 
         return WorkflowsResourceWithRawResponse(self._client.workflows)
 
     @cached_property
     def message_types(self) -> message_types.MessageTypesResourceWithRawResponse:
+        """
+        A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+        """
         from .resources.message_types import MessageTypesResourceWithRawResponse
 
         return MessageTypesResourceWithRawResponse(self._client.message_types)
 
     @cached_property
     def auth(self) -> auth.AuthResourceWithRawResponse:
+        """Resources for managing your Knock account."""
         from .resources.auth import AuthResourceWithRawResponse
 
         return AuthResourceWithRawResponse(self._client.auth)
@@ -680,6 +721,9 @@ class KnockMgmtWithRawResponse:
 
     @cached_property
     def environments(self) -> environments.EnvironmentsResourceWithRawResponse:
+        """
+        Environments are isolated instances of your account that map to your infrastructure.
+        """
         from .resources.environments import EnvironmentsResourceWithRawResponse
 
         return EnvironmentsResourceWithRawResponse(self._client.environments)
@@ -692,12 +736,16 @@ class KnockMgmtWithRawResponse:
 
     @cached_property
     def guides(self) -> guides.GuidesResourceWithRawResponse:
+        """
+        Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+        """
         from .resources.guides import GuidesResourceWithRawResponse
 
         return GuidesResourceWithRawResponse(self._client.guides)
 
     @cached_property
     def branches(self) -> branches.BranchesResourceWithRawResponse:
+        """Branches in Knock are a way to isolate changes to your Knock resources."""
         from .resources.branches import BranchesResourceWithRawResponse
 
         return BranchesResourceWithRawResponse(self._client.branches)
@@ -717,42 +765,51 @@ class AsyncKnockMgmtWithRawResponse:
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithRawResponse:
+        """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import AsyncEmailLayoutsResourceWithRawResponse
 
         return AsyncEmailLayoutsResourceWithRawResponse(self._client.email_layouts)
 
     @cached_property
     def commits(self) -> commits.AsyncCommitsResourceWithRawResponse:
+        """Commits are versioned changes to resources."""
         from .resources.commits import AsyncCommitsResourceWithRawResponse
 
         return AsyncCommitsResourceWithRawResponse(self._client.commits)
 
     @cached_property
     def partials(self) -> partials.AsyncPartialsResourceWithRawResponse:
+        """Partials allow you to reuse content across templates."""
         from .resources.partials import AsyncPartialsResourceWithRawResponse
 
         return AsyncPartialsResourceWithRawResponse(self._client.partials)
 
     @cached_property
     def translations(self) -> translations.AsyncTranslationsResourceWithRawResponse:
+        """Translations are per-locale string files that can be used in your templates."""
         from .resources.translations import AsyncTranslationsResourceWithRawResponse
 
         return AsyncTranslationsResourceWithRawResponse(self._client.translations)
 
     @cached_property
     def workflows(self) -> workflows.AsyncWorkflowsResourceWithRawResponse:
+        """Workflows let you express your cross-channel notification logic."""
         from .resources.workflows import AsyncWorkflowsResourceWithRawResponse
 
         return AsyncWorkflowsResourceWithRawResponse(self._client.workflows)
 
     @cached_property
     def message_types(self) -> message_types.AsyncMessageTypesResourceWithRawResponse:
+        """
+        A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+        """
         from .resources.message_types import AsyncMessageTypesResourceWithRawResponse
 
         return AsyncMessageTypesResourceWithRawResponse(self._client.message_types)
 
     @cached_property
     def auth(self) -> auth.AsyncAuthResourceWithRawResponse:
+        """Resources for managing your Knock account."""
         from .resources.auth import AsyncAuthResourceWithRawResponse
 
         return AsyncAuthResourceWithRawResponse(self._client.auth)
@@ -783,6 +840,9 @@ class AsyncKnockMgmtWithRawResponse:
 
     @cached_property
     def environments(self) -> environments.AsyncEnvironmentsResourceWithRawResponse:
+        """
+        Environments are isolated instances of your account that map to your infrastructure.
+        """
         from .resources.environments import AsyncEnvironmentsResourceWithRawResponse
 
         return AsyncEnvironmentsResourceWithRawResponse(self._client.environments)
@@ -795,12 +855,16 @@ class AsyncKnockMgmtWithRawResponse:
 
     @cached_property
     def guides(self) -> guides.AsyncGuidesResourceWithRawResponse:
+        """
+        Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+        """
         from .resources.guides import AsyncGuidesResourceWithRawResponse
 
         return AsyncGuidesResourceWithRawResponse(self._client.guides)
 
     @cached_property
     def branches(self) -> branches.AsyncBranchesResourceWithRawResponse:
+        """Branches in Knock are a way to isolate changes to your Knock resources."""
         from .resources.branches import AsyncBranchesResourceWithRawResponse
 
         return AsyncBranchesResourceWithRawResponse(self._client.branches)
@@ -820,42 +884,51 @@ class KnockMgmtWithStreamedResponse:
 
     @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithStreamingResponse:
+        """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import EmailLayoutsResourceWithStreamingResponse
 
         return EmailLayoutsResourceWithStreamingResponse(self._client.email_layouts)
 
     @cached_property
     def commits(self) -> commits.CommitsResourceWithStreamingResponse:
+        """Commits are versioned changes to resources."""
         from .resources.commits import CommitsResourceWithStreamingResponse
 
         return CommitsResourceWithStreamingResponse(self._client.commits)
 
     @cached_property
     def partials(self) -> partials.PartialsResourceWithStreamingResponse:
+        """Partials allow you to reuse content across templates."""
         from .resources.partials import PartialsResourceWithStreamingResponse
 
         return PartialsResourceWithStreamingResponse(self._client.partials)
 
     @cached_property
     def translations(self) -> translations.TranslationsResourceWithStreamingResponse:
+        """Translations are per-locale string files that can be used in your templates."""
         from .resources.translations import TranslationsResourceWithStreamingResponse
 
         return TranslationsResourceWithStreamingResponse(self._client.translations)
 
     @cached_property
     def workflows(self) -> workflows.WorkflowsResourceWithStreamingResponse:
+        """Workflows let you express your cross-channel notification logic."""
         from .resources.workflows import WorkflowsResourceWithStreamingResponse
 
         return WorkflowsResourceWithStreamingResponse(self._client.workflows)
 
     @cached_property
     def message_types(self) -> message_types.MessageTypesResourceWithStreamingResponse:
+        """
+        A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+        """
         from .resources.message_types import MessageTypesResourceWithStreamingResponse
 
         return MessageTypesResourceWithStreamingResponse(self._client.message_types)
 
     @cached_property
     def auth(self) -> auth.AuthResourceWithStreamingResponse:
+        """Resources for managing your Knock account."""
         from .resources.auth import AuthResourceWithStreamingResponse
 
         return AuthResourceWithStreamingResponse(self._client.auth)
@@ -886,6 +959,9 @@ class KnockMgmtWithStreamedResponse:
 
     @cached_property
     def environments(self) -> environments.EnvironmentsResourceWithStreamingResponse:
+        """
+        Environments are isolated instances of your account that map to your infrastructure.
+        """
         from .resources.environments import EnvironmentsResourceWithStreamingResponse
 
         return EnvironmentsResourceWithStreamingResponse(self._client.environments)
@@ -898,12 +974,16 @@ class KnockMgmtWithStreamedResponse:
 
     @cached_property
     def guides(self) -> guides.GuidesResourceWithStreamingResponse:
+        """
+        Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+        """
         from .resources.guides import GuidesResourceWithStreamingResponse
 
         return GuidesResourceWithStreamingResponse(self._client.guides)
 
     @cached_property
     def branches(self) -> branches.BranchesResourceWithStreamingResponse:
+        """Branches in Knock are a way to isolate changes to your Knock resources."""
         from .resources.branches import BranchesResourceWithStreamingResponse
 
         return BranchesResourceWithStreamingResponse(self._client.branches)
@@ -923,42 +1003,51 @@ class AsyncKnockMgmtWithStreamedResponse:
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithStreamingResponse:
+        """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import AsyncEmailLayoutsResourceWithStreamingResponse
 
         return AsyncEmailLayoutsResourceWithStreamingResponse(self._client.email_layouts)
 
     @cached_property
     def commits(self) -> commits.AsyncCommitsResourceWithStreamingResponse:
+        """Commits are versioned changes to resources."""
         from .resources.commits import AsyncCommitsResourceWithStreamingResponse
 
         return AsyncCommitsResourceWithStreamingResponse(self._client.commits)
 
     @cached_property
     def partials(self) -> partials.AsyncPartialsResourceWithStreamingResponse:
+        """Partials allow you to reuse content across templates."""
         from .resources.partials import AsyncPartialsResourceWithStreamingResponse
 
         return AsyncPartialsResourceWithStreamingResponse(self._client.partials)
 
     @cached_property
     def translations(self) -> translations.AsyncTranslationsResourceWithStreamingResponse:
+        """Translations are per-locale string files that can be used in your templates."""
         from .resources.translations import AsyncTranslationsResourceWithStreamingResponse
 
         return AsyncTranslationsResourceWithStreamingResponse(self._client.translations)
 
     @cached_property
     def workflows(self) -> workflows.AsyncWorkflowsResourceWithStreamingResponse:
+        """Workflows let you express your cross-channel notification logic."""
         from .resources.workflows import AsyncWorkflowsResourceWithStreamingResponse
 
         return AsyncWorkflowsResourceWithStreamingResponse(self._client.workflows)
 
     @cached_property
     def message_types(self) -> message_types.AsyncMessageTypesResourceWithStreamingResponse:
+        """
+        A message type allows you to specify an in-app schema that defines the fields available for your in-app notifications.
+        """
         from .resources.message_types import AsyncMessageTypesResourceWithStreamingResponse
 
         return AsyncMessageTypesResourceWithStreamingResponse(self._client.message_types)
 
     @cached_property
     def auth(self) -> auth.AsyncAuthResourceWithStreamingResponse:
+        """Resources for managing your Knock account."""
         from .resources.auth import AsyncAuthResourceWithStreamingResponse
 
         return AsyncAuthResourceWithStreamingResponse(self._client.auth)
@@ -989,6 +1078,9 @@ class AsyncKnockMgmtWithStreamedResponse:
 
     @cached_property
     def environments(self) -> environments.AsyncEnvironmentsResourceWithStreamingResponse:
+        """
+        Environments are isolated instances of your account that map to your infrastructure.
+        """
         from .resources.environments import AsyncEnvironmentsResourceWithStreamingResponse
 
         return AsyncEnvironmentsResourceWithStreamingResponse(self._client.environments)
@@ -1001,12 +1093,16 @@ class AsyncKnockMgmtWithStreamedResponse:
 
     @cached_property
     def guides(self) -> guides.AsyncGuidesResourceWithStreamingResponse:
+        """
+        Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+        """
         from .resources.guides import AsyncGuidesResourceWithStreamingResponse
 
         return AsyncGuidesResourceWithStreamingResponse(self._client.guides)
 
     @cached_property
     def branches(self) -> branches.AsyncBranchesResourceWithStreamingResponse:
+        """Branches in Knock are a way to isolate changes to your Knock resources."""
         from .resources.branches import AsyncBranchesResourceWithStreamingResponse
 
         return AsyncBranchesResourceWithStreamingResponse(self._client.branches)

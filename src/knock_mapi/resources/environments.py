@@ -23,6 +23,10 @@ __all__ = ["EnvironmentsResource", "AsyncEnvironmentsResource"]
 
 
 class EnvironmentsResource(SyncAPIResource):
+    """
+    Environments are isolated instances of your account that map to your infrastructure.
+    """
+
     @cached_property
     def with_raw_response(self) -> EnvironmentsResourceWithRawResponse:
         """
@@ -130,6 +134,10 @@ class EnvironmentsResource(SyncAPIResource):
 
 
 class AsyncEnvironmentsResource(AsyncAPIResource):
+    """
+    Environments are isolated instances of your account that map to your infrastructure.
+    """
+
     @cached_property
     def with_raw_response(self) -> AsyncEnvironmentsResourceWithRawResponse:
         """

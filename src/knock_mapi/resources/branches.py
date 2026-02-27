@@ -23,6 +23,8 @@ __all__ = ["BranchesResource", "AsyncBranchesResource"]
 
 
 class BranchesResource(SyncAPIResource):
+    """Branches in Knock are a way to isolate changes to your Knock resources."""
+
     @cached_property
     def with_raw_response(self) -> BranchesResourceWithRawResponse:
         """
@@ -222,6 +224,8 @@ class BranchesResource(SyncAPIResource):
 
 
 class AsyncBranchesResource(AsyncAPIResource):
+    """Branches in Knock are a way to isolate changes to your Knock resources."""
+
     @cached_property
     def with_raw_response(self) -> AsyncBranchesResourceWithRawResponse:
         """

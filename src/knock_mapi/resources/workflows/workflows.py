@@ -45,8 +45,11 @@ __all__ = ["WorkflowsResource", "AsyncWorkflowsResource"]
 
 
 class WorkflowsResource(SyncAPIResource):
+    """Workflows let you express your cross-channel notification logic."""
+
     @cached_property
     def steps(self) -> StepsResource:
+        """Workflows let you express your cross-channel notification logic."""
         return StepsResource(self._client)
 
     @cached_property
@@ -467,8 +470,11 @@ class WorkflowsResource(SyncAPIResource):
 
 
 class AsyncWorkflowsResource(AsyncAPIResource):
+    """Workflows let you express your cross-channel notification logic."""
+
     @cached_property
     def steps(self) -> AsyncStepsResource:
+        """Workflows let you express your cross-channel notification logic."""
         return AsyncStepsResource(self._client)
 
     @cached_property
@@ -913,6 +919,7 @@ class WorkflowsResourceWithRawResponse:
 
     @cached_property
     def steps(self) -> StepsResourceWithRawResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return StepsResourceWithRawResponse(self._workflows.steps)
 
 
@@ -941,6 +948,7 @@ class AsyncWorkflowsResourceWithRawResponse:
 
     @cached_property
     def steps(self) -> AsyncStepsResourceWithRawResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return AsyncStepsResourceWithRawResponse(self._workflows.steps)
 
 
@@ -969,6 +977,7 @@ class WorkflowsResourceWithStreamingResponse:
 
     @cached_property
     def steps(self) -> StepsResourceWithStreamingResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return StepsResourceWithStreamingResponse(self._workflows.steps)
 
 
@@ -997,4 +1006,5 @@ class AsyncWorkflowsResourceWithStreamingResponse:
 
     @cached_property
     def steps(self) -> AsyncStepsResourceWithStreamingResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return AsyncStepsResourceWithStreamingResponse(self._workflows.steps)

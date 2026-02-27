@@ -24,6 +24,8 @@ __all__ = ["StepsResource", "AsyncStepsResource"]
 
 
 class StepsResource(SyncAPIResource):
+    """Workflows let you express your cross-channel notification logic."""
+
     @cached_property
     def with_raw_response(self) -> StepsResourceWithRawResponse:
         """
@@ -121,6 +123,8 @@ class StepsResource(SyncAPIResource):
 
 
 class AsyncStepsResource(AsyncAPIResource):
+    """Workflows let you express your cross-channel notification logic."""
+
     @cached_property
     def with_raw_response(self) -> AsyncStepsResourceWithRawResponse:
         """
