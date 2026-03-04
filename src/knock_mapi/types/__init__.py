@@ -95,6 +95,7 @@ from .email_channel_settings import EmailChannelSettings as EmailChannelSettings
 from .guide_archive_response import GuideArchiveResponse as GuideArchiveResponse
 from .request_template_param import RequestTemplateParam as RequestTemplateParam
 from .webhook_template_param import WebhookTemplateParam as WebhookTemplateParam
+from .workflow_ai_agent_step import WorkflowAIAgentStep as WorkflowAIAgentStep
 from .workflow_throttle_step import WorkflowThrottleStep as WorkflowThrottleStep
 from .workflow_upsert_params import WorkflowUpsertParams as WorkflowUpsertParams
 from .api_key_exchange_params import APIKeyExchangeParams as APIKeyExchangeParams
@@ -168,6 +169,7 @@ from .in_app_feed_channel_settings import InAppFeedChannelSettings as InAppFeedC
 from .message_type_retrieve_params import MessageTypeRetrieveParams as MessageTypeRetrieveParams
 from .message_type_upsert_response import MessageTypeUpsertResponse as MessageTypeUpsertResponse
 from .message_type_validate_params import MessageTypeValidateParams as MessageTypeValidateParams
+from .workflow_ai_agent_step_param import WorkflowAIAgentStepParam as WorkflowAIAgentStepParam
 from .workflow_throttle_step_param import WorkflowThrottleStepParam as WorkflowThrottleStepParam
 from .channel_group_upsert_response import ChannelGroupUpsertResponse as ChannelGroupUpsertResponse
 from .message_type_text_field_param import MessageTypeTextFieldParam as MessageTypeTextFieldParam

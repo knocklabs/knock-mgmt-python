@@ -102,6 +102,7 @@ from knock_mapi.types import (
     Duration,
     SendWindow,
     Workflow,
+    WorkflowAIAgentStep,
     WorkflowBatchStep,
     WorkflowBranchStep,
     WorkflowChatStep,
