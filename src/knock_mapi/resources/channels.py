@@ -2,6 +2,9 @@
 
 from __future__ import annotations
 
+from typing import List
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import channel_list_params
@@ -48,6 +51,7 @@ class ChannelsResource(SyncAPIResource):
         id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        include: List[Literal["environment_settings"]] | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -67,6 +71,9 @@ class ChannelsResource(SyncAPIResource):
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          include: Associated resources to include in the response. Accepts `environment_settings`
+              to include per-environment channel configuration.
 
           limit: The number of entries to fetch per-page.
 
@@ -91,6 +98,7 @@ class ChannelsResource(SyncAPIResource):
                         "id": id,
                         "after": after,
                         "before": before,
+                        "include": include,
                         "limit": limit,
                     },
                     channel_list_params.ChannelListParams,
@@ -126,6 +134,7 @@ class AsyncChannelsResource(AsyncAPIResource):
         id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        include: List[Literal["environment_settings"]] | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -145,6 +154,9 @@ class AsyncChannelsResource(AsyncAPIResource):
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          include: Associated resources to include in the response. Accepts `environment_settings`
+              to include per-environment channel configuration.
 
           limit: The number of entries to fetch per-page.
 
@@ -169,6 +181,7 @@ class AsyncChannelsResource(AsyncAPIResource):
                         "id": id,
                         "after": after,
                         "before": before,
+                        "include": include,
                         "limit": limit,
                     },
                     channel_list_params.ChannelListParams,
