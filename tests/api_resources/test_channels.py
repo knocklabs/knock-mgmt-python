@@ -31,6 +31,7 @@ class TestChannels:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             after="after",
             before="before",
+            include=["environment_settings"],
             limit=0,
         )
         assert_matches_type(SyncEntriesCursor[Channel], channel, path=["response"])
@@ -76,6 +77,7 @@ class TestAsyncChannels:
             id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             after="after",
             before="before",
+            include=["environment_settings"],
             limit=0,
         )
         assert_matches_type(AsyncEntriesCursor[Channel], channel, path=["response"])

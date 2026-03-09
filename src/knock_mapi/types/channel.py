@@ -1,12 +1,44 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Channel"]
+__all__ = ["Channel", "EnvironmentSettings"]
+
+
+class EnvironmentSettings(BaseModel):
+    """Environment-specific settings for a channel."""
+
+    id: str
+    """The unique identifier for these environment settings."""
+
+    is_sandbox: bool
+    """Whether the channel is in sandbox mode for this environment.
+
+    Sandbox mode may prevent actual message delivery.
+    """
+
+    is_valid: bool
+    """
+    Whether the channel configuration is valid and ready to send messages in this
+    environment.
+    """
+
+    channel_settings: Optional[Dict[str, object]] = None
+    """Channel-type-specific settings (e.g., from_address for email).
+
+    Structure varies by channel type.
+    """
+
+    provider_settings: Optional[Dict[str, object]] = None
+    """Provider-specific settings (e.g., API keys, credentials).
+
+    Structure varies by provider. Secret values are obfuscated unless they are
+    Liquid templates.
+    """
 
 
 class Channel(BaseModel):
@@ -48,3 +80,10 @@ class Channel(BaseModel):
 
     description: Optional[str] = None
     """Optional description of the channel's purpose or usage."""
+
+    environment_settings: Optional[Dict[str, EnvironmentSettings]] = None
+    """
+    Per-environment settings for this channel, keyed by environment slug (e.g.,
+    'development', 'production'). Only included when requested via the `include`
+    parameter or when retrieving a single channel.
+    """

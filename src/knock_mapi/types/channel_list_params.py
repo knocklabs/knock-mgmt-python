@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import TypedDict
+from typing import List
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["ChannelListParams"]
 
@@ -16,6 +17,12 @@ class ChannelListParams(TypedDict, total=False):
 
     before: str
     """The cursor to fetch entries before."""
+
+    include: List[Literal["environment_settings"]]
+    """Associated resources to include in the response.
+
+    Accepts `environment_settings` to include per-environment channel configuration.
+    """
 
     limit: int
     """The number of entries to fetch per-page."""
