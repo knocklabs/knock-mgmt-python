@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["VariableListParams"]
 
@@ -25,3 +25,6 @@ class VariableListParams(TypedDict, total=False):
 
     limit: int
     """The number of entries to fetch per-page."""
+
+    type: Literal["public", "secret"]
+    """Filter variables by type. Supports 'public' or 'secret'."""

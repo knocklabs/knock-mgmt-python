@@ -35,6 +35,7 @@ class TestVariables:
             before="before",
             branch="feature-branch",
             limit=0,
+            type="public",
         )
         assert_matches_type(SyncEntriesCursor[Variable], variable, path=["response"])
 
@@ -87,6 +88,7 @@ class TestAsyncVariables:
             before="before",
             branch="feature-branch",
             limit=0,
+            type="public",
         )
         assert_matches_type(AsyncEntriesCursor[Variable], variable, path=["response"])
 
