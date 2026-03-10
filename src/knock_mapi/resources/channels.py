@@ -45,6 +45,42 @@ class ChannelsResource(SyncAPIResource):
         """
         return ChannelsResourceWithStreamingResponse(self)
 
+    def retrieve(
+        self,
+        channel_key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Channel:
+        """Returns a channel with all environment-specific settings.
+
+        Secret values in
+        provider settings are obfuscated unless they are Liquid templates (e.g.,
+        `{{ vars.api_key }}`).
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not channel_key:
+            raise ValueError(f"Expected a non-empty value for `channel_key` but received {channel_key!r}")
+        return self._get(
+            f"/v1/channels/{channel_key}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Channel,
+        )
+
     def list(
         self,
         *,
@@ -128,6 +164,42 @@ class AsyncChannelsResource(AsyncAPIResource):
         """
         return AsyncChannelsResourceWithStreamingResponse(self)
 
+    async def retrieve(
+        self,
+        channel_key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Channel:
+        """Returns a channel with all environment-specific settings.
+
+        Secret values in
+        provider settings are obfuscated unless they are Liquid templates (e.g.,
+        `{{ vars.api_key }}`).
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not channel_key:
+            raise ValueError(f"Expected a non-empty value for `channel_key` but received {channel_key!r}")
+        return await self._get(
+            f"/v1/channels/{channel_key}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Channel,
+        )
+
     def list(
         self,
         *,
@@ -195,6 +267,9 @@ class ChannelsResourceWithRawResponse:
     def __init__(self, channels: ChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = to_raw_response_wrapper(
+            channels.retrieve,
+        )
         self.list = to_raw_response_wrapper(
             channels.list,
         )
@@ -204,6 +279,9 @@ class AsyncChannelsResourceWithRawResponse:
     def __init__(self, channels: AsyncChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = async_to_raw_response_wrapper(
+            channels.retrieve,
+        )
         self.list = async_to_raw_response_wrapper(
             channels.list,
         )
@@ -213,6 +291,9 @@ class ChannelsResourceWithStreamingResponse:
     def __init__(self, channels: ChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = to_streamed_response_wrapper(
+            channels.retrieve,
+        )
         self.list = to_streamed_response_wrapper(
             channels.list,
         )
@@ -222,6 +303,9 @@ class AsyncChannelsResourceWithStreamingResponse:
     def __init__(self, channels: AsyncChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = async_to_streamed_response_wrapper(
+            channels.retrieve,
+        )
         self.list = async_to_streamed_response_wrapper(
             channels.list,
         )
