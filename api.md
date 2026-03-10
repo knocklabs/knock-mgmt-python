@@ -217,6 +217,7 @@ Types:
 ```python
 from knock_mapi.types import (
     Channel,
+    ChannelEnvironmentSettings,
     ChatChannelSettings,
     EmailChannelSettings,
     InAppFeedChannelSettings,
@@ -227,6 +228,7 @@ from knock_mapi.types import (
 
 Methods:
 
+- <code title="get /v1/channels/{channel_key}">client.channels.<a href="./src/knock_mapi/resources/channels.py">retrieve</a>(channel_key) -> <a href="./src/knock_mapi/types/channel.py">Channel</a></code>
 - <code title="get /v1/channels">client.channels.<a href="./src/knock_mapi/resources/channels.py">list</a>(\*\*<a href="src/knock_mapi/types/channel_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/channel.py">SyncEntriesCursor[Channel]</a></code>
 
 # Members
