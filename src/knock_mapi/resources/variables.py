@@ -44,6 +44,39 @@ class VariablesResource(SyncAPIResource):
         """
         return VariablesResourceWithStreamingResponse(self)
 
+    def retrieve(
+        self,
+        key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Variable:
+        """
+        Returns a single variable by key with per-environment value overrides.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not key:
+            raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        return self._get(
+            f"/v1/variables/{key}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Variable,
+        )
+
     def list(
         self,
         *,
@@ -132,6 +165,39 @@ class AsyncVariablesResource(AsyncAPIResource):
         """
         return AsyncVariablesResourceWithStreamingResponse(self)
 
+    async def retrieve(
+        self,
+        key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Variable:
+        """
+        Returns a single variable by key with per-environment value overrides.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not key:
+            raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        return await self._get(
+            f"/v1/variables/{key}",
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Variable,
+        )
+
     def list(
         self,
         *,
@@ -204,6 +270,9 @@ class VariablesResourceWithRawResponse:
     def __init__(self, variables: VariablesResource) -> None:
         self._variables = variables
 
+        self.retrieve = to_raw_response_wrapper(
+            variables.retrieve,
+        )
         self.list = to_raw_response_wrapper(
             variables.list,
         )
@@ -213,6 +282,9 @@ class AsyncVariablesResourceWithRawResponse:
     def __init__(self, variables: AsyncVariablesResource) -> None:
         self._variables = variables
 
+        self.retrieve = async_to_raw_response_wrapper(
+            variables.retrieve,
+        )
         self.list = async_to_raw_response_wrapper(
             variables.list,
         )
@@ -222,6 +294,9 @@ class VariablesResourceWithStreamingResponse:
     def __init__(self, variables: VariablesResource) -> None:
         self._variables = variables
 
+        self.retrieve = to_streamed_response_wrapper(
+            variables.retrieve,
+        )
         self.list = to_streamed_response_wrapper(
             variables.list,
         )
@@ -231,6 +306,9 @@ class AsyncVariablesResourceWithStreamingResponse:
     def __init__(self, variables: AsyncVariablesResource) -> None:
         self._variables = variables
 
+        self.retrieve = async_to_streamed_response_wrapper(
+            variables.retrieve,
+        )
         self.list = async_to_streamed_response_wrapper(
             variables.list,
         )

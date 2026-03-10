@@ -279,6 +279,7 @@ from knock_mapi.types import Variable
 
 Methods:
 
+- <code title="get /v1/variables/{key}">client.variables.<a href="./src/knock_mapi/resources/variables.py">retrieve</a>(key) -> <a href="./src/knock_mapi/types/variable.py">Variable</a></code>
 - <code title="get /v1/variables">client.variables.<a href="./src/knock_mapi/resources/variables.py">list</a>(\*\*<a href="src/knock_mapi/types/variable_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/variable.py">SyncEntriesCursor[Variable]</a></code>
 
 # Guides
