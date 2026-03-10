@@ -40,6 +40,7 @@ if TYPE_CHECKING:
         branches,
         channels,
         partials,
+        audiences,
         variables,
         workflows,
         broadcasts,
@@ -57,6 +58,7 @@ if TYPE_CHECKING:
     from .resources.branches import BranchesResource, AsyncBranchesResource
     from .resources.channels import ChannelsResource, AsyncChannelsResource
     from .resources.partials import PartialsResource, AsyncPartialsResource
+    from .resources.audiences import AudiencesResource, AsyncAudiencesResource
     from .resources.variables import VariablesResource, AsyncVariablesResource
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
     from .resources.environments import EnvironmentsResource, AsyncEnvironmentsResource
@@ -244,6 +246,13 @@ class KnockMgmt(SyncAPIClient):
         from .resources.broadcasts import BroadcastsResource
 
         return BroadcastsResource(self)
+
+    @cached_property
+    def audiences(self) -> AudiencesResource:
+        """Audiences define sets of users that can be targeted for notifications."""
+        from .resources.audiences import AudiencesResource
+
+        return AudiencesResource(self)
 
     @cached_property
     def with_raw_response(self) -> KnockMgmtWithRawResponse:
@@ -526,6 +535,13 @@ class AsyncKnockMgmt(AsyncAPIClient):
         return AsyncBroadcastsResource(self)
 
     @cached_property
+    def audiences(self) -> AsyncAudiencesResource:
+        """Audiences define sets of users that can be targeted for notifications."""
+        from .resources.audiences import AsyncAudiencesResource
+
+        return AsyncAudiencesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncKnockMgmtWithRawResponse:
         return AsyncKnockMgmtWithRawResponse(self)
 
@@ -756,6 +772,13 @@ class KnockMgmtWithRawResponse:
 
         return BroadcastsResourceWithRawResponse(self._client.broadcasts)
 
+    @cached_property
+    def audiences(self) -> audiences.AudiencesResourceWithRawResponse:
+        """Audiences define sets of users that can be targeted for notifications."""
+        from .resources.audiences import AudiencesResourceWithRawResponse
+
+        return AudiencesResourceWithRawResponse(self._client.audiences)
+
 
 class AsyncKnockMgmtWithRawResponse:
     _client: AsyncKnockMgmt
@@ -874,6 +897,13 @@ class AsyncKnockMgmtWithRawResponse:
         from .resources.broadcasts import AsyncBroadcastsResourceWithRawResponse
 
         return AsyncBroadcastsResourceWithRawResponse(self._client.broadcasts)
+
+    @cached_property
+    def audiences(self) -> audiences.AsyncAudiencesResourceWithRawResponse:
+        """Audiences define sets of users that can be targeted for notifications."""
+        from .resources.audiences import AsyncAudiencesResourceWithRawResponse
+
+        return AsyncAudiencesResourceWithRawResponse(self._client.audiences)
 
 
 class KnockMgmtWithStreamedResponse:
@@ -994,6 +1024,13 @@ class KnockMgmtWithStreamedResponse:
 
         return BroadcastsResourceWithStreamingResponse(self._client.broadcasts)
 
+    @cached_property
+    def audiences(self) -> audiences.AudiencesResourceWithStreamingResponse:
+        """Audiences define sets of users that can be targeted for notifications."""
+        from .resources.audiences import AudiencesResourceWithStreamingResponse
+
+        return AudiencesResourceWithStreamingResponse(self._client.audiences)
+
 
 class AsyncKnockMgmtWithStreamedResponse:
     _client: AsyncKnockMgmt
@@ -1112,6 +1149,13 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.broadcasts import AsyncBroadcastsResourceWithStreamingResponse
 
         return AsyncBroadcastsResourceWithStreamingResponse(self._client.broadcasts)
+
+    @cached_property
+    def audiences(self) -> audiences.AsyncAudiencesResourceWithStreamingResponse:
+        """Audiences define sets of users that can be targeted for notifications."""
+        from .resources.audiences import AsyncAudiencesResourceWithStreamingResponse
+
+        return AsyncAudiencesResourceWithStreamingResponse(self._client.audiences)
 
 
 Client = KnockMgmt
