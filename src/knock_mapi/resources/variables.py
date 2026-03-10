@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import variable_list_params
@@ -50,6 +52,7 @@ class VariablesResource(SyncAPIResource):
         before: str | Omit = omit,
         branch: str | Omit = omit,
         limit: int | Omit = omit,
+        type: Literal["public", "secret"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -57,8 +60,11 @@ class VariablesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Variable]:
-        """
-        Returns a paginated list of variables for a given environment.
+        """Returns a list of variables.
+
+        When an environment is specified, returns
+        per-environment variables. Otherwise, returns project-scoped variables with
+        per-environment overrides.
 
         Args:
           environment: The environment slug.
@@ -71,6 +77,8 @@ class VariablesResource(SyncAPIResource):
               `"development"`.
 
           limit: The number of entries to fetch per-page.
+
+          type: Filter variables by type. Supports 'public' or 'secret'.
 
           extra_headers: Send extra headers
 
@@ -95,6 +103,7 @@ class VariablesResource(SyncAPIResource):
                         "before": before,
                         "branch": branch,
                         "limit": limit,
+                        "type": type,
                     },
                     variable_list_params.VariableListParams,
                 ),
@@ -131,6 +140,7 @@ class AsyncVariablesResource(AsyncAPIResource):
         before: str | Omit = omit,
         branch: str | Omit = omit,
         limit: int | Omit = omit,
+        type: Literal["public", "secret"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -138,8 +148,11 @@ class AsyncVariablesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Variable, AsyncEntriesCursor[Variable]]:
-        """
-        Returns a paginated list of variables for a given environment.
+        """Returns a list of variables.
+
+        When an environment is specified, returns
+        per-environment variables. Otherwise, returns project-scoped variables with
+        per-environment overrides.
 
         Args:
           environment: The environment slug.
@@ -152,6 +165,8 @@ class AsyncVariablesResource(AsyncAPIResource):
               `"development"`.
 
           limit: The number of entries to fetch per-page.
+
+          type: Filter variables by type. Supports 'public' or 'secret'.
 
           extra_headers: Send extra headers
 
@@ -176,6 +191,7 @@ class AsyncVariablesResource(AsyncAPIResource):
                         "before": before,
                         "branch": branch,
                         "limit": limit,
+                        "type": type,
                     },
                     variable_list_params.VariableListParams,
                 ),
