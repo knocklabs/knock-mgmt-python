@@ -64,6 +64,14 @@ from .partials import (
     PartialsResourceWithStreamingResponse,
     AsyncPartialsResourceWithStreamingResponse,
 )
+from .audiences import (
+    AudiencesResource,
+    AsyncAudiencesResource,
+    AudiencesResourceWithRawResponse,
+    AsyncAudiencesResourceWithRawResponse,
+    AudiencesResourceWithStreamingResponse,
+    AsyncAudiencesResourceWithStreamingResponse,
+)
 from .variables import (
     VariablesResource,
     AsyncVariablesResource,
@@ -226,4 +234,10 @@ __all__ = [
     "AsyncBroadcastsResourceWithRawResponse",
     "BroadcastsResourceWithStreamingResponse",
     "AsyncBroadcastsResourceWithStreamingResponse",
+    "AudiencesResource",
+    "AsyncAudiencesResource",
+    "AudiencesResourceWithRawResponse",
+    "AsyncAudiencesResourceWithRawResponse",
+    "AudiencesResourceWithStreamingResponse",
+    "AsyncAudiencesResourceWithStreamingResponse",
 ]

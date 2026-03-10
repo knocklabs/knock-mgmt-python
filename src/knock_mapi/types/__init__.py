@@ -20,9 +20,21 @@ from .guide import Guide as Guide
 from .branch import Branch as Branch
 from .commit import Commit as Commit
 from .member import Member as Member
-from .shared import PageInfo as PageInfo
+from .shared import (
+    PageInfo as PageInfo,
+    MessageTypeURLField as MessageTypeURLField,
+    MessageTypeJsonField as MessageTypeJsonField,
+    MessageTypeImageField as MessageTypeImageField,
+    MessageTypeButtonField as MessageTypeButtonField,
+    MessageTypeSelectField as MessageTypeSelectField,
+    MessageTypeBooleanField as MessageTypeBooleanField,
+    MessageTypeMarkdownField as MessageTypeMarkdownField,
+    MessageTypeTextareaField as MessageTypeTextareaField,
+    MessageTypeMultiSelectField as MessageTypeMultiSelectField,
+)
 from .channel import Channel as Channel
 from .partial import Partial as Partial
+from .audience import Audience as Audience
 from .duration import Duration as Duration
 from .variable import Variable as Variable
 from .workflow import Workflow as Workflow
@@ -44,12 +56,15 @@ from .duration_param import DurationParam as DurationParam
 from .email_template import EmailTemplate as EmailTemplate
 from .condition_group import ConditionGroup as ConditionGroup
 from .condition_param import ConditionParam as ConditionParam
+from .static_audience import StaticAudience as StaticAudience
+from .dynamic_audience import DynamicAudience as DynamicAudience
 from .guide_step_param import GuideStepParam as GuideStepParam
 from .request_template import RequestTemplate as RequestTemplate
 from .webhook_template import WebhookTemplate as WebhookTemplate
 from .guide_list_params import GuideListParams as GuideListParams
 from .send_window_param import SendWindowParam as SendWindowParam
 from .workflow_sms_step import WorkflowSMSStep as WorkflowSMSStep
+from .audience_condition import AudienceCondition as AudienceCondition
 from .branch_list_params import BranchListParams as BranchListParams
 from .channel_group_rule import ChannelGroupRule as ChannelGroupRule
 from .commit_list_params import CommitListParams as CommitListParams
@@ -68,6 +83,7 @@ from .workflow_email_step import WorkflowEmailStep as WorkflowEmailStep
 from .workflow_fetch_step import WorkflowFetchStep as WorkflowFetchStep
 from .workflow_run_params import WorkflowRunParams as WorkflowRunParams
 from .workflow_step_param import WorkflowStepParam as WorkflowStepParam
+from .audience_list_params import AudienceListParams as AudienceListParams
 from .auth_verify_response import AuthVerifyResponse as AuthVerifyResponse
 from .branch_create_params import BranchCreateParams as BranchCreateParams
 from .branch_delete_params import BranchDeleteParams as BranchDeleteParams
@@ -90,6 +106,7 @@ from .partial_upsert_params import PartialUpsertParams as PartialUpsertParams
 from .push_channel_settings import PushChannelSettings as PushChannelSettings
 from .workflow_run_response import WorkflowRunResponse as WorkflowRunResponse
 from .workflow_webhook_step import WorkflowWebhookStep as WorkflowWebhookStep
+from .audience_upsert_params import AudienceUpsertParams as AudienceUpsertParams
 from .branch_retrieve_params import BranchRetrieveParams as BranchRetrieveParams
 from .email_channel_settings import EmailChannelSettings as EmailChannelSettings
 from .guide_archive_response import GuideArchiveResponse as GuideArchiveResponse
@@ -99,6 +116,7 @@ from .workflow_ai_agent_step import WorkflowAIAgentStep as WorkflowAIAgentStep
 from .workflow_throttle_step import WorkflowThrottleStep as WorkflowThrottleStep
 from .workflow_upsert_params import WorkflowUpsertParams as WorkflowUpsertParams
 from .api_key_exchange_params import APIKeyExchangeParams as APIKeyExchangeParams
+from .audience_archive_params import AudienceArchiveParams as AudienceArchiveParams
 from .broadcast_cancel_params import BroadcastCancelParams as BroadcastCancelParams
 from .broadcast_request_param import BroadcastRequestParam as BroadcastRequestParam
 from .broadcast_send_response import BroadcastSendResponse as BroadcastSendResponse
@@ -112,6 +130,10 @@ from .partial_upsert_response import PartialUpsertResponse as PartialUpsertRespo
 from .partial_validate_params import PartialValidateParams as PartialValidateParams
 from .translation_list_params import TranslationListParams as TranslationListParams
 from .workflow_sms_step_param import WorkflowSMSStepParam as WorkflowSMSStepParam
+from .audience_condition_param import AudienceConditionParam as AudienceConditionParam
+from .audience_retrieve_params import AudienceRetrieveParams as AudienceRetrieveParams
+from .audience_upsert_response import AudienceUpsertResponse as AudienceUpsertResponse
+from .audience_validate_params import AudienceValidateParams as AudienceValidateParams
 from .commit_commit_all_params import CommitCommitAllParams as CommitCommitAllParams
 from .email_layout_list_params import EmailLayoutListParams as EmailLayoutListParams
 from .message_type_list_params import MessageTypeListParams as MessageTypeListParams
@@ -122,6 +144,7 @@ from .workflow_retrieve_params import WorkflowRetrieveParams as WorkflowRetrieve
 from .workflow_upsert_response import WorkflowUpsertResponse as WorkflowUpsertResponse
 from .workflow_validate_params import WorkflowValidateParams as WorkflowValidateParams
 from .api_key_exchange_response import APIKeyExchangeResponse as APIKeyExchangeResponse
+from .audience_archive_response import AudienceArchiveResponse as AudienceArchiveResponse
 from .broadcast_cancel_response import BroadcastCancelResponse as BroadcastCancelResponse
 from .broadcast_retrieve_params import BroadcastRetrieveParams as BroadcastRetrieveParams
 from .broadcast_upsert_response import BroadcastUpsertResponse as BroadcastUpsertResponse
@@ -137,6 +160,7 @@ from .workflow_fetch_step_param import WorkflowFetchStepParam as WorkflowFetchSt
 from .workflow_in_app_feed_step import WorkflowInAppFeedStep as WorkflowInAppFeedStep
 from .workflow_update_data_step import WorkflowUpdateDataStep as WorkflowUpdateDataStep
 from .workflow_update_user_step import WorkflowUpdateUserStep as WorkflowUpdateUserStep
+from .audience_validate_response import AudienceValidateResponse as AudienceValidateResponse
 from .commit_commit_all_response import CommitCommitAllResponse as CommitCommitAllResponse
 from .email_layout_upsert_params import EmailLayoutUpsertParams as EmailLayoutUpsertParams
 from .in_app_feed_template_param import InAppFeedTemplateParam as InAppFeedTemplateParam

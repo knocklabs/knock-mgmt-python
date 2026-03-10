@@ -1,6 +1,5 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from .page_info import PageInfo as PageInfo
 from .message_type_url_field import MessageTypeURLField as MessageTypeURLField
 from .message_type_json_field import MessageTypeJsonField as MessageTypeJsonField
 from .message_type_image_field import MessageTypeImageField as MessageTypeImageField

@@ -1,7 +1,18 @@
 # Shared Types
 
 ```python
-from knock_mapi.types import PageInfo
+from knock_mapi.types import (
+    MessageTypeBooleanField,
+    MessageTypeButtonField,
+    MessageTypeImageField,
+    MessageTypeJsonField,
+    MessageTypeMarkdownField,
+    MessageTypeMultiSelectField,
+    MessageTypeSelectField,
+    MessageTypeTextareaField,
+    MessageTypeURLField,
+    PageInfo,
+)
 ```
 
 # Templates
@@ -333,3 +344,27 @@ Methods:
 - <code title="put /v1/broadcasts/{broadcast_key}/send">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">send</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_send_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_send_response.py">BroadcastSendResponse</a></code>
 - <code title="put /v1/broadcasts/{broadcast_key}">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">upsert</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_upsert_response.py">BroadcastUpsertResponse</a></code>
 - <code title="put /v1/broadcasts/{broadcast_key}/validate">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">validate</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_validate_response.py">BroadcastValidateResponse</a></code>
+
+# Audiences
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Audience,
+    AudienceCondition,
+    DynamicAudience,
+    StaticAudience,
+    AudienceArchiveResponse,
+    AudienceUpsertResponse,
+    AudienceValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">retrieve</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience.py">Audience</a></code>
+- <code title="get /v1/audiences">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">list</a>(\*\*<a href="src/knock_mapi/types/audience_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience.py">SyncEntriesCursor[Audience]</a></code>
+- <code title="delete /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">archive</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_archive_response.py">AudienceArchiveResponse</a></code>
+- <code title="put /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">upsert</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_upsert_response.py">AudienceUpsertResponse</a></code>
+- <code title="put /v1/audiences/{audience_key}/validate">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">validate</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_validate_response.py">AudienceValidateResponse</a></code>
