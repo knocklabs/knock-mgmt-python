@@ -51,6 +51,7 @@ class ChannelGroupRule(BaseModel):
             "is_timestamp_before",
             "is_timestamp_on_or_after",
             "is_timestamp_between",
+            "is_between",
             "empty",
             "not_empty",
             "exists",
