@@ -158,6 +158,7 @@ class TestEmailLayouts:
                         "url": "http://example.com",
                     }
                 ],
+                "is_mjml": True,
             },
             annotate=True,
             branch="feature-branch",
@@ -248,6 +249,7 @@ class TestEmailLayouts:
                         "url": "http://example.com",
                     }
                 ],
+                "is_mjml": True,
             },
             branch="feature-branch",
         )
@@ -447,6 +449,7 @@ class TestAsyncEmailLayouts:
                         "url": "http://example.com",
                     }
                 ],
+                "is_mjml": True,
             },
             annotate=True,
             branch="feature-branch",
@@ -537,6 +540,7 @@ class TestAsyncEmailLayouts:
                         "url": "http://example.com",
                     }
                 ],
+                "is_mjml": True,
             },
             branch="feature-branch",
         )

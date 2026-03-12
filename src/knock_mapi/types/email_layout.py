@@ -23,7 +23,7 @@ class EmailLayout(BaseModel):
     """The timestamp of when the email layout was created."""
 
     html_layout: str
-    """The complete HTML content of the email layout."""
+    """The complete HTML or MJML content of the email layout."""
 
     key: str
     """The unique key for this email layout."""
@@ -42,6 +42,12 @@ class EmailLayout(BaseModel):
 
     footer_links: Optional[List[FooterLink]] = None
     """A list of one or more items to show in the footer of the email layout."""
+
+    is_mjml: Optional[bool] = None
+    """Whether this layout uses MJML format.
+
+    When true, html_layout must contain <mjml> tags.
+    """
 
     updated_at: Optional[datetime] = None
     """The timestamp of when the email layout was last updated."""

@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
 __all__ = ["EmailLayoutUpsertParams", "EmailLayout", "EmailLayoutFooterLink"]
@@ -43,7 +43,7 @@ class EmailLayout(TypedDict, total=False):
     """A request to update or create an email layout."""
 
     html_layout: Required[str]
-    """The complete HTML content of the email layout."""
+    """The complete HTML or MJML content of the email layout."""
 
     name: Required[str]
     """The friendly name of this email layout."""
@@ -53,3 +53,9 @@ class EmailLayout(TypedDict, total=False):
 
     footer_links: Iterable[EmailLayoutFooterLink]
     """A list of one or more items to show in the footer of the email layout."""
+
+    is_mjml: Optional[bool]
+    """Whether this layout uses MJML format.
+
+    When true, html_layout must contain <mjml> tags.
+    """
