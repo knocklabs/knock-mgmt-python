@@ -414,14 +414,22 @@ class EmailTemplateParam(TypedDict, total=False):
     """
 
     html_body: Optional[str]
-    """An HTML template for the email body.
+    """An HTML or MJML template for the email body.
 
     **Required** if `visual_blocks` is not provided. Only one of `html_body` or
-    `visual_blocks` should be set. Supports Liquid templating with variables like
+    `visual_blocks` should be set. When `is_mjml` is true, this must contain MJML
+    components. Supports Liquid templating with variables like
     `{{ recipient.name }}`, `{{ actor.name }}`, `{{ vars.app_name }}`,
     `{{ data.custom_field }}`, and `{{ tenant.name }}`. See the
     [template variables reference](https://docs.knock.app/designing-workflows/template-editor/variables)
     for available variables.
+    """
+
+    is_mjml: Optional[bool]
+    """Whether this template uses MJML format.
+
+    When true, the template content will be compiled from MJML to HTML. Only valid
+    when the selected layout is also MJML or when no layout is selected.
     """
 
     text_body: Optional[str]
