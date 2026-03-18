@@ -32,6 +32,13 @@ class MessageTypeUpsertParams(TypedDict, total=False):
     commit_message: str
     """The message to commit the resource with, only used if `commit` is `true`."""
 
+    force: bool
+    """
+    When set to true, forces the upsert to override existing content regardless of
+    environment restrictions. This bypasses the development-only environment check
+    and origin environment checks.
+    """
+
 
 class MessageType(TypedDict, total=False):
     """A request to create a message type."""

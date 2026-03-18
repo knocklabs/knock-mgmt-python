@@ -42,6 +42,13 @@ class AudienceUpsertParams(TypedDict, total=False):
     commit_message: str
     """The message to commit the resource with, only used if `commit` is `true`."""
 
+    force: bool
+    """
+    When set to true, forces the upsert to override existing content regardless of
+    environment restrictions. This bypasses the development-only environment check
+    and origin environment checks.
+    """
+
 
 class AudienceStaticAudienceRequest(TypedDict, total=False):
     """Request body for creating/updating a static audience."""

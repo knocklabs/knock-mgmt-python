@@ -357,6 +357,7 @@ class TestGuides:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 
@@ -909,6 +910,7 @@ class TestAsyncGuides:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
 

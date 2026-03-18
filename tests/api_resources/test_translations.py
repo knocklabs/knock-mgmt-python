@@ -163,6 +163,7 @@ class TestTranslations:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
             format="json",
         )
         assert_matches_type(TranslationUpsertResponse, translation, path=["response"])
@@ -441,6 +442,7 @@ class TestAsyncTranslations:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
             format="json",
         )
         assert_matches_type(TranslationUpsertResponse, translation, path=["response"])

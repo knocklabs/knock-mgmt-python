@@ -175,6 +175,7 @@ class TestPartials:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(PartialUpsertResponse, partial, path=["response"])
 
@@ -488,6 +489,7 @@ class TestAsyncPartials:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(PartialUpsertResponse, partial, path=["response"])
 

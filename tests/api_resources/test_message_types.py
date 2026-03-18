@@ -180,6 +180,7 @@ class TestMessageTypes:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
@@ -503,6 +504,7 @@ class TestAsyncMessageTypes:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(MessageTypeUpsertResponse, message_type, path=["response"])
 
