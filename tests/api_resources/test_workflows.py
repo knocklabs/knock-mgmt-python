@@ -348,6 +348,7 @@ class TestWorkflows:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 
@@ -902,6 +903,7 @@ class TestAsyncWorkflows:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
 

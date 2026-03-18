@@ -214,6 +214,7 @@ class TestAudiences:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(AudienceUpsertResponse, audience, path=["response"])
 
@@ -551,6 +552,7 @@ class TestAsyncAudiences:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(AudienceUpsertResponse, audience, path=["response"])
 

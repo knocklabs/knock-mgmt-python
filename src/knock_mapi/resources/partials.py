@@ -184,6 +184,7 @@ class PartialsResource(SyncAPIResource):
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -210,6 +211,10 @@ class PartialsResource(SyncAPIResource):
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
 
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -235,6 +240,7 @@ class PartialsResource(SyncAPIResource):
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "force": force,
                     },
                     partial_upsert_params.PartialUpsertParams,
                 ),
@@ -459,6 +465,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -485,6 +492,10 @@ class AsyncPartialsResource(AsyncAPIResource):
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
 
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -510,6 +521,7 @@ class AsyncPartialsResource(AsyncAPIResource):
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "force": force,
                     },
                     partial_upsert_params.PartialUpsertParams,
                 ),

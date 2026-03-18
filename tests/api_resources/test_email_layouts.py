@@ -164,6 +164,7 @@ class TestEmailLayouts:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(EmailLayoutUpsertResponse, email_layout, path=["response"])
 
@@ -455,6 +456,7 @@ class TestAsyncEmailLayouts:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            force=True,
         )
         assert_matches_type(EmailLayoutUpsertResponse, email_layout, path=["response"])
 

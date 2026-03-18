@@ -217,6 +217,7 @@ class TranslationsResource(SyncAPIResource):
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -249,6 +250,10 @@ class TranslationsResource(SyncAPIResource):
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
 
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
+
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
 
@@ -278,6 +283,7 @@ class TranslationsResource(SyncAPIResource):
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "force": force,
                         "format": format,
                     },
                     translation_upsert_params.TranslationUpsertParams,
@@ -530,6 +536,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -562,6 +569,10 @@ class AsyncTranslationsResource(AsyncAPIResource):
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
 
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
+
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
 
@@ -593,6 +604,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "force": force,
                         "format": format,
                     },
                     translation_upsert_params.TranslationUpsertParams,
