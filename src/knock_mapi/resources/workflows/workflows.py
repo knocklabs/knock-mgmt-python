@@ -23,7 +23,7 @@ from ...types import (
     workflow_validate_params,
 )
 from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -111,7 +111,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._get(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -243,7 +243,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}/activate",
+            path_template("/v1/workflows/{workflow_key}/activate", workflow_key=workflow_key),
             body=maybe_transform({"status": status}, workflow_activate_params.WorkflowActivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -314,7 +314,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}/run",
+            path_template("/v1/workflows/{workflow_key}/run", workflow_key=workflow_key),
             body=maybe_transform(
                 {
                     "recipients": recipients,
@@ -394,7 +394,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             body=maybe_transform({"workflow": workflow}, workflow_upsert_params.WorkflowUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -456,7 +456,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}/validate",
+            path_template("/v1/workflows/{workflow_key}/validate", workflow_key=workflow_key),
             body=maybe_transform({"workflow": workflow}, workflow_validate_params.WorkflowValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -542,7 +542,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._get(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -674,7 +674,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}/activate",
+            path_template("/v1/workflows/{workflow_key}/activate", workflow_key=workflow_key),
             body=await async_maybe_transform({"status": status}, workflow_activate_params.WorkflowActivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -745,7 +745,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}/run",
+            path_template("/v1/workflows/{workflow_key}/run", workflow_key=workflow_key),
             body=await async_maybe_transform(
                 {
                     "recipients": recipients,
@@ -825,7 +825,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             body=await async_maybe_transform({"workflow": workflow}, workflow_upsert_params.WorkflowUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -887,7 +887,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}/validate",
+            path_template("/v1/workflows/{workflow_key}/validate", workflow_key=workflow_key),
             body=await async_maybe_transform({"workflow": workflow}, workflow_validate_params.WorkflowValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

@@ -13,7 +13,7 @@ from ..types import (
     translation_validate_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -101,7 +101,7 @@ class TranslationsResource(SyncAPIResource):
         if not locale_code:
             raise ValueError(f"Expected a non-empty value for `locale_code` but received {locale_code!r}")
         return self._get(
-            f"/v1/translations/{locale_code}",
+            path_template("/v1/translations/{locale_code}", locale_code=locale_code),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -268,7 +268,7 @@ class TranslationsResource(SyncAPIResource):
         if not locale_code:
             raise ValueError(f"Expected a non-empty value for `locale_code` but received {locale_code!r}")
         return self._put(
-            f"/v1/translations/{locale_code}",
+            path_template("/v1/translations/{locale_code}", locale_code=locale_code),
             body=maybe_transform({"translation": translation}, translation_upsert_params.TranslationUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -332,7 +332,7 @@ class TranslationsResource(SyncAPIResource):
         if not locale_code:
             raise ValueError(f"Expected a non-empty value for `locale_code` but received {locale_code!r}")
         return self._put(
-            f"/v1/translations/{locale_code}/validate",
+            path_template("/v1/translations/{locale_code}/validate", locale_code=locale_code),
             body=maybe_transform({"translation": translation}, translation_validate_params.TranslationValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -420,7 +420,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         if not locale_code:
             raise ValueError(f"Expected a non-empty value for `locale_code` but received {locale_code!r}")
         return await self._get(
-            f"/v1/translations/{locale_code}",
+            path_template("/v1/translations/{locale_code}", locale_code=locale_code),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -587,7 +587,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         if not locale_code:
             raise ValueError(f"Expected a non-empty value for `locale_code` but received {locale_code!r}")
         return await self._put(
-            f"/v1/translations/{locale_code}",
+            path_template("/v1/translations/{locale_code}", locale_code=locale_code),
             body=await async_maybe_transform(
                 {"translation": translation}, translation_upsert_params.TranslationUpsertParams
             ),
@@ -653,7 +653,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         if not locale_code:
             raise ValueError(f"Expected a non-empty value for `locale_code` but received {locale_code!r}")
         return await self._put(
-            f"/v1/translations/{locale_code}/validate",
+            path_template("/v1/translations/{locale_code}/validate", locale_code=locale_code),
             body=await async_maybe_transform(
                 {"translation": translation}, translation_validate_params.TranslationValidateParams
             ),

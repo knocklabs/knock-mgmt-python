@@ -16,7 +16,7 @@ from ..types import (
     guide_validate_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import required_args, maybe_transform, async_maybe_transform
+from .._utils import path_template, required_args, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -100,7 +100,7 @@ class GuidesResource(SyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return self._get(
-            f"/v1/guides/{guide_key}",
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -295,7 +295,7 @@ class GuidesResource(SyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return self._put(
-            f"/v1/guides/{guide_key}/activate",
+            path_template("/v1/guides/{guide_key}/activate", guide_key=guide_key),
             body=maybe_transform(
                 {
                     "status": status,
@@ -346,7 +346,7 @@ class GuidesResource(SyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return self._delete(
-            f"/v1/guides/{guide_key}",
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -405,7 +405,7 @@ class GuidesResource(SyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return self._put(
-            f"/v1/guides/{guide_key}",
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
             body=maybe_transform({"guide": guide}, guide_upsert_params.GuideUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -465,7 +465,7 @@ class GuidesResource(SyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return self._put(
-            f"/v1/guides/{guide_key}/validate",
+            path_template("/v1/guides/{guide_key}/validate", guide_key=guide_key),
             body=maybe_transform({"guide": guide}, guide_validate_params.GuideValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -548,7 +548,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return await self._get(
-            f"/v1/guides/{guide_key}",
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -743,7 +743,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return await self._put(
-            f"/v1/guides/{guide_key}/activate",
+            path_template("/v1/guides/{guide_key}/activate", guide_key=guide_key),
             body=await async_maybe_transform(
                 {
                     "status": status,
@@ -794,7 +794,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return await self._delete(
-            f"/v1/guides/{guide_key}",
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -853,7 +853,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return await self._put(
-            f"/v1/guides/{guide_key}",
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
             body=await async_maybe_transform({"guide": guide}, guide_upsert_params.GuideUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -913,7 +913,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         if not guide_key:
             raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
         return await self._put(
-            f"/v1/guides/{guide_key}/validate",
+            path_template("/v1/guides/{guide_key}/validate", guide_key=guide_key),
             body=await async_maybe_transform({"guide": guide}, guide_validate_params.GuideValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,

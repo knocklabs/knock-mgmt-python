@@ -11,7 +11,7 @@ from ..types import (
     message_type_validate_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -93,7 +93,7 @@ class MessageTypesResource(SyncAPIResource):
         if not message_type_key:
             raise ValueError(f"Expected a non-empty value for `message_type_key` but received {message_type_key!r}")
         return self._get(
-            f"/v1/message_types/{message_type_key}",
+            path_template("/v1/message_types/{message_type_key}", message_type_key=message_type_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -233,7 +233,7 @@ class MessageTypesResource(SyncAPIResource):
         if not message_type_key:
             raise ValueError(f"Expected a non-empty value for `message_type_key` but received {message_type_key!r}")
         return self._put(
-            f"/v1/message_types/{message_type_key}",
+            path_template("/v1/message_types/{message_type_key}", message_type_key=message_type_key),
             body=maybe_transform({"message_type": message_type}, message_type_upsert_params.MessageTypeUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -294,7 +294,7 @@ class MessageTypesResource(SyncAPIResource):
         if not message_type_key:
             raise ValueError(f"Expected a non-empty value for `message_type_key` but received {message_type_key!r}")
         return self._put(
-            f"/v1/message_types/{message_type_key}/validate",
+            path_template("/v1/message_types/{message_type_key}/validate", message_type_key=message_type_key),
             body=maybe_transform(
                 {"message_type": message_type}, message_type_validate_params.MessageTypeValidateParams
             ),
@@ -379,7 +379,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         if not message_type_key:
             raise ValueError(f"Expected a non-empty value for `message_type_key` but received {message_type_key!r}")
         return await self._get(
-            f"/v1/message_types/{message_type_key}",
+            path_template("/v1/message_types/{message_type_key}", message_type_key=message_type_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -519,7 +519,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         if not message_type_key:
             raise ValueError(f"Expected a non-empty value for `message_type_key` but received {message_type_key!r}")
         return await self._put(
-            f"/v1/message_types/{message_type_key}",
+            path_template("/v1/message_types/{message_type_key}", message_type_key=message_type_key),
             body=await async_maybe_transform(
                 {"message_type": message_type}, message_type_upsert_params.MessageTypeUpsertParams
             ),
@@ -582,7 +582,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         if not message_type_key:
             raise ValueError(f"Expected a non-empty value for `message_type_key` but received {message_type_key!r}")
         return await self._put(
-            f"/v1/message_types/{message_type_key}/validate",
+            path_template("/v1/message_types/{message_type_key}/validate", message_type_key=message_type_key),
             body=await async_maybe_transform(
                 {"message_type": message_type}, message_type_validate_params.MessageTypeValidateParams
             ),
