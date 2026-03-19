@@ -7,7 +7,7 @@ from typing import Dict, Optional
 import httpx
 
 from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -95,7 +95,11 @@ class StepsResource(SyncAPIResource):
         if not step_ref:
             raise ValueError(f"Expected a non-empty value for `step_ref` but received {step_ref!r}")
         return self._post(
-            f"/v1/workflows/{workflow_key}/steps/{step_ref}/preview_template",
+            path_template(
+                "/v1/workflows/{workflow_key}/steps/{step_ref}/preview_template",
+                workflow_key=workflow_key,
+                step_ref=step_ref,
+            ),
             body=maybe_transform(
                 {
                     "recipient": recipient,
@@ -194,7 +198,11 @@ class AsyncStepsResource(AsyncAPIResource):
         if not step_ref:
             raise ValueError(f"Expected a non-empty value for `step_ref` but received {step_ref!r}")
         return await self._post(
-            f"/v1/workflows/{workflow_key}/steps/{step_ref}/preview_template",
+            path_template(
+                "/v1/workflows/{workflow_key}/steps/{step_ref}/preview_template",
+                workflow_key=workflow_key,
+                step_ref=step_ref,
+            ),
             body=await async_maybe_transform(
                 {
                     "recipient": recipient,

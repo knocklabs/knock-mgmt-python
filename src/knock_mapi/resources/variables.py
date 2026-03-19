@@ -8,7 +8,7 @@ import httpx
 
 from ..types import variable_list_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform
+from .._utils import path_template, maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -70,7 +70,7 @@ class VariablesResource(SyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return self._get(
-            f"/v1/variables/{key}",
+            path_template("/v1/variables/{key}", key=key),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -191,7 +191,7 @@ class AsyncVariablesResource(AsyncAPIResource):
         if not key:
             raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
         return await self._get(
-            f"/v1/variables/{key}",
+            path_template("/v1/variables/{key}", key=key),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

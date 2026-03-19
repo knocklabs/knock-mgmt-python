@@ -16,7 +16,7 @@ from ..types import (
     broadcast_validate_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -97,7 +97,7 @@ class BroadcastsResource(SyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return self._get(
-            f"/v1/broadcasts/{broadcast_key}",
+            path_template("/v1/broadcasts/{broadcast_key}", broadcast_key=broadcast_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -222,7 +222,7 @@ class BroadcastsResource(SyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return self._put(
-            f"/v1/broadcasts/{broadcast_key}/cancel",
+            path_template("/v1/broadcasts/{broadcast_key}/cancel", broadcast_key=broadcast_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -277,7 +277,7 @@ class BroadcastsResource(SyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return self._put(
-            f"/v1/broadcasts/{broadcast_key}/send",
+            path_template("/v1/broadcasts/{broadcast_key}/send", broadcast_key=broadcast_key),
             body=maybe_transform({"send_at": send_at}, broadcast_send_params.BroadcastSendParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -335,7 +335,7 @@ class BroadcastsResource(SyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return self._put(
-            f"/v1/broadcasts/{broadcast_key}",
+            path_template("/v1/broadcasts/{broadcast_key}", broadcast_key=broadcast_key),
             body=maybe_transform({"broadcast": broadcast}, broadcast_upsert_params.BroadcastUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -390,7 +390,7 @@ class BroadcastsResource(SyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return self._put(
-            f"/v1/broadcasts/{broadcast_key}/validate",
+            path_template("/v1/broadcasts/{broadcast_key}/validate", broadcast_key=broadcast_key),
             body=maybe_transform({"broadcast": broadcast}, broadcast_validate_params.BroadcastValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -469,7 +469,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return await self._get(
-            f"/v1/broadcasts/{broadcast_key}",
+            path_template("/v1/broadcasts/{broadcast_key}", broadcast_key=broadcast_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -594,7 +594,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return await self._put(
-            f"/v1/broadcasts/{broadcast_key}/cancel",
+            path_template("/v1/broadcasts/{broadcast_key}/cancel", broadcast_key=broadcast_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -649,7 +649,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return await self._put(
-            f"/v1/broadcasts/{broadcast_key}/send",
+            path_template("/v1/broadcasts/{broadcast_key}/send", broadcast_key=broadcast_key),
             body=await async_maybe_transform({"send_at": send_at}, broadcast_send_params.BroadcastSendParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -707,7 +707,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return await self._put(
-            f"/v1/broadcasts/{broadcast_key}",
+            path_template("/v1/broadcasts/{broadcast_key}", broadcast_key=broadcast_key),
             body=await async_maybe_transform({"broadcast": broadcast}, broadcast_upsert_params.BroadcastUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -762,7 +762,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         if not broadcast_key:
             raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
         return await self._put(
-            f"/v1/broadcasts/{broadcast_key}/validate",
+            path_template("/v1/broadcasts/{broadcast_key}/validate", broadcast_key=broadcast_key),
             body=await async_maybe_transform(
                 {"broadcast": broadcast}, broadcast_validate_params.BroadcastValidateParams
             ),

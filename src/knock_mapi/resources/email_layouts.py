@@ -11,7 +11,7 @@ from ..types import (
     email_layout_validate_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -91,7 +91,7 @@ class EmailLayoutsResource(SyncAPIResource):
         if not email_layout_key:
             raise ValueError(f"Expected a non-empty value for `email_layout_key` but received {email_layout_key!r}")
         return self._get(
-            f"/v1/email_layouts/{email_layout_key}",
+            path_template("/v1/email_layouts/{email_layout_key}", email_layout_key=email_layout_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -231,7 +231,7 @@ class EmailLayoutsResource(SyncAPIResource):
         if not email_layout_key:
             raise ValueError(f"Expected a non-empty value for `email_layout_key` but received {email_layout_key!r}")
         return self._put(
-            f"/v1/email_layouts/{email_layout_key}",
+            path_template("/v1/email_layouts/{email_layout_key}", email_layout_key=email_layout_key),
             body=maybe_transform({"email_layout": email_layout}, email_layout_upsert_params.EmailLayoutUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -291,7 +291,7 @@ class EmailLayoutsResource(SyncAPIResource):
         if not email_layout_key:
             raise ValueError(f"Expected a non-empty value for `email_layout_key` but received {email_layout_key!r}")
         return self._put(
-            f"/v1/email_layouts/{email_layout_key}/validate",
+            path_template("/v1/email_layouts/{email_layout_key}/validate", email_layout_key=email_layout_key),
             body=maybe_transform(
                 {"email_layout": email_layout}, email_layout_validate_params.EmailLayoutValidateParams
             ),
@@ -374,7 +374,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         if not email_layout_key:
             raise ValueError(f"Expected a non-empty value for `email_layout_key` but received {email_layout_key!r}")
         return await self._get(
-            f"/v1/email_layouts/{email_layout_key}",
+            path_template("/v1/email_layouts/{email_layout_key}", email_layout_key=email_layout_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -514,7 +514,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         if not email_layout_key:
             raise ValueError(f"Expected a non-empty value for `email_layout_key` but received {email_layout_key!r}")
         return await self._put(
-            f"/v1/email_layouts/{email_layout_key}",
+            path_template("/v1/email_layouts/{email_layout_key}", email_layout_key=email_layout_key),
             body=await async_maybe_transform(
                 {"email_layout": email_layout}, email_layout_upsert_params.EmailLayoutUpsertParams
             ),
@@ -576,7 +576,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         if not email_layout_key:
             raise ValueError(f"Expected a non-empty value for `email_layout_key` but received {email_layout_key!r}")
         return await self._put(
-            f"/v1/email_layouts/{email_layout_key}/validate",
+            path_template("/v1/email_layouts/{email_layout_key}/validate", email_layout_key=email_layout_key),
             body=await async_maybe_transform(
                 {"email_layout": email_layout}, email_layout_validate_params.EmailLayoutValidateParams
             ),

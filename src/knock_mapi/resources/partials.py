@@ -6,7 +6,7 @@ import httpx
 
 from ..types import partial_list_params, partial_upsert_params, partial_retrieve_params, partial_validate_params
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -86,7 +86,7 @@ class PartialsResource(SyncAPIResource):
         if not partial_key:
             raise ValueError(f"Expected a non-empty value for `partial_key` but received {partial_key!r}")
         return self._get(
-            f"/v1/partials/{partial_key}",
+            path_template("/v1/partials/{partial_key}", partial_key=partial_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -226,7 +226,7 @@ class PartialsResource(SyncAPIResource):
         if not partial_key:
             raise ValueError(f"Expected a non-empty value for `partial_key` but received {partial_key!r}")
         return self._put(
-            f"/v1/partials/{partial_key}",
+            path_template("/v1/partials/{partial_key}", partial_key=partial_key),
             body=maybe_transform({"partial": partial}, partial_upsert_params.PartialUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -286,7 +286,7 @@ class PartialsResource(SyncAPIResource):
         if not partial_key:
             raise ValueError(f"Expected a non-empty value for `partial_key` but received {partial_key!r}")
         return self._put(
-            f"/v1/partials/{partial_key}/validate",
+            path_template("/v1/partials/{partial_key}/validate", partial_key=partial_key),
             body=maybe_transform({"partial": partial}, partial_validate_params.PartialValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -367,7 +367,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         if not partial_key:
             raise ValueError(f"Expected a non-empty value for `partial_key` but received {partial_key!r}")
         return await self._get(
-            f"/v1/partials/{partial_key}",
+            path_template("/v1/partials/{partial_key}", partial_key=partial_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -507,7 +507,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         if not partial_key:
             raise ValueError(f"Expected a non-empty value for `partial_key` but received {partial_key!r}")
         return await self._put(
-            f"/v1/partials/{partial_key}",
+            path_template("/v1/partials/{partial_key}", partial_key=partial_key),
             body=await async_maybe_transform({"partial": partial}, partial_upsert_params.PartialUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -567,7 +567,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         if not partial_key:
             raise ValueError(f"Expected a non-empty value for `partial_key` but received {partial_key!r}")
         return await self._put(
-            f"/v1/partials/{partial_key}/validate",
+            path_template("/v1/partials/{partial_key}/validate", partial_key=partial_key),
             body=await async_maybe_transform({"partial": partial}, partial_validate_params.PartialValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
