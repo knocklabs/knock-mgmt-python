@@ -128,6 +128,7 @@ from .message_type_text_field import MessageTypeTextField as MessageTypeTextFiel
 from .partial_retrieve_params import PartialRetrieveParams as PartialRetrieveParams
 from .partial_upsert_response import PartialUpsertResponse as PartialUpsertResponse
 from .partial_validate_params import PartialValidateParams as PartialValidateParams
+from .template_preview_params import TemplatePreviewParams as TemplatePreviewParams
 from .translation_list_params import TranslationListParams as TranslationListParams
 from .workflow_sms_step_param import WorkflowSMSStepParam as WorkflowSMSStepParam
 from .audience_condition_param import AudienceConditionParam as AudienceConditionParam
@@ -152,6 +153,7 @@ from .broadcast_validate_params import BroadcastValidateParams as BroadcastValid
 from .channel_group_list_params import ChannelGroupListParams as ChannelGroupListParams
 from .commit_promote_all_params import CommitPromoteAllParams as CommitPromoteAllParams
 from .partial_validate_response import PartialValidateResponse as PartialValidateResponse
+from .template_preview_response import TemplatePreviewResponse as TemplatePreviewResponse
 from .translation_upsert_params import TranslationUpsertParams as TranslationUpsertParams
 from .workflow_batch_step_param import WorkflowBatchStepParam as WorkflowBatchStepParam
 from .workflow_delay_step_param import WorkflowDelayStepParam as WorkflowDelayStepParam

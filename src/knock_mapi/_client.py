@@ -41,6 +41,7 @@ if TYPE_CHECKING:
         channels,
         partials,
         audiences,
+        templates,
         variables,
         workflows,
         broadcasts,
@@ -59,6 +60,7 @@ if TYPE_CHECKING:
     from .resources.channels import ChannelsResource, AsyncChannelsResource
     from .resources.partials import PartialsResource, AsyncPartialsResource
     from .resources.audiences import AudiencesResource, AsyncAudiencesResource
+    from .resources.templates import TemplatesResource, AsyncTemplatesResource
     from .resources.variables import VariablesResource, AsyncVariablesResource
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
     from .resources.environments import EnvironmentsResource, AsyncEnvironmentsResource
@@ -134,6 +136,12 @@ class KnockMgmt(SyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
+
+    @cached_property
+    def templates(self) -> TemplatesResource:
+        from .resources.templates import TemplatesResource
+
+        return TemplatesResource(self)
 
     @cached_property
     def email_layouts(self) -> EmailLayoutsResource:
@@ -423,6 +431,12 @@ class AsyncKnockMgmt(AsyncAPIClient):
         )
 
     @cached_property
+    def templates(self) -> AsyncTemplatesResource:
+        from .resources.templates import AsyncTemplatesResource
+
+        return AsyncTemplatesResource(self)
+
+    @cached_property
     def email_layouts(self) -> AsyncEmailLayoutsResource:
         """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import AsyncEmailLayoutsResource
@@ -661,6 +675,12 @@ class KnockMgmtWithRawResponse:
         self._client = client
 
     @cached_property
+    def templates(self) -> templates.TemplatesResourceWithRawResponse:
+        from .resources.templates import TemplatesResourceWithRawResponse
+
+        return TemplatesResourceWithRawResponse(self._client.templates)
+
+    @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithRawResponse:
         """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import EmailLayoutsResourceWithRawResponse
@@ -785,6 +805,12 @@ class AsyncKnockMgmtWithRawResponse:
 
     def __init__(self, client: AsyncKnockMgmt) -> None:
         self._client = client
+
+    @cached_property
+    def templates(self) -> templates.AsyncTemplatesResourceWithRawResponse:
+        from .resources.templates import AsyncTemplatesResourceWithRawResponse
+
+        return AsyncTemplatesResourceWithRawResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithRawResponse:
@@ -913,6 +939,12 @@ class KnockMgmtWithStreamedResponse:
         self._client = client
 
     @cached_property
+    def templates(self) -> templates.TemplatesResourceWithStreamingResponse:
+        from .resources.templates import TemplatesResourceWithStreamingResponse
+
+        return TemplatesResourceWithStreamingResponse(self._client.templates)
+
+    @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithStreamingResponse:
         """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import EmailLayoutsResourceWithStreamingResponse
@@ -1037,6 +1069,12 @@ class AsyncKnockMgmtWithStreamedResponse:
 
     def __init__(self, client: AsyncKnockMgmt) -> None:
         self._client = client
+
+    @cached_property
+    def templates(self) -> templates.AsyncTemplatesResourceWithStreamingResponse:
+        from .resources.templates import AsyncTemplatesResourceWithStreamingResponse
+
+        return AsyncTemplatesResourceWithStreamingResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithStreamingResponse:
