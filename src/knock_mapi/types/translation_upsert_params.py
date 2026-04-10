@@ -48,6 +48,9 @@ class TranslationUpsertParams(TypedDict, total=False):
     Supports 'json' and 'po'. Defaults to 'json'.
     """
 
+    tenant: str
+    """An optional tenant to scope the translation to."""
+
 
 class Translation(TypedDict, total=False):
     """

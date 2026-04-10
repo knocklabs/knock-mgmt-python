@@ -47,3 +47,6 @@ class TranslationListParams(TypedDict, total=False):
 
     namespace: str
     """A specific namespace to filter translations for."""
+
+    tenant: str
+    """A specific tenant to filter translations for."""
