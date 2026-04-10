@@ -28,8 +28,13 @@ from knock_mapi.types import (
     RequestTemplate,
     SMSTemplate,
     WebhookTemplate,
+    TemplatePreviewResponse,
 )
 ```
+
+Methods:
+
+- <code title="post /v1/templates/preview">client.templates.<a href="./src/knock_mapi/resources/templates.py">preview</a>(\*\*<a href="src/knock_mapi/types/template_preview_params.py">params</a>) -> <a href="./src/knock_mapi/types/template_preview_response.py">TemplatePreviewResponse</a></code>
 
 # EmailLayouts
 

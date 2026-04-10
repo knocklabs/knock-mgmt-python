@@ -72,6 +72,14 @@ from .audiences import (
     AudiencesResourceWithStreamingResponse,
     AsyncAudiencesResourceWithStreamingResponse,
 )
+from .templates import (
+    TemplatesResource,
+    AsyncTemplatesResource,
+    TemplatesResourceWithRawResponse,
+    AsyncTemplatesResourceWithRawResponse,
+    TemplatesResourceWithStreamingResponse,
+    AsyncTemplatesResourceWithStreamingResponse,
+)
 from .variables import (
     VariablesResource,
     AsyncVariablesResource,
@@ -138,6 +146,12 @@ from .channel_groups import (
 )
 
 __all__ = [
+    "TemplatesResource",
+    "AsyncTemplatesResource",
+    "TemplatesResourceWithRawResponse",
+    "AsyncTemplatesResourceWithRawResponse",
+    "TemplatesResourceWithStreamingResponse",
+    "AsyncTemplatesResourceWithStreamingResponse",
     "EmailLayoutsResource",
     "AsyncEmailLayoutsResource",
     "EmailLayoutsResourceWithRawResponse",
