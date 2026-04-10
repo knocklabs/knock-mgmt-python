@@ -1,5 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from typing import Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -34,3 +35,6 @@ class Translation(BaseModel):
 
     updated_at: datetime
     """The timestamp of when the translation was last updated."""
+
+    tenant: Optional[str] = None
+    """An optional tenant identifier to scope the translation to a specific tenant."""

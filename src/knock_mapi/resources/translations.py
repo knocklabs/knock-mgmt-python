@@ -64,6 +64,7 @@ class TranslationsResource(SyncAPIResource):
         format: Literal["json", "po"] | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         namespace: str | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -90,6 +91,8 @@ class TranslationsResource(SyncAPIResource):
 
           namespace: A specific namespace to filter translations for.
 
+          tenant: A specific tenant to scope the translation to.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -115,6 +118,7 @@ class TranslationsResource(SyncAPIResource):
                         "format": format,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "namespace": namespace,
+                        "tenant": tenant,
                     },
                     translation_retrieve_params.TranslationRetrieveParams,
                 ),
@@ -135,6 +139,7 @@ class TranslationsResource(SyncAPIResource):
         limit: int | Omit = omit,
         locale_code: str | Omit = omit,
         namespace: str | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -171,6 +176,8 @@ class TranslationsResource(SyncAPIResource):
 
           namespace: A specific namespace to filter translations for.
 
+          tenant: A specific tenant to filter translations for.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -199,6 +206,7 @@ class TranslationsResource(SyncAPIResource):
                         "limit": limit,
                         "locale_code": locale_code,
                         "namespace": namespace,
+                        "tenant": tenant,
                     },
                     translation_list_params.TranslationListParams,
                 ),
@@ -219,6 +227,7 @@ class TranslationsResource(SyncAPIResource):
         commit_message: str | Omit = omit,
         force: bool | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -257,6 +266,8 @@ class TranslationsResource(SyncAPIResource):
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
 
+          tenant: An optional tenant to scope the translation to.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -285,6 +296,7 @@ class TranslationsResource(SyncAPIResource):
                         "commit_message": commit_message,
                         "force": force,
                         "format": format,
+                        "tenant": tenant,
                     },
                     translation_upsert_params.TranslationUpsertParams,
                 ),
@@ -383,6 +395,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         format: Literal["json", "po"] | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         namespace: str | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -409,6 +422,8 @@ class AsyncTranslationsResource(AsyncAPIResource):
 
           namespace: A specific namespace to filter translations for.
 
+          tenant: A specific tenant to scope the translation to.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -434,6 +449,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                         "format": format,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "namespace": namespace,
+                        "tenant": tenant,
                     },
                     translation_retrieve_params.TranslationRetrieveParams,
                 ),
@@ -454,6 +470,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         limit: int | Omit = omit,
         locale_code: str | Omit = omit,
         namespace: str | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -490,6 +507,8 @@ class AsyncTranslationsResource(AsyncAPIResource):
 
           namespace: A specific namespace to filter translations for.
 
+          tenant: A specific tenant to filter translations for.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -518,6 +537,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                         "limit": limit,
                         "locale_code": locale_code,
                         "namespace": namespace,
+                        "tenant": tenant,
                     },
                     translation_list_params.TranslationListParams,
                 ),
@@ -538,6 +558,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         commit_message: str | Omit = omit,
         force: bool | Omit = omit,
         format: Literal["json", "po"] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -576,6 +597,8 @@ class AsyncTranslationsResource(AsyncAPIResource):
           format: Optionally specify the returned content format. Supports 'json' and 'po'.
               Defaults to 'json'.
 
+          tenant: An optional tenant to scope the translation to.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -606,6 +629,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                         "commit_message": commit_message,
                         "force": force,
                         "format": format,
+                        "tenant": tenant,
                     },
                     translation_upsert_params.TranslationUpsertParams,
                 ),

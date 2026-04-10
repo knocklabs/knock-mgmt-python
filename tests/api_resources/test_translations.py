@@ -43,6 +43,7 @@ class TestTranslations:
             format="json",
             hide_uncommitted_changes=True,
             namespace="namespace",
+            tenant="tenant",
         )
         assert_matches_type(TranslationRetrieveResponse, translation, path=["response"])
 
@@ -105,6 +106,7 @@ class TestTranslations:
             limit=0,
             locale_code="locale_code",
             namespace="namespace",
+            tenant="tenant",
         )
         assert_matches_type(SyncEntriesCursor[Translation], translation, path=["response"])
 
@@ -165,6 +167,7 @@ class TestTranslations:
             commit_message="commit_message",
             force=True,
             format="json",
+            tenant="tenant",
         )
         assert_matches_type(TranslationUpsertResponse, translation, path=["response"])
 
@@ -322,6 +325,7 @@ class TestAsyncTranslations:
             format="json",
             hide_uncommitted_changes=True,
             namespace="namespace",
+            tenant="tenant",
         )
         assert_matches_type(TranslationRetrieveResponse, translation, path=["response"])
 
@@ -384,6 +388,7 @@ class TestAsyncTranslations:
             limit=0,
             locale_code="locale_code",
             namespace="namespace",
+            tenant="tenant",
         )
         assert_matches_type(AsyncEntriesCursor[Translation], translation, path=["response"])
 
@@ -444,6 +449,7 @@ class TestAsyncTranslations:
             commit_message="commit_message",
             force=True,
             format="json",
+            tenant="tenant",
         )
         assert_matches_type(TranslationUpsertResponse, translation, path=["response"])
 

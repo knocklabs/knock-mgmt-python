@@ -35,3 +35,6 @@ class TranslationRetrieveParams(TypedDict, total=False):
 
     namespace: str
     """A specific namespace to filter translations for."""
+
+    tenant: str
+    """A specific tenant to scope the translation to."""
