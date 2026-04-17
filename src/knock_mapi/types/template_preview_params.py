@@ -5,6 +5,7 @@ from __future__ import annotations
 from typing import Dict, Union, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
+from .._types import SequenceNotStr
 from .sms_template_param import SMSTemplateParam
 from .chat_template_param import ChatTemplateParam
 from .push_template_param import PushTemplateParam
@@ -19,6 +20,7 @@ __all__ = [
     "Actor",
     "ActorObjectRecipientReference",
     "Layout",
+    "Workflow",
 ]
 
 
@@ -62,6 +64,12 @@ class TemplatePreviewParams(TypedDict, total=False):
 
     tenant: Optional[str]
     """The tenant to associate with the preview. Must not contain whitespace."""
+
+    workflow: Optional[Workflow]
+    """Optional workflow context for variable hydration.
+
+    When provided, recipient/actor/tenant are resolved via Knock.
+    """
 
 
 class RecipientObjectRecipientReference(TypedDict, total=False):
@@ -108,3 +116,16 @@ class Layout(TypedDict, total=False):
 
     text_content: Optional[str]
     """Inline text content for the layout."""
+
+
+class Workflow(TypedDict, total=False):
+    """Optional workflow context for variable hydration.
+
+    When provided, recipient/actor/tenant are resolved via Knock.
+    """
+
+    key: Required[str]
+    """The workflow key."""
+
+    categories: Optional[SequenceNotStr[str]]
+    """Workflow categories."""

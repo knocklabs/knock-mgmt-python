@@ -160,6 +160,10 @@ class TestTemplates:
                 "text_content": "text_content",
             },
             tenant="tenant",
+            workflow={
+                "key": "key",
+                "categories": ["string"],
+            },
         )
         assert_matches_type(TemplatePreviewResponse, template, path=["response"])
 
@@ -350,6 +354,10 @@ class TestAsyncTemplates:
                 "text_content": "text_content",
             },
             tenant="tenant",
+            workflow={
+                "key": "key",
+                "categories": ["string"],
+            },
         )
         assert_matches_type(TemplatePreviewResponse, template, path=["response"])
 

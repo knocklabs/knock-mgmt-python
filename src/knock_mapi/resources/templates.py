@@ -56,6 +56,7 @@ class TemplatesResource(SyncAPIResource):
         data: Dict[str, object] | Omit = omit,
         layout: Optional[template_preview_params.Layout] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
+        workflow: Optional[template_preview_params.Workflow] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -94,6 +95,9 @@ class TemplatesResource(SyncAPIResource):
 
           tenant: The tenant to associate with the preview. Must not contain whitespace.
 
+          workflow: Optional workflow context for variable hydration. When provided,
+              recipient/actor/tenant are resolved via Knock.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -113,6 +117,7 @@ class TemplatesResource(SyncAPIResource):
                     "data": data,
                     "layout": layout,
                     "tenant": tenant,
+                    "workflow": workflow,
                 },
                 template_preview_params.TemplatePreviewParams,
             ),
@@ -165,6 +170,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
         data: Dict[str, object] | Omit = omit,
         layout: Optional[template_preview_params.Layout] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
+        workflow: Optional[template_preview_params.Workflow] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,6 +209,9 @@ class AsyncTemplatesResource(AsyncAPIResource):
 
           tenant: The tenant to associate with the preview. Must not contain whitespace.
 
+          workflow: Optional workflow context for variable hydration. When provided,
+              recipient/actor/tenant are resolved via Knock.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -222,6 +231,7 @@ class AsyncTemplatesResource(AsyncAPIResource):
                     "data": data,
                     "layout": layout,
                     "tenant": tenant,
+                    "workflow": workflow,
                 },
                 template_preview_params.TemplatePreviewParams,
             ),
