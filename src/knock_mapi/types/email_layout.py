@@ -5,7 +5,43 @@ from datetime import datetime
 
 from .._models import BaseModel
 
-__all__ = ["EmailLayout", "FooterLink"]
+__all__ = ["EmailLayout", "BrandingOverrides", "FooterLink"]
+
+
+class BrandingOverrides(BaseModel):
+    """
+    Overrides to apply against account branding variables in an email layout, including dark mode-specific values.
+    """
+
+    dark_icon_url: Optional[str] = None
+    """A URL for a dark mode icon override."""
+
+    dark_logo_url: Optional[str] = None
+    """A URL for a dark mode logo override."""
+
+    dark_primary_color: Optional[str] = None
+    """The dark mode primary brand color in hex format."""
+
+    dark_primary_color_contrast: Optional[str] = None
+    """The dark mode contrast color for the primary brand color in hex format."""
+
+    icon_url: Optional[str] = None
+    """A URL for a light mode icon override."""
+
+    logo_url: Optional[str] = None
+    """A URL for a light mode logo override."""
+
+    primary_color: Optional[str] = None
+    """The light mode primary brand color in hex format."""
+
+    primary_color_contrast: Optional[str] = None
+    """The light mode contrast color for the primary brand color in hex format."""
+
+    primary_text_color: Optional[str] = None
+    """The light mode primary text color in hex format."""
+
+    secondary_text_color: Optional[str] = None
+    """The light mode secondary text color in hex format."""
 
 
 class FooterLink(BaseModel):
@@ -36,6 +72,12 @@ class EmailLayout(BaseModel):
 
     text_layout: str
     """The complete plaintext content of the email layout."""
+
+    branding_overrides: Optional[BrandingOverrides] = None
+    """
+    Overrides to apply against account branding variables in an email layout,
+    including dark mode-specific values.
+    """
 
     environment: Optional[str] = None
     """The environment of the email layout."""

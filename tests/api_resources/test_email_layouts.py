@@ -152,6 +152,18 @@ class TestEmailLayouts:
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
                 "text_layout": "Hello, world!",
+                "branding_overrides": {
+                    "dark_icon_url": "https://cdn.example.com/icon-dark.png",
+                    "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+                    "dark_primary_color": "#1A1A2E",
+                    "dark_primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://cdn.example.com/icon-light.png",
+                    "logo_url": "https://cdn.example.com/logo-light.png",
+                    "primary_color": "#4F46E5",
+                    "primary_color_contrast": "#FFFFFF",
+                    "primary_text_color": "#111827",
+                    "secondary_text_color": "#6B7280",
+                },
                 "footer_links": [
                     {
                         "text": "Example",
@@ -244,6 +256,18 @@ class TestEmailLayouts:
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
                 "text_layout": "Hello, world!",
+                "branding_overrides": {
+                    "dark_icon_url": "https://cdn.example.com/icon-dark.png",
+                    "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+                    "dark_primary_color": "#1A1A2E",
+                    "dark_primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://cdn.example.com/icon-light.png",
+                    "logo_url": "https://cdn.example.com/logo-light.png",
+                    "primary_color": "#4F46E5",
+                    "primary_color_contrast": "#FFFFFF",
+                    "primary_text_color": "#111827",
+                    "secondary_text_color": "#6B7280",
+                },
                 "footer_links": [
                     {
                         "text": "Example",
@@ -444,6 +468,18 @@ class TestAsyncEmailLayouts:
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
                 "text_layout": "Hello, world!",
+                "branding_overrides": {
+                    "dark_icon_url": "https://cdn.example.com/icon-dark.png",
+                    "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+                    "dark_primary_color": "#1A1A2E",
+                    "dark_primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://cdn.example.com/icon-light.png",
+                    "logo_url": "https://cdn.example.com/logo-light.png",
+                    "primary_color": "#4F46E5",
+                    "primary_color_contrast": "#FFFFFF",
+                    "primary_text_color": "#111827",
+                    "secondary_text_color": "#6B7280",
+                },
                 "footer_links": [
                     {
                         "text": "Example",
@@ -536,6 +572,18 @@ class TestAsyncEmailLayouts:
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
                 "text_layout": "Hello, world!",
+                "branding_overrides": {
+                    "dark_icon_url": "https://cdn.example.com/icon-dark.png",
+                    "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+                    "dark_primary_color": "#1A1A2E",
+                    "dark_primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://cdn.example.com/icon-light.png",
+                    "logo_url": "https://cdn.example.com/logo-light.png",
+                    "primary_color": "#4F46E5",
+                    "primary_color_contrast": "#FFFFFF",
+                    "primary_text_color": "#111827",
+                    "secondary_text_color": "#6B7280",
+                },
                 "footer_links": [
                     {
                         "text": "Example",
