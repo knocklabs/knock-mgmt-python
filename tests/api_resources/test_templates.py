@@ -163,6 +163,7 @@ class TestTemplates:
             workflow={
                 "key": "key",
                 "categories": ["string"],
+                "commercial": True,
             },
         )
         assert_matches_type(TemplatePreviewResponse, template, path=["response"])
@@ -357,6 +358,7 @@ class TestAsyncTemplates:
             workflow={
                 "key": "key",
                 "categories": ["string"],
+                "commercial": True,
             },
         )
         assert_matches_type(TemplatePreviewResponse, template, path=["response"])
