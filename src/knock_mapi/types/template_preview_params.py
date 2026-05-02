@@ -129,3 +129,6 @@ class Workflow(TypedDict, total=False):
 
     categories: Optional[SequenceNotStr[str]]
     """Workflow categories."""
+
+    commercial: Optional[bool]
+    """Whether the workflow is marked as commercial messaging."""
