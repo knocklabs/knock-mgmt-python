@@ -19,16 +19,16 @@ from .shared.message_type_multi_select_field import MessageTypeMultiSelectField
 __all__ = ["Partial", "InputSchema"]
 
 InputSchema: TypeAlias = Union[
+    MessageTypeSelectField,
     MessageTypeBooleanField,
-    MessageTypeButtonField,
-    MessageTypeImageField,
     MessageTypeJsonField,
+    MessageTypeTextField,
+    MessageTypeImageField,
+    MessageTypeURLField,
     MessageTypeMarkdownField,
     MessageTypeMultiSelectField,
-    MessageTypeSelectField,
-    MessageTypeTextField,
+    MessageTypeButtonField,
     MessageTypeTextareaField,
-    MessageTypeURLField,
 ]
 
 

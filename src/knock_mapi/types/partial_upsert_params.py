@@ -50,16 +50,16 @@ class PartialUpsertParams(TypedDict, total=False):
 
 
 PartialInputSchema: TypeAlias = Union[
+    MessageTypeSelectField,
     MessageTypeBooleanField,
-    MessageTypeButtonField,
-    MessageTypeImageField,
     MessageTypeJsonField,
+    MessageTypeTextFieldParam,
+    MessageTypeImageField,
+    MessageTypeURLField,
     MessageTypeMarkdownField,
     MessageTypeMultiSelectField,
-    MessageTypeSelectField,
-    MessageTypeTextFieldParam,
+    MessageTypeButtonField,
     MessageTypeTextareaField,
-    MessageTypeURLField,
 ]
 
 

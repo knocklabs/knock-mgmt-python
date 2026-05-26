@@ -18,16 +18,16 @@ from .shared.message_type_multi_select_field import MessageTypeMultiSelectField
 __all__ = ["MessageTypeVariant", "Field"]
 
 Field: TypeAlias = Union[
+    MessageTypeSelectField,
     MessageTypeBooleanField,
-    MessageTypeButtonField,
-    MessageTypeImageField,
     MessageTypeJsonField,
+    MessageTypeTextField,
+    MessageTypeImageField,
+    MessageTypeURLField,
     MessageTypeMarkdownField,
     MessageTypeMultiSelectField,
-    MessageTypeSelectField,
-    MessageTypeTextField,
+    MessageTypeButtonField,
     MessageTypeTextareaField,
-    MessageTypeURLField,
 ]
 
 
