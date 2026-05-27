@@ -197,17 +197,29 @@ from knock_mapi import KnockMgmt
 
 client = KnockMgmt()
 
-response = client.templates.preview(
+response = client.email_layouts.upsert(
+    email_layout_key="email_layout_key",
     environment="development",
-    channel_type="email",
-    recipient="user_123",
-    template={
-        "settings": {},
-        "subject": "Hello {{ recipient.name }}",
+    email_layout={
+        "html_layout": "<html><body>Hello, world!</body></html>",
+        "name": "Transactional",
+        "text_layout": "Hello, world!",
+        "branding_overrides": {
+            "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+            "dark_primary_color": "#1A1A2E",
+            "dark_primary_color_contrast": "#FFFFFF",
+            "primary_color": "#4F46E5",
+            "primary_color_contrast": "#FFFFFF",
+        },
+        "footer_links": [
+            {
+                "text": "Example",
+                "url": "http://example.com",
+            }
+        ],
     },
-    layout={},
 )
-print(response.layout)
+print(response.email_layout)
 ```
 
 ## Handling errors

@@ -28,13 +28,8 @@ from knock_mapi.types import (
     RequestTemplate,
     SMSTemplate,
     WebhookTemplate,
-    TemplatePreviewResponse,
 )
 ```
-
-Methods:
-
-- <code title="post /v1/templates/preview">client.templates.<a href="./src/knock_mapi/resources/templates.py">preview</a>(\*\*<a href="src/knock_mapi/types/template_preview_params.py">params</a>) -> <a href="./src/knock_mapi/types/template_preview_response.py">TemplatePreviewResponse</a></code>
 
 # EmailLayouts
 
@@ -260,6 +255,44 @@ Methods:
 - <code title="get /v1/members/{id}">client.members.<a href="./src/knock_mapi/resources/members.py">retrieve</a>(id) -> <a href="./src/knock_mapi/types/member.py">Member</a></code>
 - <code title="get /v1/members">client.members.<a href="./src/knock_mapi/resources/members.py">list</a>(\*\*<a href="src/knock_mapi/types/member_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/member.py">SyncEntriesCursor[Member]</a></code>
 - <code title="delete /v1/members/{id}">client.members.<a href="./src/knock_mapi/resources/members.py">delete</a>(id) -> None</code>
+
+# DataSources
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Source,
+    SourceEnvironmentSettings,
+    SourceEvent,
+    SourceEventActionMapping,
+    SourceEventsResponse,
+    SourceLog,
+    SourceLogAction,
+    SourceLogsResponse,
+    SourcePreprocessScript,
+    SourceProviderResponse,
+    SourceProvidersResponse,
+    SourceRehearseRequest,
+    SourceRehearseResponse,
+    SourceRequest,
+    SourceStatusResponse,
+    SourcesResponse,
+    DataSourceUpsertResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/sources/{key}">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">retrieve</a>(key, \*\*<a href="src/knock_mapi/types/data_source_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/source.py">Source</a></code>
+- <code title="get /v1/sources/{key}/events">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_events</a>(key, \*\*<a href="src/knock_mapi/types/data_source_list_events_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_events_response.py">SourceEventsResponse</a></code>
+- <code title="get /v1/sources/{key}/logs">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_logs</a>(key, \*\*<a href="src/knock_mapi/types/data_source_list_logs_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_log.py">SyncEntriesCursor[SourceLog]</a></code>
+- <code title="get /v1/source_providers">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_providers</a>() -> <a href="./src/knock_mapi/types/source_providers_response.py">SourceProvidersResponse</a></code>
+- <code title="get /v1/sources">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_sources</a>(\*\*<a href="src/knock_mapi/types/data_source_list_sources_params.py">params</a>) -> <a href="./src/knock_mapi/types/sources_response.py">SourcesResponse</a></code>
+- <code title="post /v1/sources/{key}/rehearse">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">rehearse</a>(key, \*\*<a href="src/knock_mapi/types/data_source_rehearse_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_rehearse_response.py">SourceRehearseResponse</a></code>
+- <code title="get /v1/source_providers/{key}">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">retrieve_provider</a>(key, \*\*<a href="src/knock_mapi/types/data_source_retrieve_provider_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_provider_response.py">SourceProviderResponse</a></code>
+- <code title="get /v1/sources/{key}/status">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">retrieve_status</a>(key, \*\*<a href="src/knock_mapi/types/data_source_retrieve_status_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_status_response.py">SourceStatusResponse</a></code>
+- <code title="put /v1/sources/{key}">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">upsert</a>(key, \*\*<a href="src/knock_mapi/types/data_source_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/data_source_upsert_response.py">DataSourceUpsertResponse</a></code>
 
 # Environments
 
