@@ -45,10 +45,10 @@ if TYPE_CHECKING:
         channels,
         partials,
         audiences,
-        templates,
         variables,
         workflows,
         broadcasts,
+        data_sources,
         environments,
         translations,
         email_layouts,
@@ -64,9 +64,9 @@ if TYPE_CHECKING:
     from .resources.channels import ChannelsResource, AsyncChannelsResource
     from .resources.partials import PartialsResource, AsyncPartialsResource
     from .resources.audiences import AudiencesResource, AsyncAudiencesResource
-    from .resources.templates import TemplatesResource, AsyncTemplatesResource
     from .resources.variables import VariablesResource, AsyncVariablesResource
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
+    from .resources.data_sources import DataSourcesResource, AsyncDataSourcesResource
     from .resources.environments import EnvironmentsResource, AsyncEnvironmentsResource
     from .resources.translations import TranslationsResource, AsyncTranslationsResource
     from .resources.email_layouts import EmailLayoutsResource, AsyncEmailLayoutsResource
@@ -151,12 +151,6 @@ class KnockMgmt(SyncAPIClient):
         )
 
     @cached_property
-    def templates(self) -> TemplatesResource:
-        from .resources.templates import TemplatesResource
-
-        return TemplatesResource(self)
-
-    @cached_property
     def email_layouts(self) -> EmailLayoutsResource:
         """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import EmailLayoutsResource
@@ -230,6 +224,13 @@ class KnockMgmt(SyncAPIClient):
         from .resources.members import MembersResource
 
         return MembersResource(self)
+
+    @cached_property
+    def data_sources(self) -> DataSourcesResource:
+        """Sources receive external events that can trigger Knock actions."""
+        from .resources.data_sources import DataSourcesResource
+
+        return DataSourcesResource(self)
 
     @cached_property
     def environments(self) -> EnvironmentsResource:
@@ -453,12 +454,6 @@ class AsyncKnockMgmt(AsyncAPIClient):
         )
 
     @cached_property
-    def templates(self) -> AsyncTemplatesResource:
-        from .resources.templates import AsyncTemplatesResource
-
-        return AsyncTemplatesResource(self)
-
-    @cached_property
     def email_layouts(self) -> AsyncEmailLayoutsResource:
         """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import AsyncEmailLayoutsResource
@@ -532,6 +527,13 @@ class AsyncKnockMgmt(AsyncAPIClient):
         from .resources.members import AsyncMembersResource
 
         return AsyncMembersResource(self)
+
+    @cached_property
+    def data_sources(self) -> AsyncDataSourcesResource:
+        """Sources receive external events that can trigger Knock actions."""
+        from .resources.data_sources import AsyncDataSourcesResource
+
+        return AsyncDataSourcesResource(self)
 
     @cached_property
     def environments(self) -> AsyncEnvironmentsResource:
@@ -697,12 +699,6 @@ class KnockMgmtWithRawResponse:
         self._client = client
 
     @cached_property
-    def templates(self) -> templates.TemplatesResourceWithRawResponse:
-        from .resources.templates import TemplatesResourceWithRawResponse
-
-        return TemplatesResourceWithRawResponse(self._client.templates)
-
-    @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithRawResponse:
         """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import EmailLayoutsResourceWithRawResponse
@@ -778,6 +774,13 @@ class KnockMgmtWithRawResponse:
         return MembersResourceWithRawResponse(self._client.members)
 
     @cached_property
+    def data_sources(self) -> data_sources.DataSourcesResourceWithRawResponse:
+        """Sources receive external events that can trigger Knock actions."""
+        from .resources.data_sources import DataSourcesResourceWithRawResponse
+
+        return DataSourcesResourceWithRawResponse(self._client.data_sources)
+
+    @cached_property
     def environments(self) -> environments.EnvironmentsResourceWithRawResponse:
         """
         Environments are isolated instances of your account that map to your infrastructure.
@@ -827,12 +830,6 @@ class AsyncKnockMgmtWithRawResponse:
 
     def __init__(self, client: AsyncKnockMgmt) -> None:
         self._client = client
-
-    @cached_property
-    def templates(self) -> templates.AsyncTemplatesResourceWithRawResponse:
-        from .resources.templates import AsyncTemplatesResourceWithRawResponse
-
-        return AsyncTemplatesResourceWithRawResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithRawResponse:
@@ -910,6 +907,13 @@ class AsyncKnockMgmtWithRawResponse:
         return AsyncMembersResourceWithRawResponse(self._client.members)
 
     @cached_property
+    def data_sources(self) -> data_sources.AsyncDataSourcesResourceWithRawResponse:
+        """Sources receive external events that can trigger Knock actions."""
+        from .resources.data_sources import AsyncDataSourcesResourceWithRawResponse
+
+        return AsyncDataSourcesResourceWithRawResponse(self._client.data_sources)
+
+    @cached_property
     def environments(self) -> environments.AsyncEnvironmentsResourceWithRawResponse:
         """
         Environments are isolated instances of your account that map to your infrastructure.
@@ -959,12 +963,6 @@ class KnockMgmtWithStreamedResponse:
 
     def __init__(self, client: KnockMgmt) -> None:
         self._client = client
-
-    @cached_property
-    def templates(self) -> templates.TemplatesResourceWithStreamingResponse:
-        from .resources.templates import TemplatesResourceWithStreamingResponse
-
-        return TemplatesResourceWithStreamingResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithStreamingResponse:
@@ -1042,6 +1040,13 @@ class KnockMgmtWithStreamedResponse:
         return MembersResourceWithStreamingResponse(self._client.members)
 
     @cached_property
+    def data_sources(self) -> data_sources.DataSourcesResourceWithStreamingResponse:
+        """Sources receive external events that can trigger Knock actions."""
+        from .resources.data_sources import DataSourcesResourceWithStreamingResponse
+
+        return DataSourcesResourceWithStreamingResponse(self._client.data_sources)
+
+    @cached_property
     def environments(self) -> environments.EnvironmentsResourceWithStreamingResponse:
         """
         Environments are isolated instances of your account that map to your infrastructure.
@@ -1091,12 +1096,6 @@ class AsyncKnockMgmtWithStreamedResponse:
 
     def __init__(self, client: AsyncKnockMgmt) -> None:
         self._client = client
-
-    @cached_property
-    def templates(self) -> templates.AsyncTemplatesResourceWithStreamingResponse:
-        from .resources.templates import AsyncTemplatesResourceWithStreamingResponse
-
-        return AsyncTemplatesResourceWithStreamingResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithStreamingResponse:
@@ -1172,6 +1171,13 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.members import AsyncMembersResourceWithStreamingResponse
 
         return AsyncMembersResourceWithStreamingResponse(self._client.members)
+
+    @cached_property
+    def data_sources(self) -> data_sources.AsyncDataSourcesResourceWithStreamingResponse:
+        """Sources receive external events that can trigger Knock actions."""
+        from .resources.data_sources import AsyncDataSourcesResourceWithStreamingResponse
+
+        return AsyncDataSourcesResourceWithStreamingResponse(self._client.data_sources)
 
     @cached_property
     def environments(self) -> environments.AsyncEnvironmentsResourceWithStreamingResponse:
