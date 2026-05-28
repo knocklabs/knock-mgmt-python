@@ -68,6 +68,12 @@ class Workflow(TypedDict, total=False):
     settings: WorkflowSettings
     """A map of workflow settings."""
 
+    tags: SequenceNotStr[str]
+    """Use tags to organize resources internally within your account.
+
+    For example, by team or product area.
+    """
+
     trigger_data_json_schema: Dict[str, object]
     """
     A JSON schema for the expected structure of the workflow trigger's `data`
