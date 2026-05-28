@@ -6,6 +6,7 @@ from typing import Union, Iterable, Optional
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypedDict
 
+from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .guide_step_param import GuideStepParam
 from .condition_group_param import ConditionGroupParam
@@ -54,6 +55,12 @@ class Guide(TypedDict, total=False):
 
     Useful for adding notes about the guide for internal purposes. Maximum of 280
     characters allowed.
+    """
+
+    tags: SequenceNotStr[str]
+    """Use tags to organize resources internally within your account.
+
+    For example, by team or product area.
     """
 
     target_audience_id: Optional[str]

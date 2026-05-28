@@ -66,6 +66,12 @@ class Guide(BaseModel):
     steps: Optional[List[GuideStep]] = None
     """A list of guide step objects in the guide."""
 
+    tags: Optional[List[str]] = None
+    """Use tags to organize resources internally within your account.
+
+    For example, by team or product area.
+    """
+
     target_audience_id: Optional[str] = None
     """The ID of the target audience for the guide.
 

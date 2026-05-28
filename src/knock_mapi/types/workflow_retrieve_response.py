@@ -94,6 +94,12 @@ class WorkflowRetrieveResponse(BaseModel):
     settings: Optional[Settings] = None
     """A map of workflow settings."""
 
+    tags: Optional[List[str]] = None
+    """Use tags to organize resources internally within your account.
+
+    For example, by team or product area.
+    """
+
     trigger_data_json_schema: Optional[Dict[str, object]] = None
     """
     A JSON schema for the expected structure of the workflow trigger's `data`
