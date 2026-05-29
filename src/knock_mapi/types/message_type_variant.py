@@ -1,7 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Union
-from typing_extensions import TypeAlias
+from typing import List, Union, Optional
+from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
 from .message_type_text_field import MessageTypeTextField
@@ -15,14 +15,136 @@ from .shared.message_type_markdown_field import MessageTypeMarkdownField
 from .shared.message_type_textarea_field import MessageTypeTextareaField
 from .shared.message_type_multi_select_field import MessageTypeMultiSelectField
 
-__all__ = ["MessageTypeVariant", "Field"]
+__all__ = [
+    "MessageTypeVariant",
+    "Field",
+    "FieldMessageTypeListField",
+    "FieldMessageTypeListFieldSettings",
+    "FieldMessageTypeNumberField",
+    "FieldMessageTypeNumberFieldSettings",
+    "FieldMessageTypeColorField",
+    "FieldMessageTypeColorFieldSettings",
+]
+
+
+class FieldMessageTypeListFieldSettings(BaseModel):
+    """Settings for the list field."""
+
+    default: Optional[List[object]] = None
+    """The default value of the list field."""
+
+    description: Optional[str] = None
+
+    item_schema: Optional[object] = None
+    """A JSON schema used to validate the structure of each item in the list.
+
+    Must be a valid JSON schema.
+    """
+
+    placeholder: Optional[str] = None
+
+    required: Optional[bool] = None
+    """Whether the field is required."""
+
+
+class FieldMessageTypeListField(BaseModel):
+    """A list field used in a message type."""
+
+    key: str
+    """The unique key of the field."""
+
+    label: Optional[str] = None
+    """The label of the field."""
+
+    type: Literal["list"]
+    """The type of the field."""
+
+    settings: Optional[FieldMessageTypeListFieldSettings] = None
+    """Settings for the list field."""
+
+
+class FieldMessageTypeNumberFieldSettings(BaseModel):
+    """Settings for the number field."""
+
+    default: Optional[float] = None
+    """The default numeric value."""
+
+    description: Optional[str] = None
+
+    max: Optional[float] = None
+    """Optional inclusive maximum allowed value."""
+
+    min: Optional[float] = None
+    """Optional inclusive minimum allowed value."""
+
+    placeholder: Optional[str] = None
+
+    required: Optional[bool] = None
+    """Whether the field is required."""
+
+    unit_label: Optional[str] = None
+    """Optional short label shown after the input (e.g. px, kg)."""
+
+
+class FieldMessageTypeNumberField(BaseModel):
+    """
+    A numeric field used in a message type or partial input schema, with optional min/max bounds and a unit label for display.
+    """
+
+    key: str
+    """The unique key of the field."""
+
+    label: Optional[str] = None
+    """The label of the field."""
+
+    type: Literal["number"]
+    """The type of the field."""
+
+    settings: Optional[FieldMessageTypeNumberFieldSettings] = None
+    """Settings for the number field."""
+
+
+class FieldMessageTypeColorFieldSettings(BaseModel):
+    """Settings for the color field."""
+
+    default: Optional[str] = None
+    """The default hex color value."""
+
+    description: Optional[str] = None
+
+    placeholder: Optional[str] = None
+
+    required: Optional[bool] = None
+    """Whether the field is required."""
+
+
+class FieldMessageTypeColorField(BaseModel):
+    """
+    A hex color field (#RGB or #RRGGBB) used in a message type or partial input schema.
+    """
+
+    key: str
+    """The unique key of the field."""
+
+    label: Optional[str] = None
+    """The label of the field."""
+
+    type: Literal["color"]
+    """The type of the field."""
+
+    settings: Optional[FieldMessageTypeColorFieldSettings] = None
+    """Settings for the color field."""
+
 
 Field: TypeAlias = Union[
+    FieldMessageTypeListField,
     MessageTypeSelectField,
     MessageTypeBooleanField,
     MessageTypeJsonField,
+    FieldMessageTypeNumberField,
     MessageTypeTextField,
     MessageTypeImageField,
+    FieldMessageTypeColorField,
     MessageTypeURLField,
     MessageTypeMarkdownField,
     MessageTypeMultiSelectField,
