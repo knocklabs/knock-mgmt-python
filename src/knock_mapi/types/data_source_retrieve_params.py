@@ -10,3 +10,6 @@ __all__ = ["DataSourceRetrieveParams"]
 class DataSourceRetrieveParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
+
+    annotate: bool
+    """Whether to annotate the resource. Only used in the Knock CLI."""

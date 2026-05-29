@@ -51,9 +51,6 @@ class Settings(BaseModel):
 class SourceEnvironmentSettings(BaseModel):
     """Environment-specific settings for a source."""
 
-    created_at: datetime
-    """The timestamp of when these environment settings were created."""
-
     mappings: List[SourceEventActionMapping]
     """Event action mappings configured for this source in the environment."""
 

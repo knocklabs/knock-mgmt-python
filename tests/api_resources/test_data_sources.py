@@ -40,6 +40,16 @@ class TestDataSources:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
+        data_source = client.data_sources.retrieve(
+            key="key",
+            environment="development",
+            annotate=True,
+        )
+        assert_matches_type(Source, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.data_sources.with_raw_response.retrieve(
             key="key",
@@ -463,6 +473,7 @@ class TestDataSources:
                 },
                 "preconfigured_provider": "preconfigured_provider",
             },
+            annotate=True,
         )
         assert_matches_type(DataSourceUpsertResponse, data_source, path=["response"])
 
@@ -518,6 +529,16 @@ class TestAsyncDataSources:
         data_source = await async_client.data_sources.retrieve(
             key="key",
             environment="development",
+        )
+        assert_matches_type(Source, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        data_source = await async_client.data_sources.retrieve(
+            key="key",
+            environment="development",
+            annotate=True,
         )
         assert_matches_type(Source, data_source, path=["response"])
 
@@ -946,6 +967,7 @@ class TestAsyncDataSources:
                 },
                 "preconfigured_provider": "preconfigured_provider",
             },
+            annotate=True,
         )
         assert_matches_type(DataSourceUpsertResponse, data_source, path=["response"])
 
