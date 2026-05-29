@@ -71,6 +71,7 @@ class DataSourcesResource(SyncAPIResource):
         key: str,
         *,
         environment: str,
+        annotate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,6 +85,8 @@ class DataSourcesResource(SyncAPIResource):
 
         Args:
           environment: The environment slug.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           extra_headers: Send extra headers
 
@@ -103,7 +106,11 @@ class DataSourcesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment}, data_source_retrieve_params.DataSourceRetrieveParams
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                    },
+                    data_source_retrieve_params.DataSourceRetrieveParams,
                 ),
             ),
             cast_to=Source,
@@ -439,6 +446,7 @@ class DataSourcesResource(SyncAPIResource):
         *,
         environment: str,
         source: SourceRequestParam,
+        annotate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -455,6 +463,8 @@ class DataSourcesResource(SyncAPIResource):
 
           source: A source request for setting a source and its environment-specific
               configuration.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           extra_headers: Send extra headers
 
@@ -474,7 +484,13 @@ class DataSourcesResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, data_source_upsert_params.DataSourceUpsertParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                    },
+                    data_source_upsert_params.DataSourceUpsertParams,
+                ),
             ),
             cast_to=DataSourceUpsertResponse,
         )
@@ -507,6 +523,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         key: str,
         *,
         environment: str,
+        annotate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -520,6 +537,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
 
         Args:
           environment: The environment slug.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           extra_headers: Send extra headers
 
@@ -539,7 +558,11 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, data_source_retrieve_params.DataSourceRetrieveParams
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                    },
+                    data_source_retrieve_params.DataSourceRetrieveParams,
                 ),
             ),
             cast_to=Source,
@@ -877,6 +900,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         *,
         environment: str,
         source: SourceRequestParam,
+        annotate: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -893,6 +917,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
 
           source: A source request for setting a source and its environment-specific
               configuration.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           extra_headers: Send extra headers
 
@@ -913,7 +939,11 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, data_source_upsert_params.DataSourceUpsertParams
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                    },
+                    data_source_upsert_params.DataSourceUpsertParams,
                 ),
             ),
             cast_to=DataSourceUpsertResponse,

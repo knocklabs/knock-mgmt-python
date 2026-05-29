@@ -18,3 +18,6 @@ class DataSourceUpsertParams(TypedDict, total=False):
     A source request for setting a source and its environment-specific
     configuration.
     """
+
+    annotate: bool
+    """Whether to annotate the resource. Only used in the Knock CLI."""
