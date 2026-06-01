@@ -12,7 +12,7 @@ __all__ = ["SourceLogsResponse"]
 class SourceLogsResponse(BaseModel):
     """A paginated list of source logs.
 
-    Include `actions` in the `includes` query parameter to return action details for each log.
+    Include `actions` in the `include` query parameter to return action details for each log.
     """
 
     entries: List[SourceLog]

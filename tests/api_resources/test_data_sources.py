@@ -157,7 +157,7 @@ class TestDataSources:
             date="date",
             ending_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             event="event",
-            includes=["actions"],
+            include=["actions"],
             limit=0,
             starting_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -238,7 +238,9 @@ class TestDataSources:
     @parametrize
     def test_method_list_sources_with_all_params(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.list_sources(
+            annotate=True,
             environment="development",
+            include=["environment_settings"],
         )
         assert_matches_type(SourcesResponse, data_source, path=["response"])
 
@@ -339,7 +341,7 @@ class TestDataSources:
     def test_method_retrieve_provider_with_all_params(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.retrieve_provider(
             key="key",
-            includes=["branding"],
+            include=["branding"],
         )
         assert_matches_type(SourceProviderResponse, data_source, path=["response"])
 
@@ -651,7 +653,7 @@ class TestAsyncDataSources:
             date="date",
             ending_at=parse_datetime("2019-12-27T18:11:19.117Z"),
             event="event",
-            includes=["actions"],
+            include=["actions"],
             limit=0,
             starting_at=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
@@ -732,7 +734,9 @@ class TestAsyncDataSources:
     @parametrize
     async def test_method_list_sources_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.list_sources(
+            annotate=True,
             environment="development",
+            include=["environment_settings"],
         )
         assert_matches_type(SourcesResponse, data_source, path=["response"])
 
@@ -833,7 +837,7 @@ class TestAsyncDataSources:
     async def test_method_retrieve_provider_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.retrieve_provider(
             key="key",
-            includes=["branding"],
+            include=["branding"],
         )
         assert_matches_type(SourceProviderResponse, data_source, path=["response"])
 

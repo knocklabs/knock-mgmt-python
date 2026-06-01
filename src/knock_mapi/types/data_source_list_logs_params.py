@@ -33,7 +33,7 @@ class DataSourceListLogsParams(TypedDict, total=False):
     event: str
     """The event name to filter by."""
 
-    includes: List[Literal["actions"]]
+    include: List[Literal["actions"]]
     """Associated resources to include in the response.
 
     Accepts `actions` to include the actions executed after receiving each source
