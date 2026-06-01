@@ -21,7 +21,7 @@ __all__ = [
 class DefaultSettingsPreprocessingScript(BaseModel):
     """Verification script source code.
 
-    Only present when `includes` contains `preprocessing_script`.
+    Only present when `include` contains `preprocessing_script`.
     """
 
     language: Literal["javascript"]
@@ -46,7 +46,7 @@ class DefaultSettings(BaseModel):
     preprocessing_script: Optional[DefaultSettingsPreprocessingScript] = None
     """Verification script source code.
 
-    Only present when `includes` contains `preprocessing_script`.
+    Only present when `include` contains `preprocessing_script`.
     """
 
     timestamp_path: Optional[str] = None
@@ -70,7 +70,7 @@ class ProviderBrandingColors(BaseModel):
 
 
 class ProviderBranding(BaseModel):
-    """Provider branding assets. Only present when `includes` contains `branding`."""
+    """Provider branding assets. Only present when `include` contains `branding`."""
 
     icon_image: str
     """Provider icon image URL or path."""
@@ -101,7 +101,7 @@ class Provider(BaseModel):
     """Provider website URL."""
 
     branding: Optional[ProviderBranding] = None
-    """Provider branding assets. Only present when `includes` contains `branding`."""
+    """Provider branding assets. Only present when `include` contains `branding`."""
 
     knock_tutorial_url: Optional[str] = None
     """Knock tutorial URL for setting up the provider."""
@@ -159,7 +159,7 @@ class SourceProviderResponse(BaseModel):
     default_action_mappings: Optional[List[DefaultActionMapping]] = None
     """Default event action mappings for the provider.
 
-    Only present when `includes` contains `default_action_mappings`.
+    Only present when `include` contains `default_action_mappings`.
     """
 
     example_payloads: Optional[Dict[str, List[ExamplePayload]]] = None
@@ -168,5 +168,5 @@ class SourceProviderResponse(BaseModel):
     static_fields: Optional[Dict[str, object]] = None
     """JSON Schema fields needed to configure the source.
 
-    Only present when `includes` contains `static_fields`.
+    Only present when `include` contains `static_fields`.
     """

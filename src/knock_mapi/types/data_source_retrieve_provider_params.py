@@ -9,7 +9,7 @@ __all__ = ["DataSourceRetrieveProviderParams"]
 
 
 class DataSourceRetrieveProviderParams(TypedDict, total=False):
-    includes: List[
+    include: List[
         Literal["branding", "default_action_mappings", "example_payloads", "preprocessing_script", "static_fields"]
     ]
     """Associated resources to include in the response.

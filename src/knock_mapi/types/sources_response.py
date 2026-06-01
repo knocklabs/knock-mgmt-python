@@ -1,8 +1,9 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List, Optional
+from typing import Dict, List, Optional
 
 from .._models import BaseModel
+from .source_environment_settings import SourceEnvironmentSettings
 
 __all__ = ["SourcesResponse", "Entry"]
 
@@ -21,6 +22,12 @@ class Entry(BaseModel):
 
     description: Optional[str] = None
     """Source description."""
+
+    environment_settings: Optional[Dict[str, SourceEnvironmentSettings]] = None
+    """Per-environment settings keyed by environment slug.
+
+    Present only when requested via `include`.
+    """
 
 
 class SourcesResponse(BaseModel):

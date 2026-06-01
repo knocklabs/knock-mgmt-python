@@ -169,7 +169,7 @@ class DataSourcesResource(SyncAPIResource):
         date: str | Omit = omit,
         ending_at: Union[str, datetime] | Omit = omit,
         event: str | Omit = omit,
-        includes: List[Literal["actions"]] | Omit = omit,
+        include: List[Literal["actions"]] | Omit = omit,
         limit: int | Omit = omit,
         starting_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -199,7 +199,7 @@ class DataSourcesResource(SyncAPIResource):
 
           event: The event name to filter by.
 
-          includes: Associated resources to include in the response. Accepts `actions` to include
+          include: Associated resources to include in the response. Accepts `actions` to include
               the actions executed after receiving each source event.
 
           limit: The number of entries to fetch per-page.
@@ -233,7 +233,7 @@ class DataSourcesResource(SyncAPIResource):
                         "date": date,
                         "ending_at": ending_at,
                         "event": event,
-                        "includes": includes,
+                        "include": include,
                         "limit": limit,
                         "starting_at": starting_at,
                     },
@@ -265,7 +265,9 @@ class DataSourcesResource(SyncAPIResource):
     def list_sources(
         self,
         *,
+        annotate: bool | Omit = omit,
         environment: str | Omit = omit,
+        include: List[Literal["environment_settings"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -277,7 +279,11 @@ class DataSourcesResource(SyncAPIResource):
         Returns connected sources for the project.
 
         Args:
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
           environment: The environment slug.
+
+          include: Associated resources to include in each source. Accepts `environment_settings`.
 
           extra_headers: Send extra headers
 
@@ -295,7 +301,12 @@ class DataSourcesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment}, data_source_list_sources_params.DataSourceListSourcesParams
+                    {
+                        "annotate": annotate,
+                        "environment": environment,
+                        "include": include,
+                    },
+                    data_source_list_sources_params.DataSourceListSourcesParams,
                 ),
             ),
             cast_to=SourcesResponse,
@@ -354,7 +365,7 @@ class DataSourcesResource(SyncAPIResource):
         self,
         key: str,
         *,
-        includes: List[
+        include: List[
             Literal["branding", "default_action_mappings", "example_payloads", "preprocessing_script", "static_fields"]
         ]
         | Omit = omit,
@@ -369,7 +380,7 @@ class DataSourcesResource(SyncAPIResource):
         Returns a source provider template available for creating sources.
 
         Args:
-          includes: Associated resources to include in the response. Accepts `branding`,
+          include: Associated resources to include in the response. Accepts `branding`,
               `default_action_mappings`, `example_payloads`, `preprocessing_script`,
               `static_fields`.
 
@@ -391,7 +402,7 @@ class DataSourcesResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"includes": includes}, data_source_retrieve_provider_params.DataSourceRetrieveProviderParams
+                    {"include": include}, data_source_retrieve_provider_params.DataSourceRetrieveProviderParams
                 ),
             ),
             cast_to=SourceProviderResponse,
@@ -621,7 +632,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         date: str | Omit = omit,
         ending_at: Union[str, datetime] | Omit = omit,
         event: str | Omit = omit,
-        includes: List[Literal["actions"]] | Omit = omit,
+        include: List[Literal["actions"]] | Omit = omit,
         limit: int | Omit = omit,
         starting_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -651,7 +662,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
 
           event: The event name to filter by.
 
-          includes: Associated resources to include in the response. Accepts `actions` to include
+          include: Associated resources to include in the response. Accepts `actions` to include
               the actions executed after receiving each source event.
 
           limit: The number of entries to fetch per-page.
@@ -685,7 +696,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                         "date": date,
                         "ending_at": ending_at,
                         "event": event,
-                        "includes": includes,
+                        "include": include,
                         "limit": limit,
                         "starting_at": starting_at,
                     },
@@ -717,7 +728,9 @@ class AsyncDataSourcesResource(AsyncAPIResource):
     async def list_sources(
         self,
         *,
+        annotate: bool | Omit = omit,
         environment: str | Omit = omit,
+        include: List[Literal["environment_settings"]] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -729,7 +742,11 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         Returns connected sources for the project.
 
         Args:
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
           environment: The environment slug.
+
+          include: Associated resources to include in each source. Accepts `environment_settings`.
 
           extra_headers: Send extra headers
 
@@ -747,7 +764,12 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, data_source_list_sources_params.DataSourceListSourcesParams
+                    {
+                        "annotate": annotate,
+                        "environment": environment,
+                        "include": include,
+                    },
+                    data_source_list_sources_params.DataSourceListSourcesParams,
                 ),
             ),
             cast_to=SourcesResponse,
@@ -808,7 +830,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        includes: List[
+        include: List[
             Literal["branding", "default_action_mappings", "example_payloads", "preprocessing_script", "static_fields"]
         ]
         | Omit = omit,
@@ -823,7 +845,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         Returns a source provider template available for creating sources.
 
         Args:
-          includes: Associated resources to include in the response. Accepts `branding`,
+          include: Associated resources to include in the response. Accepts `branding`,
               `default_action_mappings`, `example_payloads`, `preprocessing_script`,
               `static_fields`.
 
@@ -845,7 +867,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"includes": includes}, data_source_retrieve_provider_params.DataSourceRetrieveProviderParams
+                    {"include": include}, data_source_retrieve_provider_params.DataSourceRetrieveProviderParams
                 ),
             ),
             cast_to=SourceProviderResponse,

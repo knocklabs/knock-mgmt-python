@@ -21,7 +21,7 @@ class SourceLog(BaseModel):
     actions: Optional[List[SourceLogAction]] = None
     """The actions executed after receiving the source event.
 
-    Only present when `includes` contains `actions`.
+    Only present when `include` contains `actions`.
     """
 
     data: Optional[Dict[str, object]] = None
