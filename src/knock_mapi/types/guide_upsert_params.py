@@ -79,8 +79,8 @@ class Guide(TypedDict, total=False):
     For example, by team or product area.
     """
 
-    target_audience_id: Optional[str]
-    """The ID of the target audience for the guide.
+    target_audience_key: Optional[str]
+    """The key of the target audience for the guide.
 
     When not set, will default to targeting all users.
     """
