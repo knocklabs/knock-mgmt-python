@@ -343,7 +343,7 @@ class TestGuides:
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
                 "tags": ["string"],
-                "target_audience_id": None,
+                "target_audience_key": "target_audience_key",
                 "target_property_conditions": {
                     "all": [
                         {
@@ -486,7 +486,7 @@ class TestGuides:
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
                 "tags": ["string"],
-                "target_audience_id": None,
+                "target_audience_key": "target_audience_key",
                 "target_property_conditions": {
                     "all": [
                         {
@@ -898,7 +898,7 @@ class TestAsyncGuides:
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
                 "tags": ["string"],
-                "target_audience_id": None,
+                "target_audience_key": "target_audience_key",
                 "target_property_conditions": {
                     "all": [
                         {
@@ -1041,7 +1041,7 @@ class TestAsyncGuides:
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
                 "tags": ["string"],
-                "target_audience_id": None,
+                "target_audience_key": "target_audience_key",
                 "target_property_conditions": {
                     "all": [
                         {

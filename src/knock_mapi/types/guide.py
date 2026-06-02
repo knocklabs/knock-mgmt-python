@@ -72,8 +72,8 @@ class Guide(BaseModel):
     For example, by team or product area.
     """
 
-    target_audience_id: Optional[str] = None
-    """The ID of the target audience for the guide.
+    target_audience_key: Optional[str] = None
+    """The key of the target audience for the guide.
 
     When not set, will default to targeting all users.
     """
