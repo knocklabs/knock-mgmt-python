@@ -174,6 +174,7 @@ class TestChannelGroups:
                     }
                 ],
                 "operator": "any",
+                "visible_in": ["workflow"],
             },
         )
         assert_matches_type(ChannelGroupUpsertResponse, channel_group, path=["response"])
@@ -383,6 +384,7 @@ class TestAsyncChannelGroups:
                     }
                 ],
                 "operator": "any",
+                "visible_in": ["workflow"],
             },
         )
         assert_matches_type(ChannelGroupUpsertResponse, channel_group, path=["response"])

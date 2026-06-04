@@ -45,3 +45,9 @@ class ChannelGroup(BaseModel):
 
     archived_at: Optional[datetime] = None
     """The timestamp of when the channel group was archived (soft deleted)."""
+
+    visible_in: Optional[List[Literal["workflow", "broadcast"]]] = None
+    """The resources where this channel group is visible as a step destination (e.g.
+
+    workflow, broadcast).
+    """

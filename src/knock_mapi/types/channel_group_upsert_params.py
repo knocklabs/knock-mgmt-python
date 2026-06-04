@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Iterable, Optional
+from typing import List, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["ChannelGroupUpsertParams", "ChannelGroup", "ChannelGroupChannelRule"]
@@ -79,5 +79,13 @@ class ChannelGroup(TypedDict, total=False):
     operator: Literal["any", "all"]
     """
     Determines how the channel rules are applied ('any' means any rule can match,
-    'all' means all rules must match).
+    'all' means all rules must match). Defaults to 'any'.
+    """
+
+    visible_in: List[Literal["workflow", "broadcast"]]
+    """Optional.
+
+    Where the channel group is visible as a step destination. Defaults to both
+    workflow and broadcast when creating; omitted on update preserves the existing
+    value.
     """

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Dict, Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -55,4 +55,10 @@ class Channel(BaseModel):
     Per-environment settings for this channel, keyed by environment slug (e.g.,
     'development', 'production'). Only included when requested via the `include`
     parameter or when retrieving a single channel.
+    """
+
+    visible_in: Optional[List[Literal["workflow", "broadcast"]]] = None
+    """The resources where this channel is visible as a step destination (e.g.
+
+    workflow, broadcast).
     """
