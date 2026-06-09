@@ -32,6 +32,8 @@ class ConditionParam(TypedDict, total=False):
             "exists",
             "not_exists",
             "is_timestamp",
+            "is_timestamp_before_now",
+            "is_timestamp_on_or_after_now",
             "is_audience_member",
             "is_not_audience_member",
         ]
