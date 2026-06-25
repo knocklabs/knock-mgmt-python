@@ -21,12 +21,14 @@ class Settings(BaseModel):
     """The public endpoint that receives source events for this environment."""
 
     enforce_idempotency: Optional[bool] = None
+    """Whether the source processes events idempotently (CDP legacy sources only)."""
 
     enforce_verification: Optional[bool] = None
 
     event_type_path: Optional[str] = None
 
     handle_identifies: Optional[bool] = None
+    """Whether the source processes identify calls (CDP legacy sources only)."""
 
     idempotency_key_path: Optional[str] = None
 
