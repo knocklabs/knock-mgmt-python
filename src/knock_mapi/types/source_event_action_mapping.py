@@ -27,6 +27,9 @@ class SourceEventActionMapping(BaseModel):
     ]
     """The action that is performed when this mapping matches a source event."""
 
+    active: bool
+    """Whether the mapping is active. Inactive mappings are skipped during execution."""
+
     created_at: datetime
     """The timestamp of when the mapping was created."""
 
@@ -45,6 +48,3 @@ class SourceEventActionMapping(BaseModel):
 
     action_parameters: Optional[Dict[str, object]] = None
     """The action-specific parameters for the mapping."""
-
-    inactive_at: Optional[datetime] = None
-    """The timestamp of when the mapping was deactivated."""

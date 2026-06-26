@@ -2,11 +2,9 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Iterable, Optional
-from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing import Dict, Iterable, Optional
+from typing_extensions import Literal, Required, TypedDict
 
-from .._utils import PropertyInfo
 from .source_preprocess_script_param import SourcePreprocessScriptParam
 
 __all__ = ["SourceRequestParam", "EnvironmentSettings", "EnvironmentSettingsMapping", "EnvironmentSettingsSettings"]
@@ -38,8 +36,11 @@ class EnvironmentSettingsMapping(TypedDict, total=False):
     action_parameters: Optional[Dict[str, object]]
     """The action-specific parameters for the mapping."""
 
-    inactive_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
-    """The timestamp to deactivate the mapping."""
+    active: bool
+    """Whether the mapping is active.
+
+    Set to false to deactivate the mapping without deleting it. Defaults to true.
+    """
 
     is_deleted: bool
     """Whether to delete the mapping.

@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from typing import List, Optional
-from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
@@ -12,6 +11,9 @@ __all__ = ["SourceStatusResponse", "MappingsRequiringCommit"]
 class MappingsRequiringCommit(BaseModel):
     action_type: Literal["workflows_trigger"]
     """The action that is performed when this mapping matches a source event."""
+
+    active: bool
+    """Whether the mapping is active. Inactive mappings are skipped during execution."""
 
     event_type: str
     """The decoded event type that triggers the action."""
@@ -24,9 +26,6 @@ class MappingsRequiringCommit(BaseModel):
 
     status: Literal["deleted", "updated"]
     """Whether the mapping is pending deletion or update."""
-
-    inactive_at: Optional[datetime] = None
-    """The timestamp of when the mapping was deactivated."""
 
 
 class SourceStatusResponse(BaseModel):
