@@ -457,7 +457,7 @@ class TestDataSources:
                                 "action_type": "workflows_trigger",
                                 "event_type": "event_type",
                                 "action_parameters": {"foo": "bar"},
-                                "inactive_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "active": True,
                                 "is_deleted": True,
                             }
                         ],
@@ -953,7 +953,7 @@ class TestAsyncDataSources:
                                 "action_type": "workflows_trigger",
                                 "event_type": "event_type",
                                 "action_parameters": {"foo": "bar"},
-                                "inactive_at": parse_datetime("2019-12-27T18:11:19.117Z"),
+                                "active": True,
                                 "is_deleted": True,
                             }
                         ],
