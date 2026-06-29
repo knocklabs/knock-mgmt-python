@@ -49,7 +49,11 @@ class EnvironmentSettingsMapping(TypedDict, total=False):
     """
 
 
-class EnvironmentSettingsSettings(TypedDict, total=False, extra_items=object):  # type: ignore[call-arg]
+class EnvironmentSettingsSettings(  # type: ignore[call-arg]
+    TypedDict,
+    total=False,
+    extra_items=object,  # pyright: ignore[reportGeneralTypeIssues]
+):
     """Writable source settings for this environment."""
 
     enforce_verification: bool
