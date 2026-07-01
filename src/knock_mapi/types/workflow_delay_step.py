@@ -11,6 +11,11 @@ __all__ = ["WorkflowDelayStep", "Settings"]
 
 
 class Settings(BaseModel):
+    """The settings for the delay step.
+
+    Both fields can be set to compute a delay where `delay_for` is an offset from the `delay_until_field_path`.
+    """
+
     delay_for: Optional[Duration] = None
     """A duration of time, represented as a unit and a value."""
 
@@ -22,17 +27,10 @@ class Settings(BaseModel):
 
 
 class WorkflowDelayStep(BaseModel):
-    conditions: Optional[ConditionGroup] = None
-    """A group of conditions to be evaluated."""
+    """A delay function step.
 
-    description: Optional[str] = None
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
+    Read more in the [docs](https://docs.knock.app/designing-workflows/delay-function).
     """
-
-    name: str
-    """A name for the workflow step."""
 
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
@@ -46,3 +44,15 @@ class WorkflowDelayStep(BaseModel):
 
     type: Literal["delay"]
     """The type of the workflow step."""
+
+    conditions: Optional[ConditionGroup] = None
+    """A group of conditions to be evaluated."""
+
+    description: Optional[str] = None
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: Optional[str] = None
+    """A name for the workflow step."""

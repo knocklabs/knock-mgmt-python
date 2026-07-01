@@ -11,6 +11,8 @@ __all__ = ["WorkflowThrottleStep", "Settings"]
 
 
 class Settings(BaseModel):
+    """The settings for the throttle step."""
+
     throttle_key: Optional[str] = None
     """The data property to use to throttle notifications per recipient."""
 
@@ -32,8 +34,10 @@ class Settings(BaseModel):
 
 
 class WorkflowThrottleStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
+    """A throttle function step.
+
+    Read more in the [docs](https://docs.knock.app/designing-workflows/throttle-function).
+    """
 
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
@@ -52,3 +56,6 @@ class WorkflowThrottleStep(BaseModel):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str] = None
+    """A name for the workflow step."""

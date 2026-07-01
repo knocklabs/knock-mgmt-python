@@ -7,6 +7,8 @@ __all__ = ["MessageTypeUpsertResponse"]
 
 
 class MessageTypeUpsertResponse(BaseModel):
+    """Wraps the MessageType response under the `message_type` key."""
+
     message_type: MessageType
     """
     A message type is a schema for a message that maps to a UI component or element

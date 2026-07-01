@@ -1,15 +1,21 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
 from .._models import BaseModel
+from .channel_environment_settings import ChannelEnvironmentSettings
 
 __all__ = ["Channel"]
 
 
 class Channel(BaseModel):
+    """A configured channel, which is a way to route messages to a provider."""
+
+    id: str
+    """The unique identifier for the channel."""
+
     created_at: datetime
     """The timestamp of when the channel was created."""
 
@@ -43,3 +49,16 @@ class Channel(BaseModel):
 
     description: Optional[str] = None
     """Optional description of the channel's purpose or usage."""
+
+    environment_settings: Optional[Dict[str, ChannelEnvironmentSettings]] = None
+    """
+    Per-environment settings for this channel, keyed by environment slug (e.g.,
+    'development', 'production'). Only included when requested via the `include`
+    parameter or when retrieving a single channel.
+    """
+
+    visible_in: Optional[List[Literal["workflow", "broadcast"]]] = None
+    """The resources where this channel is visible as a step destination (e.g.
+
+    workflow, broadcast).
+    """

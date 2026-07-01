@@ -20,6 +20,12 @@ class TranslationListParams(TypedDict, total=False):
     before: str
     """The cursor to fetch entries before."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     format: Literal["json", "po"]
     """Optionally specify the returned content format.
 
@@ -41,3 +47,6 @@ class TranslationListParams(TypedDict, total=False):
 
     namespace: str
     """A specific namespace to filter translations for."""
+
+    tenant: str
+    """A specific tenant to filter translations for."""

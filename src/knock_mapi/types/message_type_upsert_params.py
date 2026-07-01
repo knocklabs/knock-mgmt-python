@@ -20,14 +20,29 @@ class MessageTypeUpsertParams(TypedDict, total=False):
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     commit: bool
     """Whether to commit the resource at the same time as modifying it."""
 
     commit_message: str
     """The message to commit the resource with, only used if `commit` is `true`."""
 
+    force: bool
+    """
+    When set to true, forces the upsert to override existing content regardless of
+    environment restrictions. This bypasses the development-only environment check
+    and origin environment checks.
+    """
+
 
 class MessageType(TypedDict, total=False):
+    """A request to create a message type."""
+
     description: Required[Optional[str]]
     """An arbitrary string attached to a message type object.
 

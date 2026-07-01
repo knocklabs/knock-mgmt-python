@@ -7,5 +7,7 @@ __all__ = ["EmailLayoutValidateResponse"]
 
 
 class EmailLayoutValidateResponse(BaseModel):
+    """Wraps the EmailLayout response under the `email_layout` key."""
+
     email_layout: EmailLayout
     """A versioned email layout used within an environment."""

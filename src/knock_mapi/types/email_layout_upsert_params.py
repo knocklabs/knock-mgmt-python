@@ -2,10 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Iterable
+from typing import Iterable, Optional
 from typing_extensions import Required, TypedDict
 
-__all__ = ["EmailLayoutUpsertParams", "EmailLayout", "EmailLayoutFooterLink"]
+__all__ = ["EmailLayoutUpsertParams", "EmailLayout", "EmailLayoutBrandingOverrides", "EmailLayoutFooterLink"]
 
 
 class EmailLayoutUpsertParams(TypedDict, total=False):
@@ -18,11 +18,60 @@ class EmailLayoutUpsertParams(TypedDict, total=False):
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     commit: bool
     """Whether to commit the resource at the same time as modifying it."""
 
     commit_message: str
     """The message to commit the resource with, only used if `commit` is `true`."""
+
+    force: bool
+    """
+    When set to true, forces the upsert to override existing content regardless of
+    environment restrictions. This bypasses the development-only environment check
+    and origin environment checks.
+    """
+
+
+class EmailLayoutBrandingOverrides(TypedDict, total=False):
+    """
+    Overrides to apply against account branding variables in an email layout, including dark mode-specific values.
+    """
+
+    dark_icon_url: Optional[str]
+    """A URL for a dark mode icon override."""
+
+    dark_logo_url: Optional[str]
+    """A URL for a dark mode logo override."""
+
+    dark_primary_color: Optional[str]
+    """The dark mode primary brand color in hex format."""
+
+    dark_primary_color_contrast: Optional[str]
+    """The dark mode contrast color for the primary brand color in hex format."""
+
+    icon_url: Optional[str]
+    """A URL for a light mode icon override."""
+
+    logo_url: Optional[str]
+    """A URL for a light mode logo override."""
+
+    primary_color: Optional[str]
+    """The light mode primary brand color in hex format."""
+
+    primary_color_contrast: Optional[str]
+    """The light mode contrast color for the primary brand color in hex format."""
+
+    primary_text_color: Optional[str]
+    """The light mode primary text color in hex format."""
+
+    secondary_text_color: Optional[str]
+    """The light mode secondary text color in hex format."""
 
 
 class EmailLayoutFooterLink(TypedDict, total=False):
@@ -34,8 +83,10 @@ class EmailLayoutFooterLink(TypedDict, total=False):
 
 
 class EmailLayout(TypedDict, total=False):
+    """A request to update or create an email layout."""
+
     html_layout: Required[str]
-    """The complete HTML content of the email layout."""
+    """The complete HTML or MJML content of the email layout."""
 
     name: Required[str]
     """The friendly name of this email layout."""
@@ -43,5 +94,17 @@ class EmailLayout(TypedDict, total=False):
     text_layout: Required[str]
     """The complete plain text content of the email layout."""
 
+    branding_overrides: Optional[EmailLayoutBrandingOverrides]
+    """
+    Overrides to apply against account branding variables in an email layout,
+    including dark mode-specific values.
+    """
+
     footer_links: Iterable[EmailLayoutFooterLink]
     """A list of one or more items to show in the footer of the email layout."""
+
+    is_mjml: Optional[bool]
+    """Whether this layout uses MJML format.
+
+    When true, html_layout must contain <mjml> tags.
+    """

@@ -11,8 +11,10 @@ __all__ = ["WorkflowFetchStep"]
 
 
 class WorkflowFetchStep(BaseModel):
-    name: str
-    """A name for the workflow step."""
+    """A fetch function step.
+
+    Retrieves data from an external source and merges it into the workflow's `data` scope for use in later steps. Read more in the [docs](https://docs.knock.app/designing-workflows/fetch-function).
+    """
 
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
@@ -20,7 +22,7 @@ class WorkflowFetchStep(BaseModel):
     settings: RequestTemplate
     """A request template for a fetch function step."""
 
-    type: Literal["fetch"]
+    type: Literal["http_fetch"]
     """The type of the workflow step."""
 
     conditions: Optional[ConditionGroup] = None
@@ -31,3 +33,6 @@ class WorkflowFetchStep(BaseModel):
 
     Useful for adding notes about the workflow for internal purposes.
     """
+
+    name: Optional[str] = None
+    """A name for the workflow step."""

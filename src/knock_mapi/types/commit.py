@@ -6,10 +6,12 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 
-__all__ = ["Commit", "CommitAuthor", "Resource"]
+__all__ = ["Commit", "Author", "Resource"]
 
 
-class CommitAuthor(BaseModel):
+class Author(BaseModel):
+    """The author of the commit."""
+
     email: str
     """The email address of the commit author."""
 
@@ -18,22 +20,23 @@ class CommitAuthor(BaseModel):
 
 
 class Resource(BaseModel):
+    """The resource object associated with the commit."""
+
     identifier: str
     """The unique identifier for the resource."""
 
-    type: Literal["email_layout", "workflow", "translation", "partial", "message_type"]
+    type: Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]
     """The type of the resource object."""
 
 
 class Commit(BaseModel):
+    """A commit is a change to a resource within an environment, made by an author."""
+
     id: str
     """The unique identifier for the commit."""
 
-    commit_author: CommitAuthor
+    author: Author
     """The author of the commit."""
-
-    commit_message: str
-    """The optional message about the commit."""
 
     created_at: datetime
     """The timestamp of when the commit was created."""
@@ -44,5 +47,5 @@ class Commit(BaseModel):
     resource: Resource
     """The resource object associated with the commit."""
 
-    updated_at: datetime
-    """The timestamp of when the commit was last updated."""
+    commit_message: Optional[str] = None
+    """The optional message about the commit."""

@@ -6,5 +6,7 @@ __all__ = ["CommitPromoteAllResponse"]
 
 
 class CommitPromoteAllResponse(BaseModel):
+    """The response from promoting all changes."""
+
     result: str
     """The result of the promote operation."""

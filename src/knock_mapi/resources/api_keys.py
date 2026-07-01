@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import api_key_exchange_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
+from .._types import Body, Query, Headers, NotGiven, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -28,7 +28,7 @@ class APIKeysResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return APIKeysResourceWithRawResponse(self)
 
@@ -37,7 +37,7 @@ class APIKeysResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return APIKeysResourceWithStreamingResponse(self)
 
@@ -50,7 +50,7 @@ class APIKeysResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyExchangeResponse:
         """
         Given an authenticated service token and an environment, will exchange the
@@ -88,7 +88,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return AsyncAPIKeysResourceWithRawResponse(self)
 
@@ -97,7 +97,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return AsyncAPIKeysResourceWithStreamingResponse(self)
 
@@ -110,7 +110,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyExchangeResponse:
         """
         Given an authenticated service token and an environment, will exchange the

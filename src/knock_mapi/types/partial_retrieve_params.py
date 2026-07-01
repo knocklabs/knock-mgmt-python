@@ -14,6 +14,12 @@ class PartialRetrieveParams(TypedDict, total=False):
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     hide_uncommitted_changes: bool
     """Whether to hide uncommitted changes.
 

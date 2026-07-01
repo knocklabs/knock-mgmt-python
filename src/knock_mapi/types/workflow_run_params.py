@@ -2,18 +2,32 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Union, Optional
+from typing import Dict, Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["WorkflowRunParams", "Recipient", "RecipientUnionMember1", "Actor", "ActorUnionMember1"]
+from .._types import SequenceNotStr
+
+__all__ = [
+    "WorkflowRunParams",
+    "Recipient",
+    "RecipientObjectRecipientReference",
+    "Actor",
+    "ActorObjectRecipientReference",
+]
 
 
 class WorkflowRunParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
-    recipients: Required[List[Recipient]]
+    recipients: Required[SequenceNotStr[Recipient]]
     """A list of recipients to run the workflow for."""
+
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
 
     actor: Optional[Actor]
     """
@@ -25,25 +39,38 @@ class WorkflowRunParams(TypedDict, total=False):
     """A key to cancel the workflow run."""
 
     data: Dict[str, object]
-    """A map of data to be used in the workflow run."""
+    """A map of data to be used in the workflow run.
+
+    The structure should conform to the workflow's `trigger_data_json_schema` if one
+    is defined. Available in templates as `{{ data.field_name }}`. See
+    [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
+    """
 
     tenant: str
-    """The tenant to associate the workflow run with."""
+    """The tenant to associate the workflow run with. Must not contain whitespace."""
 
 
-class RecipientUnionMember1(TypedDict, total=False):
+class RecipientObjectRecipientReference(TypedDict, total=False):
+    """An object reference."""
+
     id: Required[str]
+    """The ID of the object."""
 
     collection: Required[str]
+    """The collection of the object."""
 
 
-Recipient: TypeAlias = Union[str, RecipientUnionMember1]
+Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference]
 
 
-class ActorUnionMember1(TypedDict, total=False):
+class ActorObjectRecipientReference(TypedDict, total=False):
+    """An object reference."""
+
     id: Required[str]
+    """The ID of the object."""
 
     collection: Required[str]
+    """The collection of the object."""
 
 
-Actor: TypeAlias = Union[str, ActorUnionMember1]
+Actor: TypeAlias = Union[str, ActorObjectRecipientReference]

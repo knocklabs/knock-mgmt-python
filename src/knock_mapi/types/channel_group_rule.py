@@ -11,6 +11,10 @@ __all__ = ["ChannelGroupRule"]
 
 
 class ChannelGroupRule(BaseModel):
+    """
+    A rule that determines if a channel should be executed as part of a channel group.
+    """
+
     channel: Channel
     """A configured channel, which is a way to route messages to a provider."""
 
@@ -43,8 +47,18 @@ class ChannelGroupRule(BaseModel):
             "contains",
             "not_contains",
             "contains_all",
+            "not_contains_all",
+            "is_timestamp_before",
+            "is_timestamp_on_or_after",
+            "is_timestamp_between",
+            "is_between",
             "empty",
             "not_empty",
+            "exists",
+            "not_exists",
+            "is_timestamp",
+            "is_timestamp_before_now",
+            "is_timestamp_on_or_after_now",
             "is_audience_member",
             "is_not_audience_member",
         ]

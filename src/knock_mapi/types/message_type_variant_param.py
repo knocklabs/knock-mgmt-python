@@ -2,71 +2,54 @@
 
 from __future__ import annotations
 
-from typing import List, Union, Iterable, Optional
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .message_type_text_field_param import MessageTypeTextFieldParam
+from .shared_params.message_type_url_field import MessageTypeURLField
+from .shared_params.message_type_json_field import MessageTypeJsonField
+from .shared_params.message_type_image_field import MessageTypeImageField
+from .shared_params.message_type_button_field import MessageTypeButtonField
+from .shared_params.message_type_select_field import MessageTypeSelectField
+from .shared_params.message_type_boolean_field import MessageTypeBooleanField
+from .shared_params.message_type_markdown_field import MessageTypeMarkdownField
+from .shared_params.message_type_textarea_field import MessageTypeTextareaField
+from .shared_params.message_type_multi_select_field import MessageTypeMultiSelectField
 
 __all__ = [
     "MessageTypeVariantParam",
     "Field",
-    "FieldMessageTypeBooleanField",
-    "FieldMessageTypeBooleanFieldSettings",
-    "FieldMessageTypeButtonField",
-    "FieldMessageTypeButtonFieldSettings",
-    "FieldMessageTypeImageField",
-    "FieldMessageTypeImageFieldURL",
-    "FieldMessageTypeImageFieldURLSettings",
-    "FieldMessageTypeImageFieldSettings",
-    "FieldMessageTypeMarkdownField",
-    "FieldMessageTypeMarkdownFieldSettings",
-    "FieldMessageTypeMultiSelectField",
-    "FieldMessageTypeMultiSelectFieldSettings",
-    "FieldMessageTypeMultiSelectFieldSettingsOption",
-    "FieldMessageTypeSelectField",
-    "FieldMessageTypeSelectFieldSettings",
-    "FieldMessageTypeSelectFieldSettingsOption",
-    "FieldMessageTypeTextareaField",
-    "FieldMessageTypeTextareaFieldSettings",
-    "FieldMessageTypeURLField",
-    "FieldMessageTypeURLFieldSettings",
+    "FieldMessageTypeListField",
+    "FieldMessageTypeListFieldSettings",
+    "FieldMessageTypeNumberField",
+    "FieldMessageTypeNumberFieldSettings",
+    "FieldMessageTypeColorField",
+    "FieldMessageTypeColorFieldSettings",
 ]
 
 
-class FieldMessageTypeBooleanFieldSettings(TypedDict, total=False):
-    default: bool
-    """The default value of the boolean field."""
+class FieldMessageTypeListFieldSettings(TypedDict, total=False):
+    """Settings for the list field."""
 
-    description: str
+    default: Optional[Iterable[object]]
+    """The default value of the list field."""
 
-    required: bool
-    """Whether the field is required."""
+    description: Optional[str]
 
+    item_schema: Optional[object]
+    """A JSON schema used to validate the structure of each item in the list.
 
-class FieldMessageTypeBooleanField(TypedDict, total=False):
-    key: Required[str]
-    """The unique key of the field."""
+    Must be a valid JSON schema.
+    """
 
-    label: Required[Optional[str]]
-    """The label of the field."""
-
-    type: Required[Literal["boolean"]]
-    """The type of the field."""
-
-    settings: FieldMessageTypeBooleanFieldSettings
-    """Settings for the boolean field."""
-
-
-class FieldMessageTypeButtonFieldSettings(TypedDict, total=False):
-    description: str
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
 
 
-class FieldMessageTypeButtonField(TypedDict, total=False):
-    action: Required[MessageTypeTextFieldParam]
-    """A text field used in a message type."""
+class FieldMessageTypeListField(TypedDict, total=False):
+    """A list field used in a message type."""
 
     key: Required[str]
     """The unique key of the field."""
@@ -74,53 +57,72 @@ class FieldMessageTypeButtonField(TypedDict, total=False):
     label: Required[Optional[str]]
     """The label of the field."""
 
-    text: Required[MessageTypeTextFieldParam]
-    """A text field used in a message type."""
-
-    type: Required[Literal["button"]]
+    type: Required[Literal["list"]]
     """The type of the field."""
 
-    settings: FieldMessageTypeButtonFieldSettings
-    """Settings for the button field."""
+    settings: FieldMessageTypeListFieldSettings
+    """Settings for the list field."""
 
 
-class FieldMessageTypeImageFieldURLSettings(TypedDict, total=False):
+class FieldMessageTypeNumberFieldSettings(TypedDict, total=False):
+    """Settings for the number field."""
+
+    default: Optional[float]
+    """The default numeric value."""
+
+    description: Optional[str]
+
+    max: Optional[float]
+    """Optional inclusive maximum allowed value."""
+
+    min: Optional[float]
+    """Optional inclusive minimum allowed value."""
+
+    placeholder: Optional[str]
+
+    required: bool
+    """Whether the field is required."""
+
+    unit_label: Optional[str]
+    """Optional short label shown after the input (e.g. px, kg)."""
+
+
+class FieldMessageTypeNumberField(TypedDict, total=False):
+    """
+    A numeric field used in a message type or partial input schema, with optional min/max bounds and a unit label for display.
+    """
+
+    key: Required[str]
+    """The unique key of the field."""
+
+    label: Required[Optional[str]]
+    """The label of the field."""
+
+    type: Required[Literal["number"]]
+    """The type of the field."""
+
+    settings: FieldMessageTypeNumberFieldSettings
+    """Settings for the number field."""
+
+
+class FieldMessageTypeColorFieldSettings(TypedDict, total=False):
+    """Settings for the color field."""
+
     default: Optional[str]
-    """The default value of the URL field."""
+    """The default hex color value."""
 
-    description: str
+    description: Optional[str]
 
-    required: bool
-    """Whether the field is required."""
-
-
-class FieldMessageTypeImageFieldURL(TypedDict, total=False):
-    key: Required[str]
-    """The unique key of the field."""
-
-    label: Required[Optional[str]]
-    """The label of the field."""
-
-    type: Required[Literal["url"]]
-    """The type of the field."""
-
-    settings: FieldMessageTypeImageFieldURLSettings
-    """Settings for the url field."""
-
-
-class FieldMessageTypeImageFieldSettings(TypedDict, total=False):
-    description: str
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
 
 
-class FieldMessageTypeImageField(TypedDict, total=False):
-    action: Required[MessageTypeTextFieldParam]
-    """A text field used in a message type."""
-
-    alt: Required[MessageTypeTextFieldParam]
-    """A text field used in a message type."""
+class FieldMessageTypeColorField(TypedDict, total=False):
+    """
+    A hex color field (#RGB or #RRGGBB) used in a message type or partial input schema.
+    """
 
     key: Required[str]
     """The unique key of the field."""
@@ -128,176 +130,33 @@ class FieldMessageTypeImageField(TypedDict, total=False):
     label: Required[Optional[str]]
     """The label of the field."""
 
-    type: Required[Literal["image"]]
+    type: Required[Literal["color"]]
     """The type of the field."""
 
-    url: Required[FieldMessageTypeImageFieldURL]
-    """A URL field used in a message type."""
-
-    settings: FieldMessageTypeImageFieldSettings
-    """Settings for the image field."""
-
-
-class FieldMessageTypeMarkdownFieldSettings(TypedDict, total=False):
-    default: str
-    """The default value of the markdown field."""
-
-    description: str
-
-    required: bool
-    """Whether the field is required."""
-
-
-class FieldMessageTypeMarkdownField(TypedDict, total=False):
-    key: Required[str]
-    """The unique key of the field."""
-
-    label: Required[Optional[str]]
-    """The label of the field."""
-
-    type: Required[Literal["markdown"]]
-    """The type of the field."""
-
-    settings: FieldMessageTypeMarkdownFieldSettings
-    """Settings for the markdown field."""
-
-
-class FieldMessageTypeMultiSelectFieldSettingsOption(TypedDict, total=False):
-    value: Required[str]
-    """The value for the option."""
-
-    label: str
-    """The display label for the option."""
-
-
-class FieldMessageTypeMultiSelectFieldSettings(TypedDict, total=False):
-    default: Optional[List[str]]
-    """The default values for the multi-select field."""
-
-    description: str
-
-    options: Iterable[FieldMessageTypeMultiSelectFieldSettingsOption]
-    """The available options for the multi-select field."""
-
-    required: bool
-    """Whether the field is required."""
-
-
-class FieldMessageTypeMultiSelectField(TypedDict, total=False):
-    key: Required[str]
-    """The unique key of the field."""
-
-    label: Required[Optional[str]]
-    """The label of the field."""
-
-    settings: Required[FieldMessageTypeMultiSelectFieldSettings]
-    """Settings for the multi_select field."""
-
-    type: Required[Literal["multi_select"]]
-    """The type of the field."""
-
-
-class FieldMessageTypeSelectFieldSettingsOption(TypedDict, total=False):
-    value: Required[str]
-    """The value for the option."""
-
-    label: str
-    """The display label for the option."""
-
-
-class FieldMessageTypeSelectFieldSettings(TypedDict, total=False):
-    default: Optional[str]
-    """The default value for the select field."""
-
-    description: str
-
-    options: Iterable[FieldMessageTypeSelectFieldSettingsOption]
-    """The available options for the select field."""
-
-    required: bool
-    """Whether the field is required."""
-
-
-class FieldMessageTypeSelectField(TypedDict, total=False):
-    key: Required[str]
-    """The unique key of the field."""
-
-    label: Required[Optional[str]]
-    """The label of the field."""
-
-    settings: Required[FieldMessageTypeSelectFieldSettings]
-    """Settings for the select field."""
-
-    type: Required[Literal["select"]]
-    """The type of the field."""
-
-
-class FieldMessageTypeTextareaFieldSettings(TypedDict, total=False):
-    default: Optional[str]
-    """The default value of the textarea field."""
-
-    description: str
-
-    max_length: int
-
-    min_length: int
-
-    required: bool
-    """Whether the field is required."""
-
-
-class FieldMessageTypeTextareaField(TypedDict, total=False):
-    key: Required[str]
-    """The unique key of the field."""
-
-    label: Required[Optional[str]]
-    """The label of the field."""
-
-    type: Required[Literal["textarea"]]
-    """The type of the field."""
-
-    settings: FieldMessageTypeTextareaFieldSettings
-    """Settings for the textarea field."""
-
-
-class FieldMessageTypeURLFieldSettings(TypedDict, total=False):
-    default: Optional[str]
-    """The default value of the URL field."""
-
-    description: str
-
-    required: bool
-    """Whether the field is required."""
-
-
-class FieldMessageTypeURLField(TypedDict, total=False):
-    key: Required[str]
-    """The unique key of the field."""
-
-    label: Required[Optional[str]]
-    """The label of the field."""
-
-    type: Required[Literal["url"]]
-    """The type of the field."""
-
-    settings: FieldMessageTypeURLFieldSettings
-    """Settings for the url field."""
+    settings: FieldMessageTypeColorFieldSettings
+    """Settings for the color field."""
 
 
 Field: TypeAlias = Union[
-    FieldMessageTypeBooleanField,
-    FieldMessageTypeButtonField,
-    FieldMessageTypeImageField,
-    FieldMessageTypeMarkdownField,
-    FieldMessageTypeMultiSelectField,
-    FieldMessageTypeSelectField,
+    FieldMessageTypeListField,
+    MessageTypeSelectField,
+    MessageTypeBooleanField,
+    MessageTypeJsonField,
     MessageTypeTextFieldParam,
-    FieldMessageTypeTextareaField,
-    FieldMessageTypeURLField,
+    FieldMessageTypeNumberField,
+    MessageTypeImageField,
+    FieldMessageTypeColorField,
+    MessageTypeURLField,
+    MessageTypeMarkdownField,
+    MessageTypeMultiSelectField,
+    MessageTypeButtonField,
+    MessageTypeTextareaField,
 ]
 
 
 class MessageTypeVariantParam(TypedDict, total=False):
+    """A variant of a message type."""
+
     fields: Required[Iterable[Field]]
     """The field types available for the variant."""
 

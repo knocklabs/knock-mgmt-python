@@ -8,6 +8,14 @@ from .auth import (
     AuthResourceWithStreamingResponse,
     AsyncAuthResourceWithStreamingResponse,
 )
+from .guides import (
+    GuidesResource,
+    AsyncGuidesResource,
+    GuidesResourceWithRawResponse,
+    AsyncGuidesResourceWithRawResponse,
+    GuidesResourceWithStreamingResponse,
+    AsyncGuidesResourceWithStreamingResponse,
+)
 from .commits import (
     CommitsResource,
     AsyncCommitsResource,
@@ -16,6 +24,14 @@ from .commits import (
     CommitsResourceWithStreamingResponse,
     AsyncCommitsResourceWithStreamingResponse,
 )
+from .members import (
+    MembersResource,
+    AsyncMembersResource,
+    MembersResourceWithRawResponse,
+    AsyncMembersResourceWithRawResponse,
+    MembersResourceWithStreamingResponse,
+    AsyncMembersResourceWithStreamingResponse,
+)
 from .api_keys import (
     APIKeysResource,
     AsyncAPIKeysResource,
@@ -23,6 +39,14 @@ from .api_keys import (
     AsyncAPIKeysResourceWithRawResponse,
     APIKeysResourceWithStreamingResponse,
     AsyncAPIKeysResourceWithStreamingResponse,
+)
+from .branches import (
+    BranchesResource,
+    AsyncBranchesResource,
+    BranchesResourceWithRawResponse,
+    AsyncBranchesResourceWithRawResponse,
+    BranchesResourceWithStreamingResponse,
+    AsyncBranchesResourceWithStreamingResponse,
 )
 from .channels import (
     ChannelsResource,
@@ -40,6 +64,14 @@ from .partials import (
     PartialsResourceWithStreamingResponse,
     AsyncPartialsResourceWithStreamingResponse,
 )
+from .audiences import (
+    AudiencesResource,
+    AsyncAudiencesResource,
+    AudiencesResourceWithRawResponse,
+    AsyncAudiencesResourceWithRawResponse,
+    AudiencesResourceWithStreamingResponse,
+    AsyncAudiencesResourceWithStreamingResponse,
+)
 from .variables import (
     VariablesResource,
     AsyncVariablesResource,
@@ -55,6 +87,22 @@ from .workflows import (
     AsyncWorkflowsResourceWithRawResponse,
     WorkflowsResourceWithStreamingResponse,
     AsyncWorkflowsResourceWithStreamingResponse,
+)
+from .broadcasts import (
+    BroadcastsResource,
+    AsyncBroadcastsResource,
+    BroadcastsResourceWithRawResponse,
+    AsyncBroadcastsResourceWithRawResponse,
+    BroadcastsResourceWithStreamingResponse,
+    AsyncBroadcastsResourceWithStreamingResponse,
+)
+from .data_sources import (
+    DataSourcesResource,
+    AsyncDataSourcesResource,
+    DataSourcesResourceWithRawResponse,
+    AsyncDataSourcesResourceWithRawResponse,
+    DataSourcesResourceWithStreamingResponse,
+    AsyncDataSourcesResourceWithStreamingResponse,
 )
 from .environments import (
     EnvironmentsResource,
@@ -158,6 +206,18 @@ __all__ = [
     "AsyncChannelsResourceWithRawResponse",
     "ChannelsResourceWithStreamingResponse",
     "AsyncChannelsResourceWithStreamingResponse",
+    "MembersResource",
+    "AsyncMembersResource",
+    "MembersResourceWithRawResponse",
+    "AsyncMembersResourceWithRawResponse",
+    "MembersResourceWithStreamingResponse",
+    "AsyncMembersResourceWithStreamingResponse",
+    "DataSourcesResource",
+    "AsyncDataSourcesResource",
+    "DataSourcesResourceWithRawResponse",
+    "AsyncDataSourcesResourceWithRawResponse",
+    "DataSourcesResourceWithStreamingResponse",
+    "AsyncDataSourcesResourceWithStreamingResponse",
     "EnvironmentsResource",
     "AsyncEnvironmentsResource",
     "EnvironmentsResourceWithRawResponse",
@@ -170,4 +230,28 @@ __all__ = [
     "AsyncVariablesResourceWithRawResponse",
     "VariablesResourceWithStreamingResponse",
     "AsyncVariablesResourceWithStreamingResponse",
+    "GuidesResource",
+    "AsyncGuidesResource",
+    "GuidesResourceWithRawResponse",
+    "AsyncGuidesResourceWithRawResponse",
+    "GuidesResourceWithStreamingResponse",
+    "AsyncGuidesResourceWithStreamingResponse",
+    "BranchesResource",
+    "AsyncBranchesResource",
+    "BranchesResourceWithRawResponse",
+    "AsyncBranchesResourceWithRawResponse",
+    "BranchesResourceWithStreamingResponse",
+    "AsyncBranchesResourceWithStreamingResponse",
+    "BroadcastsResource",
+    "AsyncBroadcastsResource",
+    "BroadcastsResourceWithRawResponse",
+    "AsyncBroadcastsResourceWithRawResponse",
+    "BroadcastsResourceWithStreamingResponse",
+    "AsyncBroadcastsResourceWithStreamingResponse",
+    "AudiencesResource",
+    "AsyncAudiencesResource",
+    "AudiencesResourceWithRawResponse",
+    "AsyncAudiencesResourceWithRawResponse",
+    "AudiencesResourceWithStreamingResponse",
+    "AsyncAudiencesResourceWithStreamingResponse",
 ]

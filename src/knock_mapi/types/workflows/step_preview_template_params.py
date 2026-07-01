@@ -5,7 +5,13 @@ from __future__ import annotations
 from typing import Dict, Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
-__all__ = ["StepPreviewTemplateParams", "Recipient", "RecipientUnionMember1", "Actor", "ActorUnionMember1"]
+__all__ = [
+    "StepPreviewTemplateParams",
+    "Recipient",
+    "RecipientObjectRecipientReference",
+    "Actor",
+    "ActorObjectRecipientReference",
+]
 
 
 class StepPreviewTemplateParams(TypedDict, total=False):
@@ -20,6 +26,12 @@ class StepPreviewTemplateParams(TypedDict, total=False):
     a user), or by a reference for an object.
     """
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     actor: Optional[Actor]
     """
     A recipient reference, used when referencing a recipient by either their ID (for
@@ -30,22 +42,30 @@ class StepPreviewTemplateParams(TypedDict, total=False):
     """The data to pass to the workflow template for rendering."""
 
     tenant: Optional[str]
-    """The tenant to associate the workflow with."""
+    """The tenant to associate the workflow with. Must not contain whitespace."""
 
 
-class RecipientUnionMember1(TypedDict, total=False):
+class RecipientObjectRecipientReference(TypedDict, total=False):
+    """An object reference."""
+
     id: Required[str]
+    """The ID of the object."""
 
     collection: Required[str]
+    """The collection of the object."""
 
 
-Recipient: TypeAlias = Union[str, RecipientUnionMember1]
+Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference]
 
 
-class ActorUnionMember1(TypedDict, total=False):
+class ActorObjectRecipientReference(TypedDict, total=False):
+    """An object reference."""
+
     id: Required[str]
+    """The ID of the object."""
 
     collection: Required[str]
+    """The collection of the object."""
 
 
-Actor: TypeAlias = Union[str, ActorUnionMember1]
+Actor: TypeAlias = Union[str, ActorObjectRecipientReference]

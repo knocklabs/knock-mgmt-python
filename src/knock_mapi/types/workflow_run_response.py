@@ -6,5 +6,7 @@ __all__ = ["WorkflowRunResponse"]
 
 
 class WorkflowRunResponse(BaseModel):
+    """A response to a run workflow request."""
+
     workflow_run_id: str
     """The ID of the workflow run."""

@@ -12,6 +12,11 @@ __all__ = ["WorkflowDelayStepParam", "Settings"]
 
 
 class Settings(TypedDict, total=False):
+    """The settings for the delay step.
+
+    Both fields can be set to compute a delay where `delay_for` is an offset from the `delay_until_field_path`.
+    """
+
     delay_for: Optional[DurationParam]
     """A duration of time, represented as a unit and a value."""
 
@@ -23,17 +28,10 @@ class Settings(TypedDict, total=False):
 
 
 class WorkflowDelayStepParam(TypedDict, total=False):
-    conditions: Required[Optional[ConditionGroupParam]]
-    """A group of conditions to be evaluated."""
+    """A delay function step.
 
-    description: Required[Optional[str]]
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
+    Read more in the [docs](https://docs.knock.app/designing-workflows/delay-function).
     """
-
-    name: Required[str]
-    """A name for the workflow step."""
 
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
@@ -47,3 +45,15 @@ class WorkflowDelayStepParam(TypedDict, total=False):
 
     type: Required[Literal["delay"]]
     """The type of the workflow step."""
+
+    conditions: Optional[ConditionGroupParam]
+    """A group of conditions to be evaluated."""
+
+    description: Optional[str]
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: Optional[str]
+    """A name for the workflow step."""

@@ -23,11 +23,24 @@ class TranslationUpsertParams(TypedDict, total=False):
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     commit: bool
     """Whether to commit the resource at the same time as modifying it."""
 
     commit_message: str
     """The message to commit the resource with, only used if `commit` is `true`."""
+
+    force: bool
+    """
+    When set to true, forces the upsert to override existing content regardless of
+    environment restrictions. This bypasses the development-only environment check
+    and origin environment checks.
+    """
 
     format: Literal["json", "po"]
     """Optionally specify the returned content format.
@@ -35,8 +48,15 @@ class TranslationUpsertParams(TypedDict, total=False):
     Supports 'json' and 'po'. Defaults to 'json'.
     """
 
+    tenant: str
+    """An optional tenant to scope the translation to."""
+
 
 class Translation(TypedDict, total=False):
+    """
+    A translation object with a content attribute used to update or create a translation.
+    """
+
     content: Required[str]
     """
     A JSON encoded string containing the key-value pairs of translation references

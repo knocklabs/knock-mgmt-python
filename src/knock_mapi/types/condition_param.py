@@ -9,6 +9,8 @@ __all__ = ["ConditionParam"]
 
 
 class ConditionParam(TypedDict, total=False):
+    """A condition to be evaluated."""
+
     operator: Required[
         Literal[
             "equal_to",
@@ -20,8 +22,18 @@ class ConditionParam(TypedDict, total=False):
             "contains",
             "not_contains",
             "contains_all",
+            "not_contains_all",
+            "is_timestamp_before",
+            "is_timestamp_on_or_after",
+            "is_timestamp_between",
+            "is_between",
             "empty",
             "not_empty",
+            "exists",
+            "not_exists",
+            "is_timestamp",
+            "is_timestamp_before_now",
+            "is_timestamp_on_or_after_now",
             "is_audience_member",
             "is_not_audience_member",
         ]

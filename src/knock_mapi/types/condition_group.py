@@ -16,11 +16,15 @@ __all__ = [
 
 
 class ConditionGroupAllMatch(BaseModel):
+    """A group of conditions that must all be met."""
+
     all: Optional[List[Condition]] = None
     """A list of conditions."""
 
 
 class ConditionGroupAnyMatchAnyConditionGroupAllMatch(BaseModel):
+    """A group of conditions that must all be met."""
+
     all: Optional[List[Condition]] = None
     """A list of conditions."""
 
@@ -29,6 +33,8 @@ ConditionGroupAnyMatchAny: TypeAlias = Union[Condition, ConditionGroupAnyMatchAn
 
 
 class ConditionGroupAnyMatch(BaseModel):
+    """A group of conditions that any must be met. Can contain nested alls."""
+
     any: Optional[List[ConditionGroupAnyMatchAny]] = None
     """An array of conditions or nested condition groups to evaluate."""
 

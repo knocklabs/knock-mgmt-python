@@ -2,9 +2,10 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Iterable, Optional
+from typing import Dict, Iterable, Optional
 from typing_extensions import Literal, Required, TypedDict
 
+from .._types import SequenceNotStr
 from .condition_group_param import ConditionGroupParam
 
 __all__ = ["WorkflowValidateParams", "Workflow", "WorkflowSettings"]
@@ -17,8 +18,16 @@ class WorkflowValidateParams(TypedDict, total=False):
     workflow: Required[Workflow]
     """A workflow request for upserting a workflow."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
 
 class WorkflowSettings(TypedDict, total=False):
+    """A map of workflow settings."""
+
     is_commercial: bool
     """Whether the workflow is commercial. Defaults to false."""
 
@@ -31,13 +40,15 @@ class WorkflowSettings(TypedDict, total=False):
 
 
 class Workflow(TypedDict, total=False):
+    """A workflow request for upserting a workflow."""
+
     name: Required[str]
     """A name for the workflow. Must be at maximum 255 characters in length."""
 
     steps: Required[Iterable["WorkflowStepParam"]]
     """A list of workflow step objects in the workflow."""
 
-    categories: List[str]
+    categories: SequenceNotStr[str]
     """
     A list of
     [categories](https://docs.knock.app/concepts/workflows#workflow-categories) that
@@ -57,10 +68,17 @@ class Workflow(TypedDict, total=False):
     settings: WorkflowSettings
     """A map of workflow settings."""
 
-    trigger_data_json_schema: Dict[str, object]
-    """A JSON schema for the expected structure of the workflow trigger's data payload.
+    tags: SequenceNotStr[str]
+    """Use tags to organize resources internally within your account.
 
-    Used to validate trigger requests. Read more in the
+    For example, by team or product area.
+    """
+
+    trigger_data_json_schema: Dict[str, object]
+    """
+    A JSON schema for the expected structure of the workflow trigger's `data`
+    payload (available in templates as `{{ data.field_name }}`). Used to validate
+    trigger requests. Read more in the
     [docs](https://docs.knock.app/developer-tools/validating-trigger-data).
     """
 

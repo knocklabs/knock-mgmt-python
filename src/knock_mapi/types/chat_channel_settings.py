@@ -8,6 +8,11 @@ __all__ = ["ChatChannelSettings"]
 
 
 class ChatChannelSettings(BaseModel):
+    """Chat channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
     email_based_user_id_resolution: Optional[bool] = None
     """Whether to resolve chat provider user IDs using a Knock user's email address.
 
