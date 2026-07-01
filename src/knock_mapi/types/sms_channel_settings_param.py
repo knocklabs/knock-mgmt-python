@@ -8,5 +8,10 @@ __all__ = ["SMSChannelSettingsParam"]
 
 
 class SMSChannelSettingsParam(TypedDict, total=False):
+    """SMS channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
     link_tracking: bool
     """Whether to track link clicks on SMS notifications."""

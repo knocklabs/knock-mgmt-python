@@ -9,20 +9,26 @@ __all__ = ["MessageTypeTextFieldParam", "Settings"]
 
 
 class Settings(TypedDict, total=False):
+    """Settings for the text field."""
+
     default: Optional[str]
     """The default value of the text field."""
 
-    description: str
+    description: Optional[str]
 
     max_length: int
 
     min_length: int
+
+    placeholder: Optional[str]
 
     required: bool
     """Whether the field is required."""
 
 
 class MessageTypeTextFieldParam(TypedDict, total=False):
+    """A text field used in a message type."""
+
     key: Required[str]
     """The unique key of the field."""
 

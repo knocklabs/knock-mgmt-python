@@ -1,8 +1,9 @@
 # Knock Mgmt Python API library
 
-[![PyPI version](https://img.shields.io/pypi/v/knock_mapi.svg)](https://pypi.org/project/knock_mapi/)
+<!-- prettier-ignore -->
+[![PyPI version](https://img.shields.io/pypi/v/knock_mapi.svg?label=pypi%20(stable))](https://pypi.org/project/knock_mapi/)
 
-The Knock Mgmt Python library provides convenient access to the Knock Mgmt REST API from any Python 3.8+
+The Knock Mgmt Python library provides convenient access to the Knock Mgmt REST API from any Python 3.9+
 application. The library includes type definitions for all request params and response fields,
 and offers both synchronous and asynchronous clients powered by [httpx](https://github.com/encode/httpx).
 
@@ -15,12 +16,12 @@ The REST API documentation can be found on [docs.knock.app](https://docs.knock.a
 ## Installation
 
 ```sh
-# install from this staging repo
-pip install git+ssh://git@github.com/stainless-sdks/knock-mapi-python.git
+# install from the production repo
+pip install git+ssh://git@github.com/knocklabs/knock-mgmt-python.git
 ```
 
 > [!NOTE]
-> Once this package is [published to PyPI](https://app.stainless.com/docs/guides/publish), this will become: `pip install --pre knock_mapi`
+> Once this package is [published to PyPI](https://www.stainless.com/docs/guides/publish), this will become: `pip install --pre knock_mapi`
 
 ## Usage
 
@@ -70,6 +71,42 @@ asyncio.run(main())
 ```
 
 Functionality between the synchronous and asynchronous clients is otherwise identical.
+
+### With aiohttp
+
+By default, the async client uses `httpx` for HTTP requests. However, for improved concurrency performance you may also use `aiohttp` as the HTTP backend.
+
+You can enable this by installing `aiohttp`:
+
+```sh
+# install from the production repo
+pip install 'knock_mapi[aiohttp] @ git+ssh://git@github.com/knocklabs/knock-mgmt-python.git'
+```
+
+Then you can enable it by instantiating the client with `http_client=DefaultAioHttpClient()`:
+
+```python
+import os
+import asyncio
+from knock_mapi import DefaultAioHttpClient
+from knock_mapi import AsyncKnockMgmt
+
+
+async def main() -> None:
+    async with AsyncKnockMgmt(
+        service_token=os.environ.get(
+            "KNOCK_SERVICE_TOKEN"
+        ),  # This is the default and can be omitted
+        http_client=DefaultAioHttpClient(),
+    ) as client:
+        page = await client.workflows.list(
+            environment="development",
+        )
+        print(page.entries)
+
+
+asyncio.run(main())
+```
 
 ## Using types
 
@@ -167,6 +204,13 @@ response = client.email_layouts.upsert(
         "html_layout": "<html><body>Hello, world!</body></html>",
         "name": "Transactional",
         "text_layout": "Hello, world!",
+        "branding_overrides": {
+            "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+            "dark_primary_color": "#1A1A2E",
+            "dark_primary_color_contrast": "#FFFFFF",
+            "primary_color": "#4F46E5",
+            "primary_color_contrast": "#FFFFFF",
+        },
         "footer_links": [
             {
                 "text": "Example",
@@ -247,7 +291,7 @@ client.with_options(max_retries=5).workflows.list(
 ### Timeouts
 
 By default requests time out after 1 minute. You can configure this with a `timeout` option,
-which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/#fine-tuning-the-configuration) object:
+which accepts a float or an [`httpx.Timeout`](https://www.python-httpx.org/advanced/timeouts/#fine-tuning-the-configuration) object:
 
 ```python
 from knock_mapi import KnockMgmt
@@ -316,9 +360,9 @@ workflow = response.parse()  # get the object that `workflows.list()` would have
 print(workflow.valid)
 ```
 
-These methods return an [`APIResponse`](https://github.com/stainless-sdks/knock-mapi-python/tree/main/src/knock_mapi/_response.py) object.
+These methods return an [`APIResponse`](https://github.com/knocklabs/knock-mgmt-python/tree/main/src/knock_mapi/_response.py) object.
 
-The async client returns an [`AsyncAPIResponse`](https://github.com/stainless-sdks/knock-mapi-python/tree/main/src/knock_mapi/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
+The async client returns an [`AsyncAPIResponse`](https://github.com/knocklabs/knock-mgmt-python/tree/main/src/knock_mapi/_response.py) with the same structure, the only difference being `await`able methods for reading the response content.
 
 #### `.with_streaming_response`
 
@@ -424,7 +468,7 @@ This package generally follows [SemVer](https://semver.org/spec/v2.0.0.html) con
 
 We take backwards-compatibility seriously and work hard to ensure you can rely on a smooth upgrade experience.
 
-We are keen for your feedback; please open an [issue](https://www.github.com/stainless-sdks/knock-mapi-python/issues) with questions, bugs, or suggestions.
+We are keen for your feedback; please open an [issue](https://www.github.com/knocklabs/knock-mgmt-python/issues) with questions, bugs, or suggestions.
 
 ### Determining the installed version
 
@@ -439,7 +483,7 @@ print(knock_mapi.__version__)
 
 ## Requirements
 
-Python 3.8 or higher.
+Python 3.9 or higher.
 
 ## Contributing
 

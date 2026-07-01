@@ -6,7 +6,6 @@ from typing import Dict, List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .condition_group import ConditionGroup
 
@@ -14,6 +13,8 @@ __all__ = ["Workflow", "Settings"]
 
 
 class Settings(BaseModel):
+    """A map of workflow settings."""
+
     is_commercial: Optional[bool] = None
     """Whether the workflow is commercial. Defaults to false."""
 
@@ -26,6 +27,11 @@ class Settings(BaseModel):
 
 
 class Workflow(BaseModel):
+    """A workflow object.
+
+    Read more in the [docs](https://docs.knock.app/concepts/workflows).
+    """
+
     active: bool
     """
     Whether the workflow is
@@ -84,10 +90,17 @@ class Workflow(BaseModel):
     settings: Optional[Settings] = None
     """A map of workflow settings."""
 
-    trigger_data_json_schema: Optional[Dict[str, object]] = None
-    """A JSON schema for the expected structure of the workflow trigger's data payload.
+    tags: Optional[List[str]] = None
+    """Use tags to organize resources internally within your account.
 
-    Used to validate trigger requests. Read more in the
+    For example, by team or product area.
+    """
+
+    trigger_data_json_schema: Optional[Dict[str, object]] = None
+    """
+    A JSON schema for the expected structure of the workflow trigger's `data`
+    payload (available in templates as `{{ data.field_name }}`). Used to validate
+    trigger requests. Read more in the
     [docs](https://docs.knock.app/developer-tools/validating-trigger-data).
     """
 
@@ -101,10 +114,3 @@ class Workflow(BaseModel):
 
 
 from .workflow_step import WorkflowStep
-
-if PYDANTIC_V2:
-    Workflow.model_rebuild()
-    Settings.model_rebuild()
-else:
-    Workflow.update_forward_refs()  # type: ignore
-    Settings.update_forward_refs()  # type: ignore

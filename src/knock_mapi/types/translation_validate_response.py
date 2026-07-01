@@ -7,5 +7,7 @@ __all__ = ["TranslationValidateResponse"]
 
 
 class TranslationValidateResponse(BaseModel):
+    """Wraps the Translation response under the `translation` key."""
+
     translation: Translation
     """A translation object."""

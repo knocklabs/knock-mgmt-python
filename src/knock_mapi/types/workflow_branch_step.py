@@ -5,7 +5,6 @@ from __future__ import annotations
 from typing import List, Optional
 from typing_extensions import Literal
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 from .condition_group import ConditionGroup
 
@@ -13,6 +12,8 @@ __all__ = ["WorkflowBranchStep", "Branch"]
 
 
 class Branch(BaseModel):
+    """A branch in a branch step."""
+
     conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""
 
@@ -23,21 +24,20 @@ class Branch(BaseModel):
     """A list of steps that will be executed if the branch is chosen."""
 
     terminates: Optional[bool] = None
-    """If the workflow should halt at the end of the branch."""
+    """If the workflow should halt at the end of the branch.
+
+    Defaults to false if not provided.
+    """
 
 
 class WorkflowBranchStep(BaseModel):
-    branches: List[Branch]
-    """A list of workflow branches to be evaluated."""
+    """A branch function step.
 
-    description: str
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
+    Read more in the [docs](https://docs.knock.app/designing-workflows/branch-function).
     """
 
-    name: str
-    """A name for the workflow step."""
+    branches: List[Branch]
+    """A list of workflow branches to be evaluated."""
 
     ref: str
     """The reference key of the workflow step. Must be unique per workflow."""
@@ -45,12 +45,14 @@ class WorkflowBranchStep(BaseModel):
     type: Literal["branch"]
     """The type of step."""
 
+    description: Optional[str] = None
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: Optional[str] = None
+    """A name for the workflow step."""
+
 
 from .workflow_step import WorkflowStep
-
-if PYDANTIC_V2:
-    WorkflowBranchStep.model_rebuild()
-    Branch.model_rebuild()
-else:
-    WorkflowBranchStep.update_forward_refs()  # type: ignore
-    Branch.update_forward_refs()  # type: ignore

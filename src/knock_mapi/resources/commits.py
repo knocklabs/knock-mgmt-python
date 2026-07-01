@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+from typing import List, Union
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import commit_list_params, commit_commit_all_params, commit_promote_all_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform, async_maybe_transform
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -26,13 +29,15 @@ __all__ = ["CommitsResource", "AsyncCommitsResource"]
 
 
 class CommitsResource(SyncAPIResource):
+    """Commits are versioned changes to resources."""
+
     @cached_property
     def with_raw_response(self) -> CommitsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return CommitsResourceWithRawResponse(self)
 
@@ -41,7 +46,7 @@ class CommitsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return CommitsResourceWithStreamingResponse(self)
 
@@ -54,7 +59,7 @@ class CommitsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Commit:
         """
         Retrieve a single commit by its ID.
@@ -71,7 +76,7 @@ class CommitsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._get(
-            f"/v1/commits/{id}",
+            path_template("/v1/commits/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -82,16 +87,23 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        promoted: bool | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        branch: str | Omit = omit,
+        limit: int | Omit = omit,
+        promoted: bool | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Commit]:
         """Returns a paginated list of commits in a given environment.
 
@@ -105,10 +117,21 @@ class CommitsResource(SyncAPIResource):
 
           before: The cursor to fetch entries before.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           limit: The number of entries to fetch per-page.
 
           promoted: Whether to show commits in the given environment that have not been promoted to
               the subsequent environment (false) or commits which have been promoted (true).
+
+          resource_id: Filter commits by resource identifier. Must be used together with resource_type.
+              For most resources, this will be the resource key. In the case of translations,
+              this will be the locale code and namespace, separated by a `/`. For example,
+              `en/courses` or `en`.
+
+          resource_type: Filter commits by resource type(s). Accepts a single type or array of types. Can
+              be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -131,8 +154,11 @@ class CommitsResource(SyncAPIResource):
                         "environment": environment,
                         "after": after,
                         "before": before,
+                        "branch": branch,
                         "limit": limit,
                         "promoted": promoted,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_list_params.CommitListParams,
                 ),
@@ -144,13 +170,20 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         environment: str,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        branch: str | Omit = omit,
+        commit_message: str | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitCommitAllResponse:
         """
         Commit all changes across all resources in the development environment.
@@ -158,7 +191,16 @@ class CommitsResource(SyncAPIResource):
         Args:
           environment: The environment slug.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           commit_message: An optional message to include in a commit.
+
+          resource_id: Filter changes to commit by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter changes to commit by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -178,7 +220,10 @@ class CommitsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "environment": environment,
+                        "branch": branch,
                         "commit_message": commit_message,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_commit_all_params.CommitCommitAllParams,
                 ),
@@ -190,12 +235,19 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         to_environment: str,
+        branch: str | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteAllResponse:
         """
         Promote all changes across all resources to the target environment from its
@@ -209,7 +261,16 @@ class CommitsResource(SyncAPIResource):
               “production” (in that order), setting this param to “production” will promote
               all commits not currently in production from staging.
 
-              Note: This must be a non-development environment.
+              When this param is set to `"development"`, the `"branch"` param must be
+              provided.
+
+          branch: The slug of the branch to promote all changes from.
+
+          resource_id: Filter commits to promote by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter commits to promote by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -227,7 +288,13 @@ class CommitsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"to_environment": to_environment}, commit_promote_all_params.CommitPromoteAllParams
+                    {
+                        "to_environment": to_environment,
+                        "branch": branch,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
+                    },
+                    commit_promote_all_params.CommitPromoteAllParams,
                 ),
             ),
             cast_to=CommitPromoteAllResponse,
@@ -242,7 +309,7 @@ class CommitsResource(SyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteOneResponse:
         """
         Promotes one change to the subsequent environment.
@@ -259,7 +326,7 @@ class CommitsResource(SyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return self._put(
-            f"/v1/commits/{id}/promote",
+            path_template("/v1/commits/{id}/promote", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -268,13 +335,15 @@ class CommitsResource(SyncAPIResource):
 
 
 class AsyncCommitsResource(AsyncAPIResource):
+    """Commits are versioned changes to resources."""
+
     @cached_property
     def with_raw_response(self) -> AsyncCommitsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return AsyncCommitsResourceWithRawResponse(self)
 
@@ -283,7 +352,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return AsyncCommitsResourceWithStreamingResponse(self)
 
@@ -296,7 +365,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Commit:
         """
         Retrieve a single commit by its ID.
@@ -313,7 +382,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._get(
-            f"/v1/commits/{id}",
+            path_template("/v1/commits/{id}", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),
@@ -324,16 +393,23 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
-        promoted: bool | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        branch: str | Omit = omit,
+        limit: int | Omit = omit,
+        promoted: bool | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Commit, AsyncEntriesCursor[Commit]]:
         """Returns a paginated list of commits in a given environment.
 
@@ -347,10 +423,21 @@ class AsyncCommitsResource(AsyncAPIResource):
 
           before: The cursor to fetch entries before.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           limit: The number of entries to fetch per-page.
 
           promoted: Whether to show commits in the given environment that have not been promoted to
               the subsequent environment (false) or commits which have been promoted (true).
+
+          resource_id: Filter commits by resource identifier. Must be used together with resource_type.
+              For most resources, this will be the resource key. In the case of translations,
+              this will be the locale code and namespace, separated by a `/`. For example,
+              `en/courses` or `en`.
+
+          resource_type: Filter commits by resource type(s). Accepts a single type or array of types. Can
+              be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -373,8 +460,11 @@ class AsyncCommitsResource(AsyncAPIResource):
                         "environment": environment,
                         "after": after,
                         "before": before,
+                        "branch": branch,
                         "limit": limit,
                         "promoted": promoted,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_list_params.CommitListParams,
                 ),
@@ -386,13 +476,20 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        branch: str | Omit = omit,
+        commit_message: str | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitCommitAllResponse:
         """
         Commit all changes across all resources in the development environment.
@@ -400,7 +497,16 @@ class AsyncCommitsResource(AsyncAPIResource):
         Args:
           environment: The environment slug.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           commit_message: An optional message to include in a commit.
+
+          resource_id: Filter changes to commit by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter changes to commit by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -420,7 +526,10 @@ class AsyncCommitsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "environment": environment,
+                        "branch": branch,
                         "commit_message": commit_message,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
                     },
                     commit_commit_all_params.CommitCommitAllParams,
                 ),
@@ -432,12 +541,19 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         to_environment: str,
+        branch: str | Omit = omit,
+        resource_id: str | Omit = omit,
+        resource_type: Union[
+            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        ]
+        | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteAllResponse:
         """
         Promote all changes across all resources to the target environment from its
@@ -451,7 +567,16 @@ class AsyncCommitsResource(AsyncAPIResource):
               “production” (in that order), setting this param to “production” will promote
               all commits not currently in production from staging.
 
-              Note: This must be a non-development environment.
+              When this param is set to `"development"`, the `"branch"` param must be
+              provided.
+
+          branch: The slug of the branch to promote all changes from.
+
+          resource_id: Filter commits to promote by resource identifier. Must be used together with
+              resource_type.
+
+          resource_type: Filter commits to promote by resource type(s). Accepts a single type or array of
+              types. Can be combined with resource_id to filter for specific resources.
 
           extra_headers: Send extra headers
 
@@ -469,7 +594,13 @@ class AsyncCommitsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"to_environment": to_environment}, commit_promote_all_params.CommitPromoteAllParams
+                    {
+                        "to_environment": to_environment,
+                        "branch": branch,
+                        "resource_id": resource_id,
+                        "resource_type": resource_type,
+                    },
+                    commit_promote_all_params.CommitPromoteAllParams,
                 ),
             ),
             cast_to=CommitPromoteAllResponse,
@@ -484,7 +615,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitPromoteOneResponse:
         """
         Promotes one change to the subsequent environment.
@@ -501,7 +632,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         if not id:
             raise ValueError(f"Expected a non-empty value for `id` but received {id!r}")
         return await self._put(
-            f"/v1/commits/{id}/promote",
+            path_template("/v1/commits/{id}/promote", id=id),
             options=make_request_options(
                 extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
             ),

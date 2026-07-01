@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+from typing import List
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import channel_list_params
-from .._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from .._utils import maybe_transform
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import path_template, maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -29,7 +32,7 @@ class ChannelsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return ChannelsResourceWithRawResponse(self)
 
@@ -38,22 +41,60 @@ class ChannelsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return ChannelsResourceWithStreamingResponse(self)
 
-    def list(
+    def retrieve(
         self,
+        channel_key: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Channel:
+        """Returns a channel with all environment-specific settings.
+
+        Secret values in
+        provider settings are obfuscated unless they are Liquid templates (e.g.,
+        `{{ vars.api_key }}`).
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not channel_key:
+            raise ValueError(f"Expected a non-empty value for `channel_key` but received {channel_key!r}")
+        return self._get(
+            path_template("/v1/channels/{channel_key}", channel_key=channel_key),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Channel,
+        )
+
+    def list(
+        self,
+        *,
+        id: str | Omit = omit,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["environment_settings"]] | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Channel]:
         """Returns a paginated list of channels.
 
@@ -61,9 +102,14 @@ class ChannelsResource(SyncAPIResource):
         entire account, not scoped to an environment.
 
         Args:
+          id: A channel id to filter the results by.
+
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          include: Associated resources to include in the response. Accepts `environment_settings`
+              to include per-environment channel configuration.
 
           limit: The number of entries to fetch per-page.
 
@@ -85,8 +131,10 @@ class ChannelsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
+                        "include": include,
                         "limit": limit,
                     },
                     channel_list_params.ChannelListParams,
@@ -103,7 +151,7 @@ class AsyncChannelsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return AsyncChannelsResourceWithRawResponse(self)
 
@@ -112,22 +160,60 @@ class AsyncChannelsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return AsyncChannelsResourceWithStreamingResponse(self)
 
-    def list(
+    async def retrieve(
         self,
+        channel_key: str,
         *,
-        after: str | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Channel:
+        """Returns a channel with all environment-specific settings.
+
+        Secret values in
+        provider settings are obfuscated unless they are Liquid templates (e.g.,
+        `{{ vars.api_key }}`).
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not channel_key:
+            raise ValueError(f"Expected a non-empty value for `channel_key` but received {channel_key!r}")
+        return await self._get(
+            path_template("/v1/channels/{channel_key}", channel_key=channel_key),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Channel,
+        )
+
+    def list(
+        self,
+        *,
+        id: str | Omit = omit,
+        after: str | Omit = omit,
+        before: str | Omit = omit,
+        include: List[Literal["environment_settings"]] | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Channel, AsyncEntriesCursor[Channel]]:
         """Returns a paginated list of channels.
 
@@ -135,9 +221,14 @@ class AsyncChannelsResource(AsyncAPIResource):
         entire account, not scoped to an environment.
 
         Args:
+          id: A channel id to filter the results by.
+
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          include: Associated resources to include in the response. Accepts `environment_settings`
+              to include per-environment channel configuration.
 
           limit: The number of entries to fetch per-page.
 
@@ -159,8 +250,10 @@ class AsyncChannelsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
+                        "id": id,
                         "after": after,
                         "before": before,
+                        "include": include,
                         "limit": limit,
                     },
                     channel_list_params.ChannelListParams,
@@ -174,6 +267,9 @@ class ChannelsResourceWithRawResponse:
     def __init__(self, channels: ChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = to_raw_response_wrapper(
+            channels.retrieve,
+        )
         self.list = to_raw_response_wrapper(
             channels.list,
         )
@@ -183,6 +279,9 @@ class AsyncChannelsResourceWithRawResponse:
     def __init__(self, channels: AsyncChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = async_to_raw_response_wrapper(
+            channels.retrieve,
+        )
         self.list = async_to_raw_response_wrapper(
             channels.list,
         )
@@ -192,6 +291,9 @@ class ChannelsResourceWithStreamingResponse:
     def __init__(self, channels: ChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = to_streamed_response_wrapper(
+            channels.retrieve,
+        )
         self.list = to_streamed_response_wrapper(
             channels.list,
         )
@@ -201,6 +303,9 @@ class AsyncChannelsResourceWithStreamingResponse:
     def __init__(self, channels: AsyncChannelsResource) -> None:
         self._channels = channels
 
+        self.retrieve = async_to_streamed_response_wrapper(
+            channels.retrieve,
+        )
         self.list = async_to_streamed_response_wrapper(
             channels.list,
         )

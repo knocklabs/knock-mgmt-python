@@ -8,5 +8,10 @@ __all__ = ["InAppFeedChannelSettingsParam"]
 
 
 class InAppFeedChannelSettingsParam(TypedDict, total=False):
+    """In-app feed channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
     link_tracking: bool
     """Whether to track link clicks on in-app feed notifications."""

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import Dict, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -10,6 +10,8 @@ __all__ = ["Variable"]
 
 
 class Variable(BaseModel):
+    """An environment variable object."""
+
     inserted_at: datetime
     """The timestamp of when the variable was created."""
 
@@ -22,8 +24,14 @@ class Variable(BaseModel):
     updated_at: datetime
     """The timestamp of when the variable was last updated."""
 
-    value: str
-    """The value of the variable."""
-
     description: Optional[str] = None
     """The description of the variable."""
+
+    environment_values: Optional[Dict[str, Optional[str]]] = None
+    """A map of environment slugs to their override values.
+
+    Only present for project-scoped responses.
+    """
+
+    value: Optional[str] = None
+    """The default value of the variable. For secret variables, this is obfuscated."""

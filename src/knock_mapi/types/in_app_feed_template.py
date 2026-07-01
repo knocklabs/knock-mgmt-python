@@ -8,6 +8,8 @@ __all__ = ["InAppFeedTemplate", "ActionButton"]
 
 
 class ActionButton(BaseModel):
+    """A single-action button to be rendered in an in-app feed cell."""
+
     action: str
     """The URI for this action."""
 
@@ -16,6 +18,8 @@ class ActionButton(BaseModel):
 
 
 class InAppFeedTemplate(BaseModel):
+    """An in-app feed template."""
+
     markdown_body: str
     """The markdown body of the in-app feed."""
 

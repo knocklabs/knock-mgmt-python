@@ -8,6 +8,8 @@ __all__ = ["PageInfo"]
 
 
 class PageInfo(BaseModel):
+    """The information about a paginated result."""
+
     page_size: int
     """The number of entries to fetch per-page."""
 

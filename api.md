@@ -1,7 +1,18 @@
 # Shared Types
 
 ```python
-from knock_mapi.types import PageInfo
+from knock_mapi.types import (
+    MessageTypeBooleanField,
+    MessageTypeButtonField,
+    MessageTypeImageField,
+    MessageTypeJsonField,
+    MessageTypeMarkdownField,
+    MessageTypeMultiSelectField,
+    MessageTypeSelectField,
+    MessageTypeTextareaField,
+    MessageTypeURLField,
+    PageInfo,
+)
 ```
 
 # Templates
@@ -102,14 +113,26 @@ from knock_mapi.types import (
     Duration,
     SendWindow,
     Workflow,
+    WorkflowAIAgentStep,
     WorkflowBatchStep,
     WorkflowBranchStep,
-    WorkflowChannelStep,
+    WorkflowChatStep,
     WorkflowDelayStep,
+    WorkflowEmailStep,
     WorkflowFetchStep,
+    WorkflowInAppFeedStep,
+    WorkflowPushStep,
+    WorkflowRandomCohortStep,
+    WorkflowSMSStep,
     WorkflowStep,
     WorkflowThrottleStep,
     WorkflowTriggerWorkflowStep,
+    WorkflowUpdateDataStep,
+    WorkflowUpdateObjectStep,
+    WorkflowUpdateTenantStep,
+    WorkflowUpdateUserStep,
+    WorkflowWebhookStep,
+    WorkflowRetrieveResponse,
     WorkflowActivateResponse,
     WorkflowRunResponse,
     WorkflowUpsertResponse,
@@ -119,7 +142,7 @@ from knock_mapi.types import (
 
 Methods:
 
-- <code title="get /v1/workflows/{workflow_key}">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">retrieve</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow.py">Workflow</a></code>
+- <code title="get /v1/workflows/{workflow_key}">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">retrieve</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow_retrieve_response.py">WorkflowRetrieveResponse</a></code>
 - <code title="get /v1/workflows">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">list</a>(\*\*<a href="src/knock_mapi/types/workflow_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow.py">SyncEntriesCursor[Workflow]</a></code>
 - <code title="put /v1/workflows/{workflow_key}/activate">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">activate</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_activate_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow_activate_response.py">WorkflowActivateResponse</a></code>
 - <code title="put /v1/workflows/{workflow_key}/run">client.workflows.<a href="./src/knock_mapi/resources/workflows/workflows.py">run</a>(workflow_key, \*\*<a href="src/knock_mapi/types/workflow_run_params.py">params</a>) -> <a href="./src/knock_mapi/types/workflow_run_response.py">WorkflowRunResponse</a></code>
@@ -188,12 +211,15 @@ Methods:
 Types:
 
 ```python
-from knock_mapi.types import ChannelGroup, ChannelGroupRule
+from knock_mapi.types import ChannelGroup, ChannelGroupRule, ChannelGroupUpsertResponse
 ```
 
 Methods:
 
+- <code title="get /v1/channel_groups/{channel_group_key}">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">retrieve</a>(channel_group_key) -> <a href="./src/knock_mapi/types/channel_group.py">ChannelGroup</a></code>
 - <code title="get /v1/channel_groups">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">list</a>(\*\*<a href="src/knock_mapi/types/channel_group_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/channel_group.py">SyncEntriesCursor[ChannelGroup]</a></code>
+- <code title="delete /v1/channel_groups/{channel_group_key}">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">delete</a>(channel_group_key) -> None</code>
+- <code title="put /v1/channel_groups/{channel_group_key}">client.channel_groups.<a href="./src/knock_mapi/resources/channel_groups.py">upsert</a>(channel_group_key, \*\*<a href="src/knock_mapi/types/channel_group_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/channel_group_upsert_response.py">ChannelGroupUpsertResponse</a></code>
 
 # Channels
 
@@ -202,6 +228,7 @@ Types:
 ```python
 from knock_mapi.types import (
     Channel,
+    ChannelEnvironmentSettings,
     ChatChannelSettings,
     EmailChannelSettings,
     InAppFeedChannelSettings,
@@ -212,7 +239,60 @@ from knock_mapi.types import (
 
 Methods:
 
+- <code title="get /v1/channels/{channel_key}">client.channels.<a href="./src/knock_mapi/resources/channels.py">retrieve</a>(channel_key) -> <a href="./src/knock_mapi/types/channel.py">Channel</a></code>
 - <code title="get /v1/channels">client.channels.<a href="./src/knock_mapi/resources/channels.py">list</a>(\*\*<a href="src/knock_mapi/types/channel_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/channel.py">SyncEntriesCursor[Channel]</a></code>
+
+# Members
+
+Types:
+
+```python
+from knock_mapi.types import Member, MemberUser
+```
+
+Methods:
+
+- <code title="get /v1/members/{id}">client.members.<a href="./src/knock_mapi/resources/members.py">retrieve</a>(id) -> <a href="./src/knock_mapi/types/member.py">Member</a></code>
+- <code title="get /v1/members">client.members.<a href="./src/knock_mapi/resources/members.py">list</a>(\*\*<a href="src/knock_mapi/types/member_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/member.py">SyncEntriesCursor[Member]</a></code>
+- <code title="delete /v1/members/{id}">client.members.<a href="./src/knock_mapi/resources/members.py">delete</a>(id) -> None</code>
+
+# DataSources
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Source,
+    SourceEnvironmentSettings,
+    SourceEvent,
+    SourceEventActionMapping,
+    SourceEventsResponse,
+    SourceLog,
+    SourceLogAction,
+    SourceLogsResponse,
+    SourcePreprocessScript,
+    SourceProviderResponse,
+    SourceProvidersResponse,
+    SourceRehearseRequest,
+    SourceRehearseResponse,
+    SourceRequest,
+    SourceStatusResponse,
+    SourcesResponse,
+    DataSourceUpsertResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/sources/{key}">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">retrieve</a>(key, \*\*<a href="src/knock_mapi/types/data_source_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/source.py">Source</a></code>
+- <code title="get /v1/sources/{key}/events">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_events</a>(key, \*\*<a href="src/knock_mapi/types/data_source_list_events_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_events_response.py">SourceEventsResponse</a></code>
+- <code title="get /v1/sources/{key}/logs">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_logs</a>(key, \*\*<a href="src/knock_mapi/types/data_source_list_logs_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_log.py">SyncEntriesCursor[SourceLog]</a></code>
+- <code title="get /v1/source_providers">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_providers</a>() -> <a href="./src/knock_mapi/types/source_providers_response.py">SourceProvidersResponse</a></code>
+- <code title="get /v1/sources">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">list_sources</a>(\*\*<a href="src/knock_mapi/types/data_source_list_sources_params.py">params</a>) -> <a href="./src/knock_mapi/types/sources_response.py">SourcesResponse</a></code>
+- <code title="post /v1/sources/{key}/rehearse">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">rehearse</a>(key, \*\*<a href="src/knock_mapi/types/data_source_rehearse_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_rehearse_response.py">SourceRehearseResponse</a></code>
+- <code title="get /v1/source_providers/{key}">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">retrieve_provider</a>(key, \*\*<a href="src/knock_mapi/types/data_source_retrieve_provider_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_provider_response.py">SourceProviderResponse</a></code>
+- <code title="get /v1/sources/{key}/status">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">retrieve_status</a>(key, \*\*<a href="src/knock_mapi/types/data_source_retrieve_status_params.py">params</a>) -> <a href="./src/knock_mapi/types/source_status_response.py">SourceStatusResponse</a></code>
+- <code title="put /v1/sources/{key}">client.data_sources.<a href="./src/knock_mapi/resources/data_sources.py">upsert</a>(key, \*\*<a href="src/knock_mapi/types/data_source_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/data_source_upsert_response.py">DataSourceUpsertResponse</a></code>
 
 # Environments
 
@@ -237,4 +317,93 @@ from knock_mapi.types import Variable
 
 Methods:
 
+- <code title="get /v1/variables/{key}">client.variables.<a href="./src/knock_mapi/resources/variables.py">retrieve</a>(key) -> <a href="./src/knock_mapi/types/variable.py">Variable</a></code>
 - <code title="get /v1/variables">client.variables.<a href="./src/knock_mapi/resources/variables.py">list</a>(\*\*<a href="src/knock_mapi/types/variable_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/variable.py">SyncEntriesCursor[Variable]</a></code>
+
+# Guides
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Guide,
+    GuideActivationURLPattern,
+    GuideStep,
+    GuideActivateResponse,
+    GuideArchiveResponse,
+    GuideUpsertResponse,
+    GuideValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">retrieve</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide.py">Guide</a></code>
+- <code title="get /v1/guides">client.guides.<a href="./src/knock_mapi/resources/guides.py">list</a>(\*\*<a href="src/knock_mapi/types/guide_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide.py">SyncEntriesCursor[Guide]</a></code>
+- <code title="put /v1/guides/{guide_key}/activate">client.guides.<a href="./src/knock_mapi/resources/guides.py">activate</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_activate_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_activate_response.py">GuideActivateResponse</a></code>
+- <code title="delete /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">archive</a>(guide_key) -> <a href="./src/knock_mapi/types/guide_archive_response.py">GuideArchiveResponse</a></code>
+- <code title="put /v1/guides/{guide_key}">client.guides.<a href="./src/knock_mapi/resources/guides.py">upsert</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_upsert_response.py">GuideUpsertResponse</a></code>
+- <code title="put /v1/guides/{guide_key}/validate">client.guides.<a href="./src/knock_mapi/resources/guides.py">validate</a>(guide_key, \*\*<a href="src/knock_mapi/types/guide_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/guide_validate_response.py">GuideValidateResponse</a></code>
+
+# Branches
+
+Types:
+
+```python
+from knock_mapi.types import Branch
+```
+
+Methods:
+
+- <code title="post /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">create</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_create_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">Branch</a></code>
+- <code title="get /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">retrieve</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">Branch</a></code>
+- <code title="get /v1/branches">client.branches.<a href="./src/knock_mapi/resources/branches.py">list</a>(\*\*<a href="src/knock_mapi/types/branch_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">SyncEntriesCursor[Branch]</a></code>
+- <code title="delete /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">delete</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_delete_params.py">params</a>) -> None</code>
+
+# Broadcasts
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Broadcast,
+    BroadcastRequest,
+    BroadcastCancelResponse,
+    BroadcastSendResponse,
+    BroadcastUpsertResponse,
+    BroadcastValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/broadcasts/{broadcast_key}">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">retrieve</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast.py">Broadcast</a></code>
+- <code title="get /v1/broadcasts">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">list</a>(\*\*<a href="src/knock_mapi/types/broadcast_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast.py">SyncEntriesCursor[Broadcast]</a></code>
+- <code title="put /v1/broadcasts/{broadcast_key}/cancel">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">cancel</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_cancel_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_cancel_response.py">BroadcastCancelResponse</a></code>
+- <code title="put /v1/broadcasts/{broadcast_key}/send">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">send</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_send_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_send_response.py">BroadcastSendResponse</a></code>
+- <code title="put /v1/broadcasts/{broadcast_key}">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">upsert</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_upsert_response.py">BroadcastUpsertResponse</a></code>
+- <code title="put /v1/broadcasts/{broadcast_key}/validate">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">validate</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_validate_response.py">BroadcastValidateResponse</a></code>
+
+# Audiences
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Audience,
+    AudienceCondition,
+    DynamicAudience,
+    StaticAudience,
+    AudienceArchiveResponse,
+    AudienceUpsertResponse,
+    AudienceValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">retrieve</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience.py">Audience</a></code>
+- <code title="get /v1/audiences">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">list</a>(\*\*<a href="src/knock_mapi/types/audience_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience.py">SyncEntriesCursor[Audience]</a></code>
+- <code title="delete /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">archive</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_archive_response.py">AudienceArchiveResponse</a></code>
+- <code title="put /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">upsert</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_upsert_response.py">AudienceUpsertResponse</a></code>
+- <code title="put /v1/audiences/{audience_key}/validate">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">validate</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_validate_response.py">AudienceValidateResponse</a></code>

@@ -1,6 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import List
+from typing import List, Optional
 from datetime import datetime
 from typing_extensions import Literal
 
@@ -11,6 +11,8 @@ __all__ = ["ChannelGroup"]
 
 
 class ChannelGroup(BaseModel):
+    """A group of channels with rules for when they are applicable."""
+
     channel_rules: List[ChannelGroupRule]
     """Rules for determining which channels should be used."""
 
@@ -40,3 +42,12 @@ class ChannelGroup(BaseModel):
 
     updated_at: datetime
     """The timestamp of when the channel group was last updated."""
+
+    archived_at: Optional[datetime] = None
+    """The timestamp of when the channel group was archived (soft deleted)."""
+
+    visible_in: Optional[List[Literal["workflow", "broadcast"]]] = None
+    """The resources where this channel group is visible as a step destination (e.g.
+
+    workflow, broadcast).
+    """

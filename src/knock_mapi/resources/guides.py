@@ -1,0 +1,1028 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from typing import Union
+from datetime import datetime
+from typing_extensions import overload
+
+import httpx
+
+from ..types import (
+    guide_list_params,
+    guide_upsert_params,
+    guide_activate_params,
+    guide_retrieve_params,
+    guide_validate_params,
+)
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from .._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from .._compat import cached_property
+from .._resource import SyncAPIResource, AsyncAPIResource
+from .._response import (
+    to_raw_response_wrapper,
+    to_streamed_response_wrapper,
+    async_to_raw_response_wrapper,
+    async_to_streamed_response_wrapper,
+)
+from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
+from ..types.guide import Guide
+from .._base_client import AsyncPaginator, make_request_options
+from ..types.guide_upsert_response import GuideUpsertResponse
+from ..types.guide_archive_response import GuideArchiveResponse
+from ..types.guide_activate_response import GuideActivateResponse
+from ..types.guide_validate_response import GuideValidateResponse
+
+__all__ = ["GuidesResource", "AsyncGuidesResource"]
+
+
+class GuidesResource(SyncAPIResource):
+    """
+    Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+    """
+
+    @cached_property
+    def with_raw_response(self) -> GuidesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
+        """
+        return GuidesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> GuidesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
+        """
+        return GuidesResourceWithStreamingResponse(self)
+
+    def retrieve(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Guide:
+        """
+        Get a guide by its key.
+
+        Args:
+          environment: The environment slug.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
+              returned. When false, both committed and uncommitted changes will be returned.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return self._get(
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                        "branch": branch,
+                        "hide_uncommitted_changes": hide_uncommitted_changes,
+                    },
+                    guide_retrieve_params.GuideRetrieveParams,
+                ),
+            ),
+            cast_to=Guide,
+        )
+
+    def list(
+        self,
+        *,
+        environment: str,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> SyncEntriesCursor[Guide]:
+        """
+        Returns a paginated list of guides available in a given environment.
+
+        Args:
+          environment: The environment slug.
+
+          after: The cursor to fetch entries after.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
+              returned. When false, both committed and uncommitted changes will be returned.
+
+          limit: The number of entries to fetch per-page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/v1/guides",
+            page=SyncEntriesCursor[Guide],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "after": after,
+                        "annotate": annotate,
+                        "before": before,
+                        "branch": branch,
+                        "hide_uncommitted_changes": hide_uncommitted_changes,
+                        "limit": limit,
+                    },
+                    guide_list_params.GuideListParams,
+                ),
+            ),
+            model=Guide,
+        )
+
+    @overload
+    def activate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        status: bool,
+        branch: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideActivateResponse:
+        """Activates (or deactivates) a guide in a given environment.
+
+        You can either set
+        the active status immediately or schedule it.
+
+        Note: This immediately enables or disables a guide in a given environment
+        without needing to go through environment promotion.
+
+        Args:
+          environment: The environment slug.
+
+          status: Whether to activate or deactivate the guide.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    def activate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        branch: str | Omit = omit,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideActivateResponse:
+        """Activates (or deactivates) a guide in a given environment.
+
+        You can either set
+        the active status immediately or schedule it.
+
+        Note: This immediately enables or disables a guide in a given environment
+        without needing to go through environment promotion.
+
+        Args:
+          environment: The environment slug.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          from_: When to activate the guide. If provided, the guide will be scheduled to activate
+              at this time. Must be in ISO 8601 UTC format.
+
+          until: When to deactivate the guide. If provided, the guide will be scheduled to
+              deactivate at this time. Must be in ISO 8601 UTC format.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["environment", "status"], ["environment"])
+    def activate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        status: bool | Omit = omit,
+        branch: str | Omit = omit,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideActivateResponse:
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return self._put(
+            path_template("/v1/guides/{guide_key}/activate", guide_key=guide_key),
+            body=maybe_transform(
+                {
+                    "status": status,
+                    "from_": from_,
+                    "until": until,
+                },
+                guide_activate_params.GuideActivateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    guide_activate_params.GuideActivateParams,
+                ),
+            ),
+            cast_to=GuideActivateResponse,
+        )
+
+    def archive(
+        self,
+        guide_key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideArchiveResponse:
+        """
+        Archives a given guide across all environments.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return self._delete(
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GuideArchiveResponse,
+        )
+
+    def upsert(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        guide: guide_upsert_params.Guide,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideUpsertResponse:
+        """
+        Updates a guide of a given key, or creates a new one if it does not yet exist.
+
+        Note: this endpoint only operates on guides in the "development" environment.
+
+        Args:
+          environment: The environment slug.
+
+          guide: A request to create or update a guide.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          commit: Whether to commit the resource at the same time as modifying it.
+
+          commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return self._put(
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
+            body=maybe_transform({"guide": guide}, guide_upsert_params.GuideUpsertParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                        "branch": branch,
+                        "commit": commit,
+                        "commit_message": commit_message,
+                        "force": force,
+                    },
+                    guide_upsert_params.GuideUpsertParams,
+                ),
+            ),
+            cast_to=GuideUpsertResponse,
+        )
+
+    def validate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        guide: guide_validate_params.Guide,
+        branch: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideValidateResponse:
+        """
+        Validates a guide payload without persisting it.
+
+        Note: Validating a guide is only done in the development environment context.
+
+        Args:
+          environment: The environment slug.
+
+          guide: A request to create or update a guide.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return self._put(
+            path_template("/v1/guides/{guide_key}/validate", guide_key=guide_key),
+            body=maybe_transform({"guide": guide}, guide_validate_params.GuideValidateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    guide_validate_params.GuideValidateParams,
+                ),
+            ),
+            cast_to=GuideValidateResponse,
+        )
+
+
+class AsyncGuidesResource(AsyncAPIResource):
+    """
+    Guides let you define in-app guides that can be displayed to users based on priority and other conditions.
+    """
+
+    @cached_property
+    def with_raw_response(self) -> AsyncGuidesResourceWithRawResponse:
+        """
+        This property can be used as a prefix for any HTTP method call to return
+        the raw response object instead of the parsed content.
+
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
+        """
+        return AsyncGuidesResourceWithRawResponse(self)
+
+    @cached_property
+    def with_streaming_response(self) -> AsyncGuidesResourceWithStreamingResponse:
+        """
+        An alternative to `.with_raw_response` that doesn't eagerly read the response body.
+
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
+        """
+        return AsyncGuidesResourceWithStreamingResponse(self)
+
+    async def retrieve(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Guide:
+        """
+        Get a guide by its key.
+
+        Args:
+          environment: The environment slug.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
+              returned. When false, both committed and uncommitted changes will be returned.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return await self._get(
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                        "branch": branch,
+                        "hide_uncommitted_changes": hide_uncommitted_changes,
+                    },
+                    guide_retrieve_params.GuideRetrieveParams,
+                ),
+            ),
+            cast_to=Guide,
+        )
+
+    def list(
+        self,
+        *,
+        environment: str,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> AsyncPaginator[Guide, AsyncEntriesCursor[Guide]]:
+        """
+        Returns a paginated list of guides available in a given environment.
+
+        Args:
+          environment: The environment slug.
+
+          after: The cursor to fetch entries after.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
+              returned. When false, both committed and uncommitted changes will be returned.
+
+          limit: The number of entries to fetch per-page.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._get_api_list(
+            "/v1/guides",
+            page=AsyncEntriesCursor[Guide],
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "after": after,
+                        "annotate": annotate,
+                        "before": before,
+                        "branch": branch,
+                        "hide_uncommitted_changes": hide_uncommitted_changes,
+                        "limit": limit,
+                    },
+                    guide_list_params.GuideListParams,
+                ),
+            ),
+            model=Guide,
+        )
+
+    @overload
+    async def activate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        status: bool,
+        branch: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideActivateResponse:
+        """Activates (or deactivates) a guide in a given environment.
+
+        You can either set
+        the active status immediately or schedule it.
+
+        Note: This immediately enables or disables a guide in a given environment
+        without needing to go through environment promotion.
+
+        Args:
+          environment: The environment slug.
+
+          status: Whether to activate or deactivate the guide.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @overload
+    async def activate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        branch: str | Omit = omit,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideActivateResponse:
+        """Activates (or deactivates) a guide in a given environment.
+
+        You can either set
+        the active status immediately or schedule it.
+
+        Note: This immediately enables or disables a guide in a given environment
+        without needing to go through environment promotion.
+
+        Args:
+          environment: The environment slug.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          from_: When to activate the guide. If provided, the guide will be scheduled to activate
+              at this time. Must be in ISO 8601 UTC format.
+
+          until: When to deactivate the guide. If provided, the guide will be scheduled to
+              deactivate at this time. Must be in ISO 8601 UTC format.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        ...
+
+    @required_args(["environment", "status"], ["environment"])
+    async def activate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        status: bool | Omit = omit,
+        branch: str | Omit = omit,
+        from_: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideActivateResponse:
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return await self._put(
+            path_template("/v1/guides/{guide_key}/activate", guide_key=guide_key),
+            body=await async_maybe_transform(
+                {
+                    "status": status,
+                    "from_": from_,
+                    "until": until,
+                },
+                guide_activate_params.GuideActivateParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    guide_activate_params.GuideActivateParams,
+                ),
+            ),
+            cast_to=GuideActivateResponse,
+        )
+
+    async def archive(
+        self,
+        guide_key: str,
+        *,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideArchiveResponse:
+        """
+        Archives a given guide across all environments.
+
+        Args:
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return await self._delete(
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=GuideArchiveResponse,
+        )
+
+    async def upsert(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        guide: guide_upsert_params.Guide,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideUpsertResponse:
+        """
+        Updates a guide of a given key, or creates a new one if it does not yet exist.
+
+        Note: this endpoint only operates on guides in the "development" environment.
+
+        Args:
+          environment: The environment slug.
+
+          guide: A request to create or update a guide.
+
+          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          commit: Whether to commit the resource at the same time as modifying it.
+
+          commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return await self._put(
+            path_template("/v1/guides/{guide_key}", guide_key=guide_key),
+            body=await async_maybe_transform({"guide": guide}, guide_upsert_params.GuideUpsertParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "annotate": annotate,
+                        "branch": branch,
+                        "commit": commit,
+                        "commit_message": commit_message,
+                        "force": force,
+                    },
+                    guide_upsert_params.GuideUpsertParams,
+                ),
+            ),
+            cast_to=GuideUpsertResponse,
+        )
+
+    async def validate(
+        self,
+        guide_key: str,
+        *,
+        environment: str,
+        guide: guide_validate_params.Guide,
+        branch: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> GuideValidateResponse:
+        """
+        Validates a guide payload without persisting it.
+
+        Note: Validating a guide is only done in the development environment context.
+
+        Args:
+          environment: The environment slug.
+
+          guide: A request to create or update a guide.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not guide_key:
+            raise ValueError(f"Expected a non-empty value for `guide_key` but received {guide_key!r}")
+        return await self._put(
+            path_template("/v1/guides/{guide_key}/validate", guide_key=guide_key),
+            body=await async_maybe_transform({"guide": guide}, guide_validate_params.GuideValidateParams),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    guide_validate_params.GuideValidateParams,
+                ),
+            ),
+            cast_to=GuideValidateResponse,
+        )
+
+
+class GuidesResourceWithRawResponse:
+    def __init__(self, guides: GuidesResource) -> None:
+        self._guides = guides
+
+        self.retrieve = to_raw_response_wrapper(
+            guides.retrieve,
+        )
+        self.list = to_raw_response_wrapper(
+            guides.list,
+        )
+        self.activate = to_raw_response_wrapper(
+            guides.activate,
+        )
+        self.archive = to_raw_response_wrapper(
+            guides.archive,
+        )
+        self.upsert = to_raw_response_wrapper(
+            guides.upsert,
+        )
+        self.validate = to_raw_response_wrapper(
+            guides.validate,
+        )
+
+
+class AsyncGuidesResourceWithRawResponse:
+    def __init__(self, guides: AsyncGuidesResource) -> None:
+        self._guides = guides
+
+        self.retrieve = async_to_raw_response_wrapper(
+            guides.retrieve,
+        )
+        self.list = async_to_raw_response_wrapper(
+            guides.list,
+        )
+        self.activate = async_to_raw_response_wrapper(
+            guides.activate,
+        )
+        self.archive = async_to_raw_response_wrapper(
+            guides.archive,
+        )
+        self.upsert = async_to_raw_response_wrapper(
+            guides.upsert,
+        )
+        self.validate = async_to_raw_response_wrapper(
+            guides.validate,
+        )
+
+
+class GuidesResourceWithStreamingResponse:
+    def __init__(self, guides: GuidesResource) -> None:
+        self._guides = guides
+
+        self.retrieve = to_streamed_response_wrapper(
+            guides.retrieve,
+        )
+        self.list = to_streamed_response_wrapper(
+            guides.list,
+        )
+        self.activate = to_streamed_response_wrapper(
+            guides.activate,
+        )
+        self.archive = to_streamed_response_wrapper(
+            guides.archive,
+        )
+        self.upsert = to_streamed_response_wrapper(
+            guides.upsert,
+        )
+        self.validate = to_streamed_response_wrapper(
+            guides.validate,
+        )
+
+
+class AsyncGuidesResourceWithStreamingResponse:
+    def __init__(self, guides: AsyncGuidesResource) -> None:
+        self._guides = guides
+
+        self.retrieve = async_to_streamed_response_wrapper(
+            guides.retrieve,
+        )
+        self.list = async_to_streamed_response_wrapper(
+            guides.list,
+        )
+        self.activate = async_to_streamed_response_wrapper(
+            guides.activate,
+        )
+        self.archive = async_to_streamed_response_wrapper(
+            guides.archive,
+        )
+        self.upsert = async_to_streamed_response_wrapper(
+            guides.upsert,
+        )
+        self.validate = async_to_streamed_response_wrapper(
+            guides.validate,
+        )

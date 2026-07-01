@@ -9,6 +9,8 @@ __all__ = ["InAppFeedTemplateParam", "ActionButton"]
 
 
 class ActionButton(TypedDict, total=False):
+    """A single-action button to be rendered in an in-app feed cell."""
+
     action: Required[str]
     """The URI for this action."""
 
@@ -17,6 +19,8 @@ class ActionButton(TypedDict, total=False):
 
 
 class InAppFeedTemplateParam(TypedDict, total=False):
+    """An in-app feed template."""
+
     markdown_body: Required[str]
     """The markdown body of the in-app feed."""
 

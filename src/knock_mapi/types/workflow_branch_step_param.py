@@ -11,6 +11,8 @@ __all__ = ["WorkflowBranchStepParam", "Branch"]
 
 
 class Branch(TypedDict, total=False):
+    """A branch in a branch step."""
+
     conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
 
@@ -21,27 +23,35 @@ class Branch(TypedDict, total=False):
     """A list of steps that will be executed if the branch is chosen."""
 
     terminates: bool
-    """If the workflow should halt at the end of the branch."""
+    """If the workflow should halt at the end of the branch.
+
+    Defaults to false if not provided.
+    """
 
 
 class WorkflowBranchStepParam(TypedDict, total=False):
-    branches: Required[Iterable[Branch]]
-    """A list of workflow branches to be evaluated."""
+    """A branch function step.
 
-    description: Required[str]
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
+    Read more in the [docs](https://docs.knock.app/designing-workflows/branch-function).
     """
 
-    name: Required[str]
-    """A name for the workflow step."""
+    branches: Required[Iterable[Branch]]
+    """A list of workflow branches to be evaluated."""
 
     ref: Required[str]
     """The reference key of the workflow step. Must be unique per workflow."""
 
     type: Required[Literal["branch"]]
     """The type of step."""
+
+    description: str
+    """An arbitrary string attached to a workflow step.
+
+    Useful for adding notes about the workflow for internal purposes.
+    """
+
+    name: Optional[str]
+    """A name for the workflow step."""
 
 
 from .workflow_step_param import WorkflowStepParam

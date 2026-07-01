@@ -2,20 +2,19 @@
 
 from __future__ import annotations
 
-from .._compat import PYDANTIC_V2
 from .._models import BaseModel
 
 __all__ = ["WorkflowActivateResponse"]
 
 
 class WorkflowActivateResponse(BaseModel):
+    """Wraps the Workflow response under the `workflow` key."""
+
     workflow: "Workflow"
-    """A workflow object."""
+    """A workflow object.
+
+    Read more in the [docs](https://docs.knock.app/concepts/workflows).
+    """
 
 
 from .workflow import Workflow
-
-if PYDANTIC_V2:
-    WorkflowActivateResponse.model_rebuild()
-else:
-    WorkflowActivateResponse.update_forward_refs()  # type: ignore

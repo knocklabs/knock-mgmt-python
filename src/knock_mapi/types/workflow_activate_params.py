@@ -16,3 +16,9 @@ class WorkflowActivateParams(TypedDict, total=False):
 
     Set to `true` by default, which will activate the workflow.
     """
+
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """

@@ -8,6 +8,11 @@ __all__ = ["EmailChannelSettings"]
 
 
 class EmailChannelSettings(BaseModel):
+    """Email channel settings.
+
+    Only used as configuration as part of a workflow channel step.
+    """
+
     bcc_address: Optional[str] = None
     """The BCC address on email notifications. Supports liquid."""
 

@@ -9,6 +9,8 @@ __all__ = ["MessageTypeTextField", "Settings"]
 
 
 class Settings(BaseModel):
+    """Settings for the text field."""
+
     default: Optional[str] = None
     """The default value of the text field."""
 
@@ -18,11 +20,15 @@ class Settings(BaseModel):
 
     min_length: Optional[int] = None
 
+    placeholder: Optional[str] = None
+
     required: Optional[bool] = None
     """Whether the field is required."""
 
 
 class MessageTypeTextField(BaseModel):
+    """A text field used in a message type."""
+
     key: str
     """The unique key of the field."""
 

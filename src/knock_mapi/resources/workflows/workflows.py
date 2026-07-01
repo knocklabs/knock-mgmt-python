@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Dict, List, Optional
+from typing import Dict, Optional
 
 import httpx
 
@@ -22,8 +22,8 @@ from ...types import (
     workflow_retrieve_params,
     workflow_validate_params,
 )
-from ..._types import NOT_GIVEN, Body, Query, Headers, NotGiven
-from ..._utils import maybe_transform, async_maybe_transform
+from ..._types import Body, Omit, Query, Headers, NotGiven, SequenceNotStr, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
 from ..._compat import cached_property
 from ..._resource import SyncAPIResource, AsyncAPIResource
 from ..._response import (
@@ -38,14 +38,18 @@ from ...types.workflow import Workflow
 from ...types.workflow_run_response import WorkflowRunResponse
 from ...types.workflow_upsert_response import WorkflowUpsertResponse
 from ...types.workflow_activate_response import WorkflowActivateResponse
+from ...types.workflow_retrieve_response import WorkflowRetrieveResponse
 from ...types.workflow_validate_response import WorkflowValidateResponse
 
 __all__ = ["WorkflowsResource", "AsyncWorkflowsResource"]
 
 
 class WorkflowsResource(SyncAPIResource):
+    """Workflows let you express your cross-channel notification logic."""
+
     @cached_property
     def steps(self) -> StepsResource:
+        """Workflows let you express your cross-channel notification logic."""
         return StepsResource(self._client)
 
     @cached_property
@@ -54,7 +58,7 @@ class WorkflowsResource(SyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return WorkflowsResourceWithRawResponse(self)
 
@@ -63,7 +67,7 @@ class WorkflowsResource(SyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return WorkflowsResourceWithStreamingResponse(self)
 
@@ -72,15 +76,16 @@ class WorkflowsResource(SyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Workflow:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> WorkflowRetrieveResponse:
         """
         Retrieve a workflow by its key in a given environment.
 
@@ -88,6 +93,9 @@ class WorkflowsResource(SyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -103,7 +111,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._get(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -113,29 +121,31 @@ class WorkflowsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     workflow_retrieve_params.WorkflowRetrieveParams,
                 ),
             ),
-            cast_to=Workflow,
+            cast_to=WorkflowRetrieveResponse,
         )
 
     def list(
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Workflow]:
         """Returns a paginated list of workflows available in a given environment.
 
@@ -150,6 +160,9 @@ class WorkflowsResource(SyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -178,6 +191,7 @@ class WorkflowsResource(SyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -193,12 +207,13 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         status: bool,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowActivateResponse:
         """Activates (or deactivates) a workflow in a given environment.
 
@@ -214,6 +229,9 @@ class WorkflowsResource(SyncAPIResource):
           status: Whether to activate or deactivate the workflow. Set to `true` by default, which
               will activate the workflow.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -225,14 +243,20 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}/activate",
+            path_template("/v1/workflows/{workflow_key}/activate", workflow_key=workflow_key),
             body=maybe_transform({"status": status}, workflow_activate_params.WorkflowActivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, workflow_activate_params.WorkflowActivateParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_activate_params.WorkflowActivateParams,
+                ),
             ),
             cast_to=WorkflowActivateResponse,
         )
@@ -242,17 +266,18 @@ class WorkflowsResource(SyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        recipients: List[workflow_run_params.Recipient],
-        actor: Optional[workflow_run_params.Actor] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[workflow_run_params.Recipient],
+        branch: str | Omit = omit,
+        actor: Optional[workflow_run_params.Actor] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowRunResponse:
         """
         Runs the latest version of a committed workflow in a given environment using the
@@ -263,14 +288,20 @@ class WorkflowsResource(SyncAPIResource):
 
           recipients: A list of recipients to run the workflow for.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
 
           cancellation_key: A key to cancel the workflow run.
 
-          data: A map of data to be used in the workflow run.
+          data: A map of data to be used in the workflow run. The structure should conform to
+              the workflow's `trigger_data_json_schema` if one is defined. Available in
+              templates as `{{ data.field_name }}`. See
+              [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
 
-          tenant: The tenant to associate the workflow run with.
+          tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
 
@@ -283,7 +314,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}/run",
+            path_template("/v1/workflows/{workflow_key}/run", workflow_key=workflow_key),
             body=maybe_transform(
                 {
                     "recipients": recipients,
@@ -299,7 +330,13 @@ class WorkflowsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, workflow_run_params.WorkflowRunParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_run_params.WorkflowRunParams,
+                ),
             ),
             cast_to=WorkflowRunResponse,
         )
@@ -310,15 +347,17 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         workflow: workflow_upsert_params.Workflow,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowUpsertResponse:
         """
         Updates a workflow of a given key, or creates a new one if it does not yet
@@ -333,9 +372,16 @@ class WorkflowsResource(SyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
 
           extra_headers: Send extra headers
 
@@ -348,7 +394,7 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             body=maybe_transform({"workflow": workflow}, workflow_upsert_params.WorkflowUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -359,8 +405,10 @@ class WorkflowsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "force": force,
                     },
                     workflow_upsert_params.WorkflowUpsertParams,
                 ),
@@ -374,12 +422,13 @@ class WorkflowsResource(SyncAPIResource):
         *,
         environment: str,
         workflow: workflow_validate_params.Workflow,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowValidateResponse:
         """Validates a workflow payload without persisting it.
 
@@ -393,6 +442,9 @@ class WorkflowsResource(SyncAPIResource):
 
           workflow: A workflow request for upserting a workflow.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -404,22 +456,31 @@ class WorkflowsResource(SyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return self._put(
-            f"/v1/workflows/{workflow_key}/validate",
+            path_template("/v1/workflows/{workflow_key}/validate", workflow_key=workflow_key),
             body=maybe_transform({"workflow": workflow}, workflow_validate_params.WorkflowValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, workflow_validate_params.WorkflowValidateParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_validate_params.WorkflowValidateParams,
+                ),
             ),
             cast_to=WorkflowValidateResponse,
         )
 
 
 class AsyncWorkflowsResource(AsyncAPIResource):
+    """Workflows let you express your cross-channel notification logic."""
+
     @cached_property
     def steps(self) -> AsyncStepsResource:
+        """Workflows let you express your cross-channel notification logic."""
         return AsyncStepsResource(self._client)
 
     @cached_property
@@ -428,7 +489,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         This property can be used as a prefix for any HTTP method call to return
         the raw response object instead of the parsed content.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#accessing-raw-response-data-eg-headers
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#accessing-raw-response-data-eg-headers
         """
         return AsyncWorkflowsResourceWithRawResponse(self)
 
@@ -437,7 +498,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         """
         An alternative to `.with_raw_response` that doesn't eagerly read the response body.
 
-        For more information, see https://www.github.com/stainless-sdks/knock-mapi-python#with_streaming_response
+        For more information, see https://www.github.com/knocklabs/knock-mgmt-python#with_streaming_response
         """
         return AsyncWorkflowsResourceWithStreamingResponse(self)
 
@@ -446,15 +507,16 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
-    ) -> Workflow:
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> WorkflowRetrieveResponse:
         """
         Retrieve a workflow by its key in a given environment.
 
@@ -462,6 +524,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           environment: The environment slug.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -477,7 +542,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._get(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             options=make_request_options(
                 extra_headers=extra_headers,
                 extra_query=extra_query,
@@ -487,29 +552,31 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     workflow_retrieve_params.WorkflowRetrieveParams,
                 ),
             ),
-            cast_to=Workflow,
+            cast_to=WorkflowRetrieveResponse,
         )
 
     def list(
         self,
         *,
         environment: str,
-        after: str | NotGiven = NOT_GIVEN,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        before: str | NotGiven = NOT_GIVEN,
-        hide_uncommitted_changes: bool | NotGiven = NOT_GIVEN,
-        limit: int | NotGiven = NOT_GIVEN,
+        after: str | Omit = omit,
+        annotate: bool | Omit = omit,
+        before: str | Omit = omit,
+        branch: str | Omit = omit,
+        hide_uncommitted_changes: bool | Omit = omit,
+        limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Workflow, AsyncEntriesCursor[Workflow]]:
         """Returns a paginated list of workflows available in a given environment.
 
@@ -524,6 +591,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -552,6 +622,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                         "after": after,
                         "annotate": annotate,
                         "before": before,
+                        "branch": branch,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -567,12 +638,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         status: bool,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowActivateResponse:
         """Activates (or deactivates) a workflow in a given environment.
 
@@ -588,6 +660,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
           status: Whether to activate or deactivate the workflow. Set to `true` by default, which
               will activate the workflow.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -599,7 +674,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}/activate",
+            path_template("/v1/workflows/{workflow_key}/activate", workflow_key=workflow_key),
             body=await async_maybe_transform({"status": status}, workflow_activate_params.WorkflowActivateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -607,7 +682,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, workflow_activate_params.WorkflowActivateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_activate_params.WorkflowActivateParams,
                 ),
             ),
             cast_to=WorkflowActivateResponse,
@@ -618,17 +697,18 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        recipients: List[workflow_run_params.Recipient],
-        actor: Optional[workflow_run_params.Actor] | NotGiven = NOT_GIVEN,
-        cancellation_key: Optional[str] | NotGiven = NOT_GIVEN,
-        data: Dict[str, object] | NotGiven = NOT_GIVEN,
-        tenant: str | NotGiven = NOT_GIVEN,
+        recipients: SequenceNotStr[workflow_run_params.Recipient],
+        branch: str | Omit = omit,
+        actor: Optional[workflow_run_params.Actor] | Omit = omit,
+        cancellation_key: Optional[str] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowRunResponse:
         """
         Runs the latest version of a committed workflow in a given environment using the
@@ -639,14 +719,20 @@ class AsyncWorkflowsResource(AsyncAPIResource):
 
           recipients: A list of recipients to run the workflow for.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
 
           cancellation_key: A key to cancel the workflow run.
 
-          data: A map of data to be used in the workflow run.
+          data: A map of data to be used in the workflow run. The structure should conform to
+              the workflow's `trigger_data_json_schema` if one is defined. Available in
+              templates as `{{ data.field_name }}`. See
+              [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
 
-          tenant: The tenant to associate the workflow run with.
+          tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
 
@@ -659,7 +745,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}/run",
+            path_template("/v1/workflows/{workflow_key}/run", workflow_key=workflow_key),
             body=await async_maybe_transform(
                 {
                     "recipients": recipients,
@@ -675,7 +761,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=await async_maybe_transform({"environment": environment}, workflow_run_params.WorkflowRunParams),
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_run_params.WorkflowRunParams,
+                ),
             ),
             cast_to=WorkflowRunResponse,
         )
@@ -686,15 +778,17 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         workflow: workflow_upsert_params.Workflow,
-        annotate: bool | NotGiven = NOT_GIVEN,
-        commit: bool | NotGiven = NOT_GIVEN,
-        commit_message: str | NotGiven = NOT_GIVEN,
+        annotate: bool | Omit = omit,
+        branch: str | Omit = omit,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowUpsertResponse:
         """
         Updates a workflow of a given key, or creates a new one if it does not yet
@@ -709,9 +803,16 @@ class AsyncWorkflowsResource(AsyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          force: When set to true, forces the upsert to override existing content regardless of
+              environment restrictions. This bypasses the development-only environment check
+              and origin environment checks.
 
           extra_headers: Send extra headers
 
@@ -724,7 +825,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}",
+            path_template("/v1/workflows/{workflow_key}", workflow_key=workflow_key),
             body=await async_maybe_transform({"workflow": workflow}, workflow_upsert_params.WorkflowUpsertParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -735,8 +836,10 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "annotate": annotate,
+                        "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "force": force,
                     },
                     workflow_upsert_params.WorkflowUpsertParams,
                 ),
@@ -750,12 +853,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         *,
         environment: str,
         workflow: workflow_validate_params.Workflow,
+        branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
         extra_query: Query | None = None,
         extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = NOT_GIVEN,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> WorkflowValidateResponse:
         """Validates a workflow payload without persisting it.
 
@@ -769,6 +873,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
 
           workflow: A workflow request for upserting a workflow.
 
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
           extra_headers: Send extra headers
 
           extra_query: Add additional query parameters to the request
@@ -780,7 +887,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         if not workflow_key:
             raise ValueError(f"Expected a non-empty value for `workflow_key` but received {workflow_key!r}")
         return await self._put(
-            f"/v1/workflows/{workflow_key}/validate",
+            path_template("/v1/workflows/{workflow_key}/validate", workflow_key=workflow_key),
             body=await async_maybe_transform({"workflow": workflow}, workflow_validate_params.WorkflowValidateParams),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -788,7 +895,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, workflow_validate_params.WorkflowValidateParams
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    workflow_validate_params.WorkflowValidateParams,
                 ),
             ),
             cast_to=WorkflowValidateResponse,
@@ -820,6 +931,7 @@ class WorkflowsResourceWithRawResponse:
 
     @cached_property
     def steps(self) -> StepsResourceWithRawResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return StepsResourceWithRawResponse(self._workflows.steps)
 
 
@@ -848,6 +960,7 @@ class AsyncWorkflowsResourceWithRawResponse:
 
     @cached_property
     def steps(self) -> AsyncStepsResourceWithRawResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return AsyncStepsResourceWithRawResponse(self._workflows.steps)
 
 
@@ -876,6 +989,7 @@ class WorkflowsResourceWithStreamingResponse:
 
     @cached_property
     def steps(self) -> StepsResourceWithStreamingResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return StepsResourceWithStreamingResponse(self._workflows.steps)
 
 
@@ -904,4 +1018,5 @@ class AsyncWorkflowsResourceWithStreamingResponse:
 
     @cached_property
     def steps(self) -> AsyncStepsResourceWithStreamingResponse:
+        """Workflows let you express your cross-channel notification logic."""
         return AsyncStepsResourceWithStreamingResponse(self._workflows.steps)

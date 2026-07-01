@@ -2,7 +2,8 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing import List, Union
+from typing_extensions import Literal, Required, TypedDict
 
 __all__ = ["CommitListParams"]
 
@@ -17,6 +18,12 @@ class CommitListParams(TypedDict, total=False):
     before: str
     """The cursor to fetch entries before."""
 
+    branch: str
+    """The slug of a branch to use.
+
+    This option can only be used when `environment` is `"development"`.
+    """
+
     limit: int
     """The number of entries to fetch per-page."""
 
@@ -24,4 +31,22 @@ class CommitListParams(TypedDict, total=False):
     """
     Whether to show commits in the given environment that have not been promoted to
     the subsequent environment (false) or commits which have been promoted (true).
+    """
+
+    resource_id: str
+    """Filter commits by resource identifier.
+
+    Must be used together with resource_type. For most resources, this will be the
+    resource key. In the case of translations, this will be the locale code and
+    namespace, separated by a `/`. For example, `en/courses` or `en`.
+    """
+
+    resource_type: Union[
+        Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
+        List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+    ]
+    """Filter commits by resource type(s).
+
+    Accepts a single type or array of types. Can be combined with resource_id to
+    filter for specific resources.
     """

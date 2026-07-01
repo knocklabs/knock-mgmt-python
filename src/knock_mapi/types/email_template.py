@@ -17,6 +17,7 @@ __all__ = [
     "VisualBlockEmailDividerBlock",
     "VisualBlockEmailDividerBlockLayoutAttrs",
     "VisualBlockEmailHTMLBlock",
+    "VisualBlockEmailHTMLBlockLayoutAttrs",
     "VisualBlockEmailImageBlock",
     "VisualBlockEmailImageBlockLayoutAttrs",
     "VisualBlockEmailImageBlockStyleAttrs",
@@ -28,23 +29,35 @@ __all__ = [
 
 
 class Settings(BaseModel):
+    """
+    The [settings](https://docs.knock.app/integrations/email/settings) for the email template. Must be supplied with at least `layout_key`.
+    """
+
     attachment_key: Optional[str] = None
     """
-    The object path in the data payload (of the workflow trigger call) to resolve
-    attachments.
+    The object path in the workflow trigger's `data` payload to resolve
+    attachments.Defaults to `attachments`.
     """
 
     layout_key: Optional[str] = None
-    """The key of the email layout which the step is using."""
+    """
+    The `key` of the
+    [email layout](https://docs.knock.app/integrations/email/layouts) that wraps the
+    email template. When omitted, the email template will need to define the
+    `<html>` structure.
+    """
 
     pre_content: Optional[str] = None
     """
-    A liquid template that will be injected into the layout above the message
-    template content.
+    A liquid template that will be injected into the email layout above the message
+    template content. Useful for setting variables that should be available to the
+    email layout.
     """
 
 
 class VisualBlockEmailButtonSetBlockButtonSizeAttrs(BaseModel):
+    """The size attributes of the button."""
+
     is_fullwidth: Optional[bool] = None
     """Whether the button is full width."""
 
@@ -53,6 +66,8 @@ class VisualBlockEmailButtonSetBlockButtonSizeAttrs(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlockButtonStyleAttrs(BaseModel):
+    """The style attributes of the button."""
+
     background_color: Optional[str] = None
     """The background color of the button."""
 
@@ -70,13 +85,15 @@ class VisualBlockEmailButtonSetBlockButtonStyleAttrs(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlockButton(BaseModel):
+    """A button in a button set block."""
+
     action: str
     """The action of the button."""
 
     label: str
     """The label of the button."""
 
-    variant: str
+    variant: Literal["solid", "outline"]
     """The variant of the button."""
 
     size_attrs: Optional[VisualBlockEmailButtonSetBlockButtonSizeAttrs] = None
@@ -87,6 +104,8 @@ class VisualBlockEmailButtonSetBlockButton(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     column_gap: int
     """The column_gap layout attribute of the block."""
 
@@ -107,23 +126,31 @@ class VisualBlockEmailButtonSetBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailButtonSetBlock(BaseModel):
-    id: str
-    """The ID of the block."""
+    """A button set block in an email template."""
 
     buttons: List[VisualBlockEmailButtonSetBlockButton]
     """A list of buttons in the button set."""
 
-    type: str
+    type: Literal["button_set"]
     """The type of the block."""
 
-    version: int
-    """The version of the block."""
+    id: Optional[str] = None
+    """The ID of the block."""
 
     layout_attrs: Optional[VisualBlockEmailButtonSetBlockLayoutAttrs] = None
     """The layout attributes of the block."""
 
+    version: Optional[int] = None
+    """The version of the block schema.
+
+    This is automatically managed by Knock and should not be set manually. Currently
+    all blocks are at version 1.
+    """
+
 
 class VisualBlockEmailDividerBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     padding_bottom: int
     """The padding_bottom layout attribute of the block."""
 
@@ -138,34 +165,74 @@ class VisualBlockEmailDividerBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailDividerBlock(BaseModel):
-    id: str
-    """The ID of the block."""
+    """A divider block in an email template."""
 
-    type: str
+    type: Literal["divider"]
     """The type of the block."""
 
-    version: int
-    """The version of the block."""
+    id: Optional[str] = None
+    """The ID of the block."""
 
     layout_attrs: Optional[VisualBlockEmailDividerBlockLayoutAttrs] = None
     """The layout attributes of the block."""
 
+    version: Optional[int] = None
+    """The version of the block schema.
+
+    This is automatically managed by Knock and should not be set manually. Currently
+    all blocks are at version 1.
+    """
+
+
+class VisualBlockEmailHTMLBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
+    padding_bottom: int
+    """The padding_bottom layout attribute of the block."""
+
+    padding_left: int
+    """The padding_left layout attribute of the block."""
+
+    padding_right: int
+    """The padding_right layout attribute of the block."""
+
+    padding_top: int
+    """The padding_top layout attribute of the block."""
+
 
 class VisualBlockEmailHTMLBlock(BaseModel):
-    id: str
-    """The ID of the block."""
+    """An HTML block in an email template."""
 
     content: str
-    """The HTML content of the block."""
+    """The HTML content of the block.
 
-    type: str
+    Supports Liquid templating with variables like `{{ recipient.name }}`,
+    `{{ actor.name }}`, `{{ vars.app_name }}`, `{{ data.custom_field }}`, and
+    `{{ tenant.name }}`. See the
+    [template variables reference](https://docs.knock.app/designing-workflows/template-editor/variables)
+    for available variables.
+    """
+
+    type: Literal["html"]
     """The type of the block."""
 
-    version: int
-    """The version of the block."""
+    id: Optional[str] = None
+    """The ID of the block."""
+
+    layout_attrs: Optional[VisualBlockEmailHTMLBlockLayoutAttrs] = None
+    """The layout attributes of the block."""
+
+    version: Optional[int] = None
+    """The version of the block schema.
+
+    This is automatically managed by Knock and should not be set manually. Currently
+    all blocks are at version 1.
+    """
 
 
 class VisualBlockEmailImageBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     horizontal_align: Literal["left", "center", "right"]
     """The horizontal alignment of the block."""
 
@@ -183,22 +250,23 @@ class VisualBlockEmailImageBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailImageBlockStyleAttrs(BaseModel):
+    """The style attributes of the image."""
+
     width: Optional[str] = None
     """The width of the image."""
 
 
 class VisualBlockEmailImageBlock(BaseModel):
-    id: str
-    """The ID of the block."""
+    """An image block in an email template."""
 
-    type: str
+    type: Literal["image"]
     """The type of the block."""
 
     url: str
     """The URL of the image to display."""
 
-    version: int
-    """The version of the block."""
+    id: Optional[str] = None
+    """The ID of the block."""
 
     action: Optional[str] = None
     """Optional action URL for the image."""
@@ -212,8 +280,17 @@ class VisualBlockEmailImageBlock(BaseModel):
     style_attrs: Optional[VisualBlockEmailImageBlockStyleAttrs] = None
     """The style attributes of the image."""
 
+    version: Optional[int] = None
+    """The version of the block schema.
+
+    This is automatically managed by Knock and should not be set manually. Currently
+    all blocks are at version 1.
+    """
+
 
 class VisualBlockEmailMarkdownBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     padding_bottom: int
     """The padding_bottom layout attribute of the block."""
 
@@ -228,26 +305,41 @@ class VisualBlockEmailMarkdownBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailMarkdownBlock(BaseModel):
-    id: str
-    """The ID of the block."""
+    """A markdown block in an email template."""
 
     content: str
-    """The markdown content of the block."""
+    """The markdown content of the block.
 
-    type: str
+    Supports Liquid templating with variables like `{{ recipient.name }}`,
+    `{{ actor.name }}`, `{{ vars.app_name }}`, `{{ data.custom_field }}`, and
+    `{{ tenant.name }}`. See the
+    [template variables reference](https://docs.knock.app/designing-workflows/template-editor/variables)
+    for available variables.
+    """
+
+    type: Literal["markdown"]
     """The type of the block."""
 
-    variant: str
-    """The flavor of markdown to use for the block."""
-
-    version: int
-    """The version of the block."""
+    id: Optional[str] = None
+    """The ID of the block."""
 
     layout_attrs: Optional[VisualBlockEmailMarkdownBlockLayoutAttrs] = None
     """The layout attributes of the block."""
 
+    variant: Optional[Literal["default"]] = None
+    """The flavor of markdown to use for the block."""
+
+    version: Optional[int] = None
+    """The version of the block schema.
+
+    This is automatically managed by Knock and should not be set manually. Currently
+    all blocks are at version 1.
+    """
+
 
 class VisualBlockEmailPartialBlockLayoutAttrs(BaseModel):
+    """The layout attributes of the block."""
+
     padding_bottom: int
     """The padding_bottom layout attribute of the block."""
 
@@ -262,8 +354,9 @@ class VisualBlockEmailPartialBlockLayoutAttrs(BaseModel):
 
 
 class VisualBlockEmailPartialBlock(BaseModel):
-    id: str
-    """The ID of the block."""
+    """
+    A partial block in an email template, used to render a reusable partial component.
+    """
 
     attrs: Dict[str, object]
     """The attributes to pass to the partial block."""
@@ -274,14 +367,21 @@ class VisualBlockEmailPartialBlock(BaseModel):
     name: str
     """The name of the partial block."""
 
-    type: str
+    type: Literal["partial"]
     """The type of the block."""
 
-    version: int
-    """The version of the block."""
+    id: Optional[str] = None
+    """The ID of the block."""
 
     layout_attrs: Optional[VisualBlockEmailPartialBlockLayoutAttrs] = None
     """The layout attributes of the block."""
+
+    version: Optional[int] = None
+    """The version of the block schema.
+
+    This is automatically managed by Knock and should not be set manually. Currently
+    all blocks are at version 1.
+    """
 
 
 VisualBlock: TypeAlias = Union[
@@ -295,29 +395,49 @@ VisualBlock: TypeAlias = Union[
 
 
 class EmailTemplate(BaseModel):
-    subject: str
-    """The subject of the email."""
+    """An email message template."""
 
-    html_body: Optional[str] = None
-    """An HTML template for the email body.
-
-    Either `html_body` or `visual_blocks` must be provided.
-    """
-
-    settings: Optional[Settings] = None
+    settings: Settings
     """
     The [settings](https://docs.knock.app/integrations/email/settings) for the email
-    template.
+    template. Must be supplied with at least `layout_key`.
+    """
+
+    subject: str
+    """The subject of the email.
+
+    Supports Liquid templating with variables like `{{ recipient.name }}`,
+    `{{ actor.name }}`, `{{ vars.app_name }}`, `{{ data.custom_field }}`, and
+    `{{ tenant.name }}`. See the
+    [template variables reference](https://docs.knock.app/designing-workflows/template-editor/variables)
+    for available variables.
+    """
+
+    html_body: Optional[str] = None
+    """An HTML or MJML template for the email body.
+
+    **Required** if `visual_blocks` is not provided. Only one of `html_body` or
+    `visual_blocks` should be set. When `is_mjml` is true, this must contain MJML
+    components. Supports Liquid templating with variables like
+    `{{ recipient.name }}`, `{{ actor.name }}`, `{{ vars.app_name }}`,
+    `{{ data.custom_field }}`, and `{{ tenant.name }}`. See the
+    [template variables reference](https://docs.knock.app/designing-workflows/template-editor/variables)
+    for available variables.
+    """
+
+    is_mjml: Optional[bool] = None
+    """Whether this template uses MJML format.
+
+    When true, the template content will be compiled from MJML to HTML. Only valid
+    when the selected layout is also MJML or when no layout is selected.
     """
 
     text_body: Optional[str] = None
     """A text template for the email body.
 
-    Only present if opted out from autogenerating it from the HTML template.
+    When omitted, the email template will be autogenerated from the `html_body` or
+    `visual_blocks`.
     """
 
     visual_blocks: Optional[List[VisualBlock]] = None
-    """The visual blocks of the email.
-
-    Either `html_body` or `visual_blocks` must be provided.
-    """
+    """The visual blocks that make up the email template."""

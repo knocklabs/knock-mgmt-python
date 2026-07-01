@@ -23,9 +23,7 @@ base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
 class TestCommits:
     parametrize = pytest.mark.parametrize("client", [False, True], indirect=True, ids=["loose", "strict"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         commit = client.commits.retrieve(
@@ -33,9 +31,7 @@ class TestCommits:
         )
         assert_matches_type(Commit, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.commits.with_raw_response.retrieve(
@@ -47,9 +43,7 @@ class TestCommits:
         commit = response.parse()
         assert_matches_type(Commit, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.commits.with_streaming_response.retrieve(
@@ -63,9 +57,7 @@ class TestCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_retrieve(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -73,9 +65,7 @@ class TestCommits:
                 "",
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
         commit = client.commits.list(
@@ -83,23 +73,22 @@ class TestCommits:
         )
         assert_matches_type(SyncEntriesCursor[Commit], commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         commit = client.commits.list(
             environment="development",
             after="after",
             before="before",
+            branch="feature-branch",
             limit=0,
             promoted=True,
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(SyncEntriesCursor[Commit], commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
         response = client.commits.with_raw_response.list(
@@ -111,9 +100,7 @@ class TestCommits:
         commit = response.parse()
         assert_matches_type(SyncEntriesCursor[Commit], commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
         with client.commits.with_streaming_response.list(
@@ -127,9 +114,7 @@ class TestCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_commit_all(self, client: KnockMgmt) -> None:
         commit = client.commits.commit_all(
@@ -137,20 +122,19 @@ class TestCommits:
         )
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_commit_all_with_all_params(self, client: KnockMgmt) -> None:
         commit = client.commits.commit_all(
             environment="development",
+            branch="feature-branch",
             commit_message="commit_message",
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_commit_all(self, client: KnockMgmt) -> None:
         response = client.commits.with_raw_response.commit_all(
@@ -162,9 +146,7 @@ class TestCommits:
         commit = response.parse()
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_commit_all(self, client: KnockMgmt) -> None:
         with client.commits.with_streaming_response.commit_all(
@@ -178,9 +160,7 @@ class TestCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_promote_all(self, client: KnockMgmt) -> None:
         commit = client.commits.promote_all(
@@ -188,9 +168,18 @@ class TestCommits:
         )
         assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_promote_all_with_all_params(self, client: KnockMgmt) -> None:
+        commit = client.commits.promote_all(
+            to_environment="to_environment",
+            branch="branch",
+            resource_id="resource_id",
+            resource_type="audience",
+        )
+        assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_promote_all(self, client: KnockMgmt) -> None:
         response = client.commits.with_raw_response.promote_all(
@@ -202,9 +191,7 @@ class TestCommits:
         commit = response.parse()
         assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_promote_all(self, client: KnockMgmt) -> None:
         with client.commits.with_streaming_response.promote_all(
@@ -218,9 +205,7 @@ class TestCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_promote_one(self, client: KnockMgmt) -> None:
         commit = client.commits.promote_one(
@@ -228,9 +213,7 @@ class TestCommits:
         )
         assert_matches_type(CommitPromoteOneResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_promote_one(self, client: KnockMgmt) -> None:
         response = client.commits.with_raw_response.promote_one(
@@ -242,9 +225,7 @@ class TestCommits:
         commit = response.parse()
         assert_matches_type(CommitPromoteOneResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_promote_one(self, client: KnockMgmt) -> None:
         with client.commits.with_streaming_response.promote_one(
@@ -258,9 +239,7 @@ class TestCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_path_params_promote_one(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -270,11 +249,11 @@ class TestCommits:
 
 
 class TestAsyncCommits:
-    parametrize = pytest.mark.parametrize("async_client", [False, True], indirect=True, ids=["loose", "strict"])
-
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
+    parametrize = pytest.mark.parametrize(
+        "async_client", [False, True, {"http_client": "aiohttp"}], indirect=True, ids=["loose", "strict", "aiohttp"]
     )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.retrieve(
@@ -282,9 +261,7 @@ class TestAsyncCommits:
         )
         assert_matches_type(Commit, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.commits.with_raw_response.retrieve(
@@ -296,9 +273,7 @@ class TestAsyncCommits:
         commit = await response.parse()
         assert_matches_type(Commit, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.commits.with_streaming_response.retrieve(
@@ -312,9 +287,7 @@ class TestAsyncCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):
@@ -322,9 +295,7 @@ class TestAsyncCommits:
                 "",
             )
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.list(
@@ -332,23 +303,22 @@ class TestAsyncCommits:
         )
         assert_matches_type(AsyncEntriesCursor[Commit], commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.list(
             environment="development",
             after="after",
             before="before",
+            branch="feature-branch",
             limit=0,
             promoted=True,
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(AsyncEntriesCursor[Commit], commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.commits.with_raw_response.list(
@@ -360,9 +330,7 @@ class TestAsyncCommits:
         commit = await response.parse()
         assert_matches_type(AsyncEntriesCursor[Commit], commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.commits.with_streaming_response.list(
@@ -376,9 +344,7 @@ class TestAsyncCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_commit_all(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.commit_all(
@@ -386,20 +352,19 @@ class TestAsyncCommits:
         )
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_commit_all_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.commit_all(
             environment="development",
+            branch="feature-branch",
             commit_message="commit_message",
+            resource_id="resource_id",
+            resource_type="audience",
         )
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_commit_all(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.commits.with_raw_response.commit_all(
@@ -411,9 +376,7 @@ class TestAsyncCommits:
         commit = await response.parse()
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_commit_all(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.commits.with_streaming_response.commit_all(
@@ -427,9 +390,7 @@ class TestAsyncCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_promote_all(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.promote_all(
@@ -437,9 +398,18 @@ class TestAsyncCommits:
         )
         assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_promote_all_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        commit = await async_client.commits.promote_all(
+            to_environment="to_environment",
+            branch="branch",
+            resource_id="resource_id",
+            resource_type="audience",
+        )
+        assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_promote_all(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.commits.with_raw_response.promote_all(
@@ -451,9 +421,7 @@ class TestAsyncCommits:
         commit = await response.parse()
         assert_matches_type(CommitPromoteAllResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_promote_all(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.commits.with_streaming_response.promote_all(
@@ -467,9 +435,7 @@ class TestAsyncCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_promote_one(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.promote_one(
@@ -477,9 +443,7 @@ class TestAsyncCommits:
         )
         assert_matches_type(CommitPromoteOneResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_promote_one(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.commits.with_raw_response.promote_one(
@@ -491,9 +455,7 @@ class TestAsyncCommits:
         commit = await response.parse()
         assert_matches_type(CommitPromoteOneResponse, commit, path=["response"])
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_promote_one(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.commits.with_streaming_response.promote_one(
@@ -507,9 +469,7 @@ class TestAsyncCommits:
 
         assert cast(Any, response.is_closed) is True
 
-    @pytest.mark.skip(
-        reason="currently no good way to test endpoints defining callbacks, Prism mock server will fail trying to reach the provided callback url"
-    )
+    @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_path_params_promote_one(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `id` but received ''"):

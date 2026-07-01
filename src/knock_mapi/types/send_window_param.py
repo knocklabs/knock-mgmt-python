@@ -17,6 +17,8 @@ _SendWindowParamReservedKeywords = TypedDict(
 
 
 class SendWindowParam(_SendWindowParamReservedKeywords, total=False):
+    """A send window time for a notification. Describes a single day."""
+
     day: Required[Literal["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]]
     """The day of the week."""
 
