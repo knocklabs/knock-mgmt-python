@@ -6,7 +6,7 @@ from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
 from .message_type_url_field import MessageTypeURLField
-from ..message_type_text_field_param import MessageTypeTextFieldParam
+from .message_type_text_field import MessageTypeTextField
 
 __all__ = ["MessageTypeImageField", "Settings"]
 
@@ -25,10 +25,10 @@ class Settings(TypedDict, total=False):
 class MessageTypeImageField(TypedDict, total=False):
     """An image field used in a message type."""
 
-    action: Required[MessageTypeTextFieldParam]
+    action: Required[MessageTypeTextField]
     """A text field used in a message type."""
 
-    alt: Required[MessageTypeTextFieldParam]
+    alt: Required[MessageTypeTextField]
     """A text field used in a message type."""
 
     key: Required[str]

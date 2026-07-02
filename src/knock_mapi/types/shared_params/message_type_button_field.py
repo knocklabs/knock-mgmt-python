@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
-from ..message_type_text_field_param import MessageTypeTextFieldParam
+from .message_type_text_field import MessageTypeTextField
 
 __all__ = ["MessageTypeButtonField", "Settings"]
 
@@ -24,7 +24,7 @@ class Settings(TypedDict, total=False):
 class MessageTypeButtonField(TypedDict, total=False):
     """A button field used in a message type."""
 
-    action: Required[MessageTypeTextFieldParam]
+    action: Required[MessageTypeTextField]
     """A text field used in a message type."""
 
     key: Required[str]
@@ -33,7 +33,7 @@ class MessageTypeButtonField(TypedDict, total=False):
     label: Required[Optional[str]]
     """The label of the field."""
 
-    text: Required[MessageTypeTextFieldParam]
+    text: Required[MessageTypeTextField]
     """A text field used in a message type."""
 
     type: Required[Literal["button"]]

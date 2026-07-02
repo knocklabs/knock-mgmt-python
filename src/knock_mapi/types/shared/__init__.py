@@ -3,6 +3,7 @@
 from .page_info import PageInfo as PageInfo
 from .message_type_url_field import MessageTypeURLField as MessageTypeURLField
 from .message_type_json_field import MessageTypeJsonField as MessageTypeJsonField
+from .message_type_text_field import MessageTypeTextField as MessageTypeTextField
 from .message_type_image_field import MessageTypeImageField as MessageTypeImageField
 from .message_type_button_field import MessageTypeButtonField as MessageTypeButtonField
 from .message_type_select_field import MessageTypeSelectField as MessageTypeSelectField

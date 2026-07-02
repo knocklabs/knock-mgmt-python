@@ -4,7 +4,7 @@ from typing import Optional
 from typing_extensions import Literal
 
 from ..._models import BaseModel
-from ..message_type_text_field import MessageTypeTextField
+from .message_type_text_field import MessageTypeTextField
 
 __all__ = ["MessageTypeButtonField", "Settings"]
 
