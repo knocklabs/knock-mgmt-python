@@ -24,6 +24,7 @@ from .shared import (
     PageInfo as PageInfo,
     MessageTypeURLField as MessageTypeURLField,
     MessageTypeJsonField as MessageTypeJsonField,
+    MessageTypeTextField as MessageTypeTextField,
     MessageTypeImageField as MessageTypeImageField,
     MessageTypeButtonField as MessageTypeButtonField,
     MessageTypeSelectField as MessageTypeSelectField,
@@ -133,7 +134,6 @@ from .broadcast_upsert_params import BroadcastUpsertParams as BroadcastUpsertPar
 from .environment_list_params import EnvironmentListParams as EnvironmentListParams
 from .guide_activate_response import GuideActivateResponse as GuideActivateResponse
 from .guide_validate_response import GuideValidateResponse as GuideValidateResponse
-from .message_type_text_field import MessageTypeTextField as MessageTypeTextField
 from .partial_retrieve_params import PartialRetrieveParams as PartialRetrieveParams
 from .partial_upsert_response import PartialUpsertResponse as PartialUpsertResponse
 from .partial_validate_params import PartialValidateParams as PartialValidateParams
@@ -217,7 +217,6 @@ from .message_type_validate_params import MessageTypeValidateParams as MessageTy
 from .workflow_ai_agent_step_param import WorkflowAIAgentStepParam as WorkflowAIAgentStepParam
 from .workflow_throttle_step_param import WorkflowThrottleStepParam as WorkflowThrottleStepParam
 from .channel_group_upsert_response import ChannelGroupUpsertResponse as ChannelGroupUpsertResponse
-from .message_type_text_field_param import MessageTypeTextFieldParam as MessageTypeTextFieldParam
 from .translation_retrieve_response import TranslationRetrieveResponse as TranslationRetrieveResponse
 from .translation_validate_response import TranslationValidateResponse as TranslationValidateResponse
 from .data_source_list_events_params import DataSourceListEventsParams as DataSourceListEventsParams

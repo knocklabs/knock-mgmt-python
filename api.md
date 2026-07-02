@@ -9,6 +9,7 @@ from knock_mapi.types import (
     MessageTypeMarkdownField,
     MessageTypeMultiSelectField,
     MessageTypeSelectField,
+    MessageTypeTextField,
     MessageTypeTextareaField,
     MessageTypeURLField,
     PageInfo,
@@ -168,7 +169,6 @@ Types:
 ```python
 from knock_mapi.types import (
     MessageType,
-    MessageTypeTextField,
     MessageTypeVariant,
     MessageTypeUpsertResponse,
     MessageTypeValidateResponse,

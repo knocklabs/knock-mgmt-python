@@ -4,9 +4,9 @@ from typing import List, Union, Optional
 from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
-from .message_type_text_field import MessageTypeTextField
 from .shared.message_type_url_field import MessageTypeURLField
 from .shared.message_type_json_field import MessageTypeJsonField
+from .shared.message_type_text_field import MessageTypeTextField
 from .shared.message_type_image_field import MessageTypeImageField
 from .shared.message_type_button_field import MessageTypeButtonField
 from .shared.message_type_select_field import MessageTypeSelectField
