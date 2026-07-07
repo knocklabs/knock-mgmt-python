@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.1.0-alpha.2 (2026-07-07)
+
+Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/knocklabs/knock-mgmt-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
+
+### Features
+
+* **api:** api update ([64df980](https://github.com/knocklabs/knock-mgmt-python/commit/64df9806f28e4be7d5314ece2452cd7173d52787))
+
 ## 0.1.0-alpha.1 (2026-07-01)
 
 Full Changelog: [v0.0.1-alpha.0...v0.1.0-alpha.1](https://github.com/knocklabs/knock-mgmt-python/compare/v0.0.1-alpha.0...v0.1.0-alpha.1)
