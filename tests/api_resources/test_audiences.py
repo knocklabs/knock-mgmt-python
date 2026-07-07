@@ -210,6 +210,7 @@ class TestAudiences:
                     }
                 ],
             },
+            allow_empty=True,
             annotate=True,
             branch="feature-branch",
             commit=True,
@@ -548,6 +549,7 @@ class TestAsyncAudiences:
                     }
                 ],
             },
+            allow_empty=True,
             annotate=True,
             branch="feature-branch",
             commit=True,

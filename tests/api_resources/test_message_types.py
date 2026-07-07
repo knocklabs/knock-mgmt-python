@@ -176,6 +176,7 @@ class TestMessageTypes:
                     }
                 ],
             },
+            allow_empty=True,
             annotate=True,
             branch="feature-branch",
             commit=True,
@@ -500,6 +501,7 @@ class TestAsyncMessageTypes:
                     }
                 ],
             },
+            allow_empty=True,
             annotate=True,
             branch="feature-branch",
             commit=True,

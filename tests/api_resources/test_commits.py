@@ -127,6 +127,7 @@ class TestCommits:
     def test_method_commit_all_with_all_params(self, client: KnockMgmt) -> None:
         commit = client.commits.commit_all(
             environment="development",
+            allow_empty=True,
             branch="feature-branch",
             commit_message="commit_message",
             resource_id="resource_id",
@@ -357,6 +358,7 @@ class TestAsyncCommits:
     async def test_method_commit_all_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.commit_all(
             environment="development",
+            allow_empty=True,
             branch="feature-branch",
             commit_message="commit_message",
             resource_id="resource_id",

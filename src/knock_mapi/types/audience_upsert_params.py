@@ -27,6 +27,12 @@ class AudienceUpsertParams(TypedDict, total=False):
     `type: dynamic` for audiences with segment-based membership.
     """
 
+    allow_empty: bool
+    """
+    When used with commit, creates a new version with identical content and commits
+    it if there are no unpublished changes.
+    """
+
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 

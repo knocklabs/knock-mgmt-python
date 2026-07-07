@@ -170,6 +170,7 @@ class CommitsResource(SyncAPIResource):
         self,
         *,
         environment: str,
+        allow_empty: bool | Omit = omit,
         branch: str | Omit = omit,
         commit_message: str | Omit = omit,
         resource_id: str | Omit = omit,
@@ -190,6 +191,9 @@ class CommitsResource(SyncAPIResource):
 
         Args:
           environment: The environment slug.
+
+          allow_empty: When used with a single resource_type and resource_id, creates a new version
+              with identical content and commits it if there are no unpublished changes.
 
           branch: The slug of a branch to use. This option can only be used when `environment` is
               `"development"`.
@@ -220,6 +224,7 @@ class CommitsResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "branch": branch,
                         "commit_message": commit_message,
                         "resource_id": resource_id,
@@ -476,6 +481,7 @@ class AsyncCommitsResource(AsyncAPIResource):
         self,
         *,
         environment: str,
+        allow_empty: bool | Omit = omit,
         branch: str | Omit = omit,
         commit_message: str | Omit = omit,
         resource_id: str | Omit = omit,
@@ -496,6 +502,9 @@ class AsyncCommitsResource(AsyncAPIResource):
 
         Args:
           environment: The environment slug.
+
+          allow_empty: When used with a single resource_type and resource_id, creates a new version
+              with identical content and commits it if there are no unpublished changes.
 
           branch: The slug of a branch to use. This option can only be used when `environment` is
               `"development"`.
@@ -526,6 +535,7 @@ class AsyncCommitsResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "branch": branch,
                         "commit_message": commit_message,
                         "resource_id": resource_id,

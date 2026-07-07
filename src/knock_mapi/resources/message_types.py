@@ -187,6 +187,7 @@ class MessageTypesResource(SyncAPIResource):
         *,
         environment: str,
         message_type: message_type_upsert_params.MessageType,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -208,6 +209,9 @@ class MessageTypesResource(SyncAPIResource):
           environment: The environment slug.
 
           message_type: A request to create a message type.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -243,6 +247,7 @@ class MessageTypesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
@@ -473,6 +478,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         *,
         environment: str,
         message_type: message_type_upsert_params.MessageType,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -494,6 +500,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
           environment: The environment slug.
 
           message_type: A request to create a message type.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -531,6 +540,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
