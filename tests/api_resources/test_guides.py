@@ -354,6 +354,7 @@ class TestGuides:
                     ]
                 },
             },
+            allow_empty=True,
             annotate=True,
             branch="feature-branch",
             commit=True,
@@ -909,6 +910,7 @@ class TestAsyncGuides:
                     ]
                 },
             },
+            allow_empty=True,
             annotate=True,
             branch="feature-branch",
             commit=True,

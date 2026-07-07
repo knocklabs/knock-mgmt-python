@@ -359,6 +359,7 @@ class GuidesResource(SyncAPIResource):
         *,
         environment: str,
         guide: guide_upsert_params.Guide,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -380,6 +381,9 @@ class GuidesResource(SyncAPIResource):
           environment: The environment slug.
 
           guide: A request to create or update a guide.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -415,6 +419,7 @@ class GuidesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
@@ -807,6 +812,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         *,
         environment: str,
         guide: guide_upsert_params.Guide,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -828,6 +834,9 @@ class AsyncGuidesResource(AsyncAPIResource):
           environment: The environment slug.
 
           guide: A request to create or update a guide.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -863,6 +872,7 @@ class AsyncGuidesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,

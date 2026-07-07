@@ -36,6 +36,12 @@ class PartialUpsertParams(TypedDict, total=False):
     partial: Required[Partial]
     """A partial object with attributes to update or create a partial."""
 
+    allow_empty: bool
+    """
+    When used with commit, creates a new version with identical content and commits
+    it if there are no unpublished changes.
+    """
+
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 

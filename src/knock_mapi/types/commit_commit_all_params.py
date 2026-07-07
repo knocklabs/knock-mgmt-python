@@ -12,6 +12,12 @@ class CommitCommitAllParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
+    allow_empty: bool
+    """
+    When used with a single resource_type and resource_id, creates a new version
+    with identical content and commits it if there are no unpublished changes.
+    """
+
     branch: str
     """The slug of a branch to use.
 

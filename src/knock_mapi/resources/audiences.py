@@ -232,6 +232,7 @@ class AudiencesResource(SyncAPIResource):
         *,
         environment: str,
         audience: audience_upsert_params.Audience,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -254,6 +255,9 @@ class AudiencesResource(SyncAPIResource):
           audience: An audience object with attributes to create or update an audience. Use
               `type: static` for audiences with explicitly managed members, or `type: dynamic`
               for audiences with segment-based membership.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -289,6 +293,7 @@ class AudiencesResource(SyncAPIResource):
                 query=maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
@@ -559,6 +564,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         *,
         environment: str,
         audience: audience_upsert_params.Audience,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -581,6 +587,9 @@ class AsyncAudiencesResource(AsyncAPIResource):
           audience: An audience object with attributes to create or update an audience. Use
               `type: static` for audiences with explicitly managed members, or `type: dynamic`
               for audiences with segment-based membership.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -616,6 +625,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
                 query=await async_maybe_transform(
                     {
                         "environment": environment,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
