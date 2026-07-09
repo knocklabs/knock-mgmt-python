@@ -221,6 +221,7 @@ class TranslationsResource(SyncAPIResource):
         environment: str,
         namespace: str,
         translation: translation_upsert_params.Translation,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -249,6 +250,9 @@ class TranslationsResource(SyncAPIResource):
 
           translation: A translation object with a content attribute used to update or create a
               translation.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -290,6 +294,7 @@ class TranslationsResource(SyncAPIResource):
                     {
                         "environment": environment,
                         "namespace": namespace,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
@@ -552,6 +557,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
         environment: str,
         namespace: str,
         translation: translation_upsert_params.Translation,
+        allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
@@ -580,6 +586,9 @@ class AsyncTranslationsResource(AsyncAPIResource):
 
           translation: A translation object with a content attribute used to update or create a
               translation.
+
+          allow_empty: When used with commit, creates a new version with identical content and commits
+              it if there are no unpublished changes.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
@@ -623,6 +632,7 @@ class AsyncTranslationsResource(AsyncAPIResource):
                     {
                         "environment": environment,
                         "namespace": namespace,
+                        "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,

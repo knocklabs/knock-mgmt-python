@@ -18,6 +18,12 @@ class WorkflowUpsertParams(TypedDict, total=False):
     workflow: Required[Workflow]
     """A workflow request for upserting a workflow."""
 
+    allow_empty: bool
+    """
+    When used with commit, creates a new version with identical content and commits
+    it if there are no unpublished changes.
+    """
+
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
