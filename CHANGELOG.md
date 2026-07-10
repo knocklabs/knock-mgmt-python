@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.1.0-alpha.3](https://github.com/knocklabs/knock-mgmt-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2026-07-10)
+
+
+### Features
+
+* set publish release settings ([87a8598](https://github.com/knocklabs/knock-mgmt-python/commit/87a85981bb88f0dea38e9aecbf11e47821c96624))
+
+
+### Chores
+
+* set the same query_settings from api ([479cf6b](https://github.com/knocklabs/knock-mgmt-python/commit/479cf6bcd69a550fc95341f0bf9f9e10fa5d8fe5))
+* trivial test changes ([9d841e5](https://github.com/knocklabs/knock-mgmt-python/commit/9d841e5beb59057fe13204b9ce4750276ca10d8d))
+
 ## 0.1.0-alpha.2 (2026-07-09)
 
 Full Changelog: [v0.1.0-alpha.1...v0.1.0-alpha.2](https://github.com/knocklabs/knock-mgmt-python/compare/v0.1.0-alpha.1...v0.1.0-alpha.2)
