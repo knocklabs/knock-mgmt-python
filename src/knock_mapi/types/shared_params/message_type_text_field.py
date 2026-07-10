@@ -5,7 +5,7 @@ from __future__ import annotations
 from typing import Optional
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["MessageTypeTextFieldParam", "Settings"]
+__all__ = ["MessageTypeTextField", "Settings"]
 
 
 class Settings(TypedDict, total=False):
@@ -26,7 +26,7 @@ class Settings(TypedDict, total=False):
     """Whether the field is required."""
 
 
-class MessageTypeTextFieldParam(TypedDict, total=False):
+class MessageTypeTextField(TypedDict, total=False):
     """A text field used in a message type."""
 
     key: Required[str]

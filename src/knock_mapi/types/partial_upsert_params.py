@@ -5,9 +5,9 @@ from __future__ import annotations
 from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
-from .message_type_text_field_param import MessageTypeTextFieldParam
 from .shared_params.message_type_url_field import MessageTypeURLField
 from .shared_params.message_type_json_field import MessageTypeJsonField
+from .shared_params.message_type_text_field import MessageTypeTextField
 from .shared_params.message_type_image_field import MessageTypeImageField
 from .shared_params.message_type_button_field import MessageTypeButtonField
 from .shared_params.message_type_select_field import MessageTypeSelectField
@@ -180,7 +180,7 @@ PartialInputSchema: TypeAlias = Union[
     MessageTypeBooleanField,
     MessageTypeJsonField,
     PartialInputSchemaMessageTypeNumberField,
-    MessageTypeTextFieldParam,
+    MessageTypeTextField,
     MessageTypeImageField,
     PartialInputSchemaMessageTypeColorField,
     MessageTypeURLField,
