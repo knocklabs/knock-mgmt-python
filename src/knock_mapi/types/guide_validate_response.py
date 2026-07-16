@@ -12,5 +12,5 @@ class GuideValidateResponse(BaseModel):
     guide: Guide
     """
     A guide defines an in-app guide that can be displayed to users based on priority
-    and other targeting conditions.
+    and other conditions.
     """
