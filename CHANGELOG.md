@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.1.0-alpha.4](https://github.com/knocklabs/knock-mgmt-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4) (2026-07-16)
+
+
+### Chores
+
+* forward SDK_WRITE_TOKEN to the back-sync workflow ([de27e08](https://github.com/knocklabs/knock-mgmt-python/commit/de27e0897399a39e88caea8dcd0890a7fd73b812))
+
 ## [0.1.0-alpha.3](https://github.com/knocklabs/knock-mgmt-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2026-07-16)
 
 
