@@ -242,17 +242,26 @@ from .workflow_trigger_workflow_step_param import WorkflowTriggerWorkflowStepPar
 # Pydantic can resolve the necessary references.
 # See: https://github.com/pydantic/pydantic/issues/11250 for more context.
 if _compat.PYDANTIC_V1:
-    workflow.Workflow.update_forward_refs()  # type: ignore
-    workflow_branch_step.WorkflowBranchStep.update_forward_refs()  # type: ignore
-    workflow_retrieve_response.WorkflowRetrieveResponse.update_forward_refs()  # type: ignore
-    workflow_activate_response.WorkflowActivateResponse.update_forward_refs()  # type: ignore
-    workflow_upsert_response.WorkflowUpsertResponse.update_forward_refs()  # type: ignore
-    workflow_validate_response.WorkflowValidateResponse.update_forward_refs()  # type: ignore
-    broadcast.Broadcast.update_forward_refs()  # type: ignore
-    broadcast_cancel_response.BroadcastCancelResponse.update_forward_refs()  # type: ignore
-    broadcast_send_response.BroadcastSendResponse.update_forward_refs()  # type: ignore
-    broadcast_upsert_response.BroadcastUpsertResponse.update_forward_refs()  # type: ignore
-    broadcast_validate_response.BroadcastValidateResponse.update_forward_refs()  # type: ignore
+    # Pydantic v1 evaluates forward references in the namespace of the module that
+    # defines the model, which doesn't include names that module only imports at the
+    # bottom of other modules (e.g. `WorkflowBranchStep` inside the `WorkflowStep`
+    # union), so pass the cyclical models explicitly as localns.
+    _cyclical_localns = {
+        "WorkflowStep": WorkflowStep,
+        "WorkflowBranchStep": workflow_branch_step.WorkflowBranchStep,
+    }
+    workflow.Workflow.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_branch_step.Branch.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_branch_step.WorkflowBranchStep.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_retrieve_response.WorkflowRetrieveResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_activate_response.WorkflowActivateResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_upsert_response.WorkflowUpsertResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_validate_response.WorkflowValidateResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
+    broadcast.Broadcast.update_forward_refs(**_cyclical_localns)  # type: ignore
+    broadcast_cancel_response.BroadcastCancelResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
+    broadcast_send_response.BroadcastSendResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
+    broadcast_upsert_response.BroadcastUpsertResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
+    broadcast_validate_response.BroadcastValidateResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
 else:
     workflow.Workflow.model_rebuild(_parent_namespace_depth=0)
     workflow_branch_step.WorkflowBranchStep.model_rebuild(_parent_namespace_depth=0)
