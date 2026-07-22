@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.1.0-alpha.4](https://github.com/knocklabs/knock-mgmt-python/compare/v0.1.0-alpha.3...v0.1.0-alpha.4) (2026-07-22)
+
+
+### Bug Fixes
+
+* restore pydantic v1 forward-ref localns for cyclical workflow models ([b7801ff](https://github.com/knocklabs/knock-mgmt-python/commit/b7801ffd24a7e8af88e8d3ee691e47f4abf11dd2))
+
+
+### Chores
+
+* add CODEOWNERS with @knocklabs/product as default owner ([658bc8d](https://github.com/knocklabs/knock-mgmt-python/commit/658bc8d7875b3aae15752df573a16a421fcfdae6))
+* forward SDK_WRITE_TOKEN to the back-sync workflow ([de27e08](https://github.com/knocklabs/knock-mgmt-python/commit/de27e0897399a39e88caea8dcd0890a7fd73b812))
+* reconcile orphaned sealed commit after release back-sync ([c45528b](https://github.com/knocklabs/knock-mgmt-python/commit/c45528b65c802005e75ee21e8ab66e663922c787))
+
 ## [0.1.0-alpha.3](https://github.com/knocklabs/knock-mgmt-python/compare/v0.1.0-alpha.2...v0.1.0-alpha.3) (2026-07-16)
 
 
