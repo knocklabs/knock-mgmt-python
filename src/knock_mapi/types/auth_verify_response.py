@@ -90,8 +90,20 @@ class AuthVerifyResponse(BaseModel):
     contexts.
     """
 
+    user_email: Optional[str] = None
+    """
+    The email of the authenticated user if in OAuth context, null for service token
+    contexts.
+    """
+
     user_id: Optional[str] = None
     """
     The ID of the authenticated user if in OAuth context, null for service token
+    contexts.
+    """
+
+    user_name: Optional[str] = None
+    """
+    The name of the authenticated user if in OAuth context, null for service token
     contexts.
     """
