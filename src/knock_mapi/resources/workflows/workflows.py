@@ -286,13 +286,13 @@ class WorkflowsResource(SyncAPIResource):
         Args:
           environment: The environment slug.
 
-          recipients: A list of recipients to run the workflow for.
+          recipients: A list of recipients to run the workflow for. Supports user IDs, object
+              references, or inline identify user objects (id + optional email/name).
 
           branch: The slug of a branch to use. This option can only be used when `environment` is
               `"development"`.
 
-          actor: A recipient reference, used when referencing a recipient by either their ID (for
-              a user), or by a reference for an object.
+          actor: The actor to reference in the the workflow run.
 
           cancellation_key: A key to cancel the workflow run.
 
@@ -722,13 +722,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         Args:
           environment: The environment slug.
 
-          recipients: A list of recipients to run the workflow for.
+          recipients: A list of recipients to run the workflow for. Supports user IDs, object
+              references, or inline identify user objects (id + optional email/name).
 
           branch: The slug of a branch to use. This option can only be used when `environment` is
               `"development"`.
 
-          actor: A recipient reference, used when referencing a recipient by either their ID (for
-              a user), or by a reference for an object.
+          actor: The actor to reference in the the workflow run.
 
           cancellation_key: A key to cancel the workflow run.
 

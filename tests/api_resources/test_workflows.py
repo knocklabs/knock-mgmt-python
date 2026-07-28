@@ -198,7 +198,7 @@ class TestWorkflows:
         workflow = client.workflows.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[{"id": "user_1"}],
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
@@ -208,12 +208,15 @@ class TestWorkflows:
         workflow = client.workflows.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[
+                {
+                    "id": "user_1",
+                    "email": "jane@example.com",
+                    "name": "Jane Doe",
+                }
+            ],
             branch="feature-branch",
-            actor={
-                "id": "project_1",
-                "collection": "projects",
-            },
+            actor="user_1",
             cancellation_key="cancellation_key",
             data={"park_id": "bar"},
             tenant="tenant",
@@ -226,7 +229,7 @@ class TestWorkflows:
         response = client.workflows.with_raw_response.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[{"id": "user_1"}],
         )
 
         assert response.is_closed is True
@@ -240,7 +243,7 @@ class TestWorkflows:
         with client.workflows.with_streaming_response.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[{"id": "user_1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -257,7 +260,7 @@ class TestWorkflows:
             client.workflows.with_raw_response.run(
                 workflow_key="",
                 environment="development",
-                recipients=["dnedry"],
+                recipients=[{"id": "user_1"}],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -756,7 +759,7 @@ class TestAsyncWorkflows:
         workflow = await async_client.workflows.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[{"id": "user_1"}],
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
 
@@ -766,12 +769,15 @@ class TestAsyncWorkflows:
         workflow = await async_client.workflows.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[
+                {
+                    "id": "user_1",
+                    "email": "jane@example.com",
+                    "name": "Jane Doe",
+                }
+            ],
             branch="feature-branch",
-            actor={
-                "id": "project_1",
-                "collection": "projects",
-            },
+            actor="user_1",
             cancellation_key="cancellation_key",
             data={"park_id": "bar"},
             tenant="tenant",
@@ -784,7 +790,7 @@ class TestAsyncWorkflows:
         response = await async_client.workflows.with_raw_response.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[{"id": "user_1"}],
         )
 
         assert response.is_closed is True
@@ -798,7 +804,7 @@ class TestAsyncWorkflows:
         async with async_client.workflows.with_streaming_response.run(
             workflow_key="workflow_key",
             environment="development",
-            recipients=["dnedry"],
+            recipients=[{"id": "user_1"}],
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -815,7 +821,7 @@ class TestAsyncWorkflows:
             await async_client.workflows.with_raw_response.run(
                 workflow_key="",
                 environment="development",
-                recipients=["dnedry"],
+                recipients=[{"id": "user_1"}],
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
