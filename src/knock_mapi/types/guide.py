@@ -60,6 +60,9 @@ class Guide(BaseModel):
     characters allowed.
     """
 
+    guide_audience_conditions: Optional[ConditionGroup] = None
+    """A group of conditions to be evaluated."""
+
     semver: Optional[str] = None
     """The semver of the guide."""
 

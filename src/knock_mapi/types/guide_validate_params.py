@@ -57,6 +57,9 @@ class Guide(TypedDict, total=False):
     characters allowed.
     """
 
+    guide_audience_conditions: Optional[ConditionGroupParam]
+    """A group of conditions to be evaluated."""
+
     tags: SequenceNotStr[str]
     """Use tags to organize resources internally within your account.
 

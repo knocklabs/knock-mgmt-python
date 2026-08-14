@@ -50,6 +50,9 @@ class AccountFeatures(BaseModel):
     new_relic_extension_allowed: Optional[bool] = None
     """Whether New Relic integration extension is available."""
 
+    permission_groups_allowed: Optional[bool] = None
+    """Whether custom permission groups can be created."""
+
     segment_extension_allowed: Optional[bool] = None
     """Whether Segment integration extension is available."""
 
