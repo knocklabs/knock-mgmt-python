@@ -28,7 +28,10 @@ class ChannelGroupChannelRule(TypedDict, total=False):
     """
 
     argument: Optional[str]
-    """For conditional rules, the value to compare against."""
+    """For conditional rules, the value to compare against.
+
+    For `is_in_random_cohort`, a 0–100 percentage with at most one decimal place.
+    """
 
     index: int
     """The order index of this rule within the channel group."""
@@ -58,12 +61,20 @@ class ChannelGroupChannelRule(TypedDict, total=False):
             "is_timestamp_on_or_after_now",
             "is_audience_member",
             "is_not_audience_member",
+            "is_in_random_cohort",
         ]
     ]
-    """For conditional rules, the operator to apply."""
+    """For conditional rules, the operator to apply.
+
+    For `is_in_random_cohort`, `variable` must be `recipient.id` and `argument` is a
+    0–100 percentage.
+    """
 
     variable: Optional[str]
-    """For conditional rules, the variable to evaluate."""
+    """For conditional rules, the variable to evaluate.
+
+    For `is_in_random_cohort`, must be `recipient.id`.
+    """
 
 
 class ChannelGroup(TypedDict, total=False):
