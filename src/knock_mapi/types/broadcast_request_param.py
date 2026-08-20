@@ -19,7 +19,7 @@ from .workflow_webhook_step_param import WorkflowWebhookStepParam
 from .workflow_in_app_feed_step_param import WorkflowInAppFeedStepParam
 from .workflow_random_cohort_step_param import WorkflowRandomCohortStepParam
 
-__all__ = ["BroadcastRequestParam", "Step", "StepWorkflowInAppGuideStep", "Settings"]
+__all__ = ["BroadcastRequestParam", "Step", "StepWorkflowInAppGuideStep", "GoalAttachment", "Settings"]
 
 
 class StepWorkflowInAppGuideStep(TypedDict, total=False):
@@ -91,6 +91,19 @@ Step: TypeAlias = Union[
 ]
 
 
+class GoalAttachment(TypedDict, total=False):
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
+
+    goal_key: Required[str]
+    """The key of the goal to attach."""
+
+    attribution_window_days: int
+    """The number of days to attribute conversions after the notification is sent.
+
+    Must be between 1 and 30. Defaults to 7.
+    """
+
+
 class Settings(TypedDict, total=False):
     """A map of broadcast settings."""
 
@@ -126,6 +139,9 @@ class BroadcastRequestParam(TypedDict, total=False):
     Useful for adding notes about the broadcast for internal purposes. Maximum of
     280 characters allowed.
     """
+
+    goal_attachment: Optional[GoalAttachment]
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
 
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]
     """The timestamp of when the broadcast is scheduled to be sent."""

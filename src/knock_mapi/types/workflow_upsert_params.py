@@ -8,7 +8,7 @@ from typing_extensions import Literal, Required, TypedDict
 from .._types import SequenceNotStr
 from .condition_group_param import ConditionGroupParam
 
-__all__ = ["WorkflowUpsertParams", "Workflow", "WorkflowSettings"]
+__all__ = ["WorkflowUpsertParams", "Workflow", "WorkflowGoalAttachment", "WorkflowSettings"]
 
 
 class WorkflowUpsertParams(TypedDict, total=False):
@@ -44,6 +44,19 @@ class WorkflowUpsertParams(TypedDict, total=False):
     When set to true, forces the upsert to override existing content regardless of
     environment restrictions. This bypasses the development-only environment check
     and origin environment checks.
+    """
+
+
+class WorkflowGoalAttachment(TypedDict, total=False):
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
+
+    goal_key: Required[str]
+    """The key of the goal to attach."""
+
+    attribution_window_days: int
+    """The number of days to attribute conversions after the notification is sent.
+
+    Must be between 1 and 30. Defaults to 7.
     """
 
 
@@ -86,6 +99,9 @@ class Workflow(TypedDict, total=False):
     Useful for adding notes about the workflow for internal purposes. Maximum of 280
     characters allowed.
     """
+
+    goal_attachment: Optional[WorkflowGoalAttachment]
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
 
     settings: WorkflowSettings
     """A map of workflow settings."""

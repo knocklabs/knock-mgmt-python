@@ -56,6 +56,15 @@ class Settings(TypedDict, total=False):
     batch_window_type: Optional[Literal["fixed", "sliding"]]
     """The type of the batch window used. One of: `fixed` or `sliding`."""
 
+    workflow_version_mode: Optional[Literal["pinned", "latest"]]
+    """
+    Whether the batch is pinned to the opening workflow version or continues on the
+    latest compatible version. One of: `pinned` or `latest`. New batch steps default
+    to `latest`. Configs that omit the field hydrate as `pinned`. When set to
+    `latest`, compatible triggers share a cross-version batch and resume on the
+    latest published workflow after close.
+    """
+
 
 class WorkflowBatchStepParam(TypedDict, total=False):
     """A batch function step.

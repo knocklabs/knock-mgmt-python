@@ -340,6 +340,10 @@ class TestWorkflows:
                     ]
                 },
                 "description": "description",
+                "goal_attachment": {
+                    "goal_key": "trial-conversion",
+                    "attribution_window_days": 7,
+                },
                 "settings": {
                     "is_commercial": False,
                     "override_preferences": False,
@@ -501,6 +505,10 @@ class TestWorkflows:
                     ]
                 },
                 "description": "description",
+                "goal_attachment": {
+                    "goal_key": "trial-conversion",
+                    "attribution_window_days": 7,
+                },
                 "settings": {
                     "is_commercial": False,
                     "override_preferences": False,
@@ -901,6 +909,10 @@ class TestAsyncWorkflows:
                     ]
                 },
                 "description": "description",
+                "goal_attachment": {
+                    "goal_key": "trial-conversion",
+                    "attribution_window_days": 7,
+                },
                 "settings": {
                     "is_commercial": False,
                     "override_preferences": False,
@@ -1062,6 +1074,10 @@ class TestAsyncWorkflows:
                     ]
                 },
                 "description": "description",
+                "goal_attachment": {
+                    "goal_key": "trial-conversion",
+                    "attribution_window_days": 7,
+                },
                 "settings": {
                     "is_commercial": False,
                     "override_preferences": False,

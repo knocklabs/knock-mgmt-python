@@ -8,7 +8,20 @@ from .guide_step import GuideStep
 from .condition_group import ConditionGroup
 from .guide_activation_url_pattern import GuideActivationURLPattern
 
-__all__ = ["Guide"]
+__all__ = ["Guide", "GoalAttachment"]
+
+
+class GoalAttachment(BaseModel):
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
+
+    goal_key: str
+    """The key of the goal to attach."""
+
+    attribution_window_days: Optional[int] = None
+    """The number of days to attribute conversions after the notification is sent.
+
+    Must be between 1 and 30. Defaults to 7.
+    """
 
 
 class Guide(BaseModel):
@@ -59,6 +72,9 @@ class Guide(BaseModel):
     Useful for adding notes about the guide for internal purposes. Maximum of 280
     characters allowed.
     """
+
+    goal_attachment: Optional[GoalAttachment] = None
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
 
     guide_audience_conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""

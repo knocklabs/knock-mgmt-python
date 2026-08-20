@@ -10,7 +10,20 @@ from .._models import BaseModel
 from .member_user import MemberUser
 from .condition_group import ConditionGroup
 
-__all__ = ["WorkflowRetrieveResponse", "Settings"]
+__all__ = ["WorkflowRetrieveResponse", "GoalAttachment", "Settings"]
+
+
+class GoalAttachment(BaseModel):
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
+
+    goal_key: str
+    """The key of the goal to attach."""
+
+    attribution_window_days: Optional[int] = None
+    """The number of days to attribute conversions after the notification is sent.
+
+    Must be between 1 and 30. Defaults to 7.
+    """
 
 
 class Settings(BaseModel):
@@ -90,6 +103,9 @@ class WorkflowRetrieveResponse(BaseModel):
     Useful for adding notes about the workflow for internal purposes. Maximum of 280
     characters allowed.
     """
+
+    goal_attachment: Optional[GoalAttachment] = None
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
 
     settings: Optional[Settings] = None
     """A map of workflow settings."""

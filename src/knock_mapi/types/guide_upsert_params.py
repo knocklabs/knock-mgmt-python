@@ -12,7 +12,7 @@ from .guide_step_param import GuideStepParam
 from .condition_group_param import ConditionGroupParam
 from .guide_activation_url_pattern_param import GuideActivationURLPatternParam
 
-__all__ = ["GuideUpsertParams", "Guide"]
+__all__ = ["GuideUpsertParams", "Guide", "GuideGoalAttachment"]
 
 
 class GuideUpsertParams(TypedDict, total=False):
@@ -51,6 +51,19 @@ class GuideUpsertParams(TypedDict, total=False):
     """
 
 
+class GuideGoalAttachment(TypedDict, total=False):
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
+
+    goal_key: Required[str]
+    """The key of the goal to attach."""
+
+    attribution_window_days: int
+    """The number of days to attribute conversions after the notification is sent.
+
+    Must be between 1 and 30. Defaults to 7.
+    """
+
+
 class Guide(TypedDict, total=False):
     """A request to create or update a guide."""
 
@@ -78,6 +91,9 @@ class Guide(TypedDict, total=False):
     Useful for adding notes about the guide for internal purposes. Maximum of 280
     characters allowed.
     """
+
+    goal_attachment: Optional[GuideGoalAttachment]
+    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
 
     guide_audience_conditions: Optional[ConditionGroupParam]
     """A group of conditions to be evaluated."""
