@@ -179,6 +179,12 @@ class Broadcast(BaseModel):
     settings: Optional[Settings] = None
     """A map of broadcast settings."""
 
+    tags: Optional[List[str]] = None
+    """A list of resource tags attached to the broadcast.
+
+    Tags must exist in the project's tag catalog.
+    """
+
     target_audience_key: Optional[str] = None
     """The key of the audience to target for this broadcast."""
 

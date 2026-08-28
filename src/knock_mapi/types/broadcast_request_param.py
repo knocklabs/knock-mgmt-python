@@ -149,6 +149,12 @@ class BroadcastRequestParam(TypedDict, total=False):
     settings: Settings
     """A map of broadcast settings."""
 
+    tags: SequenceNotStr[str]
+    """A list of resource tags attached to the broadcast.
+
+    Tags must exist in the project's tag catalog.
+    """
+
     target_audience_key: str
     """The key of the audience to target for this broadcast."""
 
