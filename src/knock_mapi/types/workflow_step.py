@@ -9,7 +9,6 @@ from .._compat import PYDANTIC_V1
 from .._models import BaseModel
 from .duration import Duration
 from .condition import Condition
-from .send_window import SendWindow
 from .condition_group import ConditionGroup
 from .workflow_sms_step import WorkflowSMSStep
 from .workflow_chat_step import WorkflowChatStep
@@ -24,14 +23,13 @@ from .workflow_throttle_step import WorkflowThrottleStep
 from .workflow_in_app_feed_step import WorkflowInAppFeedStep
 from .workflow_update_data_step import WorkflowUpdateDataStep
 from .workflow_update_user_step import WorkflowUpdateUserStep
-from .workflow_random_cohort_step import WorkflowRandomCohortStep
+from .workflow_in_app_guide_step import WorkflowInAppGuideStep
 from .workflow_update_object_step import WorkflowUpdateObjectStep
 from .workflow_update_tenant_step import WorkflowUpdateTenantStep
 from .workflow_trigger_workflow_step import WorkflowTriggerWorkflowStep
 
 __all__ = [
     "WorkflowStep",
-    "WorkflowInAppGuideStep",
     "WorkflowWaitForEventStep",
     "WorkflowWaitForEventStepSettings",
     "WorkflowWaitForEventStepSettingsUnionMember0",
@@ -50,61 +48,6 @@ __all__ = [
     "WorkflowWaitForEventStepSettingsUnionMember4Event",
     "WorkflowWaitForEventStepSettingsUnionMember4MatchCondition",
 ]
-
-
-class WorkflowInAppGuideStep(BaseModel):
-    """An in-app guide step within a workflow.
-
-    References a guide that will be shown to recipients who execute this step. Read more in the [docs](https://docs.knock.app/designing-workflows/channel-step).
-    """
-
-    channel_type: Literal["in_app_guide"]
-    """The type of the channel step. Always `in_app_guide` for in-app guide steps."""
-
-    ref: str
-    """The reference key of the workflow step. Must be unique per workflow."""
-
-    type: Literal["channel"]
-    """The type of the workflow step."""
-
-    channel_group_key: Optional[str] = None
-    """
-    The key of the channel group to which the channel step will be sending a
-    notification. Either `channel_key` or `channel_group_key` must be provided, but
-    not both.
-    """
-
-    channel_key: Optional[str] = None
-    """
-    The key of a specific configured channel instance (e.g., 'knock-email',
-    'postmark', 'sendgrid-marketing') to send the notification through. Either
-    `channel_key` or `channel_group_key` must be provided, but not both.
-    """
-
-    conditions: Optional[ConditionGroup] = None
-    """A group of conditions to be evaluated."""
-
-    description: Optional[str] = None
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
-    """
-
-    guide_key: Optional[str] = None
-    """The key of the guide to reference.
-
-    When a recipient executes this step they are added to the managed audience that
-    backs the guide's workflow-derived targeting.
-    """
-
-    name: Optional[str] = None
-    """A name for the workflow step."""
-
-    send_windows: Optional[List[SendWindow]] = None
-    """A list of send window objects.
-
-    Must include one send window object per day of the week.
-    """
 
 
 class WorkflowWaitForEventStepSettingsUnionMember0Event(BaseModel):
@@ -402,7 +345,7 @@ if TYPE_CHECKING or not PYDANTIC_V1:
             WorkflowUpdateUserStep,
             WorkflowThrottleStep,
             "WorkflowBranchStep",
-            WorkflowRandomCohortStep,
+            "WorkflowRandomCohortStep",
             WorkflowTriggerWorkflowStep,
         ],
     )
@@ -426,8 +369,9 @@ else:
         WorkflowUpdateUserStep,
         WorkflowThrottleStep,
         "WorkflowBranchStep",
-        WorkflowRandomCohortStep,
+        "WorkflowRandomCohortStep",
         WorkflowTriggerWorkflowStep,
     ]
 
 from .workflow_branch_step import WorkflowBranchStep
+from .workflow_random_cohort_step import WorkflowRandomCohortStep

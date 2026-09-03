@@ -26,6 +26,7 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.audience import Audience
+from ..types.audience_request_param import AudienceRequestParam
 from ..types.audience_upsert_response import AudienceUpsertResponse
 from ..types.audience_archive_response import AudienceArchiveResponse
 from ..types.audience_validate_response import AudienceValidateResponse
@@ -231,7 +232,7 @@ class AudiencesResource(SyncAPIResource):
         audience_key: str,
         *,
         environment: str,
-        audience: audience_upsert_params.Audience,
+        audience: AudienceRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -311,7 +312,7 @@ class AudiencesResource(SyncAPIResource):
         audience_key: str,
         *,
         environment: str,
-        audience: audience_validate_params.Audience,
+        audience: AudienceRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -563,7 +564,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         audience_key: str,
         *,
         environment: str,
-        audience: audience_upsert_params.Audience,
+        audience: AudienceRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -643,7 +644,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         audience_key: str,
         *,
         environment: str,
-        audience: audience_validate_params.Audience,
+        audience: AudienceRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

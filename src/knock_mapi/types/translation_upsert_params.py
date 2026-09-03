@@ -4,7 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import Literal, Required, TypedDict
 
-__all__ = ["TranslationUpsertParams", "Translation"]
+from .translation_request_param import TranslationRequestParam
+
+__all__ = ["TranslationUpsertParams"]
 
 
 class TranslationUpsertParams(TypedDict, total=False):
@@ -14,7 +16,7 @@ class TranslationUpsertParams(TypedDict, total=False):
     namespace: Required[str]
     """An optional namespace that identifies the translation."""
 
-    translation: Required[Translation]
+    translation: Required[TranslationRequestParam]
     """
     A translation object with a content attribute used to update or create a
     translation.
@@ -56,21 +58,3 @@ class TranslationUpsertParams(TypedDict, total=False):
 
     tenant: str
     """An optional tenant to scope the translation to."""
-
-
-class Translation(TypedDict, total=False):
-    """
-    A translation object with a content attribute used to update or create a translation.
-    """
-
-    content: Required[str]
-    """
-    A JSON encoded string containing the key-value pairs of translation references
-    and translation strings.
-    """
-
-    format: Required[Literal["json", "po"]]
-    """
-    Indicates whether content is a JSON encoded object string or a string in the PO
-    format.
-    """

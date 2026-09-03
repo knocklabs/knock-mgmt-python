@@ -203,6 +203,52 @@ class TestBranches:
                 environment="development",
             )
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_rebase(self, client: KnockMgmt) -> None:
+        branch = client.branches.rebase(
+            branch_slug="feature-branch",
+            environment="development",
+        )
+        assert_matches_type(Branch, branch, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_rebase(self, client: KnockMgmt) -> None:
+        response = client.branches.with_raw_response.rebase(
+            branch_slug="feature-branch",
+            environment="development",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        branch = response.parse()
+        assert_matches_type(Branch, branch, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_rebase(self, client: KnockMgmt) -> None:
+        with client.branches.with_streaming_response.rebase(
+            branch_slug="feature-branch",
+            environment="development",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            branch = response.parse()
+            assert_matches_type(Branch, branch, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_rebase(self, client: KnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `branch_slug` but received ''"):
+            client.branches.with_raw_response.rebase(
+                branch_slug="",
+                environment="development",
+            )
+
 
 class TestAsyncBranches:
     parametrize = pytest.mark.parametrize(
@@ -388,6 +434,52 @@ class TestAsyncBranches:
     async def test_path_params_delete(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `branch_slug` but received ''"):
             await async_client.branches.with_raw_response.delete(
+                branch_slug="",
+                environment="development",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_rebase(self, async_client: AsyncKnockMgmt) -> None:
+        branch = await async_client.branches.rebase(
+            branch_slug="feature-branch",
+            environment="development",
+        )
+        assert_matches_type(Branch, branch, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_rebase(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.branches.with_raw_response.rebase(
+            branch_slug="feature-branch",
+            environment="development",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        branch = await response.parse()
+        assert_matches_type(Branch, branch, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_rebase(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.branches.with_streaming_response.rebase(
+            branch_slug="feature-branch",
+            environment="development",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            branch = await response.parse()
+            assert_matches_type(Branch, branch, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_rebase(self, async_client: AsyncKnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `branch_slug` but received ''"):
+            await async_client.branches.with_raw_response.rebase(
                 branch_slug="",
                 environment="development",
             )

@@ -23,6 +23,7 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.message_type import MessageType
+from ..types.message_type_request_param import MessageTypeRequestParam
 from ..types.message_type_upsert_response import MessageTypeUpsertResponse
 from ..types.message_type_validate_response import MessageTypeValidateResponse
 
@@ -186,7 +187,7 @@ class MessageTypesResource(SyncAPIResource):
         message_type_key: str,
         *,
         environment: str,
-        message_type: message_type_upsert_params.MessageType,
+        message_type: MessageTypeRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -265,7 +266,7 @@ class MessageTypesResource(SyncAPIResource):
         message_type_key: str,
         *,
         environment: str,
-        message_type: message_type_validate_params.MessageType,
+        message_type: MessageTypeRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -477,7 +478,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         message_type_key: str,
         *,
         environment: str,
-        message_type: message_type_upsert_params.MessageType,
+        message_type: MessageTypeRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -558,7 +559,7 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         message_type_key: str,
         *,
         environment: str,
-        message_type: message_type_validate_params.MessageType,
+        message_type: MessageTypeRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from knock_mapi.types import (
     Partial,
     PartialUpsertResponse,
+    PartialPreviewResponse,
     PartialValidateResponse,
 )
 from knock_mapi.pagination import SyncEntriesCursor, AsyncEntriesCursor
@@ -125,6 +126,89 @@ class TestPartials:
 
             partial = response.parse()
             assert_matches_type(SyncEntriesCursor[Partial], partial, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_preview(self, client: KnockMgmt) -> None:
+        partial = client.partials.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+            },
+        )
+        assert_matches_type(PartialPreviewResponse, partial, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_preview_with_all_params(self, client: KnockMgmt) -> None:
+        partial = client.partials.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+                "description": "This is a test partial",
+                "icon_name": "icon_name",
+                "input_schema": [
+                    {
+                        "key": "text_field",
+                        "label": "My text field",
+                        "type": "text",
+                        "settings": {
+                            "default": "A placeholder",
+                            "description": "A description of the text field",
+                            "max_length": 100,
+                            "min_length": 10,
+                            "placeholder": "A placeholder for the field.",
+                            "required": True,
+                        },
+                    }
+                ],
+                "visual_block_enabled": True,
+            },
+            branch="feature-branch",
+            data={"name": "bar"},
+            layout={"key": "key"},
+        )
+        assert_matches_type(PartialPreviewResponse, partial, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_preview(self, client: KnockMgmt) -> None:
+        response = client.partials.with_raw_response.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        partial = response.parse()
+        assert_matches_type(PartialPreviewResponse, partial, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_preview(self, client: KnockMgmt) -> None:
+        with client.partials.with_streaming_response.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            partial = response.parse()
+            assert_matches_type(PartialPreviewResponse, partial, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -440,6 +524,89 @@ class TestAsyncPartials:
 
             partial = await response.parse()
             assert_matches_type(AsyncEntriesCursor[Partial], partial, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_preview(self, async_client: AsyncKnockMgmt) -> None:
+        partial = await async_client.partials.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+            },
+        )
+        assert_matches_type(PartialPreviewResponse, partial, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_preview_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        partial = await async_client.partials.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+                "description": "This is a test partial",
+                "icon_name": "icon_name",
+                "input_schema": [
+                    {
+                        "key": "text_field",
+                        "label": "My text field",
+                        "type": "text",
+                        "settings": {
+                            "default": "A placeholder",
+                            "description": "A description of the text field",
+                            "max_length": 100,
+                            "min_length": 10,
+                            "placeholder": "A placeholder for the field.",
+                            "required": True,
+                        },
+                    }
+                ],
+                "visual_block_enabled": True,
+            },
+            branch="feature-branch",
+            data={"name": "bar"},
+            layout={"key": "key"},
+        )
+        assert_matches_type(PartialPreviewResponse, partial, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_preview(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.partials.with_raw_response.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+            },
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        partial = await response.parse()
+        assert_matches_type(PartialPreviewResponse, partial, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_preview(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.partials.with_streaming_response.preview(
+            environment="development",
+            partial={
+                "content": "<p>Hello, {{ name }}!</p>",
+                "name": "My Partial",
+                "type": "html",
+            },
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            partial = await response.parse()
+            assert_matches_type(PartialPreviewResponse, partial, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 

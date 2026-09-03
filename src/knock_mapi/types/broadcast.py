@@ -7,100 +7,30 @@ from datetime import datetime
 from typing_extensions import Literal, TypeAlias
 
 from .._models import BaseModel
-from .send_window import SendWindow
-from .condition_group import ConditionGroup
 from .workflow_sms_step import WorkflowSMSStep
 from .workflow_chat_step import WorkflowChatStep
 from .workflow_push_step import WorkflowPushStep
 from .workflow_delay_step import WorkflowDelayStep
 from .workflow_email_step import WorkflowEmailStep
 from .workflow_webhook_step import WorkflowWebhookStep
+from .shared.goal_attachment import GoalAttachment
 from .workflow_in_app_feed_step import WorkflowInAppFeedStep
-from .workflow_random_cohort_step import WorkflowRandomCohortStep
+from .workflow_in_app_guide_step import WorkflowInAppGuideStep
 
-__all__ = ["Broadcast", "Step", "StepWorkflowInAppGuideStep", "GoalAttachment", "Settings"]
-
-
-class StepWorkflowInAppGuideStep(BaseModel):
-    """An in-app guide step within a workflow.
-
-    References a guide that will be shown to recipients who execute this step. Read more in the [docs](https://docs.knock.app/designing-workflows/channel-step).
-    """
-
-    channel_type: Literal["in_app_guide"]
-    """The type of the channel step. Always `in_app_guide` for in-app guide steps."""
-
-    ref: str
-    """The reference key of the workflow step. Must be unique per workflow."""
-
-    type: Literal["channel"]
-    """The type of the workflow step."""
-
-    channel_group_key: Optional[str] = None
-    """
-    The key of the channel group to which the channel step will be sending a
-    notification. Either `channel_key` or `channel_group_key` must be provided, but
-    not both.
-    """
-
-    channel_key: Optional[str] = None
-    """
-    The key of a specific configured channel instance (e.g., 'knock-email',
-    'postmark', 'sendgrid-marketing') to send the notification through. Either
-    `channel_key` or `channel_group_key` must be provided, but not both.
-    """
-
-    conditions: Optional[ConditionGroup] = None
-    """A group of conditions to be evaluated."""
-
-    description: Optional[str] = None
-    """An arbitrary string attached to a workflow step.
-
-    Useful for adding notes about the workflow for internal purposes.
-    """
-
-    guide_key: Optional[str] = None
-    """The key of the guide to reference.
-
-    When a recipient executes this step they are added to the managed audience that
-    backs the guide's workflow-derived targeting.
-    """
-
-    name: Optional[str] = None
-    """A name for the workflow step."""
-
-    send_windows: Optional[List[SendWindow]] = None
-    """A list of send window objects.
-
-    Must include one send window object per day of the week.
-    """
-
+__all__ = ["Broadcast", "Step", "Settings"]
 
 Step: TypeAlias = Union[
     WorkflowWebhookStep,
     WorkflowInAppFeedStep,
-    StepWorkflowInAppGuideStep,
+    WorkflowInAppGuideStep,
     WorkflowChatStep,
     WorkflowSMSStep,
     WorkflowPushStep,
     WorkflowEmailStep,
     "WorkflowBranchStep",
     WorkflowDelayStep,
-    WorkflowRandomCohortStep,
+    "WorkflowRandomCohortStep",
 ]
-
-
-class GoalAttachment(BaseModel):
-    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
-
-    goal_key: str
-    """The key of the goal to attach."""
-
-    attribution_window_days: Optional[int] = None
-    """The number of days to attribute conversions after the notification is sent.
-
-    Must be between 1 and 30. Defaults to 7.
-    """
 
 
 class Settings(BaseModel):
@@ -190,3 +120,4 @@ class Broadcast(BaseModel):
 
 
 from .workflow_branch_step import WorkflowBranchStep
+from .workflow_random_cohort_step import WorkflowRandomCohortStep

@@ -1,5 +1,7 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
+from __future__ import annotations
+
 from typing import List, Optional
 from typing_extensions import Literal
 
@@ -14,7 +16,7 @@ class WorkflowRandomCohortStep(BaseModel):
     Deterministically assigns recipients to percentage-based cohorts for A/B testing and experimentation.
     """
 
-    cohort_branches: List[object]
+    cohort_branches: List["WorkflowRandomCohortStepBranch"]
     """A list of cohort branches.
 
     Must have between 2 and 10 branches, and percentages must sum to 100.
@@ -40,3 +42,6 @@ class WorkflowRandomCohortStep(BaseModel):
 
     name: Optional[str] = None
     """A name for the workflow step."""
+
+
+from .workflow_random_cohort_step_branch import WorkflowRandomCohortStepBranch

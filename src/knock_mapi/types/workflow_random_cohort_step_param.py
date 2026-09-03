@@ -14,7 +14,7 @@ class WorkflowRandomCohortStepParam(TypedDict, total=False):
     Deterministically assigns recipients to percentage-based cohorts for A/B testing and experimentation.
     """
 
-    cohort_branches: Required[Iterable[object]]
+    cohort_branches: Required[Iterable["WorkflowRandomCohortStepBranchParam"]]
     """A list of cohort branches.
 
     Must have between 2 and 10 branches, and percentages must sum to 100.
@@ -40,3 +40,6 @@ class WorkflowRandomCohortStepParam(TypedDict, total=False):
 
     name: Optional[str]
     """A name for the workflow step."""
+
+
+from .workflow_random_cohort_step_branch_param import WorkflowRandomCohortStepBranchParam

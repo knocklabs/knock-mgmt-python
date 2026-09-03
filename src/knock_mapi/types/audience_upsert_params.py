@@ -2,25 +2,18 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
-from typing_extensions import Literal, Required, TypeAlias, TypedDict
+from typing_extensions import Required, TypedDict
 
-from .audience_condition_param import AudienceConditionParam
+from .audience_request_param import AudienceRequestParam
 
-__all__ = [
-    "AudienceUpsertParams",
-    "Audience",
-    "AudienceStaticAudienceRequest",
-    "AudienceDynamicAudienceRequest",
-    "AudienceDynamicAudienceRequestSegment",
-]
+__all__ = ["AudienceUpsertParams"]
 
 
 class AudienceUpsertParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
-    audience: Required[Audience]
+    audience: Required[AudienceRequestParam]
     """An audience object with attributes to create or update an audience.
 
     Use `type: static` for audiences with explicitly managed members, or
@@ -54,44 +47,3 @@ class AudienceUpsertParams(TypedDict, total=False):
     environment restrictions. This bypasses the development-only environment check
     and origin environment checks.
     """
-
-
-class AudienceStaticAudienceRequest(TypedDict, total=False):
-    """Request body for creating/updating a static audience."""
-
-    name: Required[str]
-    """The name of the audience."""
-
-    type: Required[Literal["static"]]
-    """The type of audience. Set to `static` for static audiences."""
-
-    description: Optional[str]
-    """A description of the audience."""
-
-
-class AudienceDynamicAudienceRequestSegment(TypedDict, total=False):
-    conditions: Required[Iterable[AudienceConditionParam]]
-    """A list of conditions within this segment, joined by AND."""
-
-
-class AudienceDynamicAudienceRequest(TypedDict, total=False):
-    """Request body for creating/updating a dynamic audience."""
-
-    name: Required[str]
-    """The name of the audience."""
-
-    type: Required[Literal["dynamic"]]
-    """The type of audience. Set to `dynamic` for dynamic audiences."""
-
-    description: Optional[str]
-    """A description of the audience."""
-
-    segments: Iterable[AudienceDynamicAudienceRequestSegment]
-    """A list of segments that define the dynamic audience membership criteria.
-
-    Each segment contains one or more conditions joined by AND. Multiple segments
-    are joined by OR.
-    """
-
-
-Audience: TypeAlias = Union[AudienceStaticAudienceRequest, AudienceDynamicAudienceRequest]

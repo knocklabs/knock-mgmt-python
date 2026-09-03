@@ -2,9 +2,17 @@
 
 from __future__ import annotations
 
+from typing import Dict, Optional
+
 import httpx
 
-from ..types import partial_list_params, partial_upsert_params, partial_retrieve_params, partial_validate_params
+from ..types import (
+    partial_list_params,
+    partial_upsert_params,
+    partial_preview_params,
+    partial_retrieve_params,
+    partial_validate_params,
+)
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
@@ -18,7 +26,9 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.partial import Partial
+from ..types.partial_request_param import PartialRequestParam
 from ..types.partial_upsert_response import PartialUpsertResponse
+from ..types.partial_preview_response import PartialPreviewResponse
 from ..types.partial_validate_response import PartialValidateResponse
 
 __all__ = ["PartialsResource", "AsyncPartialsResource"]
@@ -174,12 +184,82 @@ class PartialsResource(SyncAPIResource):
             model=Partial,
         )
 
+    def preview(
+        self,
+        *,
+        environment: str,
+        partial: PartialRequestParam,
+        branch: str | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        layout: Optional[partial_preview_params.Layout] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartialPreviewResponse:
+        """
+        Renders a partial in isolation, without requiring the partial to be persisted in
+        Knock.
+
+        Useful for iterating on a partial locally and seeing how it renders against
+        sample data.
+
+        Args:
+          environment: The environment slug.
+
+          partial: A partial object with attributes to update or create a partial.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          data: The data to pass to the partial when rendering. Top-level keys are exposed as
+              variables in the partial template.
+
+          layout: Email layout configuration. Only applicable for `html` partials. When omitted,
+              the rendered partial is returned unwrapped.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/partials/preview",
+            body=maybe_transform(
+                {
+                    "partial": partial,
+                    "data": data,
+                    "layout": layout,
+                },
+                partial_preview_params.PartialPreviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    partial_preview_params.PartialPreviewParams,
+                ),
+            ),
+            cast_to=PartialPreviewResponse,
+        )
+
     def upsert(
         self,
         partial_key: str,
         *,
         environment: str,
-        partial: partial_upsert_params.Partial,
+        partial: PartialRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -258,7 +338,7 @@ class PartialsResource(SyncAPIResource):
         partial_key: str,
         *,
         environment: str,
-        partial: partial_validate_params.Partial,
+        partial: PartialRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -460,12 +540,82 @@ class AsyncPartialsResource(AsyncAPIResource):
             model=Partial,
         )
 
+    async def preview(
+        self,
+        *,
+        environment: str,
+        partial: PartialRequestParam,
+        branch: str | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        layout: Optional[partial_preview_params.Layout] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> PartialPreviewResponse:
+        """
+        Renders a partial in isolation, without requiring the partial to be persisted in
+        Knock.
+
+        Useful for iterating on a partial locally and seeing how it renders against
+        sample data.
+
+        Args:
+          environment: The environment slug.
+
+          partial: A partial object with attributes to update or create a partial.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          data: The data to pass to the partial when rendering. Top-level keys are exposed as
+              variables in the partial template.
+
+          layout: Email layout configuration. Only applicable for `html` partials. When omitted,
+              the rendered partial is returned unwrapped.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/partials/preview",
+            body=await async_maybe_transform(
+                {
+                    "partial": partial,
+                    "data": data,
+                    "layout": layout,
+                },
+                partial_preview_params.PartialPreviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    partial_preview_params.PartialPreviewParams,
+                ),
+            ),
+            cast_to=PartialPreviewResponse,
+        )
+
     async def upsert(
         self,
         partial_key: str,
         *,
         environment: str,
-        partial: partial_upsert_params.Partial,
+        partial: PartialRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -544,7 +694,7 @@ class AsyncPartialsResource(AsyncAPIResource):
         partial_key: str,
         *,
         environment: str,
-        partial: partial_validate_params.Partial,
+        partial: PartialRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -606,6 +756,9 @@ class PartialsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             partials.list,
         )
+        self.preview = to_raw_response_wrapper(
+            partials.preview,
+        )
         self.upsert = to_raw_response_wrapper(
             partials.upsert,
         )
@@ -623,6 +776,9 @@ class AsyncPartialsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             partials.list,
+        )
+        self.preview = async_to_raw_response_wrapper(
+            partials.preview,
         )
         self.upsert = async_to_raw_response_wrapper(
             partials.upsert,
@@ -642,6 +798,9 @@ class PartialsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             partials.list,
         )
+        self.preview = to_streamed_response_wrapper(
+            partials.preview,
+        )
         self.upsert = to_streamed_response_wrapper(
             partials.upsert,
         )
@@ -659,6 +818,9 @@ class AsyncPartialsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             partials.list,
+        )
+        self.preview = async_to_streamed_response_wrapper(
+            partials.preview,
         )
         self.upsert = async_to_streamed_response_wrapper(
             partials.upsert,

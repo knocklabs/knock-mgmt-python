@@ -36,6 +36,7 @@ from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..._base_client import AsyncPaginator, make_request_options
 from ...types.workflow import Workflow
 from ...types.workflow_run_response import WorkflowRunResponse
+from ...types.workflow_request_param import WorkflowRequestParam
 from ...types.workflow_upsert_response import WorkflowUpsertResponse
 from ...types.workflow_activate_response import WorkflowActivateResponse
 from ...types.workflow_retrieve_response import WorkflowRetrieveResponse
@@ -346,7 +347,7 @@ class WorkflowsResource(SyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        workflow: workflow_upsert_params.Workflow,
+        workflow: WorkflowRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -426,7 +427,7 @@ class WorkflowsResource(SyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        workflow: workflow_validate_params.Workflow,
+        workflow: WorkflowRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -782,7 +783,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        workflow: workflow_upsert_params.Workflow,
+        workflow: WorkflowRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -862,7 +863,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflow_key: str,
         *,
         environment: str,
-        workflow: workflow_validate_params.Workflow,
+        workflow: WorkflowRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

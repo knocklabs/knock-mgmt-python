@@ -2,16 +2,18 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-__all__ = ["TranslationValidateParams", "Translation"]
+from .translation_request_param import TranslationRequestParam
+
+__all__ = ["TranslationValidateParams"]
 
 
 class TranslationValidateParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
-    translation: Required[Translation]
+    translation: Required[TranslationRequestParam]
     """
     A translation object with a content attribute used to update or create a
     translation.
@@ -21,22 +23,4 @@ class TranslationValidateParams(TypedDict, total=False):
     """The slug of a branch to use.
 
     This option can only be used when `environment` is `"development"`.
-    """
-
-
-class Translation(TypedDict, total=False):
-    """
-    A translation object with a content attribute used to update or create a translation.
-    """
-
-    content: Required[str]
-    """
-    A JSON encoded string containing the key-value pairs of translation references
-    and translation strings.
-    """
-
-    format: Required[Literal["json", "po"]]
-    """
-    Indicates whether content is a JSON encoded object string or a string in the PO
-    format.
     """

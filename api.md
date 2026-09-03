@@ -2,17 +2,22 @@
 
 ```python
 from knock_mapi.types import (
+    GoalAttachment,
     MessageTypeBooleanField,
     MessageTypeButtonField,
+    MessageTypeColorField,
     MessageTypeImageField,
     MessageTypeJsonField,
+    MessageTypeListField,
     MessageTypeMarkdownField,
     MessageTypeMultiSelectField,
+    MessageTypeNumberField,
     MessageTypeSelectField,
     MessageTypeTextField,
     MessageTypeTextareaField,
     MessageTypeURLField,
     PageInfo,
+    RecipientReference,
 )
 ```
 
@@ -29,21 +34,34 @@ from knock_mapi.types import (
     RequestTemplate,
     SMSTemplate,
     WebhookTemplate,
+    TemplatePreviewResponse,
 )
 ```
+
+Methods:
+
+- <code title="post /v1/templates/preview">client.templates.<a href="./src/knock_mapi/resources/templates.py">preview</a>(\*\*<a href="src/knock_mapi/types/template_preview_params.py">params</a>) -> <a href="./src/knock_mapi/types/template_preview_response.py">TemplatePreviewResponse</a></code>
 
 # EmailLayouts
 
 Types:
 
 ```python
-from knock_mapi.types import EmailLayout, EmailLayoutUpsertResponse, EmailLayoutValidateResponse
+from knock_mapi.types import (
+    BrandingOverrides,
+    EmailLayout,
+    EmailLayoutRequest,
+    EmailLayoutPreviewResponse,
+    EmailLayoutUpsertResponse,
+    EmailLayoutValidateResponse,
+)
 ```
 
 Methods:
 
 - <code title="get /v1/email_layouts/{email_layout_key}">client.email_layouts.<a href="./src/knock_mapi/resources/email_layouts.py">retrieve</a>(email_layout_key, \*\*<a href="src/knock_mapi/types/email_layout_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/email_layout.py">EmailLayout</a></code>
 - <code title="get /v1/email_layouts">client.email_layouts.<a href="./src/knock_mapi/resources/email_layouts.py">list</a>(\*\*<a href="src/knock_mapi/types/email_layout_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/email_layout.py">SyncEntriesCursor[EmailLayout]</a></code>
+- <code title="post /v1/email_layouts/preview">client.email_layouts.<a href="./src/knock_mapi/resources/email_layouts.py">preview</a>(\*\*<a href="src/knock_mapi/types/email_layout_preview_params.py">params</a>) -> <a href="./src/knock_mapi/types/email_layout_preview_response.py">EmailLayoutPreviewResponse</a></code>
 - <code title="put /v1/email_layouts/{email_layout_key}">client.email_layouts.<a href="./src/knock_mapi/resources/email_layouts.py">upsert</a>(email_layout_key, \*\*<a href="src/knock_mapi/types/email_layout_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/email_layout_upsert_response.py">EmailLayoutUpsertResponse</a></code>
 - <code title="put /v1/email_layouts/{email_layout_key}/validate">client.email_layouts.<a href="./src/knock_mapi/resources/email_layouts.py">validate</a>(email_layout_key, \*\*<a href="src/knock_mapi/types/email_layout_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/email_layout_validate_response.py">EmailLayoutValidateResponse</a></code>
 
@@ -73,13 +91,20 @@ Methods:
 Types:
 
 ```python
-from knock_mapi.types import Partial, PartialUpsertResponse, PartialValidateResponse
+from knock_mapi.types import (
+    Partial,
+    PartialRequest,
+    PartialPreviewResponse,
+    PartialUpsertResponse,
+    PartialValidateResponse,
+)
 ```
 
 Methods:
 
 - <code title="get /v1/partials/{partial_key}">client.partials.<a href="./src/knock_mapi/resources/partials.py">retrieve</a>(partial_key, \*\*<a href="src/knock_mapi/types/partial_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/partial.py">Partial</a></code>
 - <code title="get /v1/partials">client.partials.<a href="./src/knock_mapi/resources/partials.py">list</a>(\*\*<a href="src/knock_mapi/types/partial_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/partial.py">SyncEntriesCursor[Partial]</a></code>
+- <code title="post /v1/partials/preview">client.partials.<a href="./src/knock_mapi/resources/partials.py">preview</a>(\*\*<a href="src/knock_mapi/types/partial_preview_params.py">params</a>) -> <a href="./src/knock_mapi/types/partial_preview_response.py">PartialPreviewResponse</a></code>
 - <code title="put /v1/partials/{partial_key}">client.partials.<a href="./src/knock_mapi/resources/partials.py">upsert</a>(partial_key, \*\*<a href="src/knock_mapi/types/partial_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/partial_upsert_response.py">PartialUpsertResponse</a></code>
 - <code title="put /v1/partials/{partial_key}/validate">client.partials.<a href="./src/knock_mapi/resources/partials.py">validate</a>(partial_key, \*\*<a href="src/knock_mapi/types/partial_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/partial_validate_response.py">PartialValidateResponse</a></code>
 
@@ -90,6 +115,7 @@ Types:
 ```python
 from knock_mapi.types import (
     Translation,
+    TranslationRequest,
     TranslationRetrieveResponse,
     TranslationUpsertResponse,
     TranslationValidateResponse,
@@ -111,7 +137,9 @@ Types:
 from knock_mapi.types import (
     Condition,
     ConditionGroup,
+    ConditionGroupAllMatch,
     Duration,
+    InlineIdentifyUserRequest,
     SendWindow,
     Workflow,
     WorkflowAIAgentStep,
@@ -122,8 +150,11 @@ from knock_mapi.types import (
     WorkflowEmailStep,
     WorkflowFetchStep,
     WorkflowInAppFeedStep,
+    WorkflowInAppGuideStep,
     WorkflowPushStep,
     WorkflowRandomCohortStep,
+    WorkflowRandomCohortStepBranch,
+    WorkflowRequest,
     WorkflowSMSStep,
     WorkflowStep,
     WorkflowThrottleStep,
@@ -169,6 +200,7 @@ Types:
 ```python
 from knock_mapi.types import (
     MessageType,
+    MessageTypeRequest,
     MessageTypeVariant,
     MessageTypeUpsertResponse,
     MessageTypeValidateResponse,
@@ -328,6 +360,7 @@ Types:
 from knock_mapi.types import (
     Guide,
     GuideActivationURLPattern,
+    GuideRequest,
     GuideStep,
     GuideActivateResponse,
     GuideArchiveResponse,
@@ -359,6 +392,7 @@ Methods:
 - <code title="get /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">retrieve</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">Branch</a></code>
 - <code title="get /v1/branches">client.branches.<a href="./src/knock_mapi/resources/branches.py">list</a>(\*\*<a href="src/knock_mapi/types/branch_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">SyncEntriesCursor[Branch]</a></code>
 - <code title="delete /v1/branches/{branch_slug}">client.branches.<a href="./src/knock_mapi/resources/branches.py">delete</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_delete_params.py">params</a>) -> None</code>
+- <code title="put /v1/branches/{branch_slug}/rebase">client.branches.<a href="./src/knock_mapi/resources/branches.py">rebase</a>(branch_slug, \*\*<a href="src/knock_mapi/types/branch_rebase_params.py">params</a>) -> <a href="./src/knock_mapi/types/branch.py">Branch</a></code>
 
 # Broadcasts
 
@@ -392,6 +426,7 @@ Types:
 from knock_mapi.types import (
     Audience,
     AudienceCondition,
+    AudienceRequest,
     DynamicAudience,
     StaticAudience,
     AudienceArchiveResponse,
@@ -407,3 +442,117 @@ Methods:
 - <code title="delete /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">archive</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_archive_response.py">AudienceArchiveResponse</a></code>
 - <code title="put /v1/audiences/{audience_key}">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">upsert</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_upsert_response.py">AudienceUpsertResponse</a></code>
 - <code title="put /v1/audiences/{audience_key}/validate">client.audiences.<a href="./src/knock_mapi/resources/audiences.py">validate</a>(audience_key, \*\*<a href="src/knock_mapi/types/audience_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/audience_validate_response.py">AudienceValidateResponse</a></code>
+
+# Goals
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Goal,
+    GoalCondition,
+    GoalRequest,
+    GoalArchiveResponse,
+    GoalCloneResponse,
+    GoalUpsertResponse,
+    GoalValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals.py">retrieve</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal.py">Goal</a></code>
+- <code title="get /v1/goals">client.goals.<a href="./src/knock_mapi/resources/goals.py">list</a>(\*\*<a href="src/knock_mapi/types/goal_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal.py">SyncEntriesCursor[Goal]</a></code>
+- <code title="delete /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals.py">archive</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_archive_response.py">GoalArchiveResponse</a></code>
+- <code title="post /v1/goals/{goal_key}/clone">client.goals.<a href="./src/knock_mapi/resources/goals.py">clone</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_clone_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_clone_response.py">GoalCloneResponse</a></code>
+- <code title="put /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals.py">upsert</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_upsert_response.py">GoalUpsertResponse</a></code>
+- <code title="put /v1/goals/{goal_key}/validate">client.goals.<a href="./src/knock_mapi/resources/goals.py">validate</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_validate_response.py">GoalValidateResponse</a></code>
+
+# Assets
+
+Types:
+
+```python
+from knock_mapi.types import Asset
+```
+
+Methods:
+
+- <code title="get /v1/assets">client.assets.<a href="./src/knock_mapi/resources/assets.py">list</a>(\*\*<a href="src/knock_mapi/types/asset_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/asset.py">SyncEntriesCursor[Asset]</a></code>
+
+# Tags
+
+Types:
+
+```python
+from knock_mapi.types import Tag, TagListResponse, TagUpsertResponse
+```
+
+Methods:
+
+- <code title="get /v1/tags">client.tags.<a href="./src/knock_mapi/resources/tags.py">list</a>() -> <a href="./src/knock_mapi/types/tag_list_response.py">TagListResponse</a></code>
+- <code title="delete /v1/tags/{name}">client.tags.<a href="./src/knock_mapi/resources/tags.py">delete</a>(name) -> None</code>
+- <code title="put /v1/tags/{name}">client.tags.<a href="./src/knock_mapi/resources/tags.py">upsert</a>(name, \*\*<a href="src/knock_mapi/types/tag_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/tag_upsert_response.py">TagUpsertResponse</a></code>
+
+# Schemas
+
+Types:
+
+```python
+from knock_mapi.types import ItemSchema, SchemaListResponse
+```
+
+Methods:
+
+- <code title="get /v1/schemas/{item_type}">client.schemas.<a href="./src/knock_mapi/resources/schemas.py">retrieve</a>(item_type, \*\*<a href="src/knock_mapi/types/schema_retrieve_params.py">params</a>) -> object</code>
+- <code title="get /v1/schemas">client.schemas.<a href="./src/knock_mapi/resources/schemas.py">list</a>(\*\*<a href="src/knock_mapi/types/schema_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/schema_list_response.py">SchemaListResponse</a></code>
+- <code title="put /v1/schemas/{item_type}">client.schemas.<a href="./src/knock_mapi/resources/schemas.py">upsert</a>(item_type, \*\*<a href="src/knock_mapi/types/schema_upsert_params.py">params</a>) -> object</code>
+- <code title="put /v1/schemas/{item_type}/validate">client.schemas.<a href="./src/knock_mapi/resources/schemas.py">validate</a>(item_type, \*\*<a href="src/knock_mapi/types/schema_validate_params.py">params</a>) -> object</code>
+
+# PreferenceCenter
+
+Types:
+
+```python
+from knock_mapi.types import (
+    PreferenceCenterRetrieveResponse,
+    PreferenceCenterResetResponse,
+    PreferenceCenterUpsertResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/preference_center">client.preference_center.<a href="./src/knock_mapi/resources/preference_center.py">retrieve</a>(\*\*<a href="src/knock_mapi/types/preference_center_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/preference_center_retrieve_response.py">PreferenceCenterRetrieveResponse</a></code>
+- <code title="put /v1/preference_center/reset">client.preference_center.<a href="./src/knock_mapi/resources/preference_center.py">reset</a>(\*\*<a href="src/knock_mapi/types/preference_center_reset_params.py">params</a>) -> <a href="./src/knock_mapi/types/preference_center_reset_response.py">PreferenceCenterResetResponse</a></code>
+- <code title="put /v1/preference_center">client.preference_center.<a href="./src/knock_mapi/resources/preference_center.py">upsert</a>(\*\*<a href="src/knock_mapi/types/preference_center_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/preference_center_upsert_response.py">PreferenceCenterUpsertResponse</a></code>
+
+# Billing
+
+Types:
+
+```python
+from knock_mapi.types import BillingSummary
+```
+
+Methods:
+
+- <code title="get /v1/billing/summary">client.billing.<a href="./src/knock_mapi/resources/billing.py">retrieve_summary</a>() -> <a href="./src/knock_mapi/types/billing_summary.py">BillingSummary</a></code>
+
+# PreferenceCategories
+
+Types:
+
+```python
+from knock_mapi.types import (
+    PreferenceCategory,
+    PreferenceCategoryListResponse,
+    PreferenceCategoryUpsertResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/preference_categories">client.preference_categories.<a href="./src/knock_mapi/resources/preference_categories.py">list</a>() -> <a href="./src/knock_mapi/types/preference_category_list_response.py">PreferenceCategoryListResponse</a></code>
+- <code title="delete /v1/preference_categories/{name}">client.preference_categories.<a href="./src/knock_mapi/resources/preference_categories.py">delete</a>(name) -> None</code>
+- <code title="put /v1/preference_categories/{name}">client.preference_categories.<a href="./src/knock_mapi/resources/preference_categories.py">upsert</a>(name) -> <a href="./src/knock_mapi/types/preference_category_upsert_response.py">PreferenceCategoryUpsertResponse</a></code>

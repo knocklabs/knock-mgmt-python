@@ -8,6 +8,30 @@ from .auth import (
     AuthResourceWithStreamingResponse,
     AsyncAuthResourceWithStreamingResponse,
 )
+from .tags import (
+    TagsResource,
+    AsyncTagsResource,
+    TagsResourceWithRawResponse,
+    AsyncTagsResourceWithRawResponse,
+    TagsResourceWithStreamingResponse,
+    AsyncTagsResourceWithStreamingResponse,
+)
+from .goals import (
+    GoalsResource,
+    AsyncGoalsResource,
+    GoalsResourceWithRawResponse,
+    AsyncGoalsResourceWithRawResponse,
+    GoalsResourceWithStreamingResponse,
+    AsyncGoalsResourceWithStreamingResponse,
+)
+from .assets import (
+    AssetsResource,
+    AsyncAssetsResource,
+    AssetsResourceWithRawResponse,
+    AsyncAssetsResourceWithRawResponse,
+    AssetsResourceWithStreamingResponse,
+    AsyncAssetsResourceWithStreamingResponse,
+)
 from .guides import (
     GuidesResource,
     AsyncGuidesResource,
@@ -15,6 +39,14 @@ from .guides import (
     AsyncGuidesResourceWithRawResponse,
     GuidesResourceWithStreamingResponse,
     AsyncGuidesResourceWithStreamingResponse,
+)
+from .billing import (
+    BillingResource,
+    AsyncBillingResource,
+    BillingResourceWithRawResponse,
+    AsyncBillingResourceWithRawResponse,
+    BillingResourceWithStreamingResponse,
+    AsyncBillingResourceWithStreamingResponse,
 )
 from .commits import (
     CommitsResource,
@@ -31,6 +63,14 @@ from .members import (
     AsyncMembersResourceWithRawResponse,
     MembersResourceWithStreamingResponse,
     AsyncMembersResourceWithStreamingResponse,
+)
+from .schemas import (
+    SchemasResource,
+    AsyncSchemasResource,
+    SchemasResourceWithRawResponse,
+    AsyncSchemasResourceWithRawResponse,
+    SchemasResourceWithStreamingResponse,
+    AsyncSchemasResourceWithStreamingResponse,
 )
 from .api_keys import (
     APIKeysResource,
@@ -71,6 +111,14 @@ from .audiences import (
     AsyncAudiencesResourceWithRawResponse,
     AudiencesResourceWithStreamingResponse,
     AsyncAudiencesResourceWithStreamingResponse,
+)
+from .templates import (
+    TemplatesResource,
+    AsyncTemplatesResource,
+    TemplatesResourceWithRawResponse,
+    AsyncTemplatesResourceWithRawResponse,
+    TemplatesResourceWithStreamingResponse,
+    AsyncTemplatesResourceWithStreamingResponse,
 )
 from .variables import (
     VariablesResource,
@@ -144,8 +192,30 @@ from .channel_groups import (
     ChannelGroupsResourceWithStreamingResponse,
     AsyncChannelGroupsResourceWithStreamingResponse,
 )
+from .preference_center import (
+    PreferenceCenterResource,
+    AsyncPreferenceCenterResource,
+    PreferenceCenterResourceWithRawResponse,
+    AsyncPreferenceCenterResourceWithRawResponse,
+    PreferenceCenterResourceWithStreamingResponse,
+    AsyncPreferenceCenterResourceWithStreamingResponse,
+)
+from .preference_categories import (
+    PreferenceCategoriesResource,
+    AsyncPreferenceCategoriesResource,
+    PreferenceCategoriesResourceWithRawResponse,
+    AsyncPreferenceCategoriesResourceWithRawResponse,
+    PreferenceCategoriesResourceWithStreamingResponse,
+    AsyncPreferenceCategoriesResourceWithStreamingResponse,
+)
 
 __all__ = [
+    "TemplatesResource",
+    "AsyncTemplatesResource",
+    "TemplatesResourceWithRawResponse",
+    "AsyncTemplatesResourceWithRawResponse",
+    "TemplatesResourceWithStreamingResponse",
+    "AsyncTemplatesResourceWithStreamingResponse",
     "EmailLayoutsResource",
     "AsyncEmailLayoutsResource",
     "EmailLayoutsResourceWithRawResponse",
@@ -254,4 +324,46 @@ __all__ = [
     "AsyncAudiencesResourceWithRawResponse",
     "AudiencesResourceWithStreamingResponse",
     "AsyncAudiencesResourceWithStreamingResponse",
+    "GoalsResource",
+    "AsyncGoalsResource",
+    "GoalsResourceWithRawResponse",
+    "AsyncGoalsResourceWithRawResponse",
+    "GoalsResourceWithStreamingResponse",
+    "AsyncGoalsResourceWithStreamingResponse",
+    "AssetsResource",
+    "AsyncAssetsResource",
+    "AssetsResourceWithRawResponse",
+    "AsyncAssetsResourceWithRawResponse",
+    "AssetsResourceWithStreamingResponse",
+    "AsyncAssetsResourceWithStreamingResponse",
+    "TagsResource",
+    "AsyncTagsResource",
+    "TagsResourceWithRawResponse",
+    "AsyncTagsResourceWithRawResponse",
+    "TagsResourceWithStreamingResponse",
+    "AsyncTagsResourceWithStreamingResponse",
+    "SchemasResource",
+    "AsyncSchemasResource",
+    "SchemasResourceWithRawResponse",
+    "AsyncSchemasResourceWithRawResponse",
+    "SchemasResourceWithStreamingResponse",
+    "AsyncSchemasResourceWithStreamingResponse",
+    "PreferenceCenterResource",
+    "AsyncPreferenceCenterResource",
+    "PreferenceCenterResourceWithRawResponse",
+    "AsyncPreferenceCenterResourceWithRawResponse",
+    "PreferenceCenterResourceWithStreamingResponse",
+    "AsyncPreferenceCenterResourceWithStreamingResponse",
+    "BillingResource",
+    "AsyncBillingResource",
+    "BillingResourceWithRawResponse",
+    "AsyncBillingResourceWithRawResponse",
+    "BillingResourceWithStreamingResponse",
+    "AsyncBillingResourceWithStreamingResponse",
+    "PreferenceCategoriesResource",
+    "AsyncPreferenceCategoriesResource",
+    "PreferenceCategoriesResourceWithRawResponse",
+    "AsyncPreferenceCategoriesResourceWithRawResponse",
+    "PreferenceCategoriesResourceWithStreamingResponse",
+    "AsyncPreferenceCategoriesResourceWithStreamingResponse",
 ]

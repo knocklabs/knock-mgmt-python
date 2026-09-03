@@ -8,21 +8,9 @@ from typing_extensions import Literal
 
 from .._models import BaseModel
 from .condition_group import ConditionGroup
+from .shared.goal_attachment import GoalAttachment
 
-__all__ = ["Workflow", "GoalAttachment", "Settings"]
-
-
-class GoalAttachment(BaseModel):
-    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
-
-    goal_key: str
-    """The key of the goal to attach."""
-
-    attribution_window_days: Optional[int] = None
-    """The number of days to attribute conversions after the notification is sent.
-
-    Must be between 1 and 30. Defaults to 7.
-    """
+__all__ = ["Workflow", "Settings"]
 
 
 class Settings(BaseModel):

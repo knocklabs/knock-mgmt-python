@@ -6,15 +6,14 @@ from typing import Dict, Union, Optional
 from typing_extensions import Required, TypeAlias, TypedDict
 
 from .._types import SequenceNotStr
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam
 
 __all__ = [
     "WorkflowRunParams",
     "Recipient",
     "RecipientObjectRecipientReference",
-    "RecipientInlineIdentifyUserRequest",
     "Actor",
     "ActorObjectRecipientReference",
-    "ActorInlineIdentifyUserRequest",
 ]
 
 
@@ -63,23 +62,7 @@ class RecipientObjectRecipientReference(TypedDict, total=False):
     """The collection of the object."""
 
 
-class RecipientInlineIdentifyUserRequest(TypedDict, total=False):
-    """A user recipient with optional identify properties.
-
-    When email or name are provided, the user is created or updated as part of the workflow run. The collection is always `$users` and should not be sent.
-    """
-
-    id: Required[str]
-    """The ID of the user."""
-
-    email: Optional[str]
-    """The email address to set on the user."""
-
-    name: Optional[str]
-    """The display name to set on the user."""
-
-
-Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference, RecipientInlineIdentifyUserRequest]
+Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference, InlineIdentifyUserRequestParam]
 
 
 class ActorObjectRecipientReference(TypedDict, total=False):
@@ -92,20 +75,4 @@ class ActorObjectRecipientReference(TypedDict, total=False):
     """The collection of the object."""
 
 
-class ActorInlineIdentifyUserRequest(TypedDict, total=False):
-    """A user recipient with optional identify properties.
-
-    When email or name are provided, the user is created or updated as part of the workflow run. The collection is always `$users` and should not be sent.
-    """
-
-    id: Required[str]
-    """The ID of the user."""
-
-    email: Optional[str]
-    """The email address to set on the user."""
-
-    name: Optional[str]
-    """The display name to set on the user."""
-
-
-Actor: TypeAlias = Union[str, ActorObjectRecipientReference, ActorInlineIdentifyUserRequest]
+Actor: TypeAlias = Union[str, ActorObjectRecipientReference, InlineIdentifyUserRequestParam]

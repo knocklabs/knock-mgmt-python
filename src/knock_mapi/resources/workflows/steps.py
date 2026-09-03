@@ -18,6 +18,7 @@ from ..._response import (
 )
 from ..._base_client import make_request_options
 from ...types.workflows import step_preview_template_params
+from ...types.shared_params.recipient_reference import RecipientReference
 from ...types.workflows.step_preview_template_response import StepPreviewTemplateResponse
 
 __all__ = ["StepsResource", "AsyncStepsResource"]
@@ -51,9 +52,9 @@ class StepsResource(SyncAPIResource):
         *,
         workflow_key: str,
         environment: str,
-        recipient: step_preview_template_params.Recipient,
+        recipient: RecipientReference,
         branch: str | Omit = omit,
-        actor: Optional[step_preview_template_params.Actor] | Omit = omit,
+        actor: Optional[RecipientReference] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -154,9 +155,9 @@ class AsyncStepsResource(AsyncAPIResource):
         *,
         workflow_key: str,
         environment: str,
-        recipient: step_preview_template_params.Recipient,
+        recipient: RecipientReference,
         branch: str | Omit = omit,
-        actor: Optional[step_preview_template_params.Actor] | Omit = omit,
+        actor: Optional[RecipientReference] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

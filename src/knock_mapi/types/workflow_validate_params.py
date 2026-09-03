@@ -2,20 +2,16 @@
 
 from __future__ import annotations
 
-from typing import Dict, Iterable, Optional
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Required, TypedDict
 
-from .._types import SequenceNotStr
-from .condition_group_param import ConditionGroupParam
-
-__all__ = ["WorkflowValidateParams", "Workflow", "WorkflowGoalAttachment", "WorkflowSettings"]
+__all__ = ["WorkflowValidateParams"]
 
 
 class WorkflowValidateParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
-    workflow: Required[Workflow]
+    workflow: Required["WorkflowRequestParam"]
     """A workflow request for upserting a workflow."""
 
     branch: str
@@ -25,86 +21,4 @@ class WorkflowValidateParams(TypedDict, total=False):
     """
 
 
-class WorkflowGoalAttachment(TypedDict, total=False):
-    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
-
-    goal_key: Required[str]
-    """The key of the goal to attach."""
-
-    attribution_window_days: int
-    """The number of days to attribute conversions after the notification is sent.
-
-    Must be between 1 and 30. Defaults to 7.
-    """
-
-
-class WorkflowSettings(TypedDict, total=False):
-    """A map of workflow settings."""
-
-    is_commercial: bool
-    """Whether the workflow is commercial. Defaults to false."""
-
-    override_preferences: bool
-    """Whether to ignore recipient preferences for a given type of notification.
-
-    If true, will send for every channel in the workflow even if the recipient has
-    opted out of a certain kind. Defaults to false.
-    """
-
-
-class Workflow(TypedDict, total=False):
-    """A workflow request for upserting a workflow."""
-
-    name: Required[str]
-    """A name for the workflow. Must be at maximum 255 characters in length."""
-
-    steps: Required[Iterable["WorkflowStepParam"]]
-    """A list of workflow step objects in the workflow."""
-
-    categories: SequenceNotStr[str]
-    """
-    A list of
-    [categories](https://docs.knock.app/concepts/workflows#workflow-categories) that
-    the workflow belongs to.
-    """
-
-    conditions: Optional[ConditionGroupParam]
-    """A group of conditions to be evaluated."""
-
-    description: str
-    """An arbitrary string attached to a workflow object.
-
-    Useful for adding notes about the workflow for internal purposes. Maximum of 280
-    characters allowed.
-    """
-
-    goal_attachment: Optional[WorkflowGoalAttachment]
-    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
-
-    settings: WorkflowSettings
-    """A map of workflow settings."""
-
-    tags: SequenceNotStr[str]
-    """Use tags to organize resources internally within your account.
-
-    For example, by team or product area.
-    """
-
-    trigger_data_json_schema: Dict[str, object]
-    """
-    A JSON schema for the expected structure of the workflow trigger's `data`
-    payload (available in templates as `{{ data.field_name }}`). Used to validate
-    trigger requests. Read more in the
-    [docs](https://docs.knock.app/developer-tools/validating-trigger-data).
-    """
-
-    trigger_frequency: Literal["every_trigger", "once_per_recipient", "once_per_recipient_per_tenant"]
-    """The frequency at which the workflow should be triggered.
-
-    One of: `once_per_recipient`, `once_per_recipient_per_tenant`, `every_trigger`.
-    Defaults to `every_trigger`. Read more in
-    [docs](https://docs.knock.app/send-notifications/triggering-workflows/overview#controlling-workflow-trigger-frequency).
-    """
-
-
-from .workflow_step_param import WorkflowStepParam
+from .workflow_request_param import WorkflowRequestParam

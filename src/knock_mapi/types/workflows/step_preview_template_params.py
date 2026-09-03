@@ -2,16 +2,12 @@
 
 from __future__ import annotations
 
-from typing import Dict, Union, Optional
-from typing_extensions import Required, TypeAlias, TypedDict
+from typing import Dict, Optional
+from typing_extensions import Required, TypedDict
 
-__all__ = [
-    "StepPreviewTemplateParams",
-    "Recipient",
-    "RecipientObjectRecipientReference",
-    "Actor",
-    "ActorObjectRecipientReference",
-]
+from ..shared_params.recipient_reference import RecipientReference
+
+__all__ = ["StepPreviewTemplateParams"]
 
 
 class StepPreviewTemplateParams(TypedDict, total=False):
@@ -20,7 +16,7 @@ class StepPreviewTemplateParams(TypedDict, total=False):
     environment: Required[str]
     """The environment slug."""
 
-    recipient: Required[Recipient]
+    recipient: Required[RecipientReference]
     """
     A recipient reference, used when referencing a recipient by either their ID (for
     a user), or by a reference for an object.
@@ -32,7 +28,7 @@ class StepPreviewTemplateParams(TypedDict, total=False):
     This option can only be used when `environment` is `"development"`.
     """
 
-    actor: Optional[Actor]
+    actor: Optional[RecipientReference]
     """
     A recipient reference, used when referencing a recipient by either their ID (for
     a user), or by a reference for an object.
@@ -43,29 +39,3 @@ class StepPreviewTemplateParams(TypedDict, total=False):
 
     tenant: Optional[str]
     """The tenant to associate the workflow with. Must not contain whitespace."""
-
-
-class RecipientObjectRecipientReference(TypedDict, total=False):
-    """An object reference."""
-
-    id: Required[str]
-    """The ID of the object."""
-
-    collection: Required[str]
-    """The collection of the object."""
-
-
-Recipient: TypeAlias = Union[str, RecipientObjectRecipientReference]
-
-
-class ActorObjectRecipientReference(TypedDict, total=False):
-    """An object reference."""
-
-    id: Required[str]
-    """The ID of the object."""
-
-    collection: Required[str]
-    """The collection of the object."""
-
-
-Actor: TypeAlias = Union[str, ActorObjectRecipientReference]

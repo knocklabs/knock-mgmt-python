@@ -37,14 +37,20 @@ from ._base_client import (
 if TYPE_CHECKING:
     from .resources import (
         auth,
+        tags,
+        goals,
+        assets,
         guides,
+        billing,
         commits,
         members,
+        schemas,
         api_keys,
         branches,
         channels,
         partials,
         audiences,
+        templates,
         variables,
         workflows,
         broadcasts,
@@ -54,16 +60,24 @@ if TYPE_CHECKING:
         email_layouts,
         message_types,
         channel_groups,
+        preference_center,
+        preference_categories,
     )
     from .resources.auth import AuthResource, AsyncAuthResource
+    from .resources.tags import TagsResource, AsyncTagsResource
+    from .resources.goals import GoalsResource, AsyncGoalsResource
+    from .resources.assets import AssetsResource, AsyncAssetsResource
     from .resources.guides import GuidesResource, AsyncGuidesResource
+    from .resources.billing import BillingResource, AsyncBillingResource
     from .resources.commits import CommitsResource, AsyncCommitsResource
     from .resources.members import MembersResource, AsyncMembersResource
+    from .resources.schemas import SchemasResource, AsyncSchemasResource
     from .resources.api_keys import APIKeysResource, AsyncAPIKeysResource
     from .resources.branches import BranchesResource, AsyncBranchesResource
     from .resources.channels import ChannelsResource, AsyncChannelsResource
     from .resources.partials import PartialsResource, AsyncPartialsResource
     from .resources.audiences import AudiencesResource, AsyncAudiencesResource
+    from .resources.templates import TemplatesResource, AsyncTemplatesResource
     from .resources.variables import VariablesResource, AsyncVariablesResource
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
     from .resources.data_sources import DataSourcesResource, AsyncDataSourcesResource
@@ -72,7 +86,9 @@ if TYPE_CHECKING:
     from .resources.email_layouts import EmailLayoutsResource, AsyncEmailLayoutsResource
     from .resources.message_types import MessageTypesResource, AsyncMessageTypesResource
     from .resources.channel_groups import ChannelGroupsResource, AsyncChannelGroupsResource
+    from .resources.preference_center import PreferenceCenterResource, AsyncPreferenceCenterResource
     from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
+    from .resources.preference_categories import PreferenceCategoriesResource, AsyncPreferenceCategoriesResource
 
 __all__ = [
     "Timeout",
@@ -149,6 +165,12 @@ class KnockMgmt(SyncAPIClient):
             custom_query=default_query,
             _strict_response_validation=_strict_response_validation,
         )
+
+    @cached_property
+    def templates(self) -> TemplatesResource:
+        from .resources.templates import TemplatesResource
+
+        return TemplatesResource(self)
 
     @cached_property
     def email_layouts(self) -> EmailLayoutsResource:
@@ -275,6 +297,59 @@ class KnockMgmt(SyncAPIClient):
         from .resources.audiences import AudiencesResource
 
         return AudiencesResource(self)
+
+    @cached_property
+    def goals(self) -> GoalsResource:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        from .resources.goals import GoalsResource
+
+        return GoalsResource(self)
+
+    @cached_property
+    def assets(self) -> AssetsResource:
+        """Assets are uploaded files available to your Knock account."""
+        from .resources.assets import AssetsResource
+
+        return AssetsResource(self)
+
+    @cached_property
+    def tags(self) -> TagsResource:
+        """
+        Tags are a project-level catalog of labels that can be applied to workflows, partials, guides, and broadcasts.
+        """
+        from .resources.tags import TagsResource
+
+        return TagsResource(self)
+
+    @cached_property
+    def schemas(self) -> SchemasResource:
+        from .resources.schemas import SchemasResource
+
+        return SchemasResource(self)
+
+    @cached_property
+    def preference_center(self) -> PreferenceCenterResource:
+        from .resources.preference_center import PreferenceCenterResource
+
+        return PreferenceCenterResource(self)
+
+    @cached_property
+    def billing(self) -> BillingResource:
+        """Resources for managing your Knock account."""
+        from .resources.billing import BillingResource
+
+        return BillingResource(self)
+
+    @cached_property
+    def preference_categories(self) -> PreferenceCategoriesResource:
+        """
+        Preference categories are a project-level catalog of categories that can be applied to workflows and broadcasts.
+        """
+        from .resources.preference_categories import PreferenceCategoriesResource
+
+        return PreferenceCategoriesResource(self)
 
     @cached_property
     def with_raw_response(self) -> KnockMgmtWithRawResponse:
@@ -454,6 +529,12 @@ class AsyncKnockMgmt(AsyncAPIClient):
         )
 
     @cached_property
+    def templates(self) -> AsyncTemplatesResource:
+        from .resources.templates import AsyncTemplatesResource
+
+        return AsyncTemplatesResource(self)
+
+    @cached_property
     def email_layouts(self) -> AsyncEmailLayoutsResource:
         """Email layouts wrap your email templates and provide a consistent look and feel."""
         from .resources.email_layouts import AsyncEmailLayoutsResource
@@ -580,6 +661,59 @@ class AsyncKnockMgmt(AsyncAPIClient):
         return AsyncAudiencesResource(self)
 
     @cached_property
+    def goals(self) -> AsyncGoalsResource:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        from .resources.goals import AsyncGoalsResource
+
+        return AsyncGoalsResource(self)
+
+    @cached_property
+    def assets(self) -> AsyncAssetsResource:
+        """Assets are uploaded files available to your Knock account."""
+        from .resources.assets import AsyncAssetsResource
+
+        return AsyncAssetsResource(self)
+
+    @cached_property
+    def tags(self) -> AsyncTagsResource:
+        """
+        Tags are a project-level catalog of labels that can be applied to workflows, partials, guides, and broadcasts.
+        """
+        from .resources.tags import AsyncTagsResource
+
+        return AsyncTagsResource(self)
+
+    @cached_property
+    def schemas(self) -> AsyncSchemasResource:
+        from .resources.schemas import AsyncSchemasResource
+
+        return AsyncSchemasResource(self)
+
+    @cached_property
+    def preference_center(self) -> AsyncPreferenceCenterResource:
+        from .resources.preference_center import AsyncPreferenceCenterResource
+
+        return AsyncPreferenceCenterResource(self)
+
+    @cached_property
+    def billing(self) -> AsyncBillingResource:
+        """Resources for managing your Knock account."""
+        from .resources.billing import AsyncBillingResource
+
+        return AsyncBillingResource(self)
+
+    @cached_property
+    def preference_categories(self) -> AsyncPreferenceCategoriesResource:
+        """
+        Preference categories are a project-level catalog of categories that can be applied to workflows and broadcasts.
+        """
+        from .resources.preference_categories import AsyncPreferenceCategoriesResource
+
+        return AsyncPreferenceCategoriesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncKnockMgmtWithRawResponse:
         return AsyncKnockMgmtWithRawResponse(self)
 
@@ -697,6 +831,12 @@ class KnockMgmtWithRawResponse:
 
     def __init__(self, client: KnockMgmt) -> None:
         self._client = client
+
+    @cached_property
+    def templates(self) -> templates.TemplatesResourceWithRawResponse:
+        from .resources.templates import TemplatesResourceWithRawResponse
+
+        return TemplatesResourceWithRawResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithRawResponse:
@@ -824,12 +964,71 @@ class KnockMgmtWithRawResponse:
 
         return AudiencesResourceWithRawResponse(self._client.audiences)
 
+    @cached_property
+    def goals(self) -> goals.GoalsResourceWithRawResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        from .resources.goals import GoalsResourceWithRawResponse
+
+        return GoalsResourceWithRawResponse(self._client.goals)
+
+    @cached_property
+    def assets(self) -> assets.AssetsResourceWithRawResponse:
+        """Assets are uploaded files available to your Knock account."""
+        from .resources.assets import AssetsResourceWithRawResponse
+
+        return AssetsResourceWithRawResponse(self._client.assets)
+
+    @cached_property
+    def tags(self) -> tags.TagsResourceWithRawResponse:
+        """
+        Tags are a project-level catalog of labels that can be applied to workflows, partials, guides, and broadcasts.
+        """
+        from .resources.tags import TagsResourceWithRawResponse
+
+        return TagsResourceWithRawResponse(self._client.tags)
+
+    @cached_property
+    def schemas(self) -> schemas.SchemasResourceWithRawResponse:
+        from .resources.schemas import SchemasResourceWithRawResponse
+
+        return SchemasResourceWithRawResponse(self._client.schemas)
+
+    @cached_property
+    def preference_center(self) -> preference_center.PreferenceCenterResourceWithRawResponse:
+        from .resources.preference_center import PreferenceCenterResourceWithRawResponse
+
+        return PreferenceCenterResourceWithRawResponse(self._client.preference_center)
+
+    @cached_property
+    def billing(self) -> billing.BillingResourceWithRawResponse:
+        """Resources for managing your Knock account."""
+        from .resources.billing import BillingResourceWithRawResponse
+
+        return BillingResourceWithRawResponse(self._client.billing)
+
+    @cached_property
+    def preference_categories(self) -> preference_categories.PreferenceCategoriesResourceWithRawResponse:
+        """
+        Preference categories are a project-level catalog of categories that can be applied to workflows and broadcasts.
+        """
+        from .resources.preference_categories import PreferenceCategoriesResourceWithRawResponse
+
+        return PreferenceCategoriesResourceWithRawResponse(self._client.preference_categories)
+
 
 class AsyncKnockMgmtWithRawResponse:
     _client: AsyncKnockMgmt
 
     def __init__(self, client: AsyncKnockMgmt) -> None:
         self._client = client
+
+    @cached_property
+    def templates(self) -> templates.AsyncTemplatesResourceWithRawResponse:
+        from .resources.templates import AsyncTemplatesResourceWithRawResponse
+
+        return AsyncTemplatesResourceWithRawResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithRawResponse:
@@ -957,12 +1156,71 @@ class AsyncKnockMgmtWithRawResponse:
 
         return AsyncAudiencesResourceWithRawResponse(self._client.audiences)
 
+    @cached_property
+    def goals(self) -> goals.AsyncGoalsResourceWithRawResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        from .resources.goals import AsyncGoalsResourceWithRawResponse
+
+        return AsyncGoalsResourceWithRawResponse(self._client.goals)
+
+    @cached_property
+    def assets(self) -> assets.AsyncAssetsResourceWithRawResponse:
+        """Assets are uploaded files available to your Knock account."""
+        from .resources.assets import AsyncAssetsResourceWithRawResponse
+
+        return AsyncAssetsResourceWithRawResponse(self._client.assets)
+
+    @cached_property
+    def tags(self) -> tags.AsyncTagsResourceWithRawResponse:
+        """
+        Tags are a project-level catalog of labels that can be applied to workflows, partials, guides, and broadcasts.
+        """
+        from .resources.tags import AsyncTagsResourceWithRawResponse
+
+        return AsyncTagsResourceWithRawResponse(self._client.tags)
+
+    @cached_property
+    def schemas(self) -> schemas.AsyncSchemasResourceWithRawResponse:
+        from .resources.schemas import AsyncSchemasResourceWithRawResponse
+
+        return AsyncSchemasResourceWithRawResponse(self._client.schemas)
+
+    @cached_property
+    def preference_center(self) -> preference_center.AsyncPreferenceCenterResourceWithRawResponse:
+        from .resources.preference_center import AsyncPreferenceCenterResourceWithRawResponse
+
+        return AsyncPreferenceCenterResourceWithRawResponse(self._client.preference_center)
+
+    @cached_property
+    def billing(self) -> billing.AsyncBillingResourceWithRawResponse:
+        """Resources for managing your Knock account."""
+        from .resources.billing import AsyncBillingResourceWithRawResponse
+
+        return AsyncBillingResourceWithRawResponse(self._client.billing)
+
+    @cached_property
+    def preference_categories(self) -> preference_categories.AsyncPreferenceCategoriesResourceWithRawResponse:
+        """
+        Preference categories are a project-level catalog of categories that can be applied to workflows and broadcasts.
+        """
+        from .resources.preference_categories import AsyncPreferenceCategoriesResourceWithRawResponse
+
+        return AsyncPreferenceCategoriesResourceWithRawResponse(self._client.preference_categories)
+
 
 class KnockMgmtWithStreamedResponse:
     _client: KnockMgmt
 
     def __init__(self, client: KnockMgmt) -> None:
         self._client = client
+
+    @cached_property
+    def templates(self) -> templates.TemplatesResourceWithStreamingResponse:
+        from .resources.templates import TemplatesResourceWithStreamingResponse
+
+        return TemplatesResourceWithStreamingResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.EmailLayoutsResourceWithStreamingResponse:
@@ -1090,12 +1348,71 @@ class KnockMgmtWithStreamedResponse:
 
         return AudiencesResourceWithStreamingResponse(self._client.audiences)
 
+    @cached_property
+    def goals(self) -> goals.GoalsResourceWithStreamingResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        from .resources.goals import GoalsResourceWithStreamingResponse
+
+        return GoalsResourceWithStreamingResponse(self._client.goals)
+
+    @cached_property
+    def assets(self) -> assets.AssetsResourceWithStreamingResponse:
+        """Assets are uploaded files available to your Knock account."""
+        from .resources.assets import AssetsResourceWithStreamingResponse
+
+        return AssetsResourceWithStreamingResponse(self._client.assets)
+
+    @cached_property
+    def tags(self) -> tags.TagsResourceWithStreamingResponse:
+        """
+        Tags are a project-level catalog of labels that can be applied to workflows, partials, guides, and broadcasts.
+        """
+        from .resources.tags import TagsResourceWithStreamingResponse
+
+        return TagsResourceWithStreamingResponse(self._client.tags)
+
+    @cached_property
+    def schemas(self) -> schemas.SchemasResourceWithStreamingResponse:
+        from .resources.schemas import SchemasResourceWithStreamingResponse
+
+        return SchemasResourceWithStreamingResponse(self._client.schemas)
+
+    @cached_property
+    def preference_center(self) -> preference_center.PreferenceCenterResourceWithStreamingResponse:
+        from .resources.preference_center import PreferenceCenterResourceWithStreamingResponse
+
+        return PreferenceCenterResourceWithStreamingResponse(self._client.preference_center)
+
+    @cached_property
+    def billing(self) -> billing.BillingResourceWithStreamingResponse:
+        """Resources for managing your Knock account."""
+        from .resources.billing import BillingResourceWithStreamingResponse
+
+        return BillingResourceWithStreamingResponse(self._client.billing)
+
+    @cached_property
+    def preference_categories(self) -> preference_categories.PreferenceCategoriesResourceWithStreamingResponse:
+        """
+        Preference categories are a project-level catalog of categories that can be applied to workflows and broadcasts.
+        """
+        from .resources.preference_categories import PreferenceCategoriesResourceWithStreamingResponse
+
+        return PreferenceCategoriesResourceWithStreamingResponse(self._client.preference_categories)
+
 
 class AsyncKnockMgmtWithStreamedResponse:
     _client: AsyncKnockMgmt
 
     def __init__(self, client: AsyncKnockMgmt) -> None:
         self._client = client
+
+    @cached_property
+    def templates(self) -> templates.AsyncTemplatesResourceWithStreamingResponse:
+        from .resources.templates import AsyncTemplatesResourceWithStreamingResponse
+
+        return AsyncTemplatesResourceWithStreamingResponse(self._client.templates)
 
     @cached_property
     def email_layouts(self) -> email_layouts.AsyncEmailLayoutsResourceWithStreamingResponse:
@@ -1222,6 +1539,59 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.audiences import AsyncAudiencesResourceWithStreamingResponse
 
         return AsyncAudiencesResourceWithStreamingResponse(self._client.audiences)
+
+    @cached_property
+    def goals(self) -> goals.AsyncGoalsResourceWithStreamingResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        from .resources.goals import AsyncGoalsResourceWithStreamingResponse
+
+        return AsyncGoalsResourceWithStreamingResponse(self._client.goals)
+
+    @cached_property
+    def assets(self) -> assets.AsyncAssetsResourceWithStreamingResponse:
+        """Assets are uploaded files available to your Knock account."""
+        from .resources.assets import AsyncAssetsResourceWithStreamingResponse
+
+        return AsyncAssetsResourceWithStreamingResponse(self._client.assets)
+
+    @cached_property
+    def tags(self) -> tags.AsyncTagsResourceWithStreamingResponse:
+        """
+        Tags are a project-level catalog of labels that can be applied to workflows, partials, guides, and broadcasts.
+        """
+        from .resources.tags import AsyncTagsResourceWithStreamingResponse
+
+        return AsyncTagsResourceWithStreamingResponse(self._client.tags)
+
+    @cached_property
+    def schemas(self) -> schemas.AsyncSchemasResourceWithStreamingResponse:
+        from .resources.schemas import AsyncSchemasResourceWithStreamingResponse
+
+        return AsyncSchemasResourceWithStreamingResponse(self._client.schemas)
+
+    @cached_property
+    def preference_center(self) -> preference_center.AsyncPreferenceCenterResourceWithStreamingResponse:
+        from .resources.preference_center import AsyncPreferenceCenterResourceWithStreamingResponse
+
+        return AsyncPreferenceCenterResourceWithStreamingResponse(self._client.preference_center)
+
+    @cached_property
+    def billing(self) -> billing.AsyncBillingResourceWithStreamingResponse:
+        """Resources for managing your Knock account."""
+        from .resources.billing import AsyncBillingResourceWithStreamingResponse
+
+        return AsyncBillingResourceWithStreamingResponse(self._client.billing)
+
+    @cached_property
+    def preference_categories(self) -> preference_categories.AsyncPreferenceCategoriesResourceWithStreamingResponse:
+        """
+        Preference categories are a project-level catalog of categories that can be applied to workflows and broadcasts.
+        """
+        from .resources.preference_categories import AsyncPreferenceCategoriesResourceWithStreamingResponse
+
+        return AsyncPreferenceCategoriesResourceWithStreamingResponse(self._client.preference_categories)
 
 
 Client = KnockMgmt

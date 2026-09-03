@@ -2,11 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Dict, Optional
+
 import httpx
 
 from ..types import (
     email_layout_list_params,
     email_layout_upsert_params,
+    email_layout_preview_params,
     email_layout_retrieve_params,
     email_layout_validate_params,
 )
@@ -23,8 +26,11 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.email_layout import EmailLayout
+from ..types.email_layout_request_param import EmailLayoutRequestParam
 from ..types.email_layout_upsert_response import EmailLayoutUpsertResponse
+from ..types.email_layout_preview_response import EmailLayoutPreviewResponse
 from ..types.email_layout_validate_response import EmailLayoutValidateResponse
+from ..types.shared_params.recipient_reference import RecipientReference
 
 __all__ = ["EmailLayoutsResource", "AsyncEmailLayoutsResource"]
 
@@ -179,12 +185,93 @@ class EmailLayoutsResource(SyncAPIResource):
             model=EmailLayout,
         )
 
+    def preview(
+        self,
+        *,
+        environment: str,
+        email_layout: EmailLayoutRequestParam,
+        recipient: RecipientReference,
+        branch: str | Omit = omit,
+        actor: Optional[RecipientReference] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
+        workflow: Optional[email_layout_preview_params.Workflow] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailLayoutPreviewResponse:
+        """
+        Renders an email layout preview, without requiring a layout to be persisted
+        within Knock. This is useful for previewing layouts in isolation, before saving
+        them.
+
+        Args:
+          environment: The environment slug.
+
+          email_layout: A request to update or create an email layout.
+
+          recipient: A recipient reference, used when referencing a recipient by either their ID (for
+              a user), or by a reference for an object.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          actor: A recipient reference, used when referencing a recipient by either their ID (for
+              a user), or by a reference for an object.
+
+          data: The data to pass to the layout for rendering.
+
+          tenant: The tenant to associate with the preview. Must not contain whitespace.
+
+          workflow: Optional workflow context for variable hydration. When provided,
+              recipient/actor/tenant are resolved via Knock.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return self._post(
+            "/v1/email_layouts/preview",
+            body=maybe_transform(
+                {
+                    "email_layout": email_layout,
+                    "recipient": recipient,
+                    "actor": actor,
+                    "data": data,
+                    "tenant": tenant,
+                    "workflow": workflow,
+                },
+                email_layout_preview_params.EmailLayoutPreviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    email_layout_preview_params.EmailLayoutPreviewParams,
+                ),
+            ),
+            cast_to=EmailLayoutPreviewResponse,
+        )
+
     def upsert(
         self,
         email_layout_key: str,
         *,
         environment: str,
-        email_layout: email_layout_upsert_params.EmailLayout,
+        email_layout: EmailLayoutRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -263,7 +350,7 @@ class EmailLayoutsResource(SyncAPIResource):
         email_layout_key: str,
         *,
         environment: str,
-        email_layout: email_layout_validate_params.EmailLayout,
+        email_layout: EmailLayoutRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -467,12 +554,93 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
             model=EmailLayout,
         )
 
+    async def preview(
+        self,
+        *,
+        environment: str,
+        email_layout: EmailLayoutRequestParam,
+        recipient: RecipientReference,
+        branch: str | Omit = omit,
+        actor: Optional[RecipientReference] | Omit = omit,
+        data: Dict[str, object] | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
+        workflow: Optional[email_layout_preview_params.Workflow] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> EmailLayoutPreviewResponse:
+        """
+        Renders an email layout preview, without requiring a layout to be persisted
+        within Knock. This is useful for previewing layouts in isolation, before saving
+        them.
+
+        Args:
+          environment: The environment slug.
+
+          email_layout: A request to update or create an email layout.
+
+          recipient: A recipient reference, used when referencing a recipient by either their ID (for
+              a user), or by a reference for an object.
+
+          branch: The slug of a branch to use. This option can only be used when `environment` is
+              `"development"`.
+
+          actor: A recipient reference, used when referencing a recipient by either their ID (for
+              a user), or by a reference for an object.
+
+          data: The data to pass to the layout for rendering.
+
+          tenant: The tenant to associate with the preview. Must not contain whitespace.
+
+          workflow: Optional workflow context for variable hydration. When provided,
+              recipient/actor/tenant are resolved via Knock.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        return await self._post(
+            "/v1/email_layouts/preview",
+            body=await async_maybe_transform(
+                {
+                    "email_layout": email_layout,
+                    "recipient": recipient,
+                    "actor": actor,
+                    "data": data,
+                    "tenant": tenant,
+                    "workflow": workflow,
+                },
+                email_layout_preview_params.EmailLayoutPreviewParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "environment": environment,
+                        "branch": branch,
+                    },
+                    email_layout_preview_params.EmailLayoutPreviewParams,
+                ),
+            ),
+            cast_to=EmailLayoutPreviewResponse,
+        )
+
     async def upsert(
         self,
         email_layout_key: str,
         *,
         environment: str,
-        email_layout: email_layout_upsert_params.EmailLayout,
+        email_layout: EmailLayoutRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -553,7 +721,7 @@ class AsyncEmailLayoutsResource(AsyncAPIResource):
         email_layout_key: str,
         *,
         environment: str,
-        email_layout: email_layout_validate_params.EmailLayout,
+        email_layout: EmailLayoutRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -617,6 +785,9 @@ class EmailLayoutsResourceWithRawResponse:
         self.list = to_raw_response_wrapper(
             email_layouts.list,
         )
+        self.preview = to_raw_response_wrapper(
+            email_layouts.preview,
+        )
         self.upsert = to_raw_response_wrapper(
             email_layouts.upsert,
         )
@@ -634,6 +805,9 @@ class AsyncEmailLayoutsResourceWithRawResponse:
         )
         self.list = async_to_raw_response_wrapper(
             email_layouts.list,
+        )
+        self.preview = async_to_raw_response_wrapper(
+            email_layouts.preview,
         )
         self.upsert = async_to_raw_response_wrapper(
             email_layouts.upsert,
@@ -653,6 +827,9 @@ class EmailLayoutsResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             email_layouts.list,
         )
+        self.preview = to_streamed_response_wrapper(
+            email_layouts.preview,
+        )
         self.upsert = to_streamed_response_wrapper(
             email_layouts.upsert,
         )
@@ -670,6 +847,9 @@ class AsyncEmailLayoutsResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             email_layouts.list,
+        )
+        self.preview = async_to_streamed_response_wrapper(
+            email_layouts.preview,
         )
         self.upsert = async_to_streamed_response_wrapper(
             email_layouts.upsert,

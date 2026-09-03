@@ -14,19 +14,29 @@ from . import (
     workflow_retrieve_response,
     workflow_validate_response,
     broadcast_validate_response,
+    workflow_random_cohort_step,
+    workflow_random_cohort_step_branch,
 )
 from .. import _compat
+from .tag import Tag as Tag
+from .goal import Goal as Goal
+from .asset import Asset as Asset
 from .guide import Guide as Guide
 from .branch import Branch as Branch
 from .commit import Commit as Commit
 from .member import Member as Member
 from .shared import (
     PageInfo as PageInfo,
+    GoalAttachment as GoalAttachment,
+    RecipientReference as RecipientReference,
     MessageTypeURLField as MessageTypeURLField,
     MessageTypeJsonField as MessageTypeJsonField,
+    MessageTypeListField as MessageTypeListField,
     MessageTypeTextField as MessageTypeTextField,
+    MessageTypeColorField as MessageTypeColorField,
     MessageTypeImageField as MessageTypeImageField,
     MessageTypeButtonField as MessageTypeButtonField,
+    MessageTypeNumberField as MessageTypeNumberField,
     MessageTypeSelectField as MessageTypeSelectField,
     MessageTypeBooleanField as MessageTypeBooleanField,
     MessageTypeMarkdownField as MessageTypeMarkdownField,
@@ -45,6 +55,7 @@ from .condition import Condition as Condition
 from .guide_step import GuideStep as GuideStep
 from .source_log import SourceLog as SourceLog
 from .environment import Environment as Environment
+from .item_schema import ItemSchema as ItemSchema
 from .member_user import MemberUser as MemberUser
 from .send_window import SendWindow as SendWindow
 from .translation import Translation as Translation
@@ -58,31 +69,47 @@ from .push_template import PushTemplate as PushTemplate
 from .workflow_step import WorkflowStep as WorkflowStep
 from .duration_param import DurationParam as DurationParam
 from .email_template import EmailTemplate as EmailTemplate
+from .goal_condition import GoalCondition as GoalCondition
+from .billing_summary import BillingSummary as BillingSummary
 from .condition_group import ConditionGroup as ConditionGroup
 from .condition_param import ConditionParam as ConditionParam
 from .static_audience import StaticAudience as StaticAudience
 from .dynamic_audience import DynamicAudience as DynamicAudience
+from .goal_list_params import GoalListParams as GoalListParams
 from .guide_step_param import GuideStepParam as GuideStepParam
 from .request_template import RequestTemplate as RequestTemplate
 from .sources_response import SourcesResponse as SourcesResponse
 from .webhook_template import WebhookTemplate as WebhookTemplate
+from .asset_list_params import AssetListParams as AssetListParams
+from .goal_clone_params import GoalCloneParams as GoalCloneParams
 from .guide_list_params import GuideListParams as GuideListParams
 from .send_window_param import SendWindowParam as SendWindowParam
 from .source_log_action import SourceLogAction as SourceLogAction
+from .tag_list_response import TagListResponse as TagListResponse
+from .tag_upsert_params import TagUpsertParams as TagUpsertParams
 from .workflow_sms_step import WorkflowSMSStep as WorkflowSMSStep
 from .audience_condition import AudienceCondition as AudienceCondition
 from .branch_list_params import BranchListParams as BranchListParams
+from .branding_overrides import BrandingOverrides as BrandingOverrides
 from .channel_group_rule import ChannelGroupRule as ChannelGroupRule
 from .commit_list_params import CommitListParams as CommitListParams
+from .goal_request_param import GoalRequestParam as GoalRequestParam
+from .goal_upsert_params import GoalUpsertParams as GoalUpsertParams
 from .member_list_params import MemberListParams as MemberListParams
+from .schema_list_params import SchemaListParams as SchemaListParams
 from .sms_template_param import SMSTemplateParam as SMSTemplateParam
 from .workflow_chat_step import WorkflowChatStep as WorkflowChatStep
 from .workflow_push_step import WorkflowPushStep as WorkflowPushStep
 from .channel_list_params import ChannelListParams as ChannelListParams
 from .chat_template_param import ChatTemplateParam as ChatTemplateParam
+from .goal_archive_params import GoalArchiveParams as GoalArchiveParams
+from .goal_clone_response import GoalCloneResponse as GoalCloneResponse
+from .guide_request_param import GuideRequestParam as GuideRequestParam
 from .guide_upsert_params import GuideUpsertParams as GuideUpsertParams
 from .partial_list_params import PartialListParams as PartialListParams
+from .preference_category import PreferenceCategory as PreferenceCategory
 from .push_template_param import PushTemplateParam as PushTemplateParam
+from .tag_upsert_response import TagUpsertResponse as TagUpsertResponse
 from .workflow_batch_step import WorkflowBatchStep as WorkflowBatchStep
 from .workflow_delay_step import WorkflowDelayStep as WorkflowDelayStep
 from .workflow_email_step import WorkflowEmailStep as WorkflowEmailStep
@@ -93,9 +120,16 @@ from .audience_list_params import AudienceListParams as AudienceListParams
 from .auth_verify_response import AuthVerifyResponse as AuthVerifyResponse
 from .branch_create_params import BranchCreateParams as BranchCreateParams
 from .branch_delete_params import BranchDeleteParams as BranchDeleteParams
+from .branch_rebase_params import BranchRebaseParams as BranchRebaseParams
 from .email_template_param import EmailTemplateParam as EmailTemplateParam
+from .goal_condition_param import GoalConditionParam as GoalConditionParam
+from .goal_retrieve_params import GoalRetrieveParams as GoalRetrieveParams
+from .goal_upsert_response import GoalUpsertResponse as GoalUpsertResponse
+from .goal_validate_params import GoalValidateParams as GoalValidateParams
 from .in_app_feed_template import InAppFeedTemplate as InAppFeedTemplate
 from .message_type_variant import MessageTypeVariant as MessageTypeVariant
+from .schema_list_response import SchemaListResponse as SchemaListResponse
+from .schema_upsert_params import SchemaUpsertParams as SchemaUpsertParams
 from .sms_channel_settings import SMSChannelSettings as SMSChannelSettings
 from .source_logs_response import SourceLogsResponse as SourceLogsResponse
 from .source_request_param import SourceRequestParam as SourceRequestParam
@@ -106,23 +140,31 @@ from .broadcast_list_params import BroadcastListParams as BroadcastListParams
 from .broadcast_send_params import BroadcastSendParams as BroadcastSendParams
 from .chat_channel_settings import ChatChannelSettings as ChatChannelSettings
 from .condition_group_param import ConditionGroupParam as ConditionGroupParam
+from .goal_archive_response import GoalArchiveResponse as GoalArchiveResponse
 from .guide_activate_params import GuideActivateParams as GuideActivateParams
 from .guide_retrieve_params import GuideRetrieveParams as GuideRetrieveParams
 from .guide_upsert_response import GuideUpsertResponse as GuideUpsertResponse
 from .guide_validate_params import GuideValidateParams as GuideValidateParams
+from .partial_request_param import PartialRequestParam as PartialRequestParam
 from .partial_upsert_params import PartialUpsertParams as PartialUpsertParams
 from .push_channel_settings import PushChannelSettings as PushChannelSettings
 from .workflow_run_response import WorkflowRunResponse as WorkflowRunResponse
 from .workflow_webhook_step import WorkflowWebhookStep as WorkflowWebhookStep
+from .audience_request_param import AudienceRequestParam as AudienceRequestParam
 from .audience_upsert_params import AudienceUpsertParams as AudienceUpsertParams
 from .branch_retrieve_params import BranchRetrieveParams as BranchRetrieveParams
 from .email_channel_settings import EmailChannelSettings as EmailChannelSettings
+from .goal_validate_response import GoalValidateResponse as GoalValidateResponse
 from .guide_archive_response import GuideArchiveResponse as GuideArchiveResponse
+from .partial_preview_params import PartialPreviewParams as PartialPreviewParams
 from .request_template_param import RequestTemplateParam as RequestTemplateParam
+from .schema_retrieve_params import SchemaRetrieveParams as SchemaRetrieveParams
+from .schema_validate_params import SchemaValidateParams as SchemaValidateParams
 from .source_events_response import SourceEventsResponse as SourceEventsResponse
 from .source_status_response import SourceStatusResponse as SourceStatusResponse
 from .webhook_template_param import WebhookTemplateParam as WebhookTemplateParam
 from .workflow_ai_agent_step import WorkflowAIAgentStep as WorkflowAIAgentStep
+from .workflow_request_param import WorkflowRequestParam as WorkflowRequestParam
 from .workflow_throttle_step import WorkflowThrottleStep as WorkflowThrottleStep
 from .workflow_upsert_params import WorkflowUpsertParams as WorkflowUpsertParams
 from .api_key_exchange_params import APIKeyExchangeParams as APIKeyExchangeParams
@@ -137,15 +179,18 @@ from .guide_validate_response import GuideValidateResponse as GuideValidateRespo
 from .partial_retrieve_params import PartialRetrieveParams as PartialRetrieveParams
 from .partial_upsert_response import PartialUpsertResponse as PartialUpsertResponse
 from .partial_validate_params import PartialValidateParams as PartialValidateParams
+from .template_preview_params import TemplatePreviewParams as TemplatePreviewParams
 from .translation_list_params import TranslationListParams as TranslationListParams
 from .workflow_sms_step_param import WorkflowSMSStepParam as WorkflowSMSStepParam
 from .audience_condition_param import AudienceConditionParam as AudienceConditionParam
 from .audience_retrieve_params import AudienceRetrieveParams as AudienceRetrieveParams
 from .audience_upsert_response import AudienceUpsertResponse as AudienceUpsertResponse
 from .audience_validate_params import AudienceValidateParams as AudienceValidateParams
+from .branding_overrides_param import BrandingOverridesParam as BrandingOverridesParam
 from .commit_commit_all_params import CommitCommitAllParams as CommitCommitAllParams
 from .email_layout_list_params import EmailLayoutListParams as EmailLayoutListParams
 from .message_type_list_params import MessageTypeListParams as MessageTypeListParams
+from .partial_preview_response import PartialPreviewResponse as PartialPreviewResponse
 from .source_preprocess_script import SourcePreprocessScript as SourcePreprocessScript
 from .source_provider_response import SourceProviderResponse as SourceProviderResponse
 from .source_rehearse_response import SourceRehearseResponse as SourceRehearseResponse
@@ -163,9 +208,12 @@ from .broadcast_upsert_response import BroadcastUpsertResponse as BroadcastUpser
 from .broadcast_validate_params import BroadcastValidateParams as BroadcastValidateParams
 from .channel_group_list_params import ChannelGroupListParams as ChannelGroupListParams
 from .commit_promote_all_params import CommitPromoteAllParams as CommitPromoteAllParams
+from .condition_group_all_match import ConditionGroupAllMatch as ConditionGroupAllMatch
 from .data_source_upsert_params import DataSourceUpsertParams as DataSourceUpsertParams
 from .partial_validate_response import PartialValidateResponse as PartialValidateResponse
 from .source_providers_response import SourceProvidersResponse as SourceProvidersResponse
+from .template_preview_response import TemplatePreviewResponse as TemplatePreviewResponse
+from .translation_request_param import TranslationRequestParam as TranslationRequestParam
 from .translation_upsert_params import TranslationUpsertParams as TranslationUpsertParams
 from .workflow_batch_step_param import WorkflowBatchStepParam as WorkflowBatchStepParam
 from .workflow_delay_step_param import WorkflowDelayStepParam as WorkflowDelayStepParam
@@ -176,13 +224,16 @@ from .workflow_update_data_step import WorkflowUpdateDataStep as WorkflowUpdateD
 from .workflow_update_user_step import WorkflowUpdateUserStep as WorkflowUpdateUserStep
 from .audience_validate_response import AudienceValidateResponse as AudienceValidateResponse
 from .commit_commit_all_response import CommitCommitAllResponse as CommitCommitAllResponse
+from .email_layout_request_param import EmailLayoutRequestParam as EmailLayoutRequestParam
 from .email_layout_upsert_params import EmailLayoutUpsertParams as EmailLayoutUpsertParams
 from .in_app_feed_template_param import InAppFeedTemplateParam as InAppFeedTemplateParam
+from .message_type_request_param import MessageTypeRequestParam as MessageTypeRequestParam
 from .message_type_upsert_params import MessageTypeUpsertParams as MessageTypeUpsertParams
 from .message_type_variant_param import MessageTypeVariantParam as MessageTypeVariantParam
 from .sms_channel_settings_param import SMSChannelSettingsParam as SMSChannelSettingsParam
 from .workflow_activate_response import WorkflowActivateResponse as WorkflowActivateResponse
 from .workflow_branch_step_param import WorkflowBranchStepParam as WorkflowBranchStepParam
+from .workflow_in_app_guide_step import WorkflowInAppGuideStep as WorkflowInAppGuideStep
 from .workflow_retrieve_response import WorkflowRetrieveResponse as WorkflowRetrieveResponse
 from .workflow_validate_response import WorkflowValidateResponse as WorkflowValidateResponse
 from .broadcast_validate_response import BroadcastValidateResponse as BroadcastValidateResponse
@@ -193,6 +244,7 @@ from .commit_promote_one_response import CommitPromoteOneResponse as CommitPromo
 from .data_source_rehearse_params import DataSourceRehearseParams as DataSourceRehearseParams
 from .data_source_retrieve_params import DataSourceRetrieveParams as DataSourceRetrieveParams
 from .data_source_upsert_response import DataSourceUpsertResponse as DataSourceUpsertResponse
+from .email_layout_preview_params import EmailLayoutPreviewParams as EmailLayoutPreviewParams
 from .push_channel_settings_param import PushChannelSettingsParam as PushChannelSettingsParam
 from .source_environment_settings import SourceEnvironmentSettings as SourceEnvironmentSettings
 from .source_event_action_mapping import SourceEventActionMapping as SourceEventActionMapping
@@ -217,25 +269,41 @@ from .message_type_validate_params import MessageTypeValidateParams as MessageTy
 from .workflow_ai_agent_step_param import WorkflowAIAgentStepParam as WorkflowAIAgentStepParam
 from .workflow_throttle_step_param import WorkflowThrottleStepParam as WorkflowThrottleStepParam
 from .channel_group_upsert_response import ChannelGroupUpsertResponse as ChannelGroupUpsertResponse
+from .email_layout_preview_response import EmailLayoutPreviewResponse as EmailLayoutPreviewResponse
 from .translation_retrieve_response import TranslationRetrieveResponse as TranslationRetrieveResponse
 from .translation_validate_response import TranslationValidateResponse as TranslationValidateResponse
 from .data_source_list_events_params import DataSourceListEventsParams as DataSourceListEventsParams
 from .email_layout_validate_response import EmailLayoutValidateResponse as EmailLayoutValidateResponse
 from .message_type_validate_response import MessageTypeValidateResponse as MessageTypeValidateResponse
+from .preference_center_reset_params import PreferenceCenterResetParams as PreferenceCenterResetParams
 from .source_preprocess_script_param import SourcePreprocessScriptParam as SourcePreprocessScriptParam
 from .workflow_trigger_workflow_step import WorkflowTriggerWorkflowStep as WorkflowTriggerWorkflowStep
+from .condition_group_all_match_param import ConditionGroupAllMatchParam as ConditionGroupAllMatchParam
 from .data_source_list_sources_params import DataSourceListSourcesParams as DataSourceListSourcesParams
+from .preference_center_upsert_params import PreferenceCenterUpsertParams as PreferenceCenterUpsertParams
 from .workflow_in_app_feed_step_param import WorkflowInAppFeedStepParam as WorkflowInAppFeedStepParam
 from .workflow_update_data_step_param import WorkflowUpdateDataStepParam as WorkflowUpdateDataStepParam
 from .workflow_update_user_step_param import WorkflowUpdateUserStepParam as WorkflowUpdateUserStepParam
+from .preference_center_reset_response import PreferenceCenterResetResponse as PreferenceCenterResetResponse
+from .workflow_in_app_guide_step_param import WorkflowInAppGuideStepParam as WorkflowInAppGuideStepParam
+from .preference_category_list_response import PreferenceCategoryListResponse as PreferenceCategoryListResponse
+from .preference_center_retrieve_params import PreferenceCenterRetrieveParams as PreferenceCenterRetrieveParams
+from .preference_center_upsert_response import PreferenceCenterUpsertResponse as PreferenceCenterUpsertResponse
 from .workflow_random_cohort_step_param import WorkflowRandomCohortStepParam as WorkflowRandomCohortStepParam
 from .workflow_update_object_step_param import WorkflowUpdateObjectStepParam as WorkflowUpdateObjectStepParam
 from .workflow_update_tenant_step_param import WorkflowUpdateTenantStepParam as WorkflowUpdateTenantStepParam
 from .data_source_retrieve_status_params import DataSourceRetrieveStatusParams as DataSourceRetrieveStatusParams
 from .guide_activation_url_pattern_param import GuideActivationURLPatternParam as GuideActivationURLPatternParam
 from .in_app_feed_channel_settings_param import InAppFeedChannelSettingsParam as InAppFeedChannelSettingsParam
+from .inline_identify_user_request_param import InlineIdentifyUserRequestParam as InlineIdentifyUserRequestParam
+from .workflow_random_cohort_step_branch import WorkflowRandomCohortStepBranch as WorkflowRandomCohortStepBranch
+from .preference_category_upsert_response import PreferenceCategoryUpsertResponse as PreferenceCategoryUpsertResponse
+from .preference_center_retrieve_response import PreferenceCenterRetrieveResponse as PreferenceCenterRetrieveResponse
 from .data_source_retrieve_provider_params import DataSourceRetrieveProviderParams as DataSourceRetrieveProviderParams
 from .workflow_trigger_workflow_step_param import WorkflowTriggerWorkflowStepParam as WorkflowTriggerWorkflowStepParam
+from .workflow_random_cohort_step_branch_param import (
+    WorkflowRandomCohortStepBranchParam as WorkflowRandomCohortStepBranchParam,
+)
 
 # Rebuild cyclical models only after all modules are imported.
 # This ensures that, when building the deferred (due to cyclical references) model schema,
@@ -249,10 +317,14 @@ if _compat.PYDANTIC_V1:
     _cyclical_localns = {
         "WorkflowStep": WorkflowStep,
         "WorkflowBranchStep": workflow_branch_step.WorkflowBranchStep,
+        "WorkflowRandomCohortStep": workflow_random_cohort_step.WorkflowRandomCohortStep,
+        "WorkflowRandomCohortStepBranch": workflow_random_cohort_step_branch.WorkflowRandomCohortStepBranch,
     }
     workflow.Workflow.update_forward_refs(**_cyclical_localns)  # type: ignore
     workflow_branch_step.Branch.update_forward_refs(**_cyclical_localns)  # type: ignore
     workflow_branch_step.WorkflowBranchStep.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_random_cohort_step.WorkflowRandomCohortStep.update_forward_refs(**_cyclical_localns)  # type: ignore
+    workflow_random_cohort_step_branch.WorkflowRandomCohortStepBranch.update_forward_refs(**_cyclical_localns)  # type: ignore
     workflow_retrieve_response.WorkflowRetrieveResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
     workflow_activate_response.WorkflowActivateResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
     workflow_upsert_response.WorkflowUpsertResponse.update_forward_refs(**_cyclical_localns)  # type: ignore
@@ -265,6 +337,8 @@ if _compat.PYDANTIC_V1:
 else:
     workflow.Workflow.model_rebuild(_parent_namespace_depth=0)
     workflow_branch_step.WorkflowBranchStep.model_rebuild(_parent_namespace_depth=0)
+    workflow_random_cohort_step.WorkflowRandomCohortStep.model_rebuild(_parent_namespace_depth=0)
+    workflow_random_cohort_step_branch.WorkflowRandomCohortStepBranch.model_rebuild(_parent_namespace_depth=0)
     workflow_retrieve_response.WorkflowRetrieveResponse.model_rebuild(_parent_namespace_depth=0)
     workflow_activate_response.WorkflowActivateResponse.model_rebuild(_parent_namespace_depth=0)
     workflow_upsert_response.WorkflowUpsertResponse.model_rebuild(_parent_namespace_depth=0)

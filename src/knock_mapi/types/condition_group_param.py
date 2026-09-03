@@ -6,31 +6,11 @@ from typing import Union, Iterable
 from typing_extensions import TypeAlias, TypedDict
 
 from .condition_param import ConditionParam
+from .condition_group_all_match_param import ConditionGroupAllMatchParam
 
-__all__ = [
-    "ConditionGroupParam",
-    "ConditionGroupAllMatch",
-    "ConditionGroupAnyMatch",
-    "ConditionGroupAnyMatchAny",
-    "ConditionGroupAnyMatchAnyConditionGroupAllMatch",
-]
+__all__ = ["ConditionGroupParam", "ConditionGroupAnyMatch", "ConditionGroupAnyMatchAny"]
 
-
-class ConditionGroupAllMatch(TypedDict, total=False):
-    """A group of conditions that must all be met."""
-
-    all: Iterable[ConditionParam]
-    """A list of conditions."""
-
-
-class ConditionGroupAnyMatchAnyConditionGroupAllMatch(TypedDict, total=False):
-    """A group of conditions that must all be met."""
-
-    all: Iterable[ConditionParam]
-    """A list of conditions."""
-
-
-ConditionGroupAnyMatchAny: TypeAlias = Union[ConditionParam, ConditionGroupAnyMatchAnyConditionGroupAllMatch]
+ConditionGroupAnyMatchAny: TypeAlias = Union[ConditionParam, ConditionGroupAllMatchParam]
 
 
 class ConditionGroupAnyMatch(TypedDict, total=False):
@@ -40,4 +20,4 @@ class ConditionGroupAnyMatch(TypedDict, total=False):
     """An array of conditions or nested condition groups to evaluate."""
 
 
-ConditionGroupParam: TypeAlias = Union[ConditionGroupAllMatch, ConditionGroupAnyMatch]
+ConditionGroupParam: TypeAlias = Union[ConditionGroupAllMatchParam, ConditionGroupAnyMatch]

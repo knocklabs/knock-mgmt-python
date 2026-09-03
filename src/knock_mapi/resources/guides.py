@@ -28,6 +28,7 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from ..types.guide import Guide
 from .._base_client import AsyncPaginator, make_request_options
+from ..types.guide_request_param import GuideRequestParam
 from ..types.guide_upsert_response import GuideUpsertResponse
 from ..types.guide_archive_response import GuideArchiveResponse
 from ..types.guide_activate_response import GuideActivateResponse
@@ -358,7 +359,7 @@ class GuidesResource(SyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        guide: guide_upsert_params.Guide,
+        guide: GuideRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -437,7 +438,7 @@ class GuidesResource(SyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        guide: guide_validate_params.Guide,
+        guide: GuideRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -811,7 +812,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        guide: guide_upsert_params.Guide,
+        guide: GuideRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
@@ -890,7 +891,7 @@ class AsyncGuidesResource(AsyncAPIResource):
         guide_key: str,
         *,
         environment: str,
-        guide: guide_validate_params.Guide,
+        guide: GuideRequestParam,
         branch: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.

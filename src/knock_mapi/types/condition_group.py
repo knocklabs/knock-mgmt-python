@@ -5,31 +5,11 @@ from typing_extensions import TypeAlias
 
 from .._models import BaseModel
 from .condition import Condition
+from .condition_group_all_match import ConditionGroupAllMatch
 
-__all__ = [
-    "ConditionGroup",
-    "ConditionGroupAllMatch",
-    "ConditionGroupAnyMatch",
-    "ConditionGroupAnyMatchAny",
-    "ConditionGroupAnyMatchAnyConditionGroupAllMatch",
-]
+__all__ = ["ConditionGroup", "ConditionGroupAnyMatch", "ConditionGroupAnyMatchAny"]
 
-
-class ConditionGroupAllMatch(BaseModel):
-    """A group of conditions that must all be met."""
-
-    all: Optional[List[Condition]] = None
-    """A list of conditions."""
-
-
-class ConditionGroupAnyMatchAnyConditionGroupAllMatch(BaseModel):
-    """A group of conditions that must all be met."""
-
-    all: Optional[List[Condition]] = None
-    """A list of conditions."""
-
-
-ConditionGroupAnyMatchAny: TypeAlias = Union[Condition, ConditionGroupAnyMatchAnyConditionGroupAllMatch]
+ConditionGroupAnyMatchAny: TypeAlias = Union[Condition, ConditionGroupAllMatch]
 
 
 class ConditionGroupAnyMatch(BaseModel):

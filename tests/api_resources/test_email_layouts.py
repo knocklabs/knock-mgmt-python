@@ -12,6 +12,7 @@ from tests.utils import assert_matches_type
 from knock_mapi.types import (
     EmailLayout,
     EmailLayoutUpsertResponse,
+    EmailLayoutPreviewResponse,
     EmailLayoutValidateResponse,
 )
 from knock_mapi.pagination import SyncEntriesCursor, AsyncEntriesCursor
@@ -125,6 +126,102 @@ class TestEmailLayouts:
 
             email_layout = response.parse()
             assert_matches_type(SyncEntriesCursor[EmailLayout], email_layout, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_preview(self, client: KnockMgmt) -> None:
+        email_layout = client.email_layouts.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+            },
+            recipient="user_123",
+        )
+        assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_preview_with_all_params(self, client: KnockMgmt) -> None:
+        email_layout = client.email_layouts.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+                "branding_overrides": {
+                    "dark_icon_url": "https://cdn.example.com/icon-dark.png",
+                    "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+                    "dark_primary_color": "#1A1A2E",
+                    "dark_primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://cdn.example.com/icon-light.png",
+                    "logo_url": "https://cdn.example.com/logo-light.png",
+                    "primary_color": "#4F46E5",
+                    "primary_color_contrast": "#FFFFFF",
+                    "primary_text_color": "#111827",
+                    "secondary_text_color": "#6B7280",
+                },
+                "footer_links": [
+                    {
+                        "text": "Example",
+                        "url": "http://example.com",
+                    }
+                ],
+                "is_mjml": True,
+            },
+            recipient="user_123",
+            branch="feature-branch",
+            actor={
+                "id": "project_1",
+                "collection": "projects",
+            },
+            data={"order_id": "bar"},
+            tenant="tenant",
+            workflow={
+                "key": "key",
+                "categories": ["string"],
+            },
+        )
+        assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_preview(self, client: KnockMgmt) -> None:
+        response = client.email_layouts.with_raw_response.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+            },
+            recipient="user_123",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        email_layout = response.parse()
+        assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_preview(self, client: KnockMgmt) -> None:
+        with client.email_layouts.with_streaming_response.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+            },
+            recipient="user_123",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            email_layout = response.parse()
+            assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
@@ -442,6 +539,102 @@ class TestAsyncEmailLayouts:
 
             email_layout = await response.parse()
             assert_matches_type(AsyncEntriesCursor[EmailLayout], email_layout, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_preview(self, async_client: AsyncKnockMgmt) -> None:
+        email_layout = await async_client.email_layouts.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+            },
+            recipient="user_123",
+        )
+        assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_preview_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        email_layout = await async_client.email_layouts.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+                "branding_overrides": {
+                    "dark_icon_url": "https://cdn.example.com/icon-dark.png",
+                    "dark_logo_url": "https://cdn.example.com/logo-dark.png",
+                    "dark_primary_color": "#1A1A2E",
+                    "dark_primary_color_contrast": "#FFFFFF",
+                    "icon_url": "https://cdn.example.com/icon-light.png",
+                    "logo_url": "https://cdn.example.com/logo-light.png",
+                    "primary_color": "#4F46E5",
+                    "primary_color_contrast": "#FFFFFF",
+                    "primary_text_color": "#111827",
+                    "secondary_text_color": "#6B7280",
+                },
+                "footer_links": [
+                    {
+                        "text": "Example",
+                        "url": "http://example.com",
+                    }
+                ],
+                "is_mjml": True,
+            },
+            recipient="user_123",
+            branch="feature-branch",
+            actor={
+                "id": "project_1",
+                "collection": "projects",
+            },
+            data={"order_id": "bar"},
+            tenant="tenant",
+            workflow={
+                "key": "key",
+                "categories": ["string"],
+            },
+        )
+        assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_preview(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.email_layouts.with_raw_response.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+            },
+            recipient="user_123",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        email_layout = await response.parse()
+        assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_preview(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.email_layouts.with_streaming_response.preview(
+            environment="development",
+            email_layout={
+                "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
+                "name": "Transactional",
+                "text_layout": "Hello {{ recipient.name }}! {{ content }}",
+            },
+            recipient="user_123",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            email_layout = await response.parse()
+            assert_matches_type(EmailLayoutPreviewResponse, email_layout, path=["response"])
 
         assert cast(Any, response.is_closed) is True
 
