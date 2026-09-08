@@ -10,11 +10,11 @@ __all__ = ["GoalUpsertParams"]
 
 
 class GoalUpsertParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     goal: Required[GoalRequestParam]
     """A goal payload for upsert or validate."""
 
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""

@@ -70,8 +70,8 @@ class DataSourcesResource(SyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -84,9 +84,9 @@ class DataSourcesResource(SyncAPIResource):
         event mappings.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -107,8 +107,8 @@ class DataSourcesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
+                        "environment": environment,
                     },
                     data_source_retrieve_params.DataSourceRetrieveParams,
                 ),
@@ -132,7 +132,7 @@ class DataSourcesResource(SyncAPIResource):
         Returns known unique events received by a source in the requested environment.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -162,12 +162,12 @@ class DataSourcesResource(SyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
         date: str | Omit = omit,
         ending_at: Union[str, datetime] | Omit = omit,
+        environment: str | Omit = omit,
         event: str | Omit = omit,
         include: List[Literal["actions"]] | Omit = omit,
         limit: int | Omit = omit,
@@ -185,8 +185,6 @@ class DataSourcesResource(SyncAPIResource):
         filtering by date/time, event, and log ID.
 
         Args:
-          environment: The environment slug.
-
           id: The log ID to filter by.
 
           after: The cursor to fetch entries after.
@@ -196,6 +194,8 @@ class DataSourcesResource(SyncAPIResource):
           date: Returns event logs that were produced on this date.
 
           ending_at: Only return source logs at or before this timestamp.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           event: The event name to filter by.
 
@@ -226,12 +226,12 @@ class DataSourcesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "id": id,
                         "after": after,
                         "before": before,
                         "date": date,
                         "ending_at": ending_at,
+                        "environment": environment,
                         "event": event,
                         "include": include,
                         "limit": limit,
@@ -281,7 +281,7 @@ class DataSourcesResource(SyncAPIResource):
         Args:
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           include: Associated resources to include in each source. Accepts `environment_settings`.
 
@@ -316,8 +316,8 @@ class DataSourcesResource(SyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         payload: Dict[str, object],
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -331,10 +331,10 @@ class DataSourcesResource(SyncAPIResource):
         environments.
 
         Args:
-          environment: The environment slug.
-
           payload: An arbitrary payload to send through the source's parse, preprocess, and mapping
               pipeline.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -425,7 +425,7 @@ class DataSourcesResource(SyncAPIResource):
         requested environment.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -455,9 +455,9 @@ class DataSourcesResource(SyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         source: SourceRequestParam,
         annotate: bool | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -470,12 +470,12 @@ class DataSourcesResource(SyncAPIResource):
         scripts, and event mappings.
 
         Args:
-          environment: The environment slug.
-
           source: A source request for setting a source and its environment-specific
               configuration.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -497,8 +497,8 @@ class DataSourcesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
+                        "environment": environment,
                     },
                     data_source_upsert_params.DataSourceUpsertParams,
                 ),
@@ -533,8 +533,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -547,9 +547,9 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         event mappings.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -570,8 +570,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
+                        "environment": environment,
                     },
                     data_source_retrieve_params.DataSourceRetrieveParams,
                 ),
@@ -595,7 +595,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         Returns known unique events received by a source in the requested environment.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -625,12 +625,12 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         id: str | Omit = omit,
         after: str | Omit = omit,
         before: str | Omit = omit,
         date: str | Omit = omit,
         ending_at: Union[str, datetime] | Omit = omit,
+        environment: str | Omit = omit,
         event: str | Omit = omit,
         include: List[Literal["actions"]] | Omit = omit,
         limit: int | Omit = omit,
@@ -648,8 +648,6 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         filtering by date/time, event, and log ID.
 
         Args:
-          environment: The environment slug.
-
           id: The log ID to filter by.
 
           after: The cursor to fetch entries after.
@@ -659,6 +657,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
           date: Returns event logs that were produced on this date.
 
           ending_at: Only return source logs at or before this timestamp.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           event: The event name to filter by.
 
@@ -689,12 +689,12 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "id": id,
                         "after": after,
                         "before": before,
                         "date": date,
                         "ending_at": ending_at,
+                        "environment": environment,
                         "event": event,
                         "include": include,
                         "limit": limit,
@@ -744,7 +744,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         Args:
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           include: Associated resources to include in each source. Accepts `environment_settings`.
 
@@ -779,8 +779,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         payload: Dict[str, object],
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -794,10 +794,10 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         environments.
 
         Args:
-          environment: The environment slug.
-
           payload: An arbitrary payload to send through the source's parse, preprocess, and mapping
               pipeline.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -890,7 +890,7 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         requested environment.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -920,9 +920,9 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         self,
         key: str,
         *,
-        environment: str,
         source: SourceRequestParam,
         annotate: bool | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -935,12 +935,12 @@ class AsyncDataSourcesResource(AsyncAPIResource):
         scripts, and event mappings.
 
         Args:
-          environment: The environment slug.
-
           source: A source request for setting a source and its environment-specific
               configuration.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -962,8 +962,8 @@ class AsyncDataSourcesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
+                        "environment": environment,
                     },
                     data_source_upsert_params.DataSourceUpsertParams,
                 ),

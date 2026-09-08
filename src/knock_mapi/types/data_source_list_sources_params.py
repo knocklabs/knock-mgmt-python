@@ -13,7 +13,7 @@ class DataSourceListSourcesParams(TypedDict, total=False):
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
     environment: str
-    """The environment slug."""
+    """The environment slug. When omitted, the account's default environment is used."""
 
     include: List[Literal["environment_settings"]]
     """Associated resources to include in each source. Accepts `environment_settings`."""

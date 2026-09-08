@@ -46,7 +46,7 @@ class PreferenceCenterResource(SyncAPIResource):
     def retrieve(
         self,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -58,7 +58,7 @@ class PreferenceCenterResource(SyncAPIResource):
         Returns the preference center configuration for the given environment.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -85,7 +85,7 @@ class PreferenceCenterResource(SyncAPIResource):
     def reset(
         self,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -98,7 +98,7 @@ class PreferenceCenterResource(SyncAPIResource):
         built-in default content. The `enabled` flag is preserved.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -125,8 +125,8 @@ class PreferenceCenterResource(SyncAPIResource):
     def upsert(
         self,
         *,
-        environment: str,
         config: object,
+        environment: str | Omit = omit,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -140,9 +140,9 @@ class PreferenceCenterResource(SyncAPIResource):
         environment.
 
         Args:
-          environment: The environment slug.
-
           config: The preference center configuration document.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           enabled: Whether the preference center is enabled for recipients.
 
@@ -199,7 +199,7 @@ class AsyncPreferenceCenterResource(AsyncAPIResource):
     async def retrieve(
         self,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -211,7 +211,7 @@ class AsyncPreferenceCenterResource(AsyncAPIResource):
         Returns the preference center configuration for the given environment.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -238,7 +238,7 @@ class AsyncPreferenceCenterResource(AsyncAPIResource):
     async def reset(
         self,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -251,7 +251,7 @@ class AsyncPreferenceCenterResource(AsyncAPIResource):
         built-in default content. The `enabled` flag is preserved.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -278,8 +278,8 @@ class AsyncPreferenceCenterResource(AsyncAPIResource):
     async def upsert(
         self,
         *,
-        environment: str,
         config: object,
+        environment: str | Omit = omit,
         enabled: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -293,9 +293,9 @@ class AsyncPreferenceCenterResource(AsyncAPIResource):
         environment.
 
         Args:
-          environment: The environment slug.
-
           config: The preference center configuration document.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           enabled: Whether the preference center is enabled for recipients.
 

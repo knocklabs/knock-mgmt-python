@@ -61,9 +61,9 @@ class BroadcastsResource(SyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -76,12 +76,13 @@ class BroadcastsResource(SyncAPIResource):
         Get a broadcast by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -105,9 +106,9 @@ class BroadcastsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     broadcast_retrieve_params.BroadcastRetrieveParams,
@@ -119,11 +120,11 @@ class BroadcastsResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,16 +140,17 @@ class BroadcastsResource(SyncAPIResource):
         broadcasts are returned ordered by creation time (newest first).
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -173,11 +175,11 @@ class BroadcastsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -191,8 +193,8 @@ class BroadcastsResource(SyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -206,10 +208,11 @@ class BroadcastsResource(SyncAPIResource):
         status.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -230,8 +233,8 @@ class BroadcastsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_cancel_params.BroadcastCancelParams,
                 ),
@@ -243,8 +246,8 @@ class BroadcastsResource(SyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         send_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -257,10 +260,11 @@ class BroadcastsResource(SyncAPIResource):
         Sends a broadcast immediately or schedules it to send at a future time.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           send_at: When to send the broadcast. If provided, the broadcast will be scheduled to send
               at this time. Must be in ISO 8601 UTC format. If not provided, the broadcast
@@ -286,8 +290,8 @@ class BroadcastsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_send_params.BroadcastSendParams,
                 ),
@@ -299,10 +303,10 @@ class BroadcastsResource(SyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         broadcast: BroadcastRequestParam,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -315,14 +319,15 @@ class BroadcastsResource(SyncAPIResource):
         exist.
 
         Args:
-          environment: The environment slug.
-
           broadcast: A broadcast request for upserting a broadcast.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -344,9 +349,9 @@ class BroadcastsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_upsert_params.BroadcastUpsertParams,
                 ),
@@ -358,9 +363,9 @@ class BroadcastsResource(SyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         broadcast: BroadcastRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -372,12 +377,13 @@ class BroadcastsResource(SyncAPIResource):
         Validates a broadcast payload without persisting it.
 
         Args:
-          environment: The environment slug.
-
           broadcast: A broadcast request for upserting a broadcast.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -399,8 +405,8 @@ class BroadcastsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_validate_params.BroadcastValidateParams,
                 ),
@@ -433,9 +439,9 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -448,12 +454,13 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         Get a broadcast by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -477,9 +484,9 @@ class AsyncBroadcastsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     broadcast_retrieve_params.BroadcastRetrieveParams,
@@ -491,11 +498,11 @@ class AsyncBroadcastsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -511,16 +518,17 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         broadcasts are returned ordered by creation time (newest first).
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -545,11 +553,11 @@ class AsyncBroadcastsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -563,8 +571,8 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -578,10 +586,11 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         status.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -602,8 +611,8 @@ class AsyncBroadcastsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_cancel_params.BroadcastCancelParams,
                 ),
@@ -615,8 +624,8 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         send_at: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -629,10 +638,11 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         Sends a broadcast immediately or schedules it to send at a future time.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           send_at: When to send the broadcast. If provided, the broadcast will be scheduled to send
               at this time. Must be in ISO 8601 UTC format. If not provided, the broadcast
@@ -658,8 +668,8 @@ class AsyncBroadcastsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_send_params.BroadcastSendParams,
                 ),
@@ -671,10 +681,10 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         broadcast: BroadcastRequestParam,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -687,14 +697,15 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         exist.
 
         Args:
-          environment: The environment slug.
-
           broadcast: A broadcast request for upserting a broadcast.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -716,9 +727,9 @@ class AsyncBroadcastsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_upsert_params.BroadcastUpsertParams,
                 ),
@@ -730,9 +741,9 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         self,
         broadcast_key: str,
         *,
-        environment: str,
         broadcast: BroadcastRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -744,12 +755,13 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         Validates a broadcast payload without persisting it.
 
         Args:
-          environment: The environment slug.
-
           broadcast: A broadcast request for upserting a broadcast.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -773,8 +785,8 @@ class AsyncBroadcastsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     broadcast_validate_params.BroadcastValidateParams,
                 ),

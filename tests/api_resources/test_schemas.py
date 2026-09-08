@@ -24,7 +24,6 @@ class TestSchemas:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         schema = client.schemas.retrieve(
             item_type="item_type",
-            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -33,9 +32,9 @@ class TestSchemas:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         schema = client.schemas.retrieve(
             item_type="item_type",
-            environment="development",
             branch="feature-branch",
             collection="collection",
+            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -44,7 +43,6 @@ class TestSchemas:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.schemas.with_raw_response.retrieve(
             item_type="item_type",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -57,7 +55,6 @@ class TestSchemas:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.schemas.with_streaming_response.retrieve(
             item_type="item_type",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -73,23 +70,20 @@ class TestSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_type` but received ''"):
             client.schemas.with_raw_response.retrieve(
                 item_type="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        schema = client.schemas.list(
-            environment="development",
-        )
+        schema = client.schemas.list()
         assert_matches_type(SchemaListResponse, schema, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         schema = client.schemas.list(
-            environment="development",
             branch="feature-branch",
+            environment="development",
             item_type="item_type",
         )
         assert_matches_type(SchemaListResponse, schema, path=["response"])
@@ -97,9 +91,7 @@ class TestSchemas:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.schemas.with_raw_response.list(
-            environment="development",
-        )
+        response = client.schemas.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -109,9 +101,7 @@ class TestSchemas:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.schemas.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.schemas.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -125,7 +115,6 @@ class TestSchemas:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         schema = client.schemas.upsert(
             item_type="item_type",
-            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -134,9 +123,9 @@ class TestSchemas:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         schema = client.schemas.upsert(
             item_type="item_type",
-            environment="development",
             branch="feature-branch",
             collection="collection",
+            environment="development",
             body={},
         )
         assert_matches_type(object, schema, path=["response"])
@@ -146,7 +135,6 @@ class TestSchemas:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.schemas.with_raw_response.upsert(
             item_type="item_type",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -159,7 +147,6 @@ class TestSchemas:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.schemas.with_streaming_response.upsert(
             item_type="item_type",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -175,7 +162,6 @@ class TestSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_type` but received ''"):
             client.schemas.with_raw_response.upsert(
                 item_type="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -183,7 +169,6 @@ class TestSchemas:
     def test_method_validate(self, client: KnockMgmt) -> None:
         schema = client.schemas.validate(
             item_type="item_type",
-            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -192,9 +177,9 @@ class TestSchemas:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         schema = client.schemas.validate(
             item_type="item_type",
-            environment="development",
             branch="feature-branch",
             collection="collection",
+            environment="development",
             body={},
         )
         assert_matches_type(object, schema, path=["response"])
@@ -204,7 +189,6 @@ class TestSchemas:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.schemas.with_raw_response.validate(
             item_type="item_type",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -217,7 +201,6 @@ class TestSchemas:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.schemas.with_streaming_response.validate(
             item_type="item_type",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -233,7 +216,6 @@ class TestSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_type` but received ''"):
             client.schemas.with_raw_response.validate(
                 item_type="",
-                environment="development",
             )
 
 
@@ -247,7 +229,6 @@ class TestAsyncSchemas:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         schema = await async_client.schemas.retrieve(
             item_type="item_type",
-            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -256,9 +237,9 @@ class TestAsyncSchemas:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         schema = await async_client.schemas.retrieve(
             item_type="item_type",
-            environment="development",
             branch="feature-branch",
             collection="collection",
+            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -267,7 +248,6 @@ class TestAsyncSchemas:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.schemas.with_raw_response.retrieve(
             item_type="item_type",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -280,7 +260,6 @@ class TestAsyncSchemas:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.schemas.with_streaming_response.retrieve(
             item_type="item_type",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -296,23 +275,20 @@ class TestAsyncSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_type` but received ''"):
             await async_client.schemas.with_raw_response.retrieve(
                 item_type="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        schema = await async_client.schemas.list(
-            environment="development",
-        )
+        schema = await async_client.schemas.list()
         assert_matches_type(SchemaListResponse, schema, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         schema = await async_client.schemas.list(
-            environment="development",
             branch="feature-branch",
+            environment="development",
             item_type="item_type",
         )
         assert_matches_type(SchemaListResponse, schema, path=["response"])
@@ -320,9 +296,7 @@ class TestAsyncSchemas:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.schemas.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.schemas.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -332,9 +306,7 @@ class TestAsyncSchemas:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.schemas.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.schemas.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -348,7 +320,6 @@ class TestAsyncSchemas:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         schema = await async_client.schemas.upsert(
             item_type="item_type",
-            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -357,9 +328,9 @@ class TestAsyncSchemas:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         schema = await async_client.schemas.upsert(
             item_type="item_type",
-            environment="development",
             branch="feature-branch",
             collection="collection",
+            environment="development",
             body={},
         )
         assert_matches_type(object, schema, path=["response"])
@@ -369,7 +340,6 @@ class TestAsyncSchemas:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.schemas.with_raw_response.upsert(
             item_type="item_type",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -382,7 +352,6 @@ class TestAsyncSchemas:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.schemas.with_streaming_response.upsert(
             item_type="item_type",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -398,7 +367,6 @@ class TestAsyncSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_type` but received ''"):
             await async_client.schemas.with_raw_response.upsert(
                 item_type="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -406,7 +374,6 @@ class TestAsyncSchemas:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         schema = await async_client.schemas.validate(
             item_type="item_type",
-            environment="development",
         )
         assert_matches_type(object, schema, path=["response"])
 
@@ -415,9 +382,9 @@ class TestAsyncSchemas:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         schema = await async_client.schemas.validate(
             item_type="item_type",
-            environment="development",
             branch="feature-branch",
             collection="collection",
+            environment="development",
             body={},
         )
         assert_matches_type(object, schema, path=["response"])
@@ -427,7 +394,6 @@ class TestAsyncSchemas:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.schemas.with_raw_response.validate(
             item_type="item_type",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -440,7 +406,6 @@ class TestAsyncSchemas:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.schemas.with_streaming_response.validate(
             item_type="item_type",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -456,5 +421,4 @@ class TestAsyncSchemas:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `item_type` but received ''"):
             await async_client.schemas.with_raw_response.validate(
                 item_type="",
-                environment="development",
             )

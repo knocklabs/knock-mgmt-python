@@ -9,11 +9,11 @@ __all__ = ["DataSourceRehearseParams"]
 
 
 class DataSourceRehearseParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     payload: Required[Dict[str, object]]
     """
     An arbitrary payload to send through the source's parse, preprocess, and mapping
     pipeline.
     """
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""

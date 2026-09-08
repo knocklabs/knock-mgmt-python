@@ -2,14 +2,14 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["DataSourceRetrieveParams"]
 
 
 class DataSourceRetrieveParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""

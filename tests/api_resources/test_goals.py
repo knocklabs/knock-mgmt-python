@@ -29,7 +29,6 @@ class TestGoals:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         goal = client.goals.retrieve(
             goal_key="goal_key",
-            environment="development",
         )
         assert_matches_type(Goal, goal, path=["response"])
 
@@ -38,9 +37,9 @@ class TestGoals:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         goal = client.goals.retrieve(
             goal_key="goal_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(Goal, goal, path=["response"])
 
@@ -49,7 +48,6 @@ class TestGoals:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.goals.with_raw_response.retrieve(
             goal_key="goal_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -62,7 +60,6 @@ class TestGoals:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.goals.with_streaming_response.retrieve(
             goal_key="goal_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,26 +75,23 @@ class TestGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             client.goals.with_raw_response.retrieve(
                 goal_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        goal = client.goals.list(
-            environment="development",
-        )
+        goal = client.goals.list()
         assert_matches_type(SyncEntriesCursor[Goal], goal, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         goal = client.goals.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             limit=0,
         )
         assert_matches_type(SyncEntriesCursor[Goal], goal, path=["response"])
@@ -105,9 +99,7 @@ class TestGoals:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.goals.with_raw_response.list(
-            environment="development",
-        )
+        response = client.goals.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -117,9 +109,7 @@ class TestGoals:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.goals.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.goals.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -133,6 +123,14 @@ class TestGoals:
     def test_method_archive(self, client: KnockMgmt) -> None:
         goal = client.goals.archive(
             goal_key="goal_key",
+        )
+        assert_matches_type(GoalArchiveResponse, goal, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_with_all_params(self, client: KnockMgmt) -> None:
+        goal = client.goals.archive(
+            goal_key="goal_key",
             environment="development",
         )
         assert_matches_type(GoalArchiveResponse, goal, path=["response"])
@@ -142,7 +140,6 @@ class TestGoals:
     def test_raw_response_archive(self, client: KnockMgmt) -> None:
         response = client.goals.with_raw_response.archive(
             goal_key="goal_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -155,7 +152,6 @@ class TestGoals:
     def test_streaming_response_archive(self, client: KnockMgmt) -> None:
         with client.goals.with_streaming_response.archive(
             goal_key="goal_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -171,7 +167,6 @@ class TestGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             client.goals.with_raw_response.archive(
                 goal_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -179,7 +174,6 @@ class TestGoals:
     def test_method_clone(self, client: KnockMgmt) -> None:
         goal = client.goals.clone(
             goal_key="goal_key",
-            environment="development",
             clone={
                 "environment": "production",
                 "key": "trial-conversion-copy",
@@ -190,10 +184,23 @@ class TestGoals:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_clone_with_all_params(self, client: KnockMgmt) -> None:
+        goal = client.goals.clone(
+            goal_key="goal_key",
+            clone={
+                "environment": "production",
+                "key": "trial-conversion-copy",
+                "name": "Trial Conversion Copy",
+            },
+            environment="development",
+        )
+        assert_matches_type(GoalCloneResponse, goal, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_clone(self, client: KnockMgmt) -> None:
         response = client.goals.with_raw_response.clone(
             goal_key="goal_key",
-            environment="development",
             clone={
                 "environment": "production",
                 "key": "trial-conversion-copy",
@@ -211,7 +218,6 @@ class TestGoals:
     def test_streaming_response_clone(self, client: KnockMgmt) -> None:
         with client.goals.with_streaming_response.clone(
             goal_key="goal_key",
-            environment="development",
             clone={
                 "environment": "production",
                 "key": "trial-conversion-copy",
@@ -232,7 +238,6 @@ class TestGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             client.goals.with_raw_response.clone(
                 goal_key="",
-                environment="development",
                 clone={
                     "environment": "production",
                     "key": "trial-conversion-copy",
@@ -245,7 +250,6 @@ class TestGoals:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         goal = client.goals.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -258,7 +262,6 @@ class TestGoals:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         goal = client.goals.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {
                     "event": {
@@ -281,6 +284,7 @@ class TestGoals:
                 "description": "Tracks when a trial user converts to paid",
             },
             annotate=True,
+            environment="development",
         )
         assert_matches_type(GoalUpsertResponse, goal, path=["response"])
 
@@ -289,7 +293,6 @@ class TestGoals:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.goals.with_raw_response.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -306,7 +309,6 @@ class TestGoals:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.goals.with_streaming_response.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -326,7 +328,6 @@ class TestGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             client.goals.with_raw_response.upsert(
                 goal_key="",
-                environment="development",
                 goal={
                     "condition": {"event": {"event_type": "recipient"}},
                     "name": "Trial Conversion",
@@ -338,7 +339,6 @@ class TestGoals:
     def test_method_validate(self, client: KnockMgmt) -> None:
         goal = client.goals.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -351,7 +351,6 @@ class TestGoals:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         goal = client.goals.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {
                     "event": {
@@ -374,6 +373,7 @@ class TestGoals:
                 "description": "Tracks when a trial user converts to paid",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(GoalValidateResponse, goal, path=["response"])
 
@@ -382,7 +382,6 @@ class TestGoals:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.goals.with_raw_response.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -399,7 +398,6 @@ class TestGoals:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.goals.with_streaming_response.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -419,7 +417,6 @@ class TestGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             client.goals.with_raw_response.validate(
                 goal_key="",
-                environment="development",
                 goal={
                     "condition": {"event": {"event_type": "recipient"}},
                     "name": "Trial Conversion",
@@ -437,7 +434,6 @@ class TestAsyncGoals:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.retrieve(
             goal_key="goal_key",
-            environment="development",
         )
         assert_matches_type(Goal, goal, path=["response"])
 
@@ -446,9 +442,9 @@ class TestAsyncGoals:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.retrieve(
             goal_key="goal_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(Goal, goal, path=["response"])
 
@@ -457,7 +453,6 @@ class TestAsyncGoals:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.goals.with_raw_response.retrieve(
             goal_key="goal_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -470,7 +465,6 @@ class TestAsyncGoals:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.goals.with_streaming_response.retrieve(
             goal_key="goal_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -486,26 +480,23 @@ class TestAsyncGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             await async_client.goals.with_raw_response.retrieve(
                 goal_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        goal = await async_client.goals.list(
-            environment="development",
-        )
+        goal = await async_client.goals.list()
         assert_matches_type(AsyncEntriesCursor[Goal], goal, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             limit=0,
         )
         assert_matches_type(AsyncEntriesCursor[Goal], goal, path=["response"])
@@ -513,9 +504,7 @@ class TestAsyncGoals:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.goals.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.goals.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -525,9 +514,7 @@ class TestAsyncGoals:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.goals.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.goals.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -541,6 +528,14 @@ class TestAsyncGoals:
     async def test_method_archive(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.archive(
             goal_key="goal_key",
+        )
+        assert_matches_type(GoalArchiveResponse, goal, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        goal = await async_client.goals.archive(
+            goal_key="goal_key",
             environment="development",
         )
         assert_matches_type(GoalArchiveResponse, goal, path=["response"])
@@ -550,7 +545,6 @@ class TestAsyncGoals:
     async def test_raw_response_archive(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.goals.with_raw_response.archive(
             goal_key="goal_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -563,7 +557,6 @@ class TestAsyncGoals:
     async def test_streaming_response_archive(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.goals.with_streaming_response.archive(
             goal_key="goal_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -579,7 +572,6 @@ class TestAsyncGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             await async_client.goals.with_raw_response.archive(
                 goal_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -587,7 +579,6 @@ class TestAsyncGoals:
     async def test_method_clone(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.clone(
             goal_key="goal_key",
-            environment="development",
             clone={
                 "environment": "production",
                 "key": "trial-conversion-copy",
@@ -598,10 +589,23 @@ class TestAsyncGoals:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_clone_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        goal = await async_client.goals.clone(
+            goal_key="goal_key",
+            clone={
+                "environment": "production",
+                "key": "trial-conversion-copy",
+                "name": "Trial Conversion Copy",
+            },
+            environment="development",
+        )
+        assert_matches_type(GoalCloneResponse, goal, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_clone(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.goals.with_raw_response.clone(
             goal_key="goal_key",
-            environment="development",
             clone={
                 "environment": "production",
                 "key": "trial-conversion-copy",
@@ -619,7 +623,6 @@ class TestAsyncGoals:
     async def test_streaming_response_clone(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.goals.with_streaming_response.clone(
             goal_key="goal_key",
-            environment="development",
             clone={
                 "environment": "production",
                 "key": "trial-conversion-copy",
@@ -640,7 +643,6 @@ class TestAsyncGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             await async_client.goals.with_raw_response.clone(
                 goal_key="",
-                environment="development",
                 clone={
                     "environment": "production",
                     "key": "trial-conversion-copy",
@@ -653,7 +655,6 @@ class TestAsyncGoals:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -666,7 +667,6 @@ class TestAsyncGoals:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {
                     "event": {
@@ -689,6 +689,7 @@ class TestAsyncGoals:
                 "description": "Tracks when a trial user converts to paid",
             },
             annotate=True,
+            environment="development",
         )
         assert_matches_type(GoalUpsertResponse, goal, path=["response"])
 
@@ -697,7 +698,6 @@ class TestAsyncGoals:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.goals.with_raw_response.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -714,7 +714,6 @@ class TestAsyncGoals:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.goals.with_streaming_response.upsert(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -734,7 +733,6 @@ class TestAsyncGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             await async_client.goals.with_raw_response.upsert(
                 goal_key="",
-                environment="development",
                 goal={
                     "condition": {"event": {"event_type": "recipient"}},
                     "name": "Trial Conversion",
@@ -746,7 +744,6 @@ class TestAsyncGoals:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -759,7 +756,6 @@ class TestAsyncGoals:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         goal = await async_client.goals.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {
                     "event": {
@@ -782,6 +778,7 @@ class TestAsyncGoals:
                 "description": "Tracks when a trial user converts to paid",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(GoalValidateResponse, goal, path=["response"])
 
@@ -790,7 +787,6 @@ class TestAsyncGoals:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.goals.with_raw_response.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -807,7 +803,6 @@ class TestAsyncGoals:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.goals.with_streaming_response.validate(
             goal_key="goal_key",
-            environment="development",
             goal={
                 "condition": {"event": {"event_type": "recipient"}},
                 "name": "Trial Conversion",
@@ -827,7 +822,6 @@ class TestAsyncGoals:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `goal_key` but received ''"):
             await async_client.goals.with_raw_response.validate(
                 goal_key="",
-                environment="development",
                 goal={
                     "condition": {"event": {"event_type": "recipient"}},
                     "name": "Trial Conversion",

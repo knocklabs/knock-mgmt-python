@@ -45,9 +45,9 @@ class SchemasResource(SyncAPIResource):
         self,
         item_type: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
         collection: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -60,12 +60,13 @@ class SchemasResource(SyncAPIResource):
         a given environment, including all of its configured properties.
 
         Args:
-          environment: The environment slug.
-
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           collection: The object collection, required when `item_type` is `object`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -86,9 +87,9 @@ class SchemasResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
                         "collection": collection,
+                        "environment": environment,
                     },
                     schema_retrieve_params.SchemaRetrieveParams,
                 ),
@@ -99,8 +100,8 @@ class SchemasResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         item_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -115,10 +116,11 @@ class SchemasResource(SyncAPIResource):
         inherited from the parent environment.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           item_type: Filter schemas by item type (`user`, `tenant`, or `object`).
 
@@ -139,8 +141,8 @@ class SchemasResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                         "item_type": item_type,
                     },
                     schema_list_params.SchemaListParams,
@@ -153,9 +155,9 @@ class SchemasResource(SyncAPIResource):
         self,
         item_type: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
         collection: str | Omit = omit,
+        environment: str | Omit = omit,
         body: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -175,12 +177,13 @@ class SchemasResource(SyncAPIResource):
         or already has a description requires both.
 
         Args:
-          environment: The environment slug.
-
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           collection: The object collection, required when `item_type` is `object`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -202,9 +205,9 @@ class SchemasResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
                         "collection": collection,
+                        "environment": environment,
                     },
                     schema_upsert_params.SchemaUpsertParams,
                 ),
@@ -216,9 +219,9 @@ class SchemasResource(SyncAPIResource):
         self,
         item_type: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
         collection: str | Omit = omit,
+        environment: str | Omit = omit,
         body: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -232,12 +235,13 @@ class SchemasResource(SyncAPIResource):
         would require, without saving any changes.
 
         Args:
-          environment: The environment slug.
-
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           collection: The object collection, required when `item_type` is `object`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -259,9 +263,9 @@ class SchemasResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
                         "collection": collection,
+                        "environment": environment,
                     },
                     schema_validate_params.SchemaValidateParams,
                 ),
@@ -294,9 +298,9 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         item_type: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
         collection: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -309,12 +313,13 @@ class AsyncSchemasResource(AsyncAPIResource):
         a given environment, including all of its configured properties.
 
         Args:
-          environment: The environment slug.
-
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           collection: The object collection, required when `item_type` is `object`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -335,9 +340,9 @@ class AsyncSchemasResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
                         "collection": collection,
+                        "environment": environment,
                     },
                     schema_retrieve_params.SchemaRetrieveParams,
                 ),
@@ -348,8 +353,8 @@ class AsyncSchemasResource(AsyncAPIResource):
     async def list(
         self,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         item_type: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -364,10 +369,11 @@ class AsyncSchemasResource(AsyncAPIResource):
         inherited from the parent environment.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           item_type: Filter schemas by item type (`user`, `tenant`, or `object`).
 
@@ -388,8 +394,8 @@ class AsyncSchemasResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                         "item_type": item_type,
                     },
                     schema_list_params.SchemaListParams,
@@ -402,9 +408,9 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         item_type: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
         collection: str | Omit = omit,
+        environment: str | Omit = omit,
         body: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -424,12 +430,13 @@ class AsyncSchemasResource(AsyncAPIResource):
         or already has a description requires both.
 
         Args:
-          environment: The environment slug.
-
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           collection: The object collection, required when `item_type` is `object`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -451,9 +458,9 @@ class AsyncSchemasResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
                         "collection": collection,
+                        "environment": environment,
                     },
                     schema_upsert_params.SchemaUpsertParams,
                 ),
@@ -465,9 +472,9 @@ class AsyncSchemasResource(AsyncAPIResource):
         self,
         item_type: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
         collection: str | Omit = omit,
+        environment: str | Omit = omit,
         body: object | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -481,12 +488,13 @@ class AsyncSchemasResource(AsyncAPIResource):
         would require, without saving any changes.
 
         Args:
-          environment: The environment slug.
-
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           collection: The object collection, required when `item_type` is `object`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -508,9 +516,9 @@ class AsyncSchemasResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
                         "collection": collection,
+                        "environment": environment,
                     },
                     schema_validate_params.SchemaValidateParams,
                 ),

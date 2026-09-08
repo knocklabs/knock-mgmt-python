@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["VariableListParams"]
 
 
 class VariableListParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     after: str
     """The cursor to fetch entries after."""
 
@@ -20,7 +17,16 @@ class VariableListParams(TypedDict, total=False):
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
+    """
+
+    environment: str
+    """The environment slug.
+
+    When omitted, the account's default environment is used for authorization while
+    the response remains project-scoped.
     """
 
     limit: int

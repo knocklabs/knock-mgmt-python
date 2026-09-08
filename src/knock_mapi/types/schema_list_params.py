@@ -2,20 +2,22 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["SchemaListParams"]
 
 
 class SchemaListParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     item_type: str
     """Filter schemas by item type (`user`, `tenant`, or `object`)."""

@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import Union
 from datetime import datetime
-from typing_extensions import Required, Annotated, TypedDict
+from typing_extensions import Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
@@ -12,14 +12,16 @@ __all__ = ["BroadcastSendParams"]
 
 
 class BroadcastSendParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     send_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """When to send the broadcast.

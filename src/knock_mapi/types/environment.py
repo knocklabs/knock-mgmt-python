@@ -34,6 +34,9 @@ class Environment(BaseModel):
     updated_at: datetime
     """The timestamp of when the environment was last updated."""
 
+    visibility: Literal["visible", "hidden"]
+    """Whether the environment is part of the account catalog."""
+
     deleted_at: Optional[datetime] = None
     """The timestamp of when the environment was deleted."""
 

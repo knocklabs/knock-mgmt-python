@@ -8,11 +8,11 @@ __all__ = ["GoalCloneParams", "Clone"]
 
 
 class GoalCloneParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     clone: Required[Clone]
     """The destination key, name, and environment for the cloned goal."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
 
 class Clone(TypedDict, total=False):

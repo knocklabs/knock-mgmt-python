@@ -20,6 +20,12 @@ class TestAPIKeys:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_exchange(self, client: KnockMgmt) -> None:
+        api_key = client.api_keys.exchange()
+        assert_matches_type(APIKeyExchangeResponse, api_key, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_exchange_with_all_params(self, client: KnockMgmt) -> None:
         api_key = client.api_keys.exchange(
             environment="development",
         )
@@ -28,9 +34,7 @@ class TestAPIKeys:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_exchange(self, client: KnockMgmt) -> None:
-        response = client.api_keys.with_raw_response.exchange(
-            environment="development",
-        )
+        response = client.api_keys.with_raw_response.exchange()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -40,9 +44,7 @@ class TestAPIKeys:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_exchange(self, client: KnockMgmt) -> None:
-        with client.api_keys.with_streaming_response.exchange(
-            environment="development",
-        ) as response:
+        with client.api_keys.with_streaming_response.exchange() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -60,6 +62,12 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_exchange(self, async_client: AsyncKnockMgmt) -> None:
+        api_key = await async_client.api_keys.exchange()
+        assert_matches_type(APIKeyExchangeResponse, api_key, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_exchange_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         api_key = await async_client.api_keys.exchange(
             environment="development",
         )
@@ -68,9 +76,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_exchange(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.api_keys.with_raw_response.exchange(
-            environment="development",
-        )
+        response = await async_client.api_keys.with_raw_response.exchange()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,9 +86,7 @@ class TestAsyncAPIKeys:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_exchange(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.api_keys.with_streaming_response.exchange(
-            environment="development",
-        ) as response:
+        async with async_client.api_keys.with_streaming_response.exchange() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

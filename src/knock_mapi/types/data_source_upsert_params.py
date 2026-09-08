@@ -10,9 +10,6 @@ __all__ = ["DataSourceUpsertParams"]
 
 
 class DataSourceUpsertParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     source: Required[SourceRequestParam]
     """
     A source request for setting a source and its environment-specific
@@ -21,3 +18,6 @@ class DataSourceUpsertParams(TypedDict, total=False):
 
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""

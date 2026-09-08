@@ -16,7 +16,7 @@ from ..types import (
     guide_validate_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, required_args, maybe_transform, async_maybe_transform
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -65,9 +65,9 @@ class GuidesResource(SyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -76,16 +76,18 @@ class GuidesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Guide:
-        """
-        Get a guide by its key.
+        """Get a guide by its key.
 
         Args:
-          environment: The environment slug.
+          annotate: Whether to annotate the resource.
 
-          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+        Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -109,9 +111,9 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     guide_retrieve_params.GuideRetrieveParams,
@@ -123,11 +125,11 @@ class GuidesResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -141,16 +143,17 @@ class GuidesResource(SyncAPIResource):
         Returns a paginated list of guides available in a given environment.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -175,11 +178,11 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -194,9 +197,9 @@ class GuidesResource(SyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         status: bool,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -213,12 +216,13 @@ class GuidesResource(SyncAPIResource):
         without needing to go through environment promotion.
 
         Args:
-          environment: The environment slug.
-
           status: Whether to activate or deactivate the guide.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -235,8 +239,8 @@ class GuidesResource(SyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -255,10 +259,11 @@ class GuidesResource(SyncAPIResource):
         without needing to go through environment promotion.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           from_: When to activate the guide. If provided, the guide will be scheduled to activate
               at this time. Must be in ISO 8601 UTC format.
@@ -276,14 +281,13 @@ class GuidesResource(SyncAPIResource):
         """
         ...
 
-    @required_args(["environment", "status"], ["environment"])
     def activate(
         self,
         guide_key: str,
         *,
-        environment: str,
         status: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -312,8 +316,8 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     guide_activate_params.GuideActivateParams,
                 ),
@@ -358,13 +362,13 @@ class GuidesResource(SyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         guide: GuideRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -379,8 +383,6 @@ class GuidesResource(SyncAPIResource):
         Note: this endpoint only operates on guides in the "development" environment.
 
         Args:
-          environment: The environment slug.
-
           guide: A request to create or update a guide.
 
           allow_empty: When used with commit, creates a new version with identical content and commits
@@ -388,12 +390,15 @@ class GuidesResource(SyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -419,12 +424,12 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     guide_upsert_params.GuideUpsertParams,
@@ -437,9 +442,9 @@ class GuidesResource(SyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         guide: GuideRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -453,12 +458,13 @@ class GuidesResource(SyncAPIResource):
         Note: Validating a guide is only done in the development environment context.
 
         Args:
-          environment: The environment slug.
-
           guide: A request to create or update a guide.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -480,8 +486,8 @@ class GuidesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     guide_validate_params.GuideValidateParams,
                 ),
@@ -518,9 +524,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -529,16 +535,18 @@ class AsyncGuidesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> Guide:
-        """
-        Get a guide by its key.
+        """Get a guide by its key.
 
         Args:
-          environment: The environment slug.
+          annotate: Whether to annotate the resource.
 
-          annotate: Whether to annotate the resource. Only used in the Knock CLI.
+        Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -562,9 +570,9 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     guide_retrieve_params.GuideRetrieveParams,
@@ -576,11 +584,11 @@ class AsyncGuidesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -594,16 +602,17 @@ class AsyncGuidesResource(AsyncAPIResource):
         Returns a paginated list of guides available in a given environment.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -628,11 +637,11 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -647,9 +656,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         status: bool,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -666,12 +675,13 @@ class AsyncGuidesResource(AsyncAPIResource):
         without needing to go through environment promotion.
 
         Args:
-          environment: The environment slug.
-
           status: Whether to activate or deactivate the guide.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -688,8 +698,8 @@ class AsyncGuidesResource(AsyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -708,10 +718,11 @@ class AsyncGuidesResource(AsyncAPIResource):
         without needing to go through environment promotion.
 
         Args:
-          environment: The environment slug.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           from_: When to activate the guide. If provided, the guide will be scheduled to activate
               at this time. Must be in ISO 8601 UTC format.
@@ -729,14 +740,13 @@ class AsyncGuidesResource(AsyncAPIResource):
         """
         ...
 
-    @required_args(["environment", "status"], ["environment"])
     async def activate(
         self,
         guide_key: str,
         *,
-        environment: str,
         status: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         from_: Union[str, datetime] | Omit = omit,
         until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -765,8 +775,8 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     guide_activate_params.GuideActivateParams,
                 ),
@@ -811,13 +821,13 @@ class AsyncGuidesResource(AsyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         guide: GuideRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -832,8 +842,6 @@ class AsyncGuidesResource(AsyncAPIResource):
         Note: this endpoint only operates on guides in the "development" environment.
 
         Args:
-          environment: The environment slug.
-
           guide: A request to create or update a guide.
 
           allow_empty: When used with commit, creates a new version with identical content and commits
@@ -841,12 +849,15 @@ class AsyncGuidesResource(AsyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -872,12 +883,12 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     guide_upsert_params.GuideUpsertParams,
@@ -890,9 +901,9 @@ class AsyncGuidesResource(AsyncAPIResource):
         self,
         guide_key: str,
         *,
-        environment: str,
         guide: GuideRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -906,12 +917,13 @@ class AsyncGuidesResource(AsyncAPIResource):
         Note: Validating a guide is only done in the development environment context.
 
         Args:
-          environment: The environment slug.
-
           guide: A request to create or update a guide.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -933,8 +945,8 @@ class AsyncGuidesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     guide_validate_params.GuideValidateParams,
                 ),

@@ -51,9 +51,9 @@ class StepsResource(SyncAPIResource):
         step_ref: str,
         *,
         workflow_key: str,
-        environment: str,
         recipient: RecipientReference,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         actor: Optional[RecipientReference] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
@@ -68,13 +68,14 @@ class StepsResource(SyncAPIResource):
         Generates a rendered template for a given channel step in a workflow.
 
         Args:
-          environment: The environment slug.
-
           recipient: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
@@ -117,8 +118,8 @@ class StepsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     step_preview_template_params.StepPreviewTemplateParams,
                 ),
@@ -154,9 +155,9 @@ class AsyncStepsResource(AsyncAPIResource):
         step_ref: str,
         *,
         workflow_key: str,
-        environment: str,
         recipient: RecipientReference,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         actor: Optional[RecipientReference] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
@@ -171,13 +172,14 @@ class AsyncStepsResource(AsyncAPIResource):
         Generates a rendered template for a given channel step in a workflow.
 
         Args:
-          environment: The environment slug.
-
           recipient: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           actor: A recipient reference, used when referencing a recipient by either their ID (for
               a user), or by a reference for an object.
@@ -220,8 +222,8 @@ class AsyncStepsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     step_preview_template_params.StepPreviewTemplateParams,
                 ),

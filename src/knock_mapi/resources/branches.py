@@ -54,7 +54,7 @@ class BranchesResource(SyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -66,7 +66,7 @@ class BranchesResource(SyncAPIResource):
         Creates a new branch off of the development environment with the given slug.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -94,7 +94,7 @@ class BranchesResource(SyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -106,7 +106,7 @@ class BranchesResource(SyncAPIResource):
         Returns a single branch by the `branch_slug`.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -133,9 +133,9 @@ class BranchesResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -150,11 +150,11 @@ class BranchesResource(SyncAPIResource):
         their last commit time (newest first).
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           limit: The number of entries to fetch per-page.
 
@@ -176,9 +176,9 @@ class BranchesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "before": before,
+                        "environment": environment,
                         "limit": limit,
                     },
                     branch_list_params.BranchListParams,
@@ -191,7 +191,7 @@ class BranchesResource(SyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,7 +203,7 @@ class BranchesResource(SyncAPIResource):
         Deletes a branch by the `branch_slug`.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -232,7 +232,7 @@ class BranchesResource(SyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -245,7 +245,7 @@ class BranchesResource(SyncAPIResource):
         resources while preserving commits made on the branch.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -296,7 +296,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -308,7 +308,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         Creates a new branch off of the development environment with the given slug.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -338,7 +338,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -350,7 +350,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         Returns a single branch by the `branch_slug`.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -379,9 +379,9 @@ class AsyncBranchesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -396,11 +396,11 @@ class AsyncBranchesResource(AsyncAPIResource):
         their last commit time (newest first).
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           limit: The number of entries to fetch per-page.
 
@@ -422,9 +422,9 @@ class AsyncBranchesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "before": before,
+                        "environment": environment,
                         "limit": limit,
                     },
                     branch_list_params.BranchListParams,
@@ -437,7 +437,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -449,7 +449,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         Deletes a branch by the `branch_slug`.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -480,7 +480,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         self,
         branch_slug: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -493,7 +493,7 @@ class AsyncBranchesResource(AsyncAPIResource):
         resources while preserving commits made on the branch.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 

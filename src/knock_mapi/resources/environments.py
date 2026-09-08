@@ -92,10 +92,8 @@ class EnvironmentsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[Environment]:
-        """Returns a paginated list of environments.
-
-        The environments will be returned in
-        order of their index, with the `development` environment first.
+        """
+        Returns a paginated list of visible environments in catalog order.
 
         Args:
           after: The cursor to fetch entries after.
@@ -203,10 +201,8 @@ class AsyncEnvironmentsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[Environment, AsyncEntriesCursor[Environment]]:
-        """Returns a paginated list of environments.
-
-        The environments will be returned in
-        order of their index, with the `development` environment first.
+        """
+        Returns a paginated list of visible environments in catalog order.
 
         Args:
           after: The cursor to fetch entries after.

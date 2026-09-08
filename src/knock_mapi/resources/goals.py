@@ -62,9 +62,9 @@ class GoalsResource(SyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -76,12 +76,13 @@ class GoalsResource(SyncAPIResource):
         Retrieve a goal by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -102,9 +103,9 @@ class GoalsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                     },
                     goal_retrieve_params.GoalRetrieveParams,
                 ),
@@ -115,11 +116,11 @@ class GoalsResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -132,16 +133,17 @@ class GoalsResource(SyncAPIResource):
         Returns a paginated list of goals for the given environment.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           limit: The number of entries to fetch per-page.
 
@@ -163,11 +165,11 @@ class GoalsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "limit": limit,
                     },
                     goal_list_params.GoalListParams,
@@ -180,7 +182,7 @@ class GoalsResource(SyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -194,7 +196,7 @@ class GoalsResource(SyncAPIResource):
         or broadcast is attached to the goal.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -222,8 +224,8 @@ class GoalsResource(SyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         clone: goal_clone_params.Clone,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -235,9 +237,9 @@ class GoalsResource(SyncAPIResource):
         Clones a goal into a destination environment.
 
         Args:
-          environment: The environment slug.
-
           clone: The destination key, name, and environment for the cloned goal.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -266,9 +268,9 @@ class GoalsResource(SyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         goal: GoalRequestParam,
         annotate: bool | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -282,11 +284,11 @@ class GoalsResource(SyncAPIResource):
         parameter.
 
         Args:
-          environment: The environment slug.
-
           goal: A goal payload for upsert or validate.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -308,8 +310,8 @@ class GoalsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
+                        "environment": environment,
                     },
                     goal_upsert_params.GoalUpsertParams,
                 ),
@@ -321,9 +323,9 @@ class GoalsResource(SyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         goal: GoalRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -335,12 +337,13 @@ class GoalsResource(SyncAPIResource):
         Validates a goal payload without persisting it.
 
         Args:
-          environment: The environment slug.
-
           goal: A goal payload for upsert or validate.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -362,8 +365,8 @@ class GoalsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     goal_validate_params.GoalValidateParams,
                 ),
@@ -400,9 +403,9 @@ class AsyncGoalsResource(AsyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -414,12 +417,13 @@ class AsyncGoalsResource(AsyncAPIResource):
         Retrieve a goal by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -440,9 +444,9 @@ class AsyncGoalsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                     },
                     goal_retrieve_params.GoalRetrieveParams,
                 ),
@@ -453,11 +457,11 @@ class AsyncGoalsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -470,16 +474,17 @@ class AsyncGoalsResource(AsyncAPIResource):
         Returns a paginated list of goals for the given environment.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           limit: The number of entries to fetch per-page.
 
@@ -501,11 +506,11 @@ class AsyncGoalsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "limit": limit,
                     },
                     goal_list_params.GoalListParams,
@@ -518,7 +523,7 @@ class AsyncGoalsResource(AsyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -532,7 +537,7 @@ class AsyncGoalsResource(AsyncAPIResource):
         or broadcast is attached to the goal.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -560,8 +565,8 @@ class AsyncGoalsResource(AsyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         clone: goal_clone_params.Clone,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -573,9 +578,9 @@ class AsyncGoalsResource(AsyncAPIResource):
         Clones a goal into a destination environment.
 
         Args:
-          environment: The environment slug.
-
           clone: The destination key, name, and environment for the cloned goal.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -604,9 +609,9 @@ class AsyncGoalsResource(AsyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         goal: GoalRequestParam,
         annotate: bool | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -620,11 +625,11 @@ class AsyncGoalsResource(AsyncAPIResource):
         parameter.
 
         Args:
-          environment: The environment slug.
-
           goal: A goal payload for upsert or validate.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -646,8 +651,8 @@ class AsyncGoalsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
+                        "environment": environment,
                     },
                     goal_upsert_params.GoalUpsertParams,
                 ),
@@ -659,9 +664,9 @@ class AsyncGoalsResource(AsyncAPIResource):
         self,
         goal_key: str,
         *,
-        environment: str,
         goal: GoalRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -673,12 +678,13 @@ class AsyncGoalsResource(AsyncAPIResource):
         Validates a goal payload without persisting it.
 
         Args:
-          environment: The environment slug.
-
           goal: A goal payload for upsert or validate.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -700,8 +706,8 @@ class AsyncGoalsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     goal_validate_params.GoalValidateParams,
                 ),

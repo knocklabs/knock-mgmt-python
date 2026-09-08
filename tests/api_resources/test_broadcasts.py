@@ -30,7 +30,6 @@ class TestBroadcasts:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
@@ -39,9 +38,9 @@ class TestBroadcasts:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
@@ -51,7 +50,6 @@ class TestBroadcasts:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -64,7 +62,6 @@ class TestBroadcasts:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,26 +77,23 @@ class TestBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             client.broadcasts.with_raw_response.retrieve(
                 broadcast_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        broadcast = client.broadcasts.list(
-            environment="development",
-        )
+        broadcast = client.broadcasts.list()
         assert_matches_type(SyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -108,9 +102,7 @@ class TestBroadcasts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.broadcasts.with_raw_response.list(
-            environment="development",
-        )
+        response = client.broadcasts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -120,9 +112,7 @@ class TestBroadcasts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.broadcasts.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.broadcasts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -136,7 +126,6 @@ class TestBroadcasts:
     def test_method_cancel(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
@@ -145,8 +134,8 @@ class TestBroadcasts:
     def test_method_cancel_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
@@ -155,7 +144,6 @@ class TestBroadcasts:
     def test_raw_response_cancel(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -168,7 +156,6 @@ class TestBroadcasts:
     def test_streaming_response_cancel(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -184,7 +171,6 @@ class TestBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             client.broadcasts.with_raw_response.cancel(
                 broadcast_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -192,7 +178,6 @@ class TestBroadcasts:
     def test_method_send(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.send(
             broadcast_key="broadcast_key",
-            environment="development",
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
@@ -201,8 +186,8 @@ class TestBroadcasts:
     def test_method_send_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.send(
             broadcast_key="broadcast_key",
-            environment="development",
             branch="feature-branch",
+            environment="development",
             send_at=parse_datetime("2024-03-20T10:00:00Z"),
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
@@ -212,7 +197,6 @@ class TestBroadcasts:
     def test_raw_response_send(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.send(
             broadcast_key="broadcast_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -225,7 +209,6 @@ class TestBroadcasts:
     def test_streaming_response_send(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.send(
             broadcast_key="broadcast_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -241,7 +224,6 @@ class TestBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             client.broadcasts.with_raw_response.send(
                 broadcast_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -249,7 +231,6 @@ class TestBroadcasts:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -268,7 +249,6 @@ class TestBroadcasts:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -326,6 +306,7 @@ class TestBroadcasts:
             },
             annotate=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
@@ -334,7 +315,6 @@ class TestBroadcasts:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -357,7 +337,6 @@ class TestBroadcasts:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -383,7 +362,6 @@ class TestBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             client.broadcasts.with_raw_response.upsert(
                 broadcast_key="",
-                environment="development",
                 broadcast={
                     "name": "My Broadcast",
                     "steps": [
@@ -401,7 +379,6 @@ class TestBroadcasts:
     def test_method_validate(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -420,7 +397,6 @@ class TestBroadcasts:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         broadcast = client.broadcasts.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -477,6 +453,7 @@ class TestBroadcasts:
                 "target_audience_key": "all-users",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
@@ -485,7 +462,6 @@ class TestBroadcasts:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.broadcasts.with_raw_response.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -508,7 +484,6 @@ class TestBroadcasts:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.broadcasts.with_streaming_response.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -534,7 +509,6 @@ class TestBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             client.broadcasts.with_raw_response.validate(
                 broadcast_key="",
-                environment="development",
                 broadcast={
                     "name": "My Broadcast",
                     "steps": [
@@ -558,7 +532,6 @@ class TestAsyncBroadcasts:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
 
@@ -567,9 +540,9 @@ class TestAsyncBroadcasts:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Broadcast, broadcast, path=["response"])
@@ -579,7 +552,6 @@ class TestAsyncBroadcasts:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -592,7 +564,6 @@ class TestAsyncBroadcasts:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.retrieve(
             broadcast_key="broadcast_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -608,26 +579,23 @@ class TestAsyncBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             await async_client.broadcasts.with_raw_response.retrieve(
                 broadcast_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        broadcast = await async_client.broadcasts.list(
-            environment="development",
-        )
+        broadcast = await async_client.broadcasts.list()
         assert_matches_type(AsyncEntriesCursor[Broadcast], broadcast, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -636,9 +604,7 @@ class TestAsyncBroadcasts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.broadcasts.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.broadcasts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -648,9 +614,7 @@ class TestAsyncBroadcasts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.broadcasts.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.broadcasts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -664,7 +628,6 @@ class TestAsyncBroadcasts:
     async def test_method_cancel(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
@@ -673,8 +636,8 @@ class TestAsyncBroadcasts:
     async def test_method_cancel_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(BroadcastCancelResponse, broadcast, path=["response"])
 
@@ -683,7 +646,6 @@ class TestAsyncBroadcasts:
     async def test_raw_response_cancel(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -696,7 +658,6 @@ class TestAsyncBroadcasts:
     async def test_streaming_response_cancel(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.cancel(
             broadcast_key="broadcast_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -712,7 +673,6 @@ class TestAsyncBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             await async_client.broadcasts.with_raw_response.cancel(
                 broadcast_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -720,7 +680,6 @@ class TestAsyncBroadcasts:
     async def test_method_send(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.send(
             broadcast_key="broadcast_key",
-            environment="development",
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
 
@@ -729,8 +688,8 @@ class TestAsyncBroadcasts:
     async def test_method_send_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.send(
             broadcast_key="broadcast_key",
-            environment="development",
             branch="feature-branch",
+            environment="development",
             send_at=parse_datetime("2024-03-20T10:00:00Z"),
         )
         assert_matches_type(BroadcastSendResponse, broadcast, path=["response"])
@@ -740,7 +699,6 @@ class TestAsyncBroadcasts:
     async def test_raw_response_send(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.send(
             broadcast_key="broadcast_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -753,7 +711,6 @@ class TestAsyncBroadcasts:
     async def test_streaming_response_send(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.send(
             broadcast_key="broadcast_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -769,7 +726,6 @@ class TestAsyncBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             await async_client.broadcasts.with_raw_response.send(
                 broadcast_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -777,7 +733,6 @@ class TestAsyncBroadcasts:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -796,7 +751,6 @@ class TestAsyncBroadcasts:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -854,6 +808,7 @@ class TestAsyncBroadcasts:
             },
             annotate=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(BroadcastUpsertResponse, broadcast, path=["response"])
 
@@ -862,7 +817,6 @@ class TestAsyncBroadcasts:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -885,7 +839,6 @@ class TestAsyncBroadcasts:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.upsert(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -911,7 +864,6 @@ class TestAsyncBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             await async_client.broadcasts.with_raw_response.upsert(
                 broadcast_key="",
-                environment="development",
                 broadcast={
                     "name": "My Broadcast",
                     "steps": [
@@ -929,7 +881,6 @@ class TestAsyncBroadcasts:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -948,7 +899,6 @@ class TestAsyncBroadcasts:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         broadcast = await async_client.broadcasts.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -1005,6 +955,7 @@ class TestAsyncBroadcasts:
                 "target_audience_key": "all-users",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(BroadcastValidateResponse, broadcast, path=["response"])
 
@@ -1013,7 +964,6 @@ class TestAsyncBroadcasts:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.broadcasts.with_raw_response.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -1036,7 +986,6 @@ class TestAsyncBroadcasts:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.broadcasts.with_streaming_response.validate(
             broadcast_key="broadcast_key",
-            environment="development",
             broadcast={
                 "name": "My Broadcast",
                 "steps": [
@@ -1062,7 +1011,6 @@ class TestAsyncBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             await async_client.broadcasts.with_raw_response.validate(
                 broadcast_key="",
-                environment="development",
                 broadcast={
                     "name": "My Broadcast",
                     "steps": [

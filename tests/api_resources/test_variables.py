@@ -63,19 +63,17 @@ class TestVariables:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        variable = client.variables.list(
-            environment="development",
-        )
+        variable = client.variables.list()
         assert_matches_type(SyncEntriesCursor[Variable], variable, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         variable = client.variables.list(
-            environment="development",
             after="after",
             before="before",
             branch="feature-branch",
+            environment="development",
             limit=0,
             type="public",
         )
@@ -84,9 +82,7 @@ class TestVariables:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.variables.with_raw_response.list(
-            environment="development",
-        )
+        response = client.variables.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -96,9 +92,7 @@ class TestVariables:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.variables.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.variables.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -158,19 +152,17 @@ class TestAsyncVariables:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        variable = await async_client.variables.list(
-            environment="development",
-        )
+        variable = await async_client.variables.list()
         assert_matches_type(AsyncEntriesCursor[Variable], variable, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         variable = await async_client.variables.list(
-            environment="development",
             after="after",
             before="before",
             branch="feature-branch",
+            environment="development",
             limit=0,
             type="public",
         )
@@ -179,9 +171,7 @@ class TestAsyncVariables:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.variables.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.variables.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -191,9 +181,7 @@ class TestAsyncVariables:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.variables.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.variables.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

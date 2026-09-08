@@ -60,9 +60,9 @@ class AudiencesResource(SyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -75,12 +75,13 @@ class AudiencesResource(SyncAPIResource):
         Retrieve an audience by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -106,9 +107,9 @@ class AudiencesResource(SyncAPIResource):
                     timeout=timeout,
                     query=maybe_transform(
                         {
-                            "environment": environment,
                             "annotate": annotate,
                             "branch": branch,
+                            "environment": environment,
                             "hide_uncommitted_changes": hide_uncommitted_changes,
                         },
                         audience_retrieve_params.AudienceRetrieveParams,
@@ -121,11 +122,11 @@ class AudiencesResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -139,16 +140,17 @@ class AudiencesResource(SyncAPIResource):
         Returns a paginated list of audiences for the given environment.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -173,11 +175,11 @@ class AudiencesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -191,7 +193,7 @@ class AudiencesResource(SyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -203,7 +205,7 @@ class AudiencesResource(SyncAPIResource):
         Archives a given audience across all environments.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -231,13 +233,13 @@ class AudiencesResource(SyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
         audience: AudienceRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -251,8 +253,6 @@ class AudiencesResource(SyncAPIResource):
         exist.
 
         Args:
-          environment: The environment slug.
-
           audience: An audience object with attributes to create or update an audience. Use
               `type: static` for audiences with explicitly managed members, or `type: dynamic`
               for audiences with segment-based membership.
@@ -262,12 +262,15 @@ class AudiencesResource(SyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -293,12 +296,12 @@ class AudiencesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     audience_upsert_params.AudienceUpsertParams,
@@ -311,9 +314,9 @@ class AudiencesResource(SyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
         audience: AudienceRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -325,14 +328,15 @@ class AudiencesResource(SyncAPIResource):
         Validates an audience payload without persisting it.
 
         Args:
-          environment: The environment slug.
-
           audience: An audience object with attributes to create or update an audience. Use
               `type: static` for audiences with explicitly managed members, or `type: dynamic`
               for audiences with segment-based membership.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -354,8 +358,8 @@ class AudiencesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     audience_validate_params.AudienceValidateParams,
                 ),
@@ -390,9 +394,9 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -405,12 +409,13 @@ class AsyncAudiencesResource(AsyncAPIResource):
         Retrieve an audience by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -436,9 +441,9 @@ class AsyncAudiencesResource(AsyncAPIResource):
                     timeout=timeout,
                     query=await async_maybe_transform(
                         {
-                            "environment": environment,
                             "annotate": annotate,
                             "branch": branch,
+                            "environment": environment,
                             "hide_uncommitted_changes": hide_uncommitted_changes,
                         },
                         audience_retrieve_params.AudienceRetrieveParams,
@@ -451,11 +456,11 @@ class AsyncAudiencesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -469,16 +474,17 @@ class AsyncAudiencesResource(AsyncAPIResource):
         Returns a paginated list of audiences for the given environment.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -503,11 +509,11 @@ class AsyncAudiencesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -521,7 +527,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -533,7 +539,7 @@ class AsyncAudiencesResource(AsyncAPIResource):
         Archives a given audience across all environments.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -563,13 +569,13 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
         audience: AudienceRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -583,8 +589,6 @@ class AsyncAudiencesResource(AsyncAPIResource):
         exist.
 
         Args:
-          environment: The environment slug.
-
           audience: An audience object with attributes to create or update an audience. Use
               `type: static` for audiences with explicitly managed members, or `type: dynamic`
               for audiences with segment-based membership.
@@ -594,12 +598,15 @@ class AsyncAudiencesResource(AsyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -625,12 +632,12 @@ class AsyncAudiencesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     audience_upsert_params.AudienceUpsertParams,
@@ -643,9 +650,9 @@ class AsyncAudiencesResource(AsyncAPIResource):
         self,
         audience_key: str,
         *,
-        environment: str,
         audience: AudienceRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -657,14 +664,15 @@ class AsyncAudiencesResource(AsyncAPIResource):
         Validates an audience payload without persisting it.
 
         Args:
-          environment: The environment slug.
-
           audience: An audience object with attributes to create or update an audience. Use
               `type: static` for audiences with explicitly managed members, or `type: dynamic`
               for audiences with segment-based membership.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -686,8 +694,8 @@ class AsyncAudiencesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     audience_validate_params.AudienceValidateParams,
                 ),

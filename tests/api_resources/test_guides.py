@@ -30,7 +30,6 @@ class TestGuides:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         guide = client.guides.retrieve(
             guide_key="guide_key",
-            environment="development",
         )
         assert_matches_type(Guide, guide, path=["response"])
 
@@ -39,9 +38,9 @@ class TestGuides:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.retrieve(
             guide_key="guide_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Guide, guide, path=["response"])
@@ -51,7 +50,6 @@ class TestGuides:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.retrieve(
             guide_key="guide_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -64,7 +62,6 @@ class TestGuides:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.retrieve(
             guide_key="guide_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,26 +77,23 @@ class TestGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             client.guides.with_raw_response.retrieve(
                 guide_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        guide = client.guides.list(
-            environment="development",
-        )
+        guide = client.guides.list()
         assert_matches_type(SyncEntriesCursor[Guide], guide, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -108,9 +102,7 @@ class TestGuides:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.guides.with_raw_response.list(
-            environment="development",
-        )
+        response = client.guides.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -120,9 +112,7 @@ class TestGuides:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.guides.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.guides.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -136,7 +126,6 @@ class TestGuides:
     def test_method_activate_overload_1(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
@@ -146,9 +135,9 @@ class TestGuides:
     def test_method_activate_with_all_params_overload_1(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
@@ -157,7 +146,6 @@ class TestGuides:
     def test_raw_response_activate_overload_1(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
         )
 
@@ -171,7 +159,6 @@ class TestGuides:
     def test_streaming_response_activate_overload_1(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
         ) as response:
             assert not response.is_closed
@@ -188,7 +175,6 @@ class TestGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             client.guides.with_raw_response.activate(
                 guide_key="",
-                environment="development",
                 status=True,
             )
 
@@ -197,7 +183,6 @@ class TestGuides:
     def test_method_activate_overload_2(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
             guide_key="guide_key",
-            environment="development",
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
@@ -206,8 +191,8 @@ class TestGuides:
     def test_method_activate_with_all_params_overload_2(self, client: KnockMgmt) -> None:
         guide = client.guides.activate(
             guide_key="guide_key",
-            environment="development",
             branch="feature-branch",
+            environment="development",
             from_=parse_datetime("2024-03-20T10:00:00Z"),
             until=parse_datetime("2024-03-21T10:00:00Z"),
         )
@@ -218,7 +203,6 @@ class TestGuides:
     def test_raw_response_activate_overload_2(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.activate(
             guide_key="guide_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -231,7 +215,6 @@ class TestGuides:
     def test_streaming_response_activate_overload_2(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.activate(
             guide_key="guide_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -247,7 +230,6 @@ class TestGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             client.guides.with_raw_response.activate(
                 guide_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -297,7 +279,6 @@ class TestGuides:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         guide = client.guides.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -318,7 +299,6 @@ class TestGuides:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -372,6 +352,7 @@ class TestGuides:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
@@ -381,7 +362,6 @@ class TestGuides:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -406,7 +386,6 @@ class TestGuides:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -434,7 +413,6 @@ class TestGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             client.guides.with_raw_response.upsert(
                 guide_key="",
-                environment="development",
                 guide={
                     "channel_key": "in-app-guide",
                     "name": "Getting Started Guide",
@@ -454,7 +432,6 @@ class TestGuides:
     def test_method_validate(self, client: KnockMgmt) -> None:
         guide = client.guides.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -475,7 +452,6 @@ class TestGuides:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         guide = client.guides.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -525,6 +501,7 @@ class TestGuides:
                 },
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
@@ -533,7 +510,6 @@ class TestGuides:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.guides.with_raw_response.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -558,7 +534,6 @@ class TestGuides:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.guides.with_streaming_response.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -586,7 +561,6 @@ class TestGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             client.guides.with_raw_response.validate(
                 guide_key="",
-                environment="development",
                 guide={
                     "channel_key": "in-app-guide",
                     "name": "Getting Started Guide",
@@ -612,7 +586,6 @@ class TestAsyncGuides:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.retrieve(
             guide_key="guide_key",
-            environment="development",
         )
         assert_matches_type(Guide, guide, path=["response"])
 
@@ -621,9 +594,9 @@ class TestAsyncGuides:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.retrieve(
             guide_key="guide_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Guide, guide, path=["response"])
@@ -633,7 +606,6 @@ class TestAsyncGuides:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.retrieve(
             guide_key="guide_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -646,7 +618,6 @@ class TestAsyncGuides:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.retrieve(
             guide_key="guide_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -662,26 +633,23 @@ class TestAsyncGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             await async_client.guides.with_raw_response.retrieve(
                 guide_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        guide = await async_client.guides.list(
-            environment="development",
-        )
+        guide = await async_client.guides.list()
         assert_matches_type(AsyncEntriesCursor[Guide], guide, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -690,9 +658,7 @@ class TestAsyncGuides:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.guides.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.guides.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -702,9 +668,7 @@ class TestAsyncGuides:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.guides.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.guides.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -718,7 +682,6 @@ class TestAsyncGuides:
     async def test_method_activate_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
@@ -728,9 +691,9 @@ class TestAsyncGuides:
     async def test_method_activate_with_all_params_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
@@ -739,7 +702,6 @@ class TestAsyncGuides:
     async def test_raw_response_activate_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
         )
 
@@ -753,7 +715,6 @@ class TestAsyncGuides:
     async def test_streaming_response_activate_overload_1(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.activate(
             guide_key="guide_key",
-            environment="development",
             status=True,
         ) as response:
             assert not response.is_closed
@@ -770,7 +731,6 @@ class TestAsyncGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             await async_client.guides.with_raw_response.activate(
                 guide_key="",
-                environment="development",
                 status=True,
             )
 
@@ -779,7 +739,6 @@ class TestAsyncGuides:
     async def test_method_activate_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
             guide_key="guide_key",
-            environment="development",
         )
         assert_matches_type(GuideActivateResponse, guide, path=["response"])
 
@@ -788,8 +747,8 @@ class TestAsyncGuides:
     async def test_method_activate_with_all_params_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.activate(
             guide_key="guide_key",
-            environment="development",
             branch="feature-branch",
+            environment="development",
             from_=parse_datetime("2024-03-20T10:00:00Z"),
             until=parse_datetime("2024-03-21T10:00:00Z"),
         )
@@ -800,7 +759,6 @@ class TestAsyncGuides:
     async def test_raw_response_activate_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.activate(
             guide_key="guide_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -813,7 +771,6 @@ class TestAsyncGuides:
     async def test_streaming_response_activate_overload_2(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.activate(
             guide_key="guide_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -829,7 +786,6 @@ class TestAsyncGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             await async_client.guides.with_raw_response.activate(
                 guide_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -879,7 +835,6 @@ class TestAsyncGuides:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -900,7 +855,6 @@ class TestAsyncGuides:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -954,6 +908,7 @@ class TestAsyncGuides:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(GuideUpsertResponse, guide, path=["response"])
@@ -963,7 +918,6 @@ class TestAsyncGuides:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -988,7 +942,6 @@ class TestAsyncGuides:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.upsert(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -1016,7 +969,6 @@ class TestAsyncGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             await async_client.guides.with_raw_response.upsert(
                 guide_key="",
-                environment="development",
                 guide={
                     "channel_key": "in-app-guide",
                     "name": "Getting Started Guide",
@@ -1036,7 +988,6 @@ class TestAsyncGuides:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -1057,7 +1008,6 @@ class TestAsyncGuides:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         guide = await async_client.guides.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -1107,6 +1057,7 @@ class TestAsyncGuides:
                 },
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(GuideValidateResponse, guide, path=["response"])
 
@@ -1115,7 +1066,6 @@ class TestAsyncGuides:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.guides.with_raw_response.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -1140,7 +1090,6 @@ class TestAsyncGuides:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.guides.with_streaming_response.validate(
             guide_key="guide_key",
-            environment="development",
             guide={
                 "channel_key": "in-app-guide",
                 "name": "Getting Started Guide",
@@ -1168,7 +1117,6 @@ class TestAsyncGuides:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `guide_key` but received ''"):
             await async_client.guides.with_raw_response.validate(
                 guide_key="",
-                environment="development",
                 guide={
                     "channel_key": "in-app-guide",
                     "name": "Getting Started Guide",

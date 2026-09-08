@@ -28,7 +28,6 @@ class TestPartials:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         partial = client.partials.retrieve(
             partial_key="partial_key",
-            environment="development",
         )
         assert_matches_type(Partial, partial, path=["response"])
 
@@ -37,9 +36,9 @@ class TestPartials:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         partial = client.partials.retrieve(
             partial_key="partial_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Partial, partial, path=["response"])
@@ -49,7 +48,6 @@ class TestPartials:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.partials.with_raw_response.retrieve(
             partial_key="partial_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -62,7 +60,6 @@ class TestPartials:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.partials.with_streaming_response.retrieve(
             partial_key="partial_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,26 +75,23 @@ class TestPartials:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `partial_key` but received ''"):
             client.partials.with_raw_response.retrieve(
                 partial_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        partial = client.partials.list(
-            environment="development",
-        )
+        partial = client.partials.list()
         assert_matches_type(SyncEntriesCursor[Partial], partial, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         partial = client.partials.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -106,9 +100,7 @@ class TestPartials:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.partials.with_raw_response.list(
-            environment="development",
-        )
+        response = client.partials.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -118,9 +110,7 @@ class TestPartials:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.partials.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.partials.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -133,7 +123,6 @@ class TestPartials:
     @parametrize
     def test_method_preview(self, client: KnockMgmt) -> None:
         partial = client.partials.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -146,7 +135,6 @@ class TestPartials:
     @parametrize
     def test_method_preview_with_all_params(self, client: KnockMgmt) -> None:
         partial = client.partials.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -171,6 +159,7 @@ class TestPartials:
                 "visual_block_enabled": True,
             },
             branch="feature-branch",
+            environment="development",
             data={"name": "bar"},
             layout={"key": "key"},
         )
@@ -180,7 +169,6 @@ class TestPartials:
     @parametrize
     def test_raw_response_preview(self, client: KnockMgmt) -> None:
         response = client.partials.with_raw_response.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -197,7 +185,6 @@ class TestPartials:
     @parametrize
     def test_streaming_response_preview(self, client: KnockMgmt) -> None:
         with client.partials.with_streaming_response.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -217,7 +204,6 @@ class TestPartials:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         partial = client.partials.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -231,7 +217,6 @@ class TestPartials:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         partial = client.partials.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -260,6 +245,7 @@ class TestPartials:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(PartialUpsertResponse, partial, path=["response"])
@@ -269,7 +255,6 @@ class TestPartials:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.partials.with_raw_response.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -287,7 +272,6 @@ class TestPartials:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.partials.with_streaming_response.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -308,7 +292,6 @@ class TestPartials:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `partial_key` but received ''"):
             client.partials.with_raw_response.upsert(
                 partial_key="",
-                environment="development",
                 partial={
                     "content": "<p>Hello, world!</p>",
                     "name": "My Partial",
@@ -321,7 +304,6 @@ class TestPartials:
     def test_method_validate(self, client: KnockMgmt) -> None:
         partial = client.partials.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -335,7 +317,6 @@ class TestPartials:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         partial = client.partials.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -360,6 +341,7 @@ class TestPartials:
                 "visual_block_enabled": True,
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(PartialValidateResponse, partial, path=["response"])
 
@@ -368,7 +350,6 @@ class TestPartials:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.partials.with_raw_response.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -386,7 +367,6 @@ class TestPartials:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.partials.with_streaming_response.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -407,7 +387,6 @@ class TestPartials:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `partial_key` but received ''"):
             client.partials.with_raw_response.validate(
                 partial_key="",
-                environment="development",
                 partial={
                     "content": "<p>Hello, world!</p>",
                     "name": "My Partial",
@@ -426,7 +405,6 @@ class TestAsyncPartials:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.retrieve(
             partial_key="partial_key",
-            environment="development",
         )
         assert_matches_type(Partial, partial, path=["response"])
 
@@ -435,9 +413,9 @@ class TestAsyncPartials:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.retrieve(
             partial_key="partial_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Partial, partial, path=["response"])
@@ -447,7 +425,6 @@ class TestAsyncPartials:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.partials.with_raw_response.retrieve(
             partial_key="partial_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -460,7 +437,6 @@ class TestAsyncPartials:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.partials.with_streaming_response.retrieve(
             partial_key="partial_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -476,26 +452,23 @@ class TestAsyncPartials:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `partial_key` but received ''"):
             await async_client.partials.with_raw_response.retrieve(
                 partial_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        partial = await async_client.partials.list(
-            environment="development",
-        )
+        partial = await async_client.partials.list()
         assert_matches_type(AsyncEntriesCursor[Partial], partial, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -504,9 +477,7 @@ class TestAsyncPartials:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.partials.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.partials.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -516,9 +487,7 @@ class TestAsyncPartials:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.partials.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.partials.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -531,7 +500,6 @@ class TestAsyncPartials:
     @parametrize
     async def test_method_preview(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -544,7 +512,6 @@ class TestAsyncPartials:
     @parametrize
     async def test_method_preview_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -569,6 +536,7 @@ class TestAsyncPartials:
                 "visual_block_enabled": True,
             },
             branch="feature-branch",
+            environment="development",
             data={"name": "bar"},
             layout={"key": "key"},
         )
@@ -578,7 +546,6 @@ class TestAsyncPartials:
     @parametrize
     async def test_raw_response_preview(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.partials.with_raw_response.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -595,7 +562,6 @@ class TestAsyncPartials:
     @parametrize
     async def test_streaming_response_preview(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.partials.with_streaming_response.preview(
-            environment="development",
             partial={
                 "content": "<p>Hello, {{ name }}!</p>",
                 "name": "My Partial",
@@ -615,7 +581,6 @@ class TestAsyncPartials:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -629,7 +594,6 @@ class TestAsyncPartials:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -658,6 +622,7 @@ class TestAsyncPartials:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(PartialUpsertResponse, partial, path=["response"])
@@ -667,7 +632,6 @@ class TestAsyncPartials:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.partials.with_raw_response.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -685,7 +649,6 @@ class TestAsyncPartials:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.partials.with_streaming_response.upsert(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -706,7 +669,6 @@ class TestAsyncPartials:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `partial_key` but received ''"):
             await async_client.partials.with_raw_response.upsert(
                 partial_key="",
-                environment="development",
                 partial={
                     "content": "<p>Hello, world!</p>",
                     "name": "My Partial",
@@ -719,7 +681,6 @@ class TestAsyncPartials:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -733,7 +694,6 @@ class TestAsyncPartials:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         partial = await async_client.partials.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -758,6 +718,7 @@ class TestAsyncPartials:
                 "visual_block_enabled": True,
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(PartialValidateResponse, partial, path=["response"])
 
@@ -766,7 +727,6 @@ class TestAsyncPartials:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.partials.with_raw_response.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -784,7 +744,6 @@ class TestAsyncPartials:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.partials.with_streaming_response.validate(
             partial_key="partial_key",
-            environment="development",
             partial={
                 "content": "<p>Hello, world!</p>",
                 "name": "My Partial",
@@ -805,7 +764,6 @@ class TestAsyncPartials:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `partial_key` but received ''"):
             await async_client.partials.with_raw_response.validate(
                 partial_key="",
-                environment="development",
                 partial={
                     "content": "<p>Hello, world!</p>",
                     "name": "My Partial",

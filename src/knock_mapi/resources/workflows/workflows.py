@@ -76,9 +76,9 @@ class WorkflowsResource(SyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -91,12 +91,13 @@ class WorkflowsResource(SyncAPIResource):
         Retrieve a workflow by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -120,9 +121,9 @@ class WorkflowsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     workflow_retrieve_params.WorkflowRetrieveParams,
@@ -134,11 +135,11 @@ class WorkflowsResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -154,16 +155,17 @@ class WorkflowsResource(SyncAPIResource):
         workflows are returned alphabetically by `key`.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -188,11 +190,11 @@ class WorkflowsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -206,9 +208,9 @@ class WorkflowsResource(SyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         status: bool,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -225,13 +227,14 @@ class WorkflowsResource(SyncAPIResource):
         without needing to go through environment promotion.
 
         Args:
-          environment: The environment slug.
-
           status: Whether to activate or deactivate the workflow. Set to `true` by default, which
               will activate the workflow.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -253,8 +256,8 @@ class WorkflowsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     workflow_activate_params.WorkflowActivateParams,
                 ),
@@ -266,9 +269,9 @@ class WorkflowsResource(SyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         recipients: SequenceNotStr[workflow_run_params.Recipient],
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         actor: Optional[workflow_run_params.Actor] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
@@ -285,13 +288,14 @@ class WorkflowsResource(SyncAPIResource):
         params provided.
 
         Args:
-          environment: The environment slug.
-
           recipients: A list of recipients to run the workflow for. Supports user IDs, object
               references, or inline identify user objects (id + optional email/name).
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           actor: The actor to reference in the the workflow run.
 
@@ -333,8 +337,8 @@ class WorkflowsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     workflow_run_params.WorkflowRunParams,
                 ),
@@ -346,13 +350,13 @@ class WorkflowsResource(SyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         workflow: WorkflowRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -368,8 +372,6 @@ class WorkflowsResource(SyncAPIResource):
         Note: this endpoint only operates on workflows in the `development` environment.
 
         Args:
-          environment: The environment slug.
-
           workflow: A workflow request for upserting a workflow.
 
           allow_empty: When used with commit, creates a new version with identical content and commits
@@ -377,12 +379,15 @@ class WorkflowsResource(SyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -408,12 +413,12 @@ class WorkflowsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     workflow_upsert_params.WorkflowUpsertParams,
@@ -426,9 +431,9 @@ class WorkflowsResource(SyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         workflow: WorkflowRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -444,12 +449,13 @@ class WorkflowsResource(SyncAPIResource):
         Note: Validating a workflow is only done in the development environment context.
 
         Args:
-          environment: The environment slug.
-
           workflow: A workflow request for upserting a workflow.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -471,8 +477,8 @@ class WorkflowsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     workflow_validate_params.WorkflowValidateParams,
                 ),
@@ -512,9 +518,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -527,12 +533,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         Retrieve a workflow by its key in a given environment.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -556,9 +563,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     workflow_retrieve_params.WorkflowRetrieveParams,
@@ -570,11 +577,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -590,16 +597,17 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         workflows are returned alphabetically by `key`.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -624,11 +632,11 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -642,9 +650,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         status: bool,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -661,13 +669,14 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         without needing to go through environment promotion.
 
         Args:
-          environment: The environment slug.
-
           status: Whether to activate or deactivate the workflow. Set to `true` by default, which
               will activate the workflow.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -689,8 +698,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     workflow_activate_params.WorkflowActivateParams,
                 ),
@@ -702,9 +711,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         recipients: SequenceNotStr[workflow_run_params.Recipient],
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         actor: Optional[workflow_run_params.Actor] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
@@ -721,13 +730,14 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         params provided.
 
         Args:
-          environment: The environment slug.
-
           recipients: A list of recipients to run the workflow for. Supports user IDs, object
               references, or inline identify user objects (id + optional email/name).
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           actor: The actor to reference in the the workflow run.
 
@@ -769,8 +779,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     workflow_run_params.WorkflowRunParams,
                 ),
@@ -782,13 +792,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         workflow: WorkflowRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -804,8 +814,6 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         Note: this endpoint only operates on workflows in the `development` environment.
 
         Args:
-          environment: The environment slug.
-
           workflow: A workflow request for upserting a workflow.
 
           allow_empty: When used with commit, creates a new version with identical content and commits
@@ -813,12 +821,15 @@ class AsyncWorkflowsResource(AsyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -844,12 +855,12 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     workflow_upsert_params.WorkflowUpsertParams,
@@ -862,9 +873,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         self,
         workflow_key: str,
         *,
-        environment: str,
         workflow: WorkflowRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -880,12 +891,13 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         Note: Validating a workflow is only done in the development environment context.
 
         Args:
-          environment: The environment slug.
-
           workflow: A workflow request for upserting a workflow.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -907,8 +919,8 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     workflow_validate_params.WorkflowValidateParams,
                 ),

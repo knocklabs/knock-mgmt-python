@@ -3,15 +3,12 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, Required, TypedDict
+from typing_extensions import Literal, TypedDict
 
 __all__ = ["CommitCommitAllParams"]
 
 
 class CommitCommitAllParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     allow_empty: bool
     """
     When used with a single resource_type and resource_id, creates a new version
@@ -21,11 +18,16 @@ class CommitCommitAllParams(TypedDict, total=False):
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
 
     commit_message: str
     """An optional message to include in a commit."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     resource_id: str
     """Filter changes to commit by resource identifier.

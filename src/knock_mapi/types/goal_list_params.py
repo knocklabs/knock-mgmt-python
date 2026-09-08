@@ -2,15 +2,12 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["GoalListParams"]
 
 
 class GoalListParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     after: str
     """The cursor to fetch entries after."""
 
@@ -23,8 +20,13 @@ class GoalListParams(TypedDict, total=False):
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     limit: int
     """The number of entries to fetch per-page."""

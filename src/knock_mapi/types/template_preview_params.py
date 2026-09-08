@@ -17,9 +17,6 @@ __all__ = ["TemplatePreviewParams", "Template", "Layout", "Workflow"]
 
 
 class TemplatePreviewParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     channel_type: Required[Literal["email", "sms", "push", "chat", "in_app_feed"]]
     """The channel type of the template to preview."""
 
@@ -35,8 +32,13 @@ class TemplatePreviewParams(TypedDict, total=False):
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     actor: Optional[RecipientReference]
     """

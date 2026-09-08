@@ -24,6 +24,12 @@ class TestPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_retrieve(self, client: KnockMgmt) -> None:
+        preference_center = client.preference_center.retrieve()
+        assert_matches_type(PreferenceCenterRetrieveResponse, preference_center, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         preference_center = client.preference_center.retrieve(
             environment="development",
         )
@@ -32,9 +38,7 @@ class TestPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
-        response = client.preference_center.with_raw_response.retrieve(
-            environment="development",
-        )
+        response = client.preference_center.with_raw_response.retrieve()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -44,9 +48,7 @@ class TestPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
-        with client.preference_center.with_streaming_response.retrieve(
-            environment="development",
-        ) as response:
+        with client.preference_center.with_streaming_response.retrieve() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -58,6 +60,12 @@ class TestPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_reset(self, client: KnockMgmt) -> None:
+        preference_center = client.preference_center.reset()
+        assert_matches_type(PreferenceCenterResetResponse, preference_center, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_reset_with_all_params(self, client: KnockMgmt) -> None:
         preference_center = client.preference_center.reset(
             environment="development",
         )
@@ -66,9 +74,7 @@ class TestPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_reset(self, client: KnockMgmt) -> None:
-        response = client.preference_center.with_raw_response.reset(
-            environment="development",
-        )
+        response = client.preference_center.with_raw_response.reset()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,9 +84,7 @@ class TestPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_reset(self, client: KnockMgmt) -> None:
-        with client.preference_center.with_streaming_response.reset(
-            environment="development",
-        ) as response:
+        with client.preference_center.with_streaming_response.reset() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -93,7 +97,6 @@ class TestPreferenceCenter:
     @parametrize
     def test_method_upsert(self, client: KnockMgmt) -> None:
         preference_center = client.preference_center.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [
@@ -113,7 +116,6 @@ class TestPreferenceCenter:
     @parametrize
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         preference_center = client.preference_center.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [
@@ -126,6 +128,7 @@ class TestPreferenceCenter:
                 "show_account_name": True,
                 "title": "Manage preferences",
             },
+            environment="development",
             enabled=True,
         )
         assert_matches_type(PreferenceCenterUpsertResponse, preference_center, path=["response"])
@@ -134,7 +137,6 @@ class TestPreferenceCenter:
     @parametrize
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.preference_center.with_raw_response.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [
@@ -158,7 +160,6 @@ class TestPreferenceCenter:
     @parametrize
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.preference_center.with_streaming_response.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [
@@ -189,6 +190,12 @@ class TestAsyncPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
+        preference_center = await async_client.preference_center.retrieve()
+        assert_matches_type(PreferenceCenterRetrieveResponse, preference_center, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         preference_center = await async_client.preference_center.retrieve(
             environment="development",
         )
@@ -197,9 +204,7 @@ class TestAsyncPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.preference_center.with_raw_response.retrieve(
-            environment="development",
-        )
+        response = await async_client.preference_center.with_raw_response.retrieve()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -209,9 +214,7 @@ class TestAsyncPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.preference_center.with_streaming_response.retrieve(
-            environment="development",
-        ) as response:
+        async with async_client.preference_center.with_streaming_response.retrieve() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -223,6 +226,12 @@ class TestAsyncPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_reset(self, async_client: AsyncKnockMgmt) -> None:
+        preference_center = await async_client.preference_center.reset()
+        assert_matches_type(PreferenceCenterResetResponse, preference_center, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_reset_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         preference_center = await async_client.preference_center.reset(
             environment="development",
         )
@@ -231,9 +240,7 @@ class TestAsyncPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_reset(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.preference_center.with_raw_response.reset(
-            environment="development",
-        )
+        response = await async_client.preference_center.with_raw_response.reset()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -243,9 +250,7 @@ class TestAsyncPreferenceCenter:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_reset(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.preference_center.with_streaming_response.reset(
-            environment="development",
-        ) as response:
+        async with async_client.preference_center.with_streaming_response.reset() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -258,7 +263,6 @@ class TestAsyncPreferenceCenter:
     @parametrize
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         preference_center = await async_client.preference_center.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [
@@ -278,7 +282,6 @@ class TestAsyncPreferenceCenter:
     @parametrize
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         preference_center = await async_client.preference_center.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [
@@ -291,6 +294,7 @@ class TestAsyncPreferenceCenter:
                 "show_account_name": True,
                 "title": "Manage preferences",
             },
+            environment="development",
             enabled=True,
         )
         assert_matches_type(PreferenceCenterUpsertResponse, preference_center, path=["response"])
@@ -299,7 +303,6 @@ class TestAsyncPreferenceCenter:
     @parametrize
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.preference_center.with_raw_response.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [
@@ -323,7 +326,6 @@ class TestAsyncPreferenceCenter:
     @parametrize
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.preference_center.with_streaming_response.upsert(
-            environment="development",
             config={
                 "body": "Select which communications you’d like to receive from us.",
                 "rows": [

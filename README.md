@@ -198,7 +198,6 @@ from knock_mapi import KnockMgmt
 client = KnockMgmt()
 
 response = client.templates.preview(
-    environment="development",
     channel_type="email",
     recipient="user_123",
     template={

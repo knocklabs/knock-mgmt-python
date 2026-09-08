@@ -80,10 +80,10 @@ class VariablesResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         type: Literal["public", "secret"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -100,14 +100,16 @@ class VariablesResource(SyncAPIResource):
         per-environment overrides.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used
+              for authorization while the response remains project-scoped.
 
           limit: The number of entries to fetch per-page.
 
@@ -131,10 +133,10 @@ class VariablesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "limit": limit,
                         "type": type,
                     },
@@ -201,10 +203,10 @@ class AsyncVariablesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         type: Literal["public", "secret"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -221,14 +223,16 @@ class AsyncVariablesResource(AsyncAPIResource):
         per-environment overrides.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used
+              for authorization while the response remains project-scoped.
 
           limit: The number of entries to fetch per-page.
 
@@ -252,10 +256,10 @@ class AsyncVariablesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "limit": limit,
                         "type": type,
                     },

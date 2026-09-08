@@ -2,20 +2,20 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["BranchListParams"]
 
 
 class BranchListParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     after: str
     """The cursor to fetch entries after."""
 
     before: str
     """The cursor to fetch entries before."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     limit: int
     """The number of entries to fetch per-page."""

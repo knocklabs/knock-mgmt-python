@@ -28,7 +28,6 @@ class TestTranslations:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         translation = client.translations.retrieve(
             locale_code="locale_code",
-            environment="development",
         )
         assert_matches_type(TranslationRetrieveResponse, translation, path=["response"])
 
@@ -37,9 +36,9 @@ class TestTranslations:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         translation = client.translations.retrieve(
             locale_code="locale_code",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             format="json",
             hide_uncommitted_changes=True,
             namespace="namespace",
@@ -52,7 +51,6 @@ class TestTranslations:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.translations.with_raw_response.retrieve(
             locale_code="locale_code",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -65,7 +63,6 @@ class TestTranslations:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.translations.with_streaming_response.retrieve(
             locale_code="locale_code",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -81,26 +78,23 @@ class TestTranslations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `locale_code` but received ''"):
             client.translations.with_raw_response.retrieve(
                 locale_code="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        translation = client.translations.list(
-            environment="development",
-        )
+        translation = client.translations.list()
         assert_matches_type(SyncEntriesCursor[Translation], translation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         translation = client.translations.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             format="json",
             hide_uncommitted_changes=True,
             limit=0,
@@ -113,9 +107,7 @@ class TestTranslations:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.translations.with_raw_response.list(
-            environment="development",
-        )
+        response = client.translations.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -125,9 +117,7 @@ class TestTranslations:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.translations.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.translations.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -141,7 +131,6 @@ class TestTranslations:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         translation = client.translations.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -155,7 +144,6 @@ class TestTranslations:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         translation = client.translations.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -166,6 +154,7 @@ class TestTranslations:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
             format="json",
             tenant="tenant",
@@ -177,7 +166,6 @@ class TestTranslations:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.translations.with_raw_response.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -195,7 +183,6 @@ class TestTranslations:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.translations.with_streaming_response.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -216,7 +203,6 @@ class TestTranslations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `locale_code` but received ''"):
             client.translations.with_raw_response.upsert(
                 locale_code="",
-                environment="development",
                 namespace="namespace",
                 translation={
                     "content": '{"hello":"Hello, world!"}',
@@ -229,7 +215,6 @@ class TestTranslations:
     def test_method_validate(self, client: KnockMgmt) -> None:
         translation = client.translations.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
@@ -242,12 +227,12 @@ class TestTranslations:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         translation = client.translations.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(TranslationValidateResponse, translation, path=["response"])
 
@@ -256,7 +241,6 @@ class TestTranslations:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.translations.with_raw_response.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
@@ -273,7 +257,6 @@ class TestTranslations:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.translations.with_streaming_response.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
@@ -293,7 +276,6 @@ class TestTranslations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `locale_code` but received ''"):
             client.translations.with_raw_response.validate(
                 locale_code="",
-                environment="development",
                 translation={
                     "content": '{"hello":"Hello, world!"}',
                     "format": "json",
@@ -311,7 +293,6 @@ class TestAsyncTranslations:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         translation = await async_client.translations.retrieve(
             locale_code="locale_code",
-            environment="development",
         )
         assert_matches_type(TranslationRetrieveResponse, translation, path=["response"])
 
@@ -320,9 +301,9 @@ class TestAsyncTranslations:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         translation = await async_client.translations.retrieve(
             locale_code="locale_code",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             format="json",
             hide_uncommitted_changes=True,
             namespace="namespace",
@@ -335,7 +316,6 @@ class TestAsyncTranslations:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.translations.with_raw_response.retrieve(
             locale_code="locale_code",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -348,7 +328,6 @@ class TestAsyncTranslations:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.translations.with_streaming_response.retrieve(
             locale_code="locale_code",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -364,26 +343,23 @@ class TestAsyncTranslations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `locale_code` but received ''"):
             await async_client.translations.with_raw_response.retrieve(
                 locale_code="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        translation = await async_client.translations.list(
-            environment="development",
-        )
+        translation = await async_client.translations.list()
         assert_matches_type(AsyncEntriesCursor[Translation], translation, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         translation = await async_client.translations.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             format="json",
             hide_uncommitted_changes=True,
             limit=0,
@@ -396,9 +372,7 @@ class TestAsyncTranslations:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.translations.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.translations.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -408,9 +382,7 @@ class TestAsyncTranslations:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.translations.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.translations.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -424,7 +396,6 @@ class TestAsyncTranslations:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         translation = await async_client.translations.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -438,7 +409,6 @@ class TestAsyncTranslations:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         translation = await async_client.translations.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -449,6 +419,7 @@ class TestAsyncTranslations:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
             format="json",
             tenant="tenant",
@@ -460,7 +431,6 @@ class TestAsyncTranslations:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.translations.with_raw_response.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -478,7 +448,6 @@ class TestAsyncTranslations:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.translations.with_streaming_response.upsert(
             locale_code="locale_code",
-            environment="development",
             namespace="namespace",
             translation={
                 "content": '{"hello":"Hello, world!"}',
@@ -499,7 +468,6 @@ class TestAsyncTranslations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `locale_code` but received ''"):
             await async_client.translations.with_raw_response.upsert(
                 locale_code="",
-                environment="development",
                 namespace="namespace",
                 translation={
                     "content": '{"hello":"Hello, world!"}',
@@ -512,7 +480,6 @@ class TestAsyncTranslations:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         translation = await async_client.translations.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
@@ -525,12 +492,12 @@ class TestAsyncTranslations:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         translation = await async_client.translations.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(TranslationValidateResponse, translation, path=["response"])
 
@@ -539,7 +506,6 @@ class TestAsyncTranslations:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.translations.with_raw_response.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
@@ -556,7 +522,6 @@ class TestAsyncTranslations:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.translations.with_streaming_response.validate(
             locale_code="locale_code",
-            environment="development",
             translation={
                 "content": '{"hello":"Hello, world!"}',
                 "format": "json",
@@ -576,7 +541,6 @@ class TestAsyncTranslations:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `locale_code` but received ''"):
             await async_client.translations.with_raw_response.validate(
                 locale_code="",
-                environment="development",
                 translation={
                     "content": '{"hello":"Hello, world!"}',
                     "format": "json",

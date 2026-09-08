@@ -34,7 +34,6 @@ class TestDataSources:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.retrieve(
             key="key",
-            environment="development",
         )
         assert_matches_type(Source, data_source, path=["response"])
 
@@ -43,8 +42,8 @@ class TestDataSources:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.retrieve(
             key="key",
-            environment="development",
             annotate=True,
+            environment="development",
         )
         assert_matches_type(Source, data_source, path=["response"])
 
@@ -53,7 +52,6 @@ class TestDataSources:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.data_sources.with_raw_response.retrieve(
             key="key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -66,7 +64,6 @@ class TestDataSources:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.data_sources.with_streaming_response.retrieve(
             key="key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -82,7 +79,6 @@ class TestDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.data_sources.with_raw_response.retrieve(
                 key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -141,7 +137,6 @@ class TestDataSources:
     def test_method_list_logs(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.list_logs(
             key="key",
-            environment="development",
         )
         assert_matches_type(SyncEntriesCursor[SourceLog], data_source, path=["response"])
 
@@ -150,12 +145,12 @@ class TestDataSources:
     def test_method_list_logs_with_all_params(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.list_logs(
             key="key",
-            environment="development",
             id="id",
             after="after",
             before="before",
             date="date",
             ending_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            environment="development",
             event="event",
             include=["actions"],
             limit=0,
@@ -168,7 +163,6 @@ class TestDataSources:
     def test_raw_response_list_logs(self, client: KnockMgmt) -> None:
         response = client.data_sources.with_raw_response.list_logs(
             key="key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -181,7 +175,6 @@ class TestDataSources:
     def test_streaming_response_list_logs(self, client: KnockMgmt) -> None:
         with client.data_sources.with_streaming_response.list_logs(
             key="key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -197,7 +190,6 @@ class TestDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.data_sources.with_raw_response.list_logs(
                 key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -271,7 +263,6 @@ class TestDataSources:
     def test_method_rehearse(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.rehearse(
             key="key",
-            environment="development",
             payload={
                 "body": "bar",
                 "headers": "bar",
@@ -281,10 +272,22 @@ class TestDataSources:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    def test_method_rehearse_with_all_params(self, client: KnockMgmt) -> None:
+        data_source = client.data_sources.rehearse(
+            key="key",
+            payload={
+                "body": "bar",
+                "headers": "bar",
+            },
+            environment="development",
+        )
+        assert_matches_type(SourceRehearseResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     def test_raw_response_rehearse(self, client: KnockMgmt) -> None:
         response = client.data_sources.with_raw_response.rehearse(
             key="key",
-            environment="development",
             payload={
                 "body": "bar",
                 "headers": "bar",
@@ -301,7 +304,6 @@ class TestDataSources:
     def test_streaming_response_rehearse(self, client: KnockMgmt) -> None:
         with client.data_sources.with_streaming_response.rehearse(
             key="key",
-            environment="development",
             payload={
                 "body": "bar",
                 "headers": "bar",
@@ -321,7 +323,6 @@ class TestDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.data_sources.with_raw_response.rehearse(
                 key="",
-                environment="development",
                 payload={
                     "body": "bar",
                     "headers": "bar",
@@ -435,7 +436,6 @@ class TestDataSources:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.upsert(
             key="key",
-            environment="development",
             source={"name": "Universal HTTP Source"},
         )
         assert_matches_type(DataSourceUpsertResponse, data_source, path=["response"])
@@ -445,7 +445,6 @@ class TestDataSources:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         data_source = client.data_sources.upsert(
             key="key",
-            environment="development",
             source={
                 "name": "Universal HTTP Source",
                 "custom_image_url": None,
@@ -476,6 +475,7 @@ class TestDataSources:
                 "preconfigured_provider": "preconfigured_provider",
             },
             annotate=True,
+            environment="development",
         )
         assert_matches_type(DataSourceUpsertResponse, data_source, path=["response"])
 
@@ -484,7 +484,6 @@ class TestDataSources:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.data_sources.with_raw_response.upsert(
             key="key",
-            environment="development",
             source={"name": "Universal HTTP Source"},
         )
 
@@ -498,7 +497,6 @@ class TestDataSources:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.data_sources.with_streaming_response.upsert(
             key="key",
-            environment="development",
             source={"name": "Universal HTTP Source"},
         ) as response:
             assert not response.is_closed
@@ -515,7 +513,6 @@ class TestDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             client.data_sources.with_raw_response.upsert(
                 key="",
-                environment="development",
                 source={"name": "Universal HTTP Source"},
             )
 
@@ -530,7 +527,6 @@ class TestAsyncDataSources:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.retrieve(
             key="key",
-            environment="development",
         )
         assert_matches_type(Source, data_source, path=["response"])
 
@@ -539,8 +535,8 @@ class TestAsyncDataSources:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.retrieve(
             key="key",
-            environment="development",
             annotate=True,
+            environment="development",
         )
         assert_matches_type(Source, data_source, path=["response"])
 
@@ -549,7 +545,6 @@ class TestAsyncDataSources:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.data_sources.with_raw_response.retrieve(
             key="key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -562,7 +557,6 @@ class TestAsyncDataSources:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.data_sources.with_streaming_response.retrieve(
             key="key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -578,7 +572,6 @@ class TestAsyncDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.data_sources.with_raw_response.retrieve(
                 key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -637,7 +630,6 @@ class TestAsyncDataSources:
     async def test_method_list_logs(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.list_logs(
             key="key",
-            environment="development",
         )
         assert_matches_type(AsyncEntriesCursor[SourceLog], data_source, path=["response"])
 
@@ -646,12 +638,12 @@ class TestAsyncDataSources:
     async def test_method_list_logs_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.list_logs(
             key="key",
-            environment="development",
             id="id",
             after="after",
             before="before",
             date="date",
             ending_at=parse_datetime("2019-12-27T18:11:19.117Z"),
+            environment="development",
             event="event",
             include=["actions"],
             limit=0,
@@ -664,7 +656,6 @@ class TestAsyncDataSources:
     async def test_raw_response_list_logs(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.data_sources.with_raw_response.list_logs(
             key="key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -677,7 +668,6 @@ class TestAsyncDataSources:
     async def test_streaming_response_list_logs(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.data_sources.with_streaming_response.list_logs(
             key="key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -693,7 +683,6 @@ class TestAsyncDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.data_sources.with_raw_response.list_logs(
                 key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -767,7 +756,6 @@ class TestAsyncDataSources:
     async def test_method_rehearse(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.rehearse(
             key="key",
-            environment="development",
             payload={
                 "body": "bar",
                 "headers": "bar",
@@ -777,10 +765,22 @@ class TestAsyncDataSources:
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
+    async def test_method_rehearse_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        data_source = await async_client.data_sources.rehearse(
+            key="key",
+            payload={
+                "body": "bar",
+                "headers": "bar",
+            },
+            environment="development",
+        )
+        assert_matches_type(SourceRehearseResponse, data_source, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
     async def test_raw_response_rehearse(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.data_sources.with_raw_response.rehearse(
             key="key",
-            environment="development",
             payload={
                 "body": "bar",
                 "headers": "bar",
@@ -797,7 +797,6 @@ class TestAsyncDataSources:
     async def test_streaming_response_rehearse(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.data_sources.with_streaming_response.rehearse(
             key="key",
-            environment="development",
             payload={
                 "body": "bar",
                 "headers": "bar",
@@ -817,7 +816,6 @@ class TestAsyncDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.data_sources.with_raw_response.rehearse(
                 key="",
-                environment="development",
                 payload={
                     "body": "bar",
                     "headers": "bar",
@@ -931,7 +929,6 @@ class TestAsyncDataSources:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.upsert(
             key="key",
-            environment="development",
             source={"name": "Universal HTTP Source"},
         )
         assert_matches_type(DataSourceUpsertResponse, data_source, path=["response"])
@@ -941,7 +938,6 @@ class TestAsyncDataSources:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         data_source = await async_client.data_sources.upsert(
             key="key",
-            environment="development",
             source={
                 "name": "Universal HTTP Source",
                 "custom_image_url": None,
@@ -972,6 +968,7 @@ class TestAsyncDataSources:
                 "preconfigured_provider": "preconfigured_provider",
             },
             annotate=True,
+            environment="development",
         )
         assert_matches_type(DataSourceUpsertResponse, data_source, path=["response"])
 
@@ -980,7 +977,6 @@ class TestAsyncDataSources:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.data_sources.with_raw_response.upsert(
             key="key",
-            environment="development",
             source={"name": "Universal HTTP Source"},
         )
 
@@ -994,7 +990,6 @@ class TestAsyncDataSources:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.data_sources.with_streaming_response.upsert(
             key="key",
-            environment="development",
             source={"name": "Universal HTTP Source"},
         ) as response:
             assert not response.is_closed
@@ -1011,6 +1006,5 @@ class TestAsyncDataSources:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
             await async_client.data_sources.with_raw_response.upsert(
                 key="",
-                environment="development",
                 source={"name": "Universal HTTP Source"},
             )

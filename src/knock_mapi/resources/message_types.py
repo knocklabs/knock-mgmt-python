@@ -58,9 +58,9 @@ class MessageTypesResource(SyncAPIResource):
         self,
         message_type_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -69,16 +69,19 @@ class MessageTypesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageType:
-        """
-        Retrieve a message type by its key, in a given environment.
+        """Retrieve a message type by its key.
+
+        When the environment is omitted, the account
+        default is used. Root environments share the Development catalog.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -102,9 +105,9 @@ class MessageTypesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     message_type_retrieve_params.MessageTypeRetrieveParams,
@@ -116,11 +119,11 @@ class MessageTypesResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -130,20 +133,23 @@ class MessageTypesResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> SyncEntriesCursor[MessageType]:
-        """
-        Returns a paginated list of message types available in a given environment.
+        """Returns a paginated list of message types.
+
+        When the environment is omitted, the
+        account default is used. Root environments share the Development catalog.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -168,11 +174,11 @@ class MessageTypesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -186,13 +192,13 @@ class MessageTypesResource(SyncAPIResource):
         self,
         message_type_key: str,
         *,
-        environment: str,
         message_type: MessageTypeRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -204,11 +210,11 @@ class MessageTypesResource(SyncAPIResource):
         """
         Updates a message type, or creates a new one if it does not yet exist.
 
-        Note: this endpoint only operates in the `development` environment.
+        When the environment is omitted, the account default is used. Message types are
+        an account-shared catalog stored in Development. Requests against other root
+        environments read and write that same catalog.
 
         Args:
-          environment: The environment slug.
-
           message_type: A request to create a message type.
 
           allow_empty: When used with commit, creates a new version with identical content and commits
@@ -216,12 +222,15 @@ class MessageTypesResource(SyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -247,12 +256,12 @@ class MessageTypesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     message_type_upsert_params.MessageTypeUpsertParams,
@@ -265,9 +274,9 @@ class MessageTypesResource(SyncAPIResource):
         self,
         message_type_key: str,
         *,
-        environment: str,
         message_type: MessageTypeRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -278,16 +287,17 @@ class MessageTypesResource(SyncAPIResource):
         """
         Validates a message type payload without persisting it.
 
-        Note: this endpoint only operates on message types in the `development`
-        environment.
+        When the environment is omitted, the account default is used. Message types are
+        an account-shared catalog stored in Development.
 
         Args:
-          environment: The environment slug.
-
           message_type: A request to create a message type.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -311,8 +321,8 @@ class MessageTypesResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     message_type_validate_params.MessageTypeValidateParams,
                 ),
@@ -349,9 +359,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         self,
         message_type_key: str,
         *,
-        environment: str,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -360,16 +370,19 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> MessageType:
-        """
-        Retrieve a message type by its key, in a given environment.
+        """Retrieve a message type by its key.
+
+        When the environment is omitted, the account
+        default is used. Root environments share the Development catalog.
 
         Args:
-          environment: The environment slug.
-
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -393,9 +406,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "annotate": annotate,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                     },
                     message_type_retrieve_params.MessageTypeRetrieveParams,
@@ -407,11 +420,11 @@ class AsyncMessageTypesResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         annotate: bool | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         hide_uncommitted_changes: bool | Omit = omit,
         limit: int | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -421,20 +434,23 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> AsyncPaginator[MessageType, AsyncEntriesCursor[MessageType]]:
-        """
-        Returns a paginated list of message types available in a given environment.
+        """Returns a paginated list of message types.
+
+        When the environment is omitted, the
+        account default is used. Root environments share the Development catalog.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           hide_uncommitted_changes: Whether to hide uncommitted changes. When true, only committed changes will be
               returned. When false, both committed and uncommitted changes will be returned.
@@ -459,11 +475,11 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "annotate": annotate,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "hide_uncommitted_changes": hide_uncommitted_changes,
                         "limit": limit,
                     },
@@ -477,13 +493,13 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         self,
         message_type_key: str,
         *,
-        environment: str,
         message_type: MessageTypeRequestParam,
         allow_empty: bool | Omit = omit,
         annotate: bool | Omit = omit,
         branch: str | Omit = omit,
         commit: bool | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         force: bool | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -495,11 +511,11 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         """
         Updates a message type, or creates a new one if it does not yet exist.
 
-        Note: this endpoint only operates in the `development` environment.
+        When the environment is omitted, the account default is used. Message types are
+        an account-shared catalog stored in Development. Requests against other root
+        environments read and write that same catalog.
 
         Args:
-          environment: The environment slug.
-
           message_type: A request to create a message type.
 
           allow_empty: When used with commit, creates a new version with identical content and commits
@@ -507,12 +523,15 @@ class AsyncMessageTypesResource(AsyncAPIResource):
 
           annotate: Whether to annotate the resource. Only used in the Knock CLI.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit: Whether to commit the resource at the same time as modifying it.
 
           commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           force: When set to true, forces the upsert to override existing content regardless of
               environment restrictions. This bypasses the development-only environment check
@@ -540,12 +559,12 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "annotate": annotate,
                         "branch": branch,
                         "commit": commit,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "force": force,
                     },
                     message_type_upsert_params.MessageTypeUpsertParams,
@@ -558,9 +577,9 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         self,
         message_type_key: str,
         *,
-        environment: str,
         message_type: MessageTypeRequestParam,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -571,16 +590,17 @@ class AsyncMessageTypesResource(AsyncAPIResource):
         """
         Validates a message type payload without persisting it.
 
-        Note: this endpoint only operates on message types in the `development`
-        environment.
+        When the environment is omitted, the account default is used. Message types are
+        an account-shared catalog stored in Development.
 
         Args:
-          environment: The environment slug.
-
           message_type: A request to create a message type.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -604,8 +624,8 @@ class AsyncMessageTypesResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "branch": branch,
+                        "environment": environment,
                     },
                     message_type_validate_params.MessageTypeValidateParams,
                 ),

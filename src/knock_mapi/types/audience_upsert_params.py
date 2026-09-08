@@ -10,9 +10,6 @@ __all__ = ["AudienceUpsertParams"]
 
 
 class AudienceUpsertParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     audience: Required[AudienceRequestParam]
     """An audience object with attributes to create or update an audience.
 
@@ -32,7 +29,9 @@ class AudienceUpsertParams(TypedDict, total=False):
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
 
     commit: bool
@@ -40,6 +39,9 @@ class AudienceUpsertParams(TypedDict, total=False):
 
     commit_message: str
     """The message to commit the resource with, only used if `commit` is `true`."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     force: bool
     """

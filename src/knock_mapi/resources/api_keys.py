@@ -5,7 +5,7 @@ from __future__ import annotations
 import httpx
 
 from ..types import api_key_exchange_params
-from .._types import Body, Query, Headers, NotGiven, not_given
+from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
@@ -44,7 +44,7 @@ class APIKeysResource(SyncAPIResource):
     def exchange(
         self,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -53,12 +53,11 @@ class APIKeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyExchangeResponse:
         """
-        Given an authenticated service token and an environment, will exchange the
-        service token for a secret API key that can be used to make requests to the
-        public API.
+        Given an authenticated service token, exchanges it for a secret API key that can
+        be used to make requests to the public API.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 
@@ -104,7 +103,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
     async def exchange(
         self,
         *,
-        environment: str,
+        environment: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -113,12 +112,11 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyExchangeResponse:
         """
-        Given an authenticated service token and an environment, will exchange the
-        service token for a secret API key that can be used to make requests to the
-        public API.
+        Given an authenticated service token, exchanges it for a secret API key that can
+        be used to make requests to the public API.
 
         Args:
-          environment: The environment slug.
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           extra_headers: Send extra headers
 

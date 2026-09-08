@@ -2,11 +2,11 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["BranchRebaseParams"]
 
 
 class BranchRebaseParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""

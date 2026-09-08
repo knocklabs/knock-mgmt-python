@@ -28,7 +28,6 @@ class TestEmailLayouts:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
         )
         assert_matches_type(EmailLayout, email_layout, path=["response"])
 
@@ -37,9 +36,9 @@ class TestEmailLayouts:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(EmailLayout, email_layout, path=["response"])
@@ -49,7 +48,6 @@ class TestEmailLayouts:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.email_layouts.with_raw_response.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -62,7 +60,6 @@ class TestEmailLayouts:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.email_layouts.with_streaming_response.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,26 +75,23 @@ class TestEmailLayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `email_layout_key` but received ''"):
             client.email_layouts.with_raw_response.retrieve(
                 email_layout_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        email_layout = client.email_layouts.list(
-            environment="development",
-        )
+        email_layout = client.email_layouts.list()
         assert_matches_type(SyncEntriesCursor[EmailLayout], email_layout, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -106,9 +100,7 @@ class TestEmailLayouts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.email_layouts.with_raw_response.list(
-            environment="development",
-        )
+        response = client.email_layouts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -118,9 +110,7 @@ class TestEmailLayouts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.email_layouts.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.email_layouts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -133,7 +123,6 @@ class TestEmailLayouts:
     @parametrize
     def test_method_preview(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -147,7 +136,6 @@ class TestEmailLayouts:
     @parametrize
     def test_method_preview_with_all_params(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -174,6 +162,7 @@ class TestEmailLayouts:
             },
             recipient="user_123",
             branch="feature-branch",
+            environment="development",
             actor={
                 "id": "project_1",
                 "collection": "projects",
@@ -191,7 +180,6 @@ class TestEmailLayouts:
     @parametrize
     def test_raw_response_preview(self, client: KnockMgmt) -> None:
         response = client.email_layouts.with_raw_response.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -209,7 +197,6 @@ class TestEmailLayouts:
     @parametrize
     def test_streaming_response_preview(self, client: KnockMgmt) -> None:
         with client.email_layouts.with_streaming_response.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -230,7 +217,6 @@ class TestEmailLayouts:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -244,7 +230,6 @@ class TestEmailLayouts:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -274,6 +259,7 @@ class TestEmailLayouts:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(EmailLayoutUpsertResponse, email_layout, path=["response"])
@@ -283,7 +269,6 @@ class TestEmailLayouts:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.email_layouts.with_raw_response.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -301,7 +286,6 @@ class TestEmailLayouts:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.email_layouts.with_streaming_response.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -322,7 +306,6 @@ class TestEmailLayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `email_layout_key` but received ''"):
             client.email_layouts.with_raw_response.upsert(
                 email_layout_key="",
-                environment="development",
                 email_layout={
                     "html_layout": "<html><body>Hello, world!</body></html>",
                     "name": "Transactional",
@@ -335,7 +318,6 @@ class TestEmailLayouts:
     def test_method_validate(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -349,7 +331,6 @@ class TestEmailLayouts:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         email_layout = client.email_layouts.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -375,6 +356,7 @@ class TestEmailLayouts:
                 "is_mjml": True,
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(EmailLayoutValidateResponse, email_layout, path=["response"])
 
@@ -383,7 +365,6 @@ class TestEmailLayouts:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.email_layouts.with_raw_response.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -401,7 +382,6 @@ class TestEmailLayouts:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.email_layouts.with_streaming_response.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -422,7 +402,6 @@ class TestEmailLayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `email_layout_key` but received ''"):
             client.email_layouts.with_raw_response.validate(
                 email_layout_key="",
-                environment="development",
                 email_layout={
                     "html_layout": "<html><body>Hello, world!</body></html>",
                     "name": "Transactional",
@@ -441,7 +420,6 @@ class TestAsyncEmailLayouts:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
         )
         assert_matches_type(EmailLayout, email_layout, path=["response"])
 
@@ -450,9 +428,9 @@ class TestAsyncEmailLayouts:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(EmailLayout, email_layout, path=["response"])
@@ -462,7 +440,6 @@ class TestAsyncEmailLayouts:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.email_layouts.with_raw_response.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -475,7 +452,6 @@ class TestAsyncEmailLayouts:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.email_layouts.with_streaming_response.retrieve(
             email_layout_key="email_layout_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -491,26 +467,23 @@ class TestAsyncEmailLayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `email_layout_key` but received ''"):
             await async_client.email_layouts.with_raw_response.retrieve(
                 email_layout_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        email_layout = await async_client.email_layouts.list(
-            environment="development",
-        )
+        email_layout = await async_client.email_layouts.list()
         assert_matches_type(AsyncEntriesCursor[EmailLayout], email_layout, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -519,9 +492,7 @@ class TestAsyncEmailLayouts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.email_layouts.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.email_layouts.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -531,9 +502,7 @@ class TestAsyncEmailLayouts:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.email_layouts.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.email_layouts.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -546,7 +515,6 @@ class TestAsyncEmailLayouts:
     @parametrize
     async def test_method_preview(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -560,7 +528,6 @@ class TestAsyncEmailLayouts:
     @parametrize
     async def test_method_preview_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -587,6 +554,7 @@ class TestAsyncEmailLayouts:
             },
             recipient="user_123",
             branch="feature-branch",
+            environment="development",
             actor={
                 "id": "project_1",
                 "collection": "projects",
@@ -604,7 +572,6 @@ class TestAsyncEmailLayouts:
     @parametrize
     async def test_raw_response_preview(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.email_layouts.with_raw_response.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -622,7 +589,6 @@ class TestAsyncEmailLayouts:
     @parametrize
     async def test_streaming_response_preview(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.email_layouts.with_streaming_response.preview(
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello {{ recipient.name }}! {{ content }}</body></html>",
                 "name": "Transactional",
@@ -643,7 +609,6 @@ class TestAsyncEmailLayouts:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -657,7 +622,6 @@ class TestAsyncEmailLayouts:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -687,6 +651,7 @@ class TestAsyncEmailLayouts:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(EmailLayoutUpsertResponse, email_layout, path=["response"])
@@ -696,7 +661,6 @@ class TestAsyncEmailLayouts:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.email_layouts.with_raw_response.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -714,7 +678,6 @@ class TestAsyncEmailLayouts:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.email_layouts.with_streaming_response.upsert(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -735,7 +698,6 @@ class TestAsyncEmailLayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `email_layout_key` but received ''"):
             await async_client.email_layouts.with_raw_response.upsert(
                 email_layout_key="",
-                environment="development",
                 email_layout={
                     "html_layout": "<html><body>Hello, world!</body></html>",
                     "name": "Transactional",
@@ -748,7 +710,6 @@ class TestAsyncEmailLayouts:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -762,7 +723,6 @@ class TestAsyncEmailLayouts:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         email_layout = await async_client.email_layouts.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -788,6 +748,7 @@ class TestAsyncEmailLayouts:
                 "is_mjml": True,
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(EmailLayoutValidateResponse, email_layout, path=["response"])
 
@@ -796,7 +757,6 @@ class TestAsyncEmailLayouts:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.email_layouts.with_raw_response.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -814,7 +774,6 @@ class TestAsyncEmailLayouts:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.email_layouts.with_streaming_response.validate(
             email_layout_key="email_layout_key",
-            environment="development",
             email_layout={
                 "html_layout": "<html><body>Hello, world!</body></html>",
                 "name": "Transactional",
@@ -835,7 +794,6 @@ class TestAsyncEmailLayouts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `email_layout_key` but received ''"):
             await async_client.email_layouts.with_raw_response.validate(
                 email_layout_key="",
-                environment="development",
                 email_layout={
                     "html_layout": "<html><body>Hello, world!</body></html>",
                     "name": "Transactional",

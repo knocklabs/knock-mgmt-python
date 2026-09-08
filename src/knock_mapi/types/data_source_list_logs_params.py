@@ -4,7 +4,7 @@ from __future__ import annotations
 
 from typing import List, Union
 from datetime import datetime
-from typing_extensions import Literal, Required, Annotated, TypedDict
+from typing_extensions import Literal, Annotated, TypedDict
 
 from .._utils import PropertyInfo
 
@@ -12,9 +12,6 @@ __all__ = ["DataSourceListLogsParams"]
 
 
 class DataSourceListLogsParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     id: str
     """The log ID to filter by."""
 
@@ -29,6 +26,9 @@ class DataSourceListLogsParams(TypedDict, total=False):
 
     ending_at: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
     """Only return source logs at or before this timestamp."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     event: str
     """The event name to filter by."""

@@ -23,7 +23,6 @@ class TestSteps:
         step = client.workflows.steps.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
         )
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
@@ -34,9 +33,9 @@ class TestSteps:
         step = client.workflows.steps.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
             branch="feature-branch",
+            environment="development",
             actor="dnedry",
             data={"park_id": "bar"},
             tenant="acme-corp",
@@ -49,7 +48,6 @@ class TestSteps:
         response = client.workflows.steps.with_raw_response.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
         )
 
@@ -64,7 +62,6 @@ class TestSteps:
         with client.workflows.steps.with_streaming_response.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
         ) as response:
             assert not response.is_closed
@@ -82,7 +79,6 @@ class TestSteps:
             client.workflows.steps.with_raw_response.preview_template(
                 step_ref="step_ref",
                 workflow_key="",
-                environment="development",
                 recipient="dnedry",
             )
 
@@ -90,7 +86,6 @@ class TestSteps:
             client.workflows.steps.with_raw_response.preview_template(
                 step_ref="",
                 workflow_key="workflow_key",
-                environment="development",
                 recipient="dnedry",
             )
 
@@ -106,7 +101,6 @@ class TestAsyncSteps:
         step = await async_client.workflows.steps.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
         )
         assert_matches_type(StepPreviewTemplateResponse, step, path=["response"])
@@ -117,9 +111,9 @@ class TestAsyncSteps:
         step = await async_client.workflows.steps.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
             branch="feature-branch",
+            environment="development",
             actor="dnedry",
             data={"park_id": "bar"},
             tenant="acme-corp",
@@ -132,7 +126,6 @@ class TestAsyncSteps:
         response = await async_client.workflows.steps.with_raw_response.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
         )
 
@@ -147,7 +140,6 @@ class TestAsyncSteps:
         async with async_client.workflows.steps.with_streaming_response.preview_template(
             step_ref="step_ref",
             workflow_key="workflow_key",
-            environment="development",
             recipient="dnedry",
         ) as response:
             assert not response.is_closed
@@ -165,7 +157,6 @@ class TestAsyncSteps:
             await async_client.workflows.steps.with_raw_response.preview_template(
                 step_ref="step_ref",
                 workflow_key="",
-                environment="development",
                 recipient="dnedry",
             )
 
@@ -173,6 +164,5 @@ class TestAsyncSteps:
             await async_client.workflows.steps.with_raw_response.preview_template(
                 step_ref="",
                 workflow_key="workflow_key",
-                environment="development",
                 recipient="dnedry",
             )

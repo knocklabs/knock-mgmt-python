@@ -28,7 +28,6 @@ class TestAudiences:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         audience = client.audiences.retrieve(
             audience_key="audience_key",
-            environment="development",
         )
         assert_matches_type(Audience, audience, path=["response"])
 
@@ -37,9 +36,9 @@ class TestAudiences:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         audience = client.audiences.retrieve(
             audience_key="audience_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Audience, audience, path=["response"])
@@ -49,7 +48,6 @@ class TestAudiences:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.audiences.with_raw_response.retrieve(
             audience_key="audience_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -62,7 +60,6 @@ class TestAudiences:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.audiences.with_streaming_response.retrieve(
             audience_key="audience_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -78,26 +75,23 @@ class TestAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             client.audiences.with_raw_response.retrieve(
                 audience_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        audience = client.audiences.list(
-            environment="development",
-        )
+        audience = client.audiences.list()
         assert_matches_type(SyncEntriesCursor[Audience], audience, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         audience = client.audiences.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -106,9 +100,7 @@ class TestAudiences:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.audiences.with_raw_response.list(
-            environment="development",
-        )
+        response = client.audiences.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -118,9 +110,7 @@ class TestAudiences:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.audiences.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.audiences.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -134,6 +124,14 @@ class TestAudiences:
     def test_method_archive(self, client: KnockMgmt) -> None:
         audience = client.audiences.archive(
             audience_key="audience_key",
+        )
+        assert_matches_type(AudienceArchiveResponse, audience, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_archive_with_all_params(self, client: KnockMgmt) -> None:
+        audience = client.audiences.archive(
+            audience_key="audience_key",
             environment="development",
         )
         assert_matches_type(AudienceArchiveResponse, audience, path=["response"])
@@ -143,7 +141,6 @@ class TestAudiences:
     def test_raw_response_archive(self, client: KnockMgmt) -> None:
         response = client.audiences.with_raw_response.archive(
             audience_key="audience_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -156,7 +153,6 @@ class TestAudiences:
     def test_streaming_response_archive(self, client: KnockMgmt) -> None:
         with client.audiences.with_streaming_response.archive(
             audience_key="audience_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -172,7 +168,6 @@ class TestAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             client.audiences.with_raw_response.archive(
                 audience_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -180,7 +175,6 @@ class TestAudiences:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         audience = client.audiences.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -193,7 +187,6 @@ class TestAudiences:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         audience = client.audiences.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -215,6 +208,7 @@ class TestAudiences:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(AudienceUpsertResponse, audience, path=["response"])
@@ -224,7 +218,6 @@ class TestAudiences:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.audiences.with_raw_response.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -241,7 +234,6 @@ class TestAudiences:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.audiences.with_streaming_response.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -261,7 +253,6 @@ class TestAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             client.audiences.with_raw_response.upsert(
                 audience_key="",
-                environment="development",
                 audience={
                     "name": "Premium users",
                     "type": "dynamic",
@@ -273,7 +264,6 @@ class TestAudiences:
     def test_method_validate(self, client: KnockMgmt) -> None:
         audience = client.audiences.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -286,7 +276,6 @@ class TestAudiences:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         audience = client.audiences.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -304,6 +293,7 @@ class TestAudiences:
                 ],
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(AudienceValidateResponse, audience, path=["response"])
 
@@ -312,7 +302,6 @@ class TestAudiences:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.audiences.with_raw_response.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -329,7 +318,6 @@ class TestAudiences:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.audiences.with_streaming_response.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -349,7 +337,6 @@ class TestAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             client.audiences.with_raw_response.validate(
                 audience_key="",
-                environment="development",
                 audience={
                     "name": "Premium users",
                     "type": "dynamic",
@@ -367,7 +354,6 @@ class TestAsyncAudiences:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.retrieve(
             audience_key="audience_key",
-            environment="development",
         )
         assert_matches_type(Audience, audience, path=["response"])
 
@@ -376,9 +362,9 @@ class TestAsyncAudiences:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.retrieve(
             audience_key="audience_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(Audience, audience, path=["response"])
@@ -388,7 +374,6 @@ class TestAsyncAudiences:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.audiences.with_raw_response.retrieve(
             audience_key="audience_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -401,7 +386,6 @@ class TestAsyncAudiences:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.audiences.with_streaming_response.retrieve(
             audience_key="audience_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -417,26 +401,23 @@ class TestAsyncAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             await async_client.audiences.with_raw_response.retrieve(
                 audience_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        audience = await async_client.audiences.list(
-            environment="development",
-        )
+        audience = await async_client.audiences.list()
         assert_matches_type(AsyncEntriesCursor[Audience], audience, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -445,9 +426,7 @@ class TestAsyncAudiences:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.audiences.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.audiences.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -457,9 +436,7 @@ class TestAsyncAudiences:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.audiences.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.audiences.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -473,6 +450,14 @@ class TestAsyncAudiences:
     async def test_method_archive(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.archive(
             audience_key="audience_key",
+        )
+        assert_matches_type(AudienceArchiveResponse, audience, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_archive_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        audience = await async_client.audiences.archive(
+            audience_key="audience_key",
             environment="development",
         )
         assert_matches_type(AudienceArchiveResponse, audience, path=["response"])
@@ -482,7 +467,6 @@ class TestAsyncAudiences:
     async def test_raw_response_archive(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.audiences.with_raw_response.archive(
             audience_key="audience_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -495,7 +479,6 @@ class TestAsyncAudiences:
     async def test_streaming_response_archive(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.audiences.with_streaming_response.archive(
             audience_key="audience_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -511,7 +494,6 @@ class TestAsyncAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             await async_client.audiences.with_raw_response.archive(
                 audience_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -519,7 +501,6 @@ class TestAsyncAudiences:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -532,7 +513,6 @@ class TestAsyncAudiences:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -554,6 +534,7 @@ class TestAsyncAudiences:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(AudienceUpsertResponse, audience, path=["response"])
@@ -563,7 +544,6 @@ class TestAsyncAudiences:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.audiences.with_raw_response.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -580,7 +560,6 @@ class TestAsyncAudiences:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.audiences.with_streaming_response.upsert(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -600,7 +579,6 @@ class TestAsyncAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             await async_client.audiences.with_raw_response.upsert(
                 audience_key="",
-                environment="development",
                 audience={
                     "name": "Premium users",
                     "type": "dynamic",
@@ -612,7 +590,6 @@ class TestAsyncAudiences:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -625,7 +602,6 @@ class TestAsyncAudiences:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         audience = await async_client.audiences.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -643,6 +619,7 @@ class TestAsyncAudiences:
                 ],
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(AudienceValidateResponse, audience, path=["response"])
 
@@ -651,7 +628,6 @@ class TestAsyncAudiences:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.audiences.with_raw_response.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -668,7 +644,6 @@ class TestAsyncAudiences:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.audiences.with_streaming_response.validate(
             audience_key="audience_key",
-            environment="development",
             audience={
                 "name": "Premium users",
                 "type": "dynamic",
@@ -688,7 +663,6 @@ class TestAsyncAudiences:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `audience_key` but received ''"):
             await async_client.audiences.with_raw_response.validate(
                 audience_key="",
-                environment="development",
                 audience={
                     "name": "Premium users",
                     "type": "dynamic",

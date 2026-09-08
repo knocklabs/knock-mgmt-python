@@ -930,7 +930,7 @@ class TestKnockMgmt:
 
         respx_mock.get("/v1/workflows").mock(side_effect=retry_handler)
 
-        response = client.workflows.with_raw_response.list(environment="development")
+        response = client.workflows.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -954,9 +954,7 @@ class TestKnockMgmt:
 
         respx_mock.get("/v1/workflows").mock(side_effect=retry_handler)
 
-        response = client.workflows.with_raw_response.list(
-            environment="development", extra_headers={"x-stainless-retry-count": Omit()}
-        )
+        response = client.workflows.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -979,9 +977,7 @@ class TestKnockMgmt:
 
         respx_mock.get("/v1/workflows").mock(side_effect=retry_handler)
 
-        response = client.workflows.with_raw_response.list(
-            environment="development", extra_headers={"x-stainless-retry-count": "42"}
-        )
+        response = client.workflows.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 
@@ -1877,7 +1873,7 @@ class TestAsyncKnockMgmt:
 
         respx_mock.get("/v1/workflows").mock(side_effect=retry_handler)
 
-        response = await client.workflows.with_raw_response.list(environment="development")
+        response = await client.workflows.with_raw_response.list()
 
         assert response.retries_taken == failures_before_success
         assert int(response.http_request.headers.get("x-stainless-retry-count")) == failures_before_success
@@ -1901,9 +1897,7 @@ class TestAsyncKnockMgmt:
 
         respx_mock.get("/v1/workflows").mock(side_effect=retry_handler)
 
-        response = await client.workflows.with_raw_response.list(
-            environment="development", extra_headers={"x-stainless-retry-count": Omit()}
-        )
+        response = await client.workflows.with_raw_response.list(extra_headers={"x-stainless-retry-count": Omit()})
 
         assert len(response.http_request.headers.get_list("x-stainless-retry-count")) == 0
 
@@ -1926,9 +1920,7 @@ class TestAsyncKnockMgmt:
 
         respx_mock.get("/v1/workflows").mock(side_effect=retry_handler)
 
-        response = await client.workflows.with_raw_response.list(
-            environment="development", extra_headers={"x-stainless-retry-count": "42"}
-        )
+        response = await client.workflows.with_raw_response.list(extra_headers={"x-stainless-retry-count": "42"})
 
         assert response.http_request.headers.get("x-stainless-retry-count") == "42"
 

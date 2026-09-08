@@ -2,23 +2,25 @@
 
 from __future__ import annotations
 
-from typing_extensions import Required, TypedDict
+from typing_extensions import TypedDict
 
 __all__ = ["AudienceRetrieveParams"]
 
 
 class AudienceRetrieveParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     annotate: bool
     """Whether to annotate the resource. Only used in the Knock CLI."""
 
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     hide_uncommitted_changes: bool
     """Whether to hide uncommitted changes.

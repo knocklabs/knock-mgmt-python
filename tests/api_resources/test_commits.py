@@ -68,19 +68,17 @@ class TestCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        commit = client.commits.list(
-            environment="development",
-        )
+        commit = client.commits.list()
         assert_matches_type(SyncEntriesCursor[Commit], commit, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         commit = client.commits.list(
-            environment="development",
             after="after",
             before="before",
             branch="feature-branch",
+            environment="development",
             limit=0,
             promoted=True,
             resource_id="resource_id",
@@ -91,9 +89,7 @@ class TestCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.commits.with_raw_response.list(
-            environment="development",
-        )
+        response = client.commits.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -103,9 +99,7 @@ class TestCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.commits.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.commits.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -117,19 +111,17 @@ class TestCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_commit_all(self, client: KnockMgmt) -> None:
-        commit = client.commits.commit_all(
-            environment="development",
-        )
+        commit = client.commits.commit_all()
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_commit_all_with_all_params(self, client: KnockMgmt) -> None:
         commit = client.commits.commit_all(
-            environment="development",
             allow_empty=True,
             branch="feature-branch",
             commit_message="commit_message",
+            environment="development",
             resource_id="resource_id",
             resource_type="audience",
         )
@@ -138,9 +130,7 @@ class TestCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_commit_all(self, client: KnockMgmt) -> None:
-        response = client.commits.with_raw_response.commit_all(
-            environment="development",
-        )
+        response = client.commits.with_raw_response.commit_all()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -150,9 +140,7 @@ class TestCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_commit_all(self, client: KnockMgmt) -> None:
-        with client.commits.with_streaming_response.commit_all(
-            environment="development",
-        ) as response:
+        with client.commits.with_streaming_response.commit_all() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -299,19 +287,17 @@ class TestAsyncCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        commit = await async_client.commits.list(
-            environment="development",
-        )
+        commit = await async_client.commits.list()
         assert_matches_type(AsyncEntriesCursor[Commit], commit, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.list(
-            environment="development",
             after="after",
             before="before",
             branch="feature-branch",
+            environment="development",
             limit=0,
             promoted=True,
             resource_id="resource_id",
@@ -322,9 +308,7 @@ class TestAsyncCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.commits.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.commits.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -334,9 +318,7 @@ class TestAsyncCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.commits.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.commits.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -348,19 +330,17 @@ class TestAsyncCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_commit_all(self, async_client: AsyncKnockMgmt) -> None:
-        commit = await async_client.commits.commit_all(
-            environment="development",
-        )
+        commit = await async_client.commits.commit_all()
         assert_matches_type(CommitCommitAllResponse, commit, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_commit_all_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         commit = await async_client.commits.commit_all(
-            environment="development",
             allow_empty=True,
             branch="feature-branch",
             commit_message="commit_message",
+            environment="development",
             resource_id="resource_id",
             resource_type="audience",
         )
@@ -369,9 +349,7 @@ class TestAsyncCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_commit_all(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.commits.with_raw_response.commit_all(
-            environment="development",
-        )
+        response = await async_client.commits.with_raw_response.commit_all()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -381,9 +359,7 @@ class TestAsyncCommits:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_commit_all(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.commits.with_streaming_response.commit_all(
-            environment="development",
-        ) as response:
+        async with async_client.commits.with_streaming_response.commit_all() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 

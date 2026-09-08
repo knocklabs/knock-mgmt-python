@@ -21,7 +21,6 @@ class TestTemplates:
     @parametrize
     def test_method_preview(self, client: KnockMgmt) -> None:
         template = client.templates.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={
@@ -35,7 +34,6 @@ class TestTemplates:
     @parametrize
     def test_method_preview_with_all_params(self, client: KnockMgmt) -> None:
         template = client.templates.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={
@@ -149,6 +147,7 @@ class TestTemplates:
                 ],
             },
             branch="feature-branch",
+            environment="development",
             actor={
                 "id": "project_1",
                 "collection": "projects",
@@ -173,7 +172,6 @@ class TestTemplates:
     @parametrize
     def test_raw_response_preview(self, client: KnockMgmt) -> None:
         response = client.templates.with_raw_response.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={
@@ -191,7 +189,6 @@ class TestTemplates:
     @parametrize
     def test_streaming_response_preview(self, client: KnockMgmt) -> None:
         with client.templates.with_streaming_response.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={
@@ -217,7 +214,6 @@ class TestAsyncTemplates:
     @parametrize
     async def test_method_preview(self, async_client: AsyncKnockMgmt) -> None:
         template = await async_client.templates.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={
@@ -231,7 +227,6 @@ class TestAsyncTemplates:
     @parametrize
     async def test_method_preview_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         template = await async_client.templates.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={
@@ -345,6 +340,7 @@ class TestAsyncTemplates:
                 ],
             },
             branch="feature-branch",
+            environment="development",
             actor={
                 "id": "project_1",
                 "collection": "projects",
@@ -369,7 +365,6 @@ class TestAsyncTemplates:
     @parametrize
     async def test_raw_response_preview(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.templates.with_raw_response.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={
@@ -387,7 +382,6 @@ class TestAsyncTemplates:
     @parametrize
     async def test_streaming_response_preview(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.templates.with_streaming_response.preview(
-            environment="development",
             channel_type="email",
             recipient="user_123",
             template={

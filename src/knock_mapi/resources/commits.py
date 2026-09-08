@@ -86,10 +86,10 @@ class CommitsResource(SyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
@@ -111,14 +111,15 @@ class CommitsResource(SyncAPIResource):
         ordered from most recent first.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           limit: The number of entries to fetch per-page.
 
@@ -151,10 +152,10 @@ class CommitsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "limit": limit,
                         "promoted": promoted,
                         "resource_id": resource_id,
@@ -169,10 +170,10 @@ class CommitsResource(SyncAPIResource):
     def commit_all(
         self,
         *,
-        environment: str,
         allow_empty: bool | Omit = omit,
         branch: str | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
             Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
@@ -190,15 +191,16 @@ class CommitsResource(SyncAPIResource):
         Commit all changes across all resources in the development environment.
 
         Args:
-          environment: The environment slug.
-
           allow_empty: When used with a single resource_type and resource_id, creates a new version
               with identical content and commits it if there are no unpublished changes.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit_message: An optional message to include in a commit.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           resource_id: Filter changes to commit by resource identifier. Must be used together with
               resource_type.
@@ -223,10 +225,10 @@ class CommitsResource(SyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "branch": branch,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "resource_id": resource_id,
                         "resource_type": resource_type,
                     },
@@ -397,10 +399,10 @@ class AsyncCommitsResource(AsyncAPIResource):
     def list(
         self,
         *,
-        environment: str,
         after: str | Omit = omit,
         before: str | Omit = omit,
         branch: str | Omit = omit,
+        environment: str | Omit = omit,
         limit: int | Omit = omit,
         promoted: bool | Omit = omit,
         resource_id: str | Omit = omit,
@@ -422,14 +424,15 @@ class AsyncCommitsResource(AsyncAPIResource):
         ordered from most recent first.
 
         Args:
-          environment: The environment slug.
-
           after: The cursor to fetch entries after.
 
           before: The cursor to fetch entries before.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           limit: The number of entries to fetch per-page.
 
@@ -462,10 +465,10 @@ class AsyncCommitsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=maybe_transform(
                     {
-                        "environment": environment,
                         "after": after,
                         "before": before,
                         "branch": branch,
+                        "environment": environment,
                         "limit": limit,
                         "promoted": promoted,
                         "resource_id": resource_id,
@@ -480,10 +483,10 @@ class AsyncCommitsResource(AsyncAPIResource):
     async def commit_all(
         self,
         *,
-        environment: str,
         allow_empty: bool | Omit = omit,
         branch: str | Omit = omit,
         commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
             Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
@@ -501,15 +504,16 @@ class AsyncCommitsResource(AsyncAPIResource):
         Commit all changes across all resources in the development environment.
 
         Args:
-          environment: The environment slug.
-
           allow_empty: When used with a single resource_type and resource_id, creates a new version
               with identical content and commits it if there are no unpublished changes.
 
-          branch: The slug of a branch to use. This option can only be used when `environment` is
-              `"development"`.
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
 
           commit_message: An optional message to include in a commit.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
 
           resource_id: Filter changes to commit by resource identifier. Must be used together with
               resource_type.
@@ -534,10 +538,10 @@ class AsyncCommitsResource(AsyncAPIResource):
                 timeout=timeout,
                 query=await async_maybe_transform(
                     {
-                        "environment": environment,
                         "allow_empty": allow_empty,
                         "branch": branch,
                         "commit_message": commit_message,
+                        "environment": environment,
                         "resource_id": resource_id,
                         "resource_type": resource_type,
                     },

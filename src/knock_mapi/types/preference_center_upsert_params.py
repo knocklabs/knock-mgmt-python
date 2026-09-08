@@ -8,11 +8,11 @@ __all__ = ["PreferenceCenterUpsertParams"]
 
 
 class PreferenceCenterUpsertParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     config: Required[object]
     """The preference center configuration document."""
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
     enabled: bool
     """Whether the preference center is enabled for recipients."""

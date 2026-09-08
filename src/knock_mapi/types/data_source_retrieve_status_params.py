@@ -9,4 +9,4 @@ __all__ = ["DataSourceRetrieveStatusParams"]
 
 class DataSourceRetrieveStatusParams(TypedDict, total=False):
     environment: str
-    """The environment slug."""
+    """The environment slug. When omitted, the account's default environment is used."""

@@ -30,7 +30,6 @@ class TestWorkflows:
     def test_method_retrieve(self, client: KnockMgmt) -> None:
         workflow = client.workflows.retrieve(
             workflow_key="workflow_key",
-            environment="development",
         )
         assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
@@ -39,9 +38,9 @@ class TestWorkflows:
     def test_method_retrieve_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.retrieve(
             workflow_key="workflow_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
@@ -51,7 +50,6 @@ class TestWorkflows:
     def test_raw_response_retrieve(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.retrieve(
             workflow_key="workflow_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -64,7 +62,6 @@ class TestWorkflows:
     def test_streaming_response_retrieve(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.retrieve(
             workflow_key="workflow_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -80,26 +77,23 @@ class TestWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             client.workflows.with_raw_response.retrieve(
                 workflow_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list(self, client: KnockMgmt) -> None:
-        workflow = client.workflows.list(
-            environment="development",
-        )
+        workflow = client.workflows.list()
         assert_matches_type(SyncEntriesCursor[Workflow], workflow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_method_list_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -108,9 +102,7 @@ class TestWorkflows:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_raw_response_list(self, client: KnockMgmt) -> None:
-        response = client.workflows.with_raw_response.list(
-            environment="development",
-        )
+        response = client.workflows.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -120,9 +112,7 @@ class TestWorkflows:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     def test_streaming_response_list(self, client: KnockMgmt) -> None:
-        with client.workflows.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        with client.workflows.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -136,7 +126,6 @@ class TestWorkflows:
     def test_method_activate(self, client: KnockMgmt) -> None:
         workflow = client.workflows.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
@@ -146,9 +135,9 @@ class TestWorkflows:
     def test_method_activate_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
@@ -157,7 +146,6 @@ class TestWorkflows:
     def test_raw_response_activate(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
         )
 
@@ -171,7 +159,6 @@ class TestWorkflows:
     def test_streaming_response_activate(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
         ) as response:
             assert not response.is_closed
@@ -188,7 +175,6 @@ class TestWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             client.workflows.with_raw_response.activate(
                 workflow_key="",
-                environment="development",
                 status=True,
             )
 
@@ -197,7 +183,6 @@ class TestWorkflows:
     def test_method_run(self, client: KnockMgmt) -> None:
         workflow = client.workflows.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[{"id": "user_1"}],
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
@@ -207,7 +192,6 @@ class TestWorkflows:
     def test_method_run_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[
                 {
                     "id": "user_1",
@@ -216,6 +200,7 @@ class TestWorkflows:
                 }
             ],
             branch="feature-branch",
+            environment="development",
             actor="user_1",
             cancellation_key="cancellation_key",
             data={"park_id": "bar"},
@@ -228,7 +213,6 @@ class TestWorkflows:
     def test_raw_response_run(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[{"id": "user_1"}],
         )
 
@@ -242,7 +226,6 @@ class TestWorkflows:
     def test_streaming_response_run(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[{"id": "user_1"}],
         ) as response:
             assert not response.is_closed
@@ -259,7 +242,6 @@ class TestWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             client.workflows.with_raw_response.run(
                 workflow_key="",
-                environment="development",
                 recipients=[{"id": "user_1"}],
             )
 
@@ -268,7 +250,6 @@ class TestWorkflows:
     def test_method_upsert(self, client: KnockMgmt) -> None:
         workflow = client.workflows.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -287,7 +268,6 @@ class TestWorkflows:
     def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -357,6 +337,7 @@ class TestWorkflows:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
@@ -366,7 +347,6 @@ class TestWorkflows:
     def test_raw_response_upsert(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -389,7 +369,6 @@ class TestWorkflows:
     def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -415,7 +394,6 @@ class TestWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             client.workflows.with_raw_response.upsert(
                 workflow_key="",
-                environment="development",
                 workflow={
                     "name": "My Workflow",
                     "steps": [
@@ -433,7 +411,6 @@ class TestWorkflows:
     def test_method_validate(self, client: KnockMgmt) -> None:
         workflow = client.workflows.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -452,7 +429,6 @@ class TestWorkflows:
     def test_method_validate_with_all_params(self, client: KnockMgmt) -> None:
         workflow = client.workflows.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -518,6 +494,7 @@ class TestWorkflows:
                 "trigger_frequency": "every_trigger",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
@@ -526,7 +503,6 @@ class TestWorkflows:
     def test_raw_response_validate(self, client: KnockMgmt) -> None:
         response = client.workflows.with_raw_response.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -549,7 +525,6 @@ class TestWorkflows:
     def test_streaming_response_validate(self, client: KnockMgmt) -> None:
         with client.workflows.with_streaming_response.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -575,7 +550,6 @@ class TestWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             client.workflows.with_raw_response.validate(
                 workflow_key="",
-                environment="development",
                 workflow={
                     "name": "My Workflow",
                     "steps": [
@@ -599,7 +573,6 @@ class TestAsyncWorkflows:
     async def test_method_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.retrieve(
             workflow_key="workflow_key",
-            environment="development",
         )
         assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
 
@@ -608,9 +581,9 @@ class TestAsyncWorkflows:
     async def test_method_retrieve_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.retrieve(
             workflow_key="workflow_key",
-            environment="development",
             annotate=True,
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
         )
         assert_matches_type(WorkflowRetrieveResponse, workflow, path=["response"])
@@ -620,7 +593,6 @@ class TestAsyncWorkflows:
     async def test_raw_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.retrieve(
             workflow_key="workflow_key",
-            environment="development",
         )
 
         assert response.is_closed is True
@@ -633,7 +605,6 @@ class TestAsyncWorkflows:
     async def test_streaming_response_retrieve(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.retrieve(
             workflow_key="workflow_key",
-            environment="development",
         ) as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -649,26 +620,23 @@ class TestAsyncWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             await async_client.workflows.with_raw_response.retrieve(
                 workflow_key="",
-                environment="development",
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list(self, async_client: AsyncKnockMgmt) -> None:
-        workflow = await async_client.workflows.list(
-            environment="development",
-        )
+        workflow = await async_client.workflows.list()
         assert_matches_type(AsyncEntriesCursor[Workflow], workflow, path=["response"])
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_method_list_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.list(
-            environment="development",
             after="after",
             annotate=True,
             before="before",
             branch="feature-branch",
+            environment="development",
             hide_uncommitted_changes=True,
             limit=0,
         )
@@ -677,9 +645,7 @@ class TestAsyncWorkflows:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_raw_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        response = await async_client.workflows.with_raw_response.list(
-            environment="development",
-        )
+        response = await async_client.workflows.with_raw_response.list()
 
         assert response.is_closed is True
         assert response.http_request.headers.get("X-Stainless-Lang") == "python"
@@ -689,9 +655,7 @@ class TestAsyncWorkflows:
     @pytest.mark.skip(reason="Mock server tests are disabled")
     @parametrize
     async def test_streaming_response_list(self, async_client: AsyncKnockMgmt) -> None:
-        async with async_client.workflows.with_streaming_response.list(
-            environment="development",
-        ) as response:
+        async with async_client.workflows.with_streaming_response.list() as response:
             assert not response.is_closed
             assert response.http_request.headers.get("X-Stainless-Lang") == "python"
 
@@ -705,7 +669,6 @@ class TestAsyncWorkflows:
     async def test_method_activate(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
@@ -715,9 +678,9 @@ class TestAsyncWorkflows:
     async def test_method_activate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(WorkflowActivateResponse, workflow, path=["response"])
 
@@ -726,7 +689,6 @@ class TestAsyncWorkflows:
     async def test_raw_response_activate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
         )
 
@@ -740,7 +702,6 @@ class TestAsyncWorkflows:
     async def test_streaming_response_activate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.activate(
             workflow_key="workflow_key",
-            environment="development",
             status=True,
         ) as response:
             assert not response.is_closed
@@ -757,7 +718,6 @@ class TestAsyncWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             await async_client.workflows.with_raw_response.activate(
                 workflow_key="",
-                environment="development",
                 status=True,
             )
 
@@ -766,7 +726,6 @@ class TestAsyncWorkflows:
     async def test_method_run(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[{"id": "user_1"}],
         )
         assert_matches_type(WorkflowRunResponse, workflow, path=["response"])
@@ -776,7 +735,6 @@ class TestAsyncWorkflows:
     async def test_method_run_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[
                 {
                     "id": "user_1",
@@ -785,6 +743,7 @@ class TestAsyncWorkflows:
                 }
             ],
             branch="feature-branch",
+            environment="development",
             actor="user_1",
             cancellation_key="cancellation_key",
             data={"park_id": "bar"},
@@ -797,7 +756,6 @@ class TestAsyncWorkflows:
     async def test_raw_response_run(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[{"id": "user_1"}],
         )
 
@@ -811,7 +769,6 @@ class TestAsyncWorkflows:
     async def test_streaming_response_run(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.run(
             workflow_key="workflow_key",
-            environment="development",
             recipients=[{"id": "user_1"}],
         ) as response:
             assert not response.is_closed
@@ -828,7 +785,6 @@ class TestAsyncWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             await async_client.workflows.with_raw_response.run(
                 workflow_key="",
-                environment="development",
                 recipients=[{"id": "user_1"}],
             )
 
@@ -837,7 +793,6 @@ class TestAsyncWorkflows:
     async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -856,7 +811,6 @@ class TestAsyncWorkflows:
     async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -926,6 +880,7 @@ class TestAsyncWorkflows:
             branch="feature-branch",
             commit=True,
             commit_message="commit_message",
+            environment="development",
             force=True,
         )
         assert_matches_type(WorkflowUpsertResponse, workflow, path=["response"])
@@ -935,7 +890,6 @@ class TestAsyncWorkflows:
     async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -958,7 +912,6 @@ class TestAsyncWorkflows:
     async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.upsert(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -984,7 +937,6 @@ class TestAsyncWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             await async_client.workflows.with_raw_response.upsert(
                 workflow_key="",
-                environment="development",
                 workflow={
                     "name": "My Workflow",
                     "steps": [
@@ -1002,7 +954,6 @@ class TestAsyncWorkflows:
     async def test_method_validate(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -1021,7 +972,6 @@ class TestAsyncWorkflows:
     async def test_method_validate_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         workflow = await async_client.workflows.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -1087,6 +1037,7 @@ class TestAsyncWorkflows:
                 "trigger_frequency": "every_trigger",
             },
             branch="feature-branch",
+            environment="development",
         )
         assert_matches_type(WorkflowValidateResponse, workflow, path=["response"])
 
@@ -1095,7 +1046,6 @@ class TestAsyncWorkflows:
     async def test_raw_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         response = await async_client.workflows.with_raw_response.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -1118,7 +1068,6 @@ class TestAsyncWorkflows:
     async def test_streaming_response_validate(self, async_client: AsyncKnockMgmt) -> None:
         async with async_client.workflows.with_streaming_response.validate(
             workflow_key="workflow_key",
-            environment="development",
             workflow={
                 "name": "My Workflow",
                 "steps": [
@@ -1144,7 +1093,6 @@ class TestAsyncWorkflows:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `workflow_key` but received ''"):
             await async_client.workflows.with_raw_response.validate(
                 workflow_key="",
-                environment="development",
                 workflow={
                     "name": "My Workflow",
                     "steps": [

@@ -8,9 +8,6 @@ __all__ = ["BroadcastUpsertParams"]
 
 
 class BroadcastUpsertParams(TypedDict, total=False):
-    environment: Required[str]
-    """The environment slug."""
-
     broadcast: Required["BroadcastRequestParam"]
     """A broadcast request for upserting a broadcast."""
 
@@ -20,8 +17,13 @@ class BroadcastUpsertParams(TypedDict, total=False):
     branch: str
     """The slug of a branch to use.
 
-    This option can only be used when `environment` is `"development"`.
+    When `environment` is omitted, the branch is resolved from Development after the
+    account default is injected. When `environment` is supplied, it must be
+    `"development"`.
     """
+
+    environment: str
+    """The environment slug. When omitted, the account's default environment is used."""
 
 
 from .broadcast_request_param import BroadcastRequestParam
