@@ -403,6 +403,7 @@ from knock_mapi.types import (
     Broadcast,
     BroadcastRequest,
     BroadcastCancelResponse,
+    BroadcastRunResponse,
     BroadcastSendResponse,
     BroadcastUpsertResponse,
     BroadcastValidateResponse,
@@ -414,6 +415,7 @@ Methods:
 - <code title="get /v1/broadcasts/{broadcast_key}">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">retrieve</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast.py">Broadcast</a></code>
 - <code title="get /v1/broadcasts">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">list</a>(\*\*<a href="src/knock_mapi/types/broadcast_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast.py">SyncEntriesCursor[Broadcast]</a></code>
 - <code title="put /v1/broadcasts/{broadcast_key}/cancel">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">cancel</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_cancel_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_cancel_response.py">BroadcastCancelResponse</a></code>
+- <code title="put /v1/broadcasts/{broadcast_key}/run">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">run</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_run_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_run_response.py">BroadcastRunResponse</a></code>
 - <code title="put /v1/broadcasts/{broadcast_key}/send">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">send</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_send_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_send_response.py">BroadcastSendResponse</a></code>
 - <code title="put /v1/broadcasts/{broadcast_key}">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">upsert</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_upsert_response.py">BroadcastUpsertResponse</a></code>
 - <code title="put /v1/broadcasts/{broadcast_key}/validate">client.broadcasts.<a href="./src/knock_mapi/resources/broadcasts.py">validate</a>(broadcast_key, \*\*<a href="src/knock_mapi/types/broadcast_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/broadcast_validate_response.py">BroadcastValidateResponse</a></code>

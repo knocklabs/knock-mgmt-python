@@ -11,6 +11,7 @@ from knock_mapi import KnockMgmt, AsyncKnockMgmt
 from tests.utils import assert_matches_type
 from knock_mapi.types import (
     Broadcast,
+    BroadcastRunResponse,
     BroadcastSendResponse,
     BroadcastCancelResponse,
     BroadcastUpsertResponse,
@@ -171,6 +172,68 @@ class TestBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             client.broadcasts.with_raw_response.cancel(
                 broadcast_key="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_run(self, client: KnockMgmt) -> None:
+        broadcast = client.broadcasts.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+        )
+        assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_run_with_all_params(self, client: KnockMgmt) -> None:
+        broadcast = client.broadcasts.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+            branch="feature-branch",
+            environment="development",
+            settings={
+                "sandbox_mode": True,
+                "skip_delay": True,
+            },
+            tenant="tenant_1",
+        )
+        assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_run(self, client: KnockMgmt) -> None:
+        response = client.broadcasts.with_raw_response.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        broadcast = response.parse()
+        assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_run(self, client: KnockMgmt) -> None:
+        with client.broadcasts.with_streaming_response.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            broadcast = response.parse()
+            assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_run(self, client: KnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
+            client.broadcasts.with_raw_response.run(
+                broadcast_key="",
+                recipient={"id": "user_1"},
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")
@@ -673,6 +736,68 @@ class TestAsyncBroadcasts:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
             await async_client.broadcasts.with_raw_response.cancel(
                 broadcast_key="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_run(self, async_client: AsyncKnockMgmt) -> None:
+        broadcast = await async_client.broadcasts.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+        )
+        assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_run_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        broadcast = await async_client.broadcasts.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+            branch="feature-branch",
+            environment="development",
+            settings={
+                "sandbox_mode": True,
+                "skip_delay": True,
+            },
+            tenant="tenant_1",
+        )
+        assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_run(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.broadcasts.with_raw_response.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        broadcast = await response.parse()
+        assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_run(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.broadcasts.with_streaming_response.run(
+            broadcast_key="broadcast_key",
+            recipient={"id": "user_1"},
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            broadcast = await response.parse()
+            assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_run(self, async_client: AsyncKnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `broadcast_key` but received ''"):
+            await async_client.broadcasts.with_raw_response.run(
+                broadcast_key="",
+                recipient={"id": "user_1"},
             )
 
     @pytest.mark.skip(reason="Mock server tests are disabled")

@@ -121,6 +121,7 @@ from .auth_verify_response import AuthVerifyResponse as AuthVerifyResponse
 from .branch_create_params import BranchCreateParams as BranchCreateParams
 from .branch_delete_params import BranchDeleteParams as BranchDeleteParams
 from .branch_rebase_params import BranchRebaseParams as BranchRebaseParams
+from .broadcast_run_params import BroadcastRunParams as BroadcastRunParams
 from .email_template_param import EmailTemplateParam as EmailTemplateParam
 from .goal_condition_param import GoalConditionParam as GoalConditionParam
 from .goal_retrieve_params import GoalRetrieveParams as GoalRetrieveParams
@@ -153,6 +154,7 @@ from .workflow_webhook_step import WorkflowWebhookStep as WorkflowWebhookStep
 from .audience_request_param import AudienceRequestParam as AudienceRequestParam
 from .audience_upsert_params import AudienceUpsertParams as AudienceUpsertParams
 from .branch_retrieve_params import BranchRetrieveParams as BranchRetrieveParams
+from .broadcast_run_response import BroadcastRunResponse as BroadcastRunResponse
 from .email_channel_settings import EmailChannelSettings as EmailChannelSettings
 from .goal_validate_response import GoalValidateResponse as GoalValidateResponse
 from .guide_archive_response import GuideArchiveResponse as GuideArchiveResponse

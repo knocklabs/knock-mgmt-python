@@ -21,3 +21,10 @@ class ChatChannelSettings(BaseModel):
 
     link_tracking: Optional[bool] = None
     """Whether to track link clicks on chat notifications."""
+
+    link_tracking_uses_short_links: Optional[bool] = None
+    """
+    Whether tracked chat links should use compact short URLs instead of long tracked
+    links. Only applied when link tracking is enabled. Not used by WhatsApp, which
+    already uses short links.
+    """

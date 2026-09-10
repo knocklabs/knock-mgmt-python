@@ -25,7 +25,10 @@ class SourceLog(BaseModel):
     """
 
     data: Optional[Dict[str, object]] = None
-    """The data payload parsed by the source."""
+    """The full event data sent from the source.
+
+    For legacy sources, this is the properties or traits object.
+    """
 
     inserted_at: Optional[datetime] = None
     """The timestamp of when the source log was created."""

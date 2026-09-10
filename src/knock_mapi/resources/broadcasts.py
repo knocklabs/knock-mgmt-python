@@ -2,12 +2,13 @@
 
 from __future__ import annotations
 
-from typing import Union
+from typing import Union, Optional
 from datetime import datetime
 
 import httpx
 
 from ..types import (
+    broadcast_run_params,
     broadcast_list_params,
     broadcast_send_params,
     broadcast_cancel_params,
@@ -28,6 +29,7 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.broadcast import Broadcast
+from ..types.broadcast_run_response import BroadcastRunResponse
 from ..types.broadcast_request_param import BroadcastRequestParam
 from ..types.broadcast_send_response import BroadcastSendResponse
 from ..types.broadcast_cancel_response import BroadcastCancelResponse
@@ -240,6 +242,75 @@ class BroadcastsResource(SyncAPIResource):
                 ),
             ),
             cast_to=BroadcastCancelResponse,
+        )
+
+    def run(
+        self,
+        broadcast_key: str,
+        *,
+        recipient: broadcast_run_params.Recipient,
+        branch: str | Omit = omit,
+        environment: str | Omit = omit,
+        settings: broadcast_run_params.Settings | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BroadcastRunResponse:
+        """
+        Runs the current version of a broadcast for the provided recipient without
+        publishing the broadcast.
+
+        Args:
+          recipient: The user to run the broadcast for.
+
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
+
+          settings: Settings that control how the broadcast run executes.
+
+          tenant: The tenant to associate the broadcast run with. Must not contain whitespace.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not broadcast_key:
+            raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
+        return self._put(
+            path_template("/v1/broadcasts/{broadcast_key}/run", broadcast_key=broadcast_key),
+            body=maybe_transform(
+                {
+                    "recipient": recipient,
+                    "settings": settings,
+                    "tenant": tenant,
+                },
+                broadcast_run_params.BroadcastRunParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "branch": branch,
+                        "environment": environment,
+                    },
+                    broadcast_run_params.BroadcastRunParams,
+                ),
+            ),
+            cast_to=BroadcastRunResponse,
         )
 
     def send(
@@ -620,6 +691,75 @@ class AsyncBroadcastsResource(AsyncAPIResource):
             cast_to=BroadcastCancelResponse,
         )
 
+    async def run(
+        self,
+        broadcast_key: str,
+        *,
+        recipient: broadcast_run_params.Recipient,
+        branch: str | Omit = omit,
+        environment: str | Omit = omit,
+        settings: broadcast_run_params.Settings | Omit = omit,
+        tenant: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> BroadcastRunResponse:
+        """
+        Runs the current version of a broadcast for the provided recipient without
+        publishing the broadcast.
+
+        Args:
+          recipient: The user to run the broadcast for.
+
+          branch: The slug of a branch to use. When `environment` is omitted, the branch is
+              resolved from Development after the account default is injected. When
+              `environment` is supplied, it must be `"development"`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
+
+          settings: Settings that control how the broadcast run executes.
+
+          tenant: The tenant to associate the broadcast run with. Must not contain whitespace.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not broadcast_key:
+            raise ValueError(f"Expected a non-empty value for `broadcast_key` but received {broadcast_key!r}")
+        return await self._put(
+            path_template("/v1/broadcasts/{broadcast_key}/run", broadcast_key=broadcast_key),
+            body=await async_maybe_transform(
+                {
+                    "recipient": recipient,
+                    "settings": settings,
+                    "tenant": tenant,
+                },
+                broadcast_run_params.BroadcastRunParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "branch": branch,
+                        "environment": environment,
+                    },
+                    broadcast_run_params.BroadcastRunParams,
+                ),
+            ),
+            cast_to=BroadcastRunResponse,
+        )
+
     async def send(
         self,
         broadcast_key: str,
@@ -808,6 +948,9 @@ class BroadcastsResourceWithRawResponse:
         self.cancel = to_raw_response_wrapper(
             broadcasts.cancel,
         )
+        self.run = to_raw_response_wrapper(
+            broadcasts.run,
+        )
         self.send = to_raw_response_wrapper(
             broadcasts.send,
         )
@@ -831,6 +974,9 @@ class AsyncBroadcastsResourceWithRawResponse:
         )
         self.cancel = async_to_raw_response_wrapper(
             broadcasts.cancel,
+        )
+        self.run = async_to_raw_response_wrapper(
+            broadcasts.run,
         )
         self.send = async_to_raw_response_wrapper(
             broadcasts.send,
@@ -856,6 +1002,9 @@ class BroadcastsResourceWithStreamingResponse:
         self.cancel = to_streamed_response_wrapper(
             broadcasts.cancel,
         )
+        self.run = to_streamed_response_wrapper(
+            broadcasts.run,
+        )
         self.send = to_streamed_response_wrapper(
             broadcasts.send,
         )
@@ -879,6 +1028,9 @@ class AsyncBroadcastsResourceWithStreamingResponse:
         )
         self.cancel = async_to_streamed_response_wrapper(
             broadcasts.cancel,
+        )
+        self.run = async_to_streamed_response_wrapper(
+            broadcasts.run,
         )
         self.send = async_to_streamed_response_wrapper(
             broadcasts.send,
