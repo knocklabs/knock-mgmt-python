@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable
+from typing import Union, Iterable, Optional
 from typing_extensions import Literal, Required, TypeAlias, TypedDict
 
 from .condition_group_param import ConditionGroupParam
@@ -37,6 +37,13 @@ class EventWorkflowWaitForEventIntegrationSourceEvent(TypedDict, total=False):
 
     integration_source_key: Required[str]
     """The key of the integration source that emits the event to wait for."""
+
+    recipient_path: Optional[str]
+    """JSON path into the source event that yields the recipient user ID.
+
+    Use userId for Segment events, or a body./headers. path for HTTP events (e.g.
+    body.userId).
+    """
 
 
 class EventWorkflowWaitForEventAudienceEvent(TypedDict, total=False):

@@ -61,6 +61,13 @@ class WorkflowWaitForEventStepSettingsUnionMember0Event(TypedDict, total=False):
     integration_source_key: Required[str]
     """The key of the integration source that emits the event to wait for."""
 
+    recipient_path: Optional[str]
+    """JSON path into the source event that yields the recipient user ID.
+
+    Use userId for Segment events, or a body./headers. path for HTTP events (e.g.
+    body.userId).
+    """
+
 
 class WorkflowWaitForEventStepSettingsUnionMember0MatchCondition(TypedDict, total=False):
     conditions: Iterable[ConditionParam]
@@ -102,6 +109,7 @@ class WorkflowWaitForEventStepSettingsUnionMember1Event(TypedDict, total=False):
             "delivery_attempted",
             "undelivered",
             "bounced",
+            "complaint",
             "read",
             "unread",
             "seen",
