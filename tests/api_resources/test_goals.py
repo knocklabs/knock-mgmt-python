@@ -251,7 +251,13 @@ class TestGoals:
         goal = client.goals.upsert(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -265,8 +271,10 @@ class TestGoals:
             goal={
                 "condition": {
                     "event": {
-                        "event_type": "recipient",
-                        "event_key": "updated",
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                        "recipient_path": "body.userId",
                     },
                     "match_conditions": [
                         {
@@ -294,7 +302,13 @@ class TestGoals:
         response = client.goals.with_raw_response.upsert(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -310,7 +324,13 @@ class TestGoals:
         with client.goals.with_streaming_response.upsert(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         ) as response:
@@ -329,7 +349,13 @@ class TestGoals:
             client.goals.with_raw_response.upsert(
                 goal_key="",
                 goal={
-                    "condition": {"event": {"event_type": "recipient"}},
+                    "condition": {
+                        "event": {
+                            "event_key": "order.completed",
+                            "event_type": "integration_source",
+                            "integration_source_key": "stripe",
+                        }
+                    },
                     "name": "Trial Conversion",
                 },
             )
@@ -340,7 +366,13 @@ class TestGoals:
         goal = client.goals.validate(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -354,8 +386,10 @@ class TestGoals:
             goal={
                 "condition": {
                     "event": {
-                        "event_type": "recipient",
-                        "event_key": "updated",
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                        "recipient_path": "body.userId",
                     },
                     "match_conditions": [
                         {
@@ -383,7 +417,13 @@ class TestGoals:
         response = client.goals.with_raw_response.validate(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -399,7 +439,13 @@ class TestGoals:
         with client.goals.with_streaming_response.validate(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         ) as response:
@@ -418,7 +464,13 @@ class TestGoals:
             client.goals.with_raw_response.validate(
                 goal_key="",
                 goal={
-                    "condition": {"event": {"event_type": "recipient"}},
+                    "condition": {
+                        "event": {
+                            "event_key": "order.completed",
+                            "event_type": "integration_source",
+                            "integration_source_key": "stripe",
+                        }
+                    },
                     "name": "Trial Conversion",
                 },
             )
@@ -656,7 +708,13 @@ class TestAsyncGoals:
         goal = await async_client.goals.upsert(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -670,8 +728,10 @@ class TestAsyncGoals:
             goal={
                 "condition": {
                     "event": {
-                        "event_type": "recipient",
-                        "event_key": "updated",
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                        "recipient_path": "body.userId",
                     },
                     "match_conditions": [
                         {
@@ -699,7 +759,13 @@ class TestAsyncGoals:
         response = await async_client.goals.with_raw_response.upsert(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -715,7 +781,13 @@ class TestAsyncGoals:
         async with async_client.goals.with_streaming_response.upsert(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         ) as response:
@@ -734,7 +806,13 @@ class TestAsyncGoals:
             await async_client.goals.with_raw_response.upsert(
                 goal_key="",
                 goal={
-                    "condition": {"event": {"event_type": "recipient"}},
+                    "condition": {
+                        "event": {
+                            "event_key": "order.completed",
+                            "event_type": "integration_source",
+                            "integration_source_key": "stripe",
+                        }
+                    },
                     "name": "Trial Conversion",
                 },
             )
@@ -745,7 +823,13 @@ class TestAsyncGoals:
         goal = await async_client.goals.validate(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -759,8 +843,10 @@ class TestAsyncGoals:
             goal={
                 "condition": {
                     "event": {
-                        "event_type": "recipient",
-                        "event_key": "updated",
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                        "recipient_path": "body.userId",
                     },
                     "match_conditions": [
                         {
@@ -788,7 +874,13 @@ class TestAsyncGoals:
         response = await async_client.goals.with_raw_response.validate(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         )
@@ -804,7 +896,13 @@ class TestAsyncGoals:
         async with async_client.goals.with_streaming_response.validate(
             goal_key="goal_key",
             goal={
-                "condition": {"event": {"event_type": "recipient"}},
+                "condition": {
+                    "event": {
+                        "event_key": "order.completed",
+                        "event_type": "integration_source",
+                        "integration_source_key": "stripe",
+                    }
+                },
                 "name": "Trial Conversion",
             },
         ) as response:
@@ -823,7 +921,13 @@ class TestAsyncGoals:
             await async_client.goals.with_raw_response.validate(
                 goal_key="",
                 goal={
-                    "condition": {"event": {"event_type": "recipient"}},
+                    "condition": {
+                        "event": {
+                            "event_key": "order.completed",
+                            "event_type": "integration_source",
+                            "integration_source_key": "stripe",
+                        }
+                    },
                     "name": "Trial Conversion",
                 },
             )

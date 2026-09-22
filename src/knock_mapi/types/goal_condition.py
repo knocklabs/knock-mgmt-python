@@ -9,20 +9,9 @@ from .condition_group import ConditionGroup
 __all__ = [
     "GoalCondition",
     "Event",
-    "EventWorkflowWaitForEventRecipientEvent",
     "EventWorkflowWaitForEventIntegrationSourceEvent",
     "EventWorkflowWaitForEventAudienceEvent",
 ]
-
-
-class EventWorkflowWaitForEventRecipientEvent(BaseModel):
-    """A recipient updated event to wait for from the workflow recipient."""
-
-    event_type: Literal["recipient"]
-    """The type of event to wait for."""
-
-    event_key: Optional[Literal["updated"]] = None
-    """Recipient lifecycle event to wait for. Always "updated" today."""
 
 
 class EventWorkflowWaitForEventIntegrationSourceEvent(BaseModel):
@@ -60,11 +49,7 @@ class EventWorkflowWaitForEventAudienceEvent(BaseModel):
     """The type of event to wait for."""
 
 
-Event: TypeAlias = Union[
-    EventWorkflowWaitForEventRecipientEvent,
-    EventWorkflowWaitForEventIntegrationSourceEvent,
-    EventWorkflowWaitForEventAudienceEvent,
-]
+Event: TypeAlias = Union[EventWorkflowWaitForEventIntegrationSourceEvent, EventWorkflowWaitForEventAudienceEvent]
 
 
 class GoalCondition(BaseModel):
@@ -73,14 +58,10 @@ class GoalCondition(BaseModel):
     """
 
     event: Event
-    """The event to track.
-
-    Supports recipient, integration_source, and audience event types.
-    """
+    """The event to track. Supports integration_source and audience event types."""
 
     match_conditions: Optional[List[ConditionGroup]] = None
-    """A list of condition groups.
-
-    Required for recipient events; each group uses an operator (and/or) with nested
-    conditions.
+    """
+    Optional list of condition groups; each group uses an operator (and/or) with
+    nested conditions.
     """
