@@ -22,19 +22,19 @@ from .shared_params.message_type_multi_select_field import MessageTypeMultiSelec
 __all__ = ["MessageTypeVariantParam", "Field"]
 
 Field: TypeAlias = Union[
-    MessageTypeListField,
-    MessageTypeSelectField,
     MessageTypeBooleanField,
-    MessageTypeJsonField,
-    MessageTypeNumberField,
-    MessageTypeTextField,
-    MessageTypeImageField,
+    MessageTypeButtonField,
     MessageTypeColorField,
-    MessageTypeURLField,
+    MessageTypeImageField,
+    MessageTypeJsonField,
+    MessageTypeListField,
     MessageTypeMarkdownField,
     MessageTypeMultiSelectField,
-    MessageTypeButtonField,
+    MessageTypeNumberField,
+    MessageTypeSelectField,
+    MessageTypeTextField,
     MessageTypeTextareaField,
+    MessageTypeURLField,
 ]
 
 
