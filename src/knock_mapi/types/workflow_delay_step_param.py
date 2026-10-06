@@ -26,6 +26,13 @@ class Settings(TypedDict, total=False):
     property referenced
     """
 
+    workflow_version_mode: Optional[Literal["pinned", "latest"]]
+    """
+    Whether the delay is pinned to the opening workflow version or continues on the
+    latest compatible version when the delay elapses. One of: `pinned` or `latest`.
+    Defaults to `pinned`. Configs that omit the field hydrate as `pinned`.
+    """
+
 
 class WorkflowDelayStepParam(TypedDict, total=False):
     """A delay function step.
