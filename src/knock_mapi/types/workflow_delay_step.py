@@ -29,7 +29,8 @@ class Settings(BaseModel):
     """
     Whether the delay is pinned to the opening workflow version or continues on the
     latest compatible version when the delay elapses. One of: `pinned` or `latest`.
-    Defaults to `pinned`. Configs that omit the field hydrate as `pinned`.
+    New delay steps default to `latest`. Configs that omit the field hydrate as
+    `pinned`.
     """
 
 
