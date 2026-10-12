@@ -72,6 +72,7 @@ Types:
 ```python
 from knock_mapi.types import (
     Commit,
+    PromoteGroup,
     CommitCommitAllResponse,
     CommitPromoteAllResponse,
     CommitPromoteOneResponse,

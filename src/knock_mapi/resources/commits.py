@@ -3,6 +3,7 @@
 from __future__ import annotations
 
 from typing import List, Union
+from datetime import datetime
 from typing_extensions import Literal
 
 import httpx
@@ -91,13 +92,17 @@ class CommitsResource(SyncAPIResource):
         branch: str | Omit = omit,
         environment: str | Omit = omit,
         limit: int | Omit = omit,
+        promote_group_id: str | Omit = omit,
         promoted: bool | Omit = omit,
+        promoted_from_environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
             Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
             List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
         ]
         | Omit = omit,
+        since: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -123,8 +128,14 @@ class CommitsResource(SyncAPIResource):
 
           limit: The number of entries to fetch per-page.
 
+          promote_group_id: Filter commits to those created by a single promote. Every commit copied into an
+              environment by the same promote shares one `promote_group_id`.
+
           promoted: Whether to show commits in the given environment that have not been promoted to
               the subsequent environment (false) or commits which have been promoted (true).
+
+          promoted_from_environment: Filter promoted commits by the slug of the environment or branch they were
+              promoted from.
 
           resource_id: Filter commits by resource identifier. Must be used together with resource_type.
               For most resources, this will be the resource key. In the case of translations,
@@ -133,6 +144,11 @@ class CommitsResource(SyncAPIResource):
 
           resource_type: Filter commits by resource type(s). Accepts a single type or array of types. Can
               be combined with resource_id to filter for specific resources.
+
+          since: Only return commits created at or after this RFC 3339 timestamp. Useful for
+              catching up after missed webhooks.
+
+          until: Only return commits created at or before this RFC 3339 timestamp.
 
           extra_headers: Send extra headers
 
@@ -157,9 +173,13 @@ class CommitsResource(SyncAPIResource):
                         "branch": branch,
                         "environment": environment,
                         "limit": limit,
+                        "promote_group_id": promote_group_id,
                         "promoted": promoted,
+                        "promoted_from_environment": promoted_from_environment,
                         "resource_id": resource_id,
                         "resource_type": resource_type,
+                        "since": since,
+                        "until": until,
                     },
                     commit_list_params.CommitListParams,
                 ),
@@ -404,13 +424,17 @@ class AsyncCommitsResource(AsyncAPIResource):
         branch: str | Omit = omit,
         environment: str | Omit = omit,
         limit: int | Omit = omit,
+        promote_group_id: str | Omit = omit,
         promoted: bool | Omit = omit,
+        promoted_from_environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
             Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
             List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
         ]
         | Omit = omit,
+        since: Union[str, datetime] | Omit = omit,
+        until: Union[str, datetime] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -436,8 +460,14 @@ class AsyncCommitsResource(AsyncAPIResource):
 
           limit: The number of entries to fetch per-page.
 
+          promote_group_id: Filter commits to those created by a single promote. Every commit copied into an
+              environment by the same promote shares one `promote_group_id`.
+
           promoted: Whether to show commits in the given environment that have not been promoted to
               the subsequent environment (false) or commits which have been promoted (true).
+
+          promoted_from_environment: Filter promoted commits by the slug of the environment or branch they were
+              promoted from.
 
           resource_id: Filter commits by resource identifier. Must be used together with resource_type.
               For most resources, this will be the resource key. In the case of translations,
@@ -446,6 +476,11 @@ class AsyncCommitsResource(AsyncAPIResource):
 
           resource_type: Filter commits by resource type(s). Accepts a single type or array of types. Can
               be combined with resource_id to filter for specific resources.
+
+          since: Only return commits created at or after this RFC 3339 timestamp. Useful for
+              catching up after missed webhooks.
+
+          until: Only return commits created at or before this RFC 3339 timestamp.
 
           extra_headers: Send extra headers
 
@@ -470,9 +505,13 @@ class AsyncCommitsResource(AsyncAPIResource):
                         "branch": branch,
                         "environment": environment,
                         "limit": limit,
+                        "promote_group_id": promote_group_id,
                         "promoted": promoted,
+                        "promoted_from_environment": promoted_from_environment,
                         "resource_id": resource_id,
                         "resource_type": resource_type,
+                        "since": since,
+                        "until": until,
                     },
                     commit_list_params.CommitListParams,
                 ),

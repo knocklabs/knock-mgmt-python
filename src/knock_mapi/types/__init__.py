@@ -65,6 +65,7 @@ from .sms_template import SMSTemplate as SMSTemplate
 from .source_event import SourceEvent as SourceEvent
 from .channel_group import ChannelGroup as ChannelGroup
 from .chat_template import ChatTemplate as ChatTemplate
+from .promote_group import PromoteGroup as PromoteGroup
 from .push_template import PushTemplate as PushTemplate
 from .workflow_step import WorkflowStep as WorkflowStep
 from .duration_param import DurationParam as DurationParam

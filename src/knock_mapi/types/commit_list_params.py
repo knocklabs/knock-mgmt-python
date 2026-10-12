@@ -3,7 +3,10 @@
 from __future__ import annotations
 
 from typing import List, Union
-from typing_extensions import Literal, TypedDict
+from datetime import datetime
+from typing_extensions import Literal, Annotated, TypedDict
+
+from .._utils import PropertyInfo
 
 __all__ = ["CommitListParams"]
 
@@ -29,10 +32,23 @@ class CommitListParams(TypedDict, total=False):
     limit: int
     """The number of entries to fetch per-page."""
 
+    promote_group_id: str
+    """Filter commits to those created by a single promote.
+
+    Every commit copied into an environment by the same promote shares one
+    `promote_group_id`.
+    """
+
     promoted: bool
     """
     Whether to show commits in the given environment that have not been promoted to
     the subsequent environment (false) or commits which have been promoted (true).
+    """
+
+    promoted_from_environment: str
+    """
+    Filter promoted commits by the slug of the environment or branch they were
+    promoted from.
     """
 
     resource_id: str
@@ -52,3 +68,12 @@ class CommitListParams(TypedDict, total=False):
     Accepts a single type or array of types. Can be combined with resource_id to
     filter for specific resources.
     """
+
+    since: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Only return commits created at or after this RFC 3339 timestamp.
+
+    Useful for catching up after missed webhooks.
+    """
+
+    until: Annotated[Union[str, datetime], PropertyInfo(format="iso8601")]
+    """Only return commits created at or before this RFC 3339 timestamp."""

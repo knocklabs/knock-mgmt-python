@@ -15,6 +15,7 @@ from knock_mapi.types import (
     CommitPromoteAllResponse,
     CommitPromoteOneResponse,
 )
+from knock_mapi._utils import parse_datetime
 from knock_mapi.pagination import SyncEntriesCursor, AsyncEntriesCursor
 
 base_url = os.environ.get("TEST_API_BASE_URL", "http://127.0.0.1:4010")
@@ -80,9 +81,13 @@ class TestCommits:
             branch="feature-branch",
             environment="development",
             limit=0,
+            promote_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             promoted=True,
+            promoted_from_environment="promoted_from_environment",
             resource_id="resource_id",
             resource_type="audience",
+            since=parse_datetime("2019-12-27T18:11:19.117Z"),
+            until=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(SyncEntriesCursor[Commit], commit, path=["response"])
 
@@ -299,9 +304,13 @@ class TestAsyncCommits:
             branch="feature-branch",
             environment="development",
             limit=0,
+            promote_group_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             promoted=True,
+            promoted_from_environment="promoted_from_environment",
             resource_id="resource_id",
             resource_type="audience",
+            since=parse_datetime("2019-12-27T18:11:19.117Z"),
+            until=parse_datetime("2019-12-27T18:11:19.117Z"),
         )
         assert_matches_type(AsyncEntriesCursor[Commit], commit, path=["response"])
 

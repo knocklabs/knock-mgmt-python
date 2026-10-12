@@ -44,6 +44,19 @@ class Commit(BaseModel):
     environment: str
     """The environment of the commit."""
 
+    promote_group_id: Optional[str] = None
+    """
+    The identifier of the promote that created this commit, shared by every commit
+    copied into the environment by the same promote. Null if the commit was not
+    created by a promote.
+    """
+
+    promoted_from_commit_id: Optional[str] = None
+    """The ID of the commit this commit was promoted from.
+
+    Null if the commit was not created by a promote.
+    """
+
     resource: Resource
     """The resource object associated with the commit."""
 
