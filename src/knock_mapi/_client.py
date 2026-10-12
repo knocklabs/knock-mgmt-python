@@ -61,6 +61,7 @@ if TYPE_CHECKING:
         message_types,
         channel_groups,
         preference_center,
+        reusable_requests,
         preference_categories,
     )
     from .resources.auth import AuthResource, AsyncAuthResource
@@ -87,6 +88,7 @@ if TYPE_CHECKING:
     from .resources.message_types import MessageTypesResource, AsyncMessageTypesResource
     from .resources.channel_groups import ChannelGroupsResource, AsyncChannelGroupsResource
     from .resources.preference_center import PreferenceCenterResource, AsyncPreferenceCenterResource
+    from .resources.reusable_requests import ReusableRequestsResource, AsyncReusableRequestsResource
     from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
     from .resources.preference_categories import PreferenceCategoriesResource, AsyncPreferenceCategoriesResource
 
@@ -350,6 +352,15 @@ class KnockMgmt(SyncAPIClient):
         from .resources.preference_categories import PreferenceCategoriesResource
 
         return PreferenceCategoriesResource(self)
+
+    @cached_property
+    def reusable_requests(self) -> ReusableRequestsResource:
+        """
+        Reusable requests are HTTP steps that workflows can link to and share across an account.
+        """
+        from .resources.reusable_requests import ReusableRequestsResource
+
+        return ReusableRequestsResource(self)
 
     @cached_property
     def with_raw_response(self) -> KnockMgmtWithRawResponse:
@@ -714,6 +725,15 @@ class AsyncKnockMgmt(AsyncAPIClient):
         return AsyncPreferenceCategoriesResource(self)
 
     @cached_property
+    def reusable_requests(self) -> AsyncReusableRequestsResource:
+        """
+        Reusable requests are HTTP steps that workflows can link to and share across an account.
+        """
+        from .resources.reusable_requests import AsyncReusableRequestsResource
+
+        return AsyncReusableRequestsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncKnockMgmtWithRawResponse:
         return AsyncKnockMgmtWithRawResponse(self)
 
@@ -1017,6 +1037,15 @@ class KnockMgmtWithRawResponse:
 
         return PreferenceCategoriesResourceWithRawResponse(self._client.preference_categories)
 
+    @cached_property
+    def reusable_requests(self) -> reusable_requests.ReusableRequestsResourceWithRawResponse:
+        """
+        Reusable requests are HTTP steps that workflows can link to and share across an account.
+        """
+        from .resources.reusable_requests import ReusableRequestsResourceWithRawResponse
+
+        return ReusableRequestsResourceWithRawResponse(self._client.reusable_requests)
+
 
 class AsyncKnockMgmtWithRawResponse:
     _client: AsyncKnockMgmt
@@ -1208,6 +1237,15 @@ class AsyncKnockMgmtWithRawResponse:
         from .resources.preference_categories import AsyncPreferenceCategoriesResourceWithRawResponse
 
         return AsyncPreferenceCategoriesResourceWithRawResponse(self._client.preference_categories)
+
+    @cached_property
+    def reusable_requests(self) -> reusable_requests.AsyncReusableRequestsResourceWithRawResponse:
+        """
+        Reusable requests are HTTP steps that workflows can link to and share across an account.
+        """
+        from .resources.reusable_requests import AsyncReusableRequestsResourceWithRawResponse
+
+        return AsyncReusableRequestsResourceWithRawResponse(self._client.reusable_requests)
 
 
 class KnockMgmtWithStreamedResponse:
@@ -1401,6 +1439,15 @@ class KnockMgmtWithStreamedResponse:
 
         return PreferenceCategoriesResourceWithStreamingResponse(self._client.preference_categories)
 
+    @cached_property
+    def reusable_requests(self) -> reusable_requests.ReusableRequestsResourceWithStreamingResponse:
+        """
+        Reusable requests are HTTP steps that workflows can link to and share across an account.
+        """
+        from .resources.reusable_requests import ReusableRequestsResourceWithStreamingResponse
+
+        return ReusableRequestsResourceWithStreamingResponse(self._client.reusable_requests)
+
 
 class AsyncKnockMgmtWithStreamedResponse:
     _client: AsyncKnockMgmt
@@ -1592,6 +1639,15 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.preference_categories import AsyncPreferenceCategoriesResourceWithStreamingResponse
 
         return AsyncPreferenceCategoriesResourceWithStreamingResponse(self._client.preference_categories)
+
+    @cached_property
+    def reusable_requests(self) -> reusable_requests.AsyncReusableRequestsResourceWithStreamingResponse:
+        """
+        Reusable requests are HTTP steps that workflows can link to and share across an account.
+        """
+        from .resources.reusable_requests import AsyncReusableRequestsResourceWithStreamingResponse
+
+        return AsyncReusableRequestsResourceWithStreamingResponse(self._client.reusable_requests)
 
 
 Client = KnockMgmt

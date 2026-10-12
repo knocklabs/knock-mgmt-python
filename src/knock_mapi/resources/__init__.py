@@ -200,6 +200,14 @@ from .preference_center import (
     PreferenceCenterResourceWithStreamingResponse,
     AsyncPreferenceCenterResourceWithStreamingResponse,
 )
+from .reusable_requests import (
+    ReusableRequestsResource,
+    AsyncReusableRequestsResource,
+    ReusableRequestsResourceWithRawResponse,
+    AsyncReusableRequestsResourceWithRawResponse,
+    ReusableRequestsResourceWithStreamingResponse,
+    AsyncReusableRequestsResourceWithStreamingResponse,
+)
 from .preference_categories import (
     PreferenceCategoriesResource,
     AsyncPreferenceCategoriesResource,
@@ -366,4 +374,10 @@ __all__ = [
     "AsyncPreferenceCategoriesResourceWithRawResponse",
     "PreferenceCategoriesResourceWithStreamingResponse",
     "AsyncPreferenceCategoriesResourceWithStreamingResponse",
+    "ReusableRequestsResource",
+    "AsyncReusableRequestsResource",
+    "ReusableRequestsResourceWithRawResponse",
+    "AsyncReusableRequestsResourceWithRawResponse",
+    "ReusableRequestsResourceWithStreamingResponse",
+    "AsyncReusableRequestsResourceWithStreamingResponse",
 ]

@@ -558,3 +558,26 @@ Methods:
 - <code title="get /v1/preference_categories">client.preference_categories.<a href="./src/knock_mapi/resources/preference_categories.py">list</a>() -> <a href="./src/knock_mapi/types/preference_category_list_response.py">PreferenceCategoryListResponse</a></code>
 - <code title="delete /v1/preference_categories/{name}">client.preference_categories.<a href="./src/knock_mapi/resources/preference_categories.py">delete</a>(name) -> None</code>
 - <code title="put /v1/preference_categories/{name}">client.preference_categories.<a href="./src/knock_mapi/resources/preference_categories.py">upsert</a>(name) -> <a href="./src/knock_mapi/types/preference_category_upsert_response.py">PreferenceCategoryUpsertResponse</a></code>
+
+# ReusableRequests
+
+Types:
+
+```python
+from knock_mapi.types import (
+    ReusableRequest,
+    ReusableRequestRequest,
+    ReusableRequestSettings,
+    ReusableRequestArchiveResponse,
+    ReusableRequestUpsertResponse,
+    ReusableRequestValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">retrieve</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request.py">ReusableRequest</a></code>
+- <code title="get /v1/reusable_requests">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">list</a>(\*\*<a href="src/knock_mapi/types/reusable_request_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request.py">SyncEntriesCursor[ReusableRequest]</a></code>
+- <code title="delete /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">archive</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_archive_response.py">ReusableRequestArchiveResponse</a></code>
+- <code title="put /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">upsert</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_upsert_response.py">ReusableRequestUpsertResponse</a></code>
+- <code title="put /v1/reusable_requests/{reusable_request_key}/validate">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">validate</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_validate_response.py">ReusableRequestValidateResponse</a></code>

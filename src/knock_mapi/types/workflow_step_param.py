@@ -62,10 +62,10 @@ class WorkflowWaitForEventStepSettingsUnionMember0Event(TypedDict, total=False):
     """The key of the integration source that emits the event to wait for."""
 
     recipient_path: Optional[str]
-    """JSON path into the source event that yields the recipient user ID.
-
-    Use userId for Segment events, or a body./headers. path for HTTP events (e.g.
-    body.userId).
+    """
+    JSON path into the source event that yields the recipient user ID, for example,
+    body.userId. For legacy sources, use the field name without prefixing body. When
+    omitted, a default will be automatically set.
     """
 
 
