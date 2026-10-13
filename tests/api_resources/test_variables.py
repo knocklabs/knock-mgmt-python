@@ -101,6 +101,118 @@ class TestVariables:
 
         assert cast(Any, response.is_closed) is True
 
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_delete(self, client: KnockMgmt) -> None:
+        variable = client.variables.delete(
+            key="key",
+        )
+        assert variable is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_delete_with_all_params(self, client: KnockMgmt) -> None:
+        variable = client.variables.delete(
+            key="key",
+            environment="development",
+        )
+        assert variable is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_delete(self, client: KnockMgmt) -> None:
+        response = client.variables.with_raw_response.delete(
+            key="key",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        variable = response.parse()
+        assert variable is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_delete(self, client: KnockMgmt) -> None:
+        with client.variables.with_streaming_response.delete(
+            key="key",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            variable = response.parse()
+            assert variable is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_delete(self, client: KnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
+            client.variables.with_raw_response.delete(
+                key="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_upsert(self, client: KnockMgmt) -> None:
+        variable = client.variables.upsert(
+            key="key",
+            type="secret",
+        )
+        assert_matches_type(Variable, variable, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_upsert_with_all_params(self, client: KnockMgmt) -> None:
+        variable = client.variables.upsert(
+            key="key",
+            type="secret",
+            description="Source signing secret",
+            environment_values={
+                "development": "my_dev_secret_value",
+                "production": "",
+            },
+            value="my_secret_value",
+        )
+        assert_matches_type(Variable, variable, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_upsert(self, client: KnockMgmt) -> None:
+        response = client.variables.with_raw_response.upsert(
+            key="key",
+            type="secret",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        variable = response.parse()
+        assert_matches_type(Variable, variable, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_upsert(self, client: KnockMgmt) -> None:
+        with client.variables.with_streaming_response.upsert(
+            key="key",
+            type="secret",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            variable = response.parse()
+            assert_matches_type(Variable, variable, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_upsert(self, client: KnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
+            client.variables.with_raw_response.upsert(
+                key="",
+                type="secret",
+            )
+
 
 class TestAsyncVariables:
     parametrize = pytest.mark.parametrize(
@@ -189,3 +301,115 @@ class TestAsyncVariables:
             assert_matches_type(AsyncEntriesCursor[Variable], variable, path=["response"])
 
         assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_delete(self, async_client: AsyncKnockMgmt) -> None:
+        variable = await async_client.variables.delete(
+            key="key",
+        )
+        assert variable is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_delete_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        variable = await async_client.variables.delete(
+            key="key",
+            environment="development",
+        )
+        assert variable is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_delete(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.variables.with_raw_response.delete(
+            key="key",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        variable = await response.parse()
+        assert variable is None
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_delete(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.variables.with_streaming_response.delete(
+            key="key",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            variable = await response.parse()
+            assert variable is None
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_delete(self, async_client: AsyncKnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
+            await async_client.variables.with_raw_response.delete(
+                key="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_upsert(self, async_client: AsyncKnockMgmt) -> None:
+        variable = await async_client.variables.upsert(
+            key="key",
+            type="secret",
+        )
+        assert_matches_type(Variable, variable, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_upsert_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        variable = await async_client.variables.upsert(
+            key="key",
+            type="secret",
+            description="Source signing secret",
+            environment_values={
+                "development": "my_dev_secret_value",
+                "production": "",
+            },
+            value="my_secret_value",
+        )
+        assert_matches_type(Variable, variable, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.variables.with_raw_response.upsert(
+            key="key",
+            type="secret",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        variable = await response.parse()
+        assert_matches_type(Variable, variable, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_upsert(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.variables.with_streaming_response.upsert(
+            key="key",
+            type="secret",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            variable = await response.parse()
+            assert_matches_type(Variable, variable, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_upsert(self, async_client: AsyncKnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `key` but received ''"):
+            await async_client.variables.with_raw_response.upsert(
+                key="",
+                type="secret",
+            )

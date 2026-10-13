@@ -2,13 +2,14 @@
 
 from __future__ import annotations
 
+from typing import Dict, Optional
 from typing_extensions import Literal
 
 import httpx
 
-from ..types import variable_list_params
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform
+from ..types import variable_list_params, variable_delete_params, variable_upsert_params
+from .._types import Body, Omit, Query, Headers, NoneType, NotGiven, omit, not_given
+from .._utils import path_template, maybe_transform, async_maybe_transform
 from .._compat import cached_property
 from .._resource import SyncAPIResource, AsyncAPIResource
 from .._response import (
@@ -146,6 +147,115 @@ class VariablesResource(SyncAPIResource):
             model=Variable,
         )
 
+    def delete(
+        self,
+        key: str,
+        *,
+        environment: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Deletes a variable and all of its environment overrides.
+
+        When an environment is
+        specified, only the override for that environment is cleared, so the default
+        value applies there.
+
+        Args:
+          environment: The environment slug. When provided, only the variable's override for this
+              environment is cleared. When omitted, the whole variable is deleted and the
+              account's default environment is used for authorization.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not key:
+            raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return self._delete(
+            path_template("/v1/variables/{key}", key=key),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform({"environment": environment}, variable_delete_params.VariableDeleteParams),
+            ),
+            cast_to=NoneType,
+        )
+
+    def upsert(
+        self,
+        key: str,
+        *,
+        type: Literal["public", "secret"],
+        description: Optional[str] | Omit = omit,
+        environment_values: Dict[str, Optional[str]] | Omit = omit,
+        value: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Variable:
+        """
+        Creates or updates a variable by key, along with its per-environment overrides.
+        On an update, any attribute or environment that is omitted or null is left
+        unchanged, and an empty string unsets it. The response never includes the value
+        of a secret variable.
+
+        Args:
+          type: The type of the variable. Required, and it cannot be changed after the variable
+              is created.
+
+          description: The description of the variable. When omitted or null on an update, the existing
+              description is kept. An empty string clears it.
+
+          environment_values: A map of root environment slugs to override values. An environment that is
+              omitted or null is left unchanged. An empty string clears the override, so the
+              default value applies.
+
+          value: The default value of the variable. Required when creating a variable. When
+              omitted or null on an update, the existing value is kept. An empty string clears
+              the default value.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not key:
+            raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        return self._put(
+            path_template("/v1/variables/{key}", key=key),
+            body=maybe_transform(
+                {
+                    "type": type,
+                    "description": description,
+                    "environment_values": environment_values,
+                    "value": value,
+                },
+                variable_upsert_params.VariableUpsertParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Variable,
+        )
+
 
 class AsyncVariablesResource(AsyncAPIResource):
     @cached_property
@@ -269,6 +379,117 @@ class AsyncVariablesResource(AsyncAPIResource):
             model=Variable,
         )
 
+    async def delete(
+        self,
+        key: str,
+        *,
+        environment: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> None:
+        """Deletes a variable and all of its environment overrides.
+
+        When an environment is
+        specified, only the override for that environment is cleared, so the default
+        value applies there.
+
+        Args:
+          environment: The environment slug. When provided, only the variable's override for this
+              environment is cleared. When omitted, the whole variable is deleted and the
+              account's default environment is used for authorization.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not key:
+            raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        extra_headers = {"Accept": "*/*", **(extra_headers or {})}
+        return await self._delete(
+            path_template("/v1/variables/{key}", key=key),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"environment": environment}, variable_delete_params.VariableDeleteParams
+                ),
+            ),
+            cast_to=NoneType,
+        )
+
+    async def upsert(
+        self,
+        key: str,
+        *,
+        type: Literal["public", "secret"],
+        description: Optional[str] | Omit = omit,
+        environment_values: Dict[str, Optional[str]] | Omit = omit,
+        value: Optional[str] | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> Variable:
+        """
+        Creates or updates a variable by key, along with its per-environment overrides.
+        On an update, any attribute or environment that is omitted or null is left
+        unchanged, and an empty string unsets it. The response never includes the value
+        of a secret variable.
+
+        Args:
+          type: The type of the variable. Required, and it cannot be changed after the variable
+              is created.
+
+          description: The description of the variable. When omitted or null on an update, the existing
+              description is kept. An empty string clears it.
+
+          environment_values: A map of root environment slugs to override values. An environment that is
+              omitted or null is left unchanged. An empty string clears the override, so the
+              default value applies.
+
+          value: The default value of the variable. Required when creating a variable. When
+              omitted or null on an update, the existing value is kept. An empty string clears
+              the default value.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not key:
+            raise ValueError(f"Expected a non-empty value for `key` but received {key!r}")
+        return await self._put(
+            path_template("/v1/variables/{key}", key=key),
+            body=await async_maybe_transform(
+                {
+                    "type": type,
+                    "description": description,
+                    "environment_values": environment_values,
+                    "value": value,
+                },
+                variable_upsert_params.VariableUpsertParams,
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers, extra_query=extra_query, extra_body=extra_body, timeout=timeout
+            ),
+            cast_to=Variable,
+        )
+
 
 class VariablesResourceWithRawResponse:
     def __init__(self, variables: VariablesResource) -> None:
@@ -279,6 +500,12 @@ class VariablesResourceWithRawResponse:
         )
         self.list = to_raw_response_wrapper(
             variables.list,
+        )
+        self.delete = to_raw_response_wrapper(
+            variables.delete,
+        )
+        self.upsert = to_raw_response_wrapper(
+            variables.upsert,
         )
 
 
@@ -292,6 +519,12 @@ class AsyncVariablesResourceWithRawResponse:
         self.list = async_to_raw_response_wrapper(
             variables.list,
         )
+        self.delete = async_to_raw_response_wrapper(
+            variables.delete,
+        )
+        self.upsert = async_to_raw_response_wrapper(
+            variables.upsert,
+        )
 
 
 class VariablesResourceWithStreamingResponse:
@@ -304,6 +537,12 @@ class VariablesResourceWithStreamingResponse:
         self.list = to_streamed_response_wrapper(
             variables.list,
         )
+        self.delete = to_streamed_response_wrapper(
+            variables.delete,
+        )
+        self.upsert = to_streamed_response_wrapper(
+            variables.upsert,
+        )
 
 
 class AsyncVariablesResourceWithStreamingResponse:
@@ -315,4 +554,10 @@ class AsyncVariablesResourceWithStreamingResponse:
         )
         self.list = async_to_streamed_response_wrapper(
             variables.list,
+        )
+        self.delete = async_to_streamed_response_wrapper(
+            variables.delete,
+        )
+        self.upsert = async_to_streamed_response_wrapper(
+            variables.upsert,
         )

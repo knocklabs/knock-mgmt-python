@@ -352,6 +352,8 @@ Methods:
 
 - <code title="get /v1/variables/{key}">client.variables.<a href="./src/knock_mapi/resources/variables.py">retrieve</a>(key) -> <a href="./src/knock_mapi/types/variable.py">Variable</a></code>
 - <code title="get /v1/variables">client.variables.<a href="./src/knock_mapi/resources/variables.py">list</a>(\*\*<a href="src/knock_mapi/types/variable_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/variable.py">SyncEntriesCursor[Variable]</a></code>
+- <code title="delete /v1/variables/{key}">client.variables.<a href="./src/knock_mapi/resources/variables.py">delete</a>(key, \*\*<a href="src/knock_mapi/types/variable_delete_params.py">params</a>) -> None</code>
+- <code title="put /v1/variables/{key}">client.variables.<a href="./src/knock_mapi/resources/variables.py">upsert</a>(key, \*\*<a href="src/knock_mapi/types/variable_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/variable.py">Variable</a></code>
 
 # Guides
 

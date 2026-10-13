@@ -166,6 +166,8 @@ from .schema_retrieve_params import SchemaRetrieveParams as SchemaRetrieveParams
 from .schema_validate_params import SchemaValidateParams as SchemaValidateParams
 from .source_events_response import SourceEventsResponse as SourceEventsResponse
 from .source_status_response import SourceStatusResponse as SourceStatusResponse
+from .variable_delete_params import VariableDeleteParams as VariableDeleteParams
+from .variable_upsert_params import VariableUpsertParams as VariableUpsertParams
 from .webhook_template_param import WebhookTemplateParam as WebhookTemplateParam
 from .workflow_ai_agent_step import WorkflowAIAgentStep as WorkflowAIAgentStep
 from .workflow_request_param import WorkflowRequestParam as WorkflowRequestParam
