@@ -207,8 +207,10 @@ class CommitsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitCommitAllResponse:
-        """
-        Commit all changes across all resources in the development environment.
+        """Commit all changes across all resources in the given environment.
+
+        When writes
+        are limited to development, this endpoint accepts the development environment.
 
         Args:
           allow_empty: When used with a single resource_type and resource_id, creates a new version
@@ -539,8 +541,10 @@ class AsyncCommitsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> CommitCommitAllResponse:
-        """
-        Commit all changes across all resources in the development environment.
+        """Commit all changes across all resources in the given environment.
+
+        When writes
+        are limited to development, this endpoint accepts the development environment.
 
         Args:
           allow_empty: When used with a single resource_type and resource_id, creates a new version

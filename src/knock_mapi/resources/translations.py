@@ -243,8 +243,11 @@ class TranslationsResource(SyncAPIResource):
         Updates a translation of a given locale code + namespace, or creates a new one
         if it does not yet exist.
 
-        Note: this endpoint only operates on translations in the "development"
-        environment.
+        The write targets the environment in the request. Accounts that allow writes in
+        every environment can create and update in that environment. Pass force to write
+        outside the request's origin environment. When writes are limited to
+        development, this endpoint accepts the development environment unless force is
+        set.
 
         Args:
           namespace: An optional namespace that identifies the translation.
@@ -330,8 +333,9 @@ class TranslationsResource(SyncAPIResource):
         """
         Validates a translation payload without persisting it.
 
-        Note: this endpoint only operates on translations in the "development"
-        environment.
+        Validation uses the environment in the request. Accounts that allow writes in
+        every environment can validate in that environment. When writes are limited to
+        development, this endpoint accepts the development environment.
 
         Args:
           translation: A translation object with a content attribute used to update or create a
@@ -583,8 +587,11 @@ class AsyncTranslationsResource(AsyncAPIResource):
         Updates a translation of a given locale code + namespace, or creates a new one
         if it does not yet exist.
 
-        Note: this endpoint only operates on translations in the "development"
-        environment.
+        The write targets the environment in the request. Accounts that allow writes in
+        every environment can create and update in that environment. Pass force to write
+        outside the request's origin environment. When writes are limited to
+        development, this endpoint accepts the development environment unless force is
+        set.
 
         Args:
           namespace: An optional namespace that identifies the translation.
@@ -672,8 +679,9 @@ class AsyncTranslationsResource(AsyncAPIResource):
         """
         Validates a translation payload without persisting it.
 
-        Note: this endpoint only operates on translations in the "development"
-        environment.
+        Validation uses the environment in the request. Accounts that allow writes in
+        every environment can validate in that environment. When writes are limited to
+        development, this endpoint accepts the development environment.
 
         Args:
           translation: A translation object with a content attribute used to update or create a
