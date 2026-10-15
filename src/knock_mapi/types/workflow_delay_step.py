@@ -1,19 +1,46 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
-from typing import Optional
+from typing import List, Optional
 from typing_extensions import Literal
+
+from pydantic import Field as FieldInfo
 
 from .._models import BaseModel
 from .duration import Duration
 from .condition_group import ConditionGroup
 
-__all__ = ["WorkflowDelayStep", "Settings"]
+__all__ = ["WorkflowDelayStep", "Settings", "SettingsDelayUntilTimeWindow"]
+
+
+class SettingsDelayUntilTimeWindow(BaseModel):
+    """A time window for a delay step.
+
+    Describes a single day and when the delay can resume on it.
+    """
+
+    day: Literal["monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "sunday"]
+    """The day of the week."""
+
+    type: Literal["open", "closed"]
+    """Whether the delay can resume on this day.
+
+    A `closed` day does not support `from` and `until`.
+    """
+
+    from_: Optional[str] = FieldInfo(alias="from", default=None)
+    """The time the window opens. When blank, the window is open all day."""
+
+    until: Optional[str] = None
+    """The time the window closes.
+
+    When blank, the window is open until the end of the day.
+    """
 
 
 class Settings(BaseModel):
     """The settings for the delay step.
 
-    Both fields can be set to compute a delay where `delay_for` is an offset from the `delay_until_field_path`.
+    Set `delay_for` for a fixed delay, `delay_until_field_path` for a dynamic delay, both for a relative delay, or `delay_until_time_windows` to wait until a weekly schedule is open.
     """
 
     delay_for: Optional[Duration] = None
@@ -23,6 +50,13 @@ class Settings(BaseModel):
     """
     When set will use the path to resolve the delay into a timestamp from the
     property referenced
+    """
+
+    delay_until_time_windows: Optional[List[SettingsDelayUntilTimeWindow]] = None
+    """A weekly schedule of when the delay can resume.
+
+    Must include one window per day, and at least one day must be open. Cannot be
+    combined with `delay_for` or `delay_until_field_path`.
     """
 
     workflow_version_mode: Optional[Literal["pinned", "latest"]] = None
@@ -46,8 +80,9 @@ class WorkflowDelayStep(BaseModel):
     settings: Settings
     """The settings for the delay step.
 
-    Both fields can be set to compute a delay where `delay_for` is an offset from
-    the `delay_until_field_path`.
+    Set `delay_for` for a fixed delay, `delay_until_field_path` for a dynamic delay,
+    both for a relative delay, or `delay_until_time_windows` to wait until a weekly
+    schedule is open.
     """
 
     type: Literal["delay"]
