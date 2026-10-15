@@ -60,8 +60,28 @@ class CommitListParams(TypedDict, total=False):
     """
 
     resource_type: Union[
-        Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
-        List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+        Literal[
+            "audience",
+            "email_layout",
+            "guide",
+            "message_type",
+            "partial",
+            "reusable_request",
+            "translation",
+            "workflow",
+        ],
+        List[
+            Literal[
+                "audience",
+                "email_layout",
+                "guide",
+                "message_type",
+                "partial",
+                "reusable_request",
+                "translation",
+                "workflow",
+            ]
+        ],
     ]
     """Filter commits by resource type(s).
 

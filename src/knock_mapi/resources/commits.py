@@ -97,8 +97,28 @@ class CommitsResource(SyncAPIResource):
         promoted_from_environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
-            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
-            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+            Literal[
+                "audience",
+                "email_layout",
+                "guide",
+                "message_type",
+                "partial",
+                "reusable_request",
+                "translation",
+                "workflow",
+            ],
+            List[
+                Literal[
+                    "audience",
+                    "email_layout",
+                    "guide",
+                    "message_type",
+                    "partial",
+                    "reusable_request",
+                    "translation",
+                    "workflow",
+                ]
+            ],
         ]
         | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
@@ -196,8 +216,28 @@ class CommitsResource(SyncAPIResource):
         environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
-            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
-            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+            Literal[
+                "audience",
+                "email_layout",
+                "guide",
+                "message_type",
+                "partial",
+                "reusable_request",
+                "translation",
+                "workflow",
+            ],
+            List[
+                Literal[
+                    "audience",
+                    "email_layout",
+                    "guide",
+                    "message_type",
+                    "partial",
+                    "reusable_request",
+                    "translation",
+                    "workflow",
+                ]
+            ],
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -267,8 +307,28 @@ class CommitsResource(SyncAPIResource):
         branch: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
-            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
-            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+            Literal[
+                "audience",
+                "email_layout",
+                "guide",
+                "message_type",
+                "partial",
+                "reusable_request",
+                "translation",
+                "workflow",
+            ],
+            List[
+                Literal[
+                    "audience",
+                    "email_layout",
+                    "guide",
+                    "message_type",
+                    "partial",
+                    "reusable_request",
+                    "translation",
+                    "workflow",
+                ]
+            ],
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -431,8 +491,28 @@ class AsyncCommitsResource(AsyncAPIResource):
         promoted_from_environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
-            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
-            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+            Literal[
+                "audience",
+                "email_layout",
+                "guide",
+                "message_type",
+                "partial",
+                "reusable_request",
+                "translation",
+                "workflow",
+            ],
+            List[
+                Literal[
+                    "audience",
+                    "email_layout",
+                    "guide",
+                    "message_type",
+                    "partial",
+                    "reusable_request",
+                    "translation",
+                    "workflow",
+                ]
+            ],
         ]
         | Omit = omit,
         since: Union[str, datetime] | Omit = omit,
@@ -530,8 +610,28 @@ class AsyncCommitsResource(AsyncAPIResource):
         environment: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
-            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
-            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+            Literal[
+                "audience",
+                "email_layout",
+                "guide",
+                "message_type",
+                "partial",
+                "reusable_request",
+                "translation",
+                "workflow",
+            ],
+            List[
+                Literal[
+                    "audience",
+                    "email_layout",
+                    "guide",
+                    "message_type",
+                    "partial",
+                    "reusable_request",
+                    "translation",
+                    "workflow",
+                ]
+            ],
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
@@ -601,8 +701,28 @@ class AsyncCommitsResource(AsyncAPIResource):
         branch: str | Omit = omit,
         resource_id: str | Omit = omit,
         resource_type: Union[
-            Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"],
-            List[Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]],
+            Literal[
+                "audience",
+                "email_layout",
+                "guide",
+                "message_type",
+                "partial",
+                "reusable_request",
+                "translation",
+                "workflow",
+            ],
+            List[
+                Literal[
+                    "audience",
+                    "email_layout",
+                    "guide",
+                    "message_type",
+                    "partial",
+                    "reusable_request",
+                    "translation",
+                    "workflow",
+                ]
+            ],
         ]
         | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.

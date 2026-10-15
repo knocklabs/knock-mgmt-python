@@ -25,7 +25,9 @@ class Resource(BaseModel):
     identifier: str
     """The unique identifier for the resource."""
 
-    type: Literal["audience", "email_layout", "guide", "message_type", "partial", "translation", "workflow"]
+    type: Literal[
+        "audience", "email_layout", "guide", "message_type", "partial", "reusable_request", "translation", "workflow"
+    ]
     """The type of the resource object."""
 
 
