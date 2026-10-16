@@ -584,3 +584,15 @@ Methods:
 - <code title="delete /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">archive</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_archive_response.py">ReusableRequestArchiveResponse</a></code>
 - <code title="put /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">upsert</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_upsert_response.py">ReusableRequestUpsertResponse</a></code>
 - <code title="put /v1/reusable_requests/{reusable_request_key}/validate">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">validate</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_validate_response.py">ReusableRequestValidateResponse</a></code>
+
+# AuditLogs
+
+Types:
+
+```python
+from knock_mapi.types import AuditLogListResponse
+```
+
+Methods:
+
+- <code title="get /v1/audit_logs">client.audit_logs.<a href="./src/knock_mapi/resources/audit_logs.py">list</a>(\*\*<a href="src/knock_mapi/types/audit_log_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/audit_log_list_response.py">SyncEntriesCursor[AuditLogListResponse]</a></code>

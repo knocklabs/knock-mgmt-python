@@ -136,6 +136,14 @@ from .workflows import (
     WorkflowsResourceWithStreamingResponse,
     AsyncWorkflowsResourceWithStreamingResponse,
 )
+from .audit_logs import (
+    AuditLogsResource,
+    AsyncAuditLogsResource,
+    AuditLogsResourceWithRawResponse,
+    AsyncAuditLogsResourceWithRawResponse,
+    AuditLogsResourceWithStreamingResponse,
+    AsyncAuditLogsResourceWithStreamingResponse,
+)
 from .broadcasts import (
     BroadcastsResource,
     AsyncBroadcastsResource,
@@ -380,4 +388,10 @@ __all__ = [
     "AsyncReusableRequestsResourceWithRawResponse",
     "ReusableRequestsResourceWithStreamingResponse",
     "AsyncReusableRequestsResourceWithStreamingResponse",
+    "AuditLogsResource",
+    "AsyncAuditLogsResource",
+    "AuditLogsResourceWithRawResponse",
+    "AsyncAuditLogsResourceWithRawResponse",
+    "AuditLogsResourceWithStreamingResponse",
+    "AsyncAuditLogsResourceWithStreamingResponse",
 ]

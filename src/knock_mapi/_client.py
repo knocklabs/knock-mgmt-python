@@ -53,6 +53,7 @@ if TYPE_CHECKING:
         templates,
         variables,
         workflows,
+        audit_logs,
         broadcasts,
         data_sources,
         environments,
@@ -80,6 +81,7 @@ if TYPE_CHECKING:
     from .resources.audiences import AudiencesResource, AsyncAudiencesResource
     from .resources.templates import TemplatesResource, AsyncTemplatesResource
     from .resources.variables import VariablesResource, AsyncVariablesResource
+    from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
     from .resources.data_sources import DataSourcesResource, AsyncDataSourcesResource
     from .resources.environments import EnvironmentsResource, AsyncEnvironmentsResource
@@ -361,6 +363,12 @@ class KnockMgmt(SyncAPIClient):
         from .resources.reusable_requests import ReusableRequestsResource
 
         return ReusableRequestsResource(self)
+
+    @cached_property
+    def audit_logs(self) -> AuditLogsResource:
+        from .resources.audit_logs import AuditLogsResource
+
+        return AuditLogsResource(self)
 
     @cached_property
     def with_raw_response(self) -> KnockMgmtWithRawResponse:
@@ -734,6 +742,12 @@ class AsyncKnockMgmt(AsyncAPIClient):
         return AsyncReusableRequestsResource(self)
 
     @cached_property
+    def audit_logs(self) -> AsyncAuditLogsResource:
+        from .resources.audit_logs import AsyncAuditLogsResource
+
+        return AsyncAuditLogsResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncKnockMgmtWithRawResponse:
         return AsyncKnockMgmtWithRawResponse(self)
 
@@ -1046,6 +1060,12 @@ class KnockMgmtWithRawResponse:
 
         return ReusableRequestsResourceWithRawResponse(self._client.reusable_requests)
 
+    @cached_property
+    def audit_logs(self) -> audit_logs.AuditLogsResourceWithRawResponse:
+        from .resources.audit_logs import AuditLogsResourceWithRawResponse
+
+        return AuditLogsResourceWithRawResponse(self._client.audit_logs)
+
 
 class AsyncKnockMgmtWithRawResponse:
     _client: AsyncKnockMgmt
@@ -1246,6 +1266,12 @@ class AsyncKnockMgmtWithRawResponse:
         from .resources.reusable_requests import AsyncReusableRequestsResourceWithRawResponse
 
         return AsyncReusableRequestsResourceWithRawResponse(self._client.reusable_requests)
+
+    @cached_property
+    def audit_logs(self) -> audit_logs.AsyncAuditLogsResourceWithRawResponse:
+        from .resources.audit_logs import AsyncAuditLogsResourceWithRawResponse
+
+        return AsyncAuditLogsResourceWithRawResponse(self._client.audit_logs)
 
 
 class KnockMgmtWithStreamedResponse:
@@ -1448,6 +1474,12 @@ class KnockMgmtWithStreamedResponse:
 
         return ReusableRequestsResourceWithStreamingResponse(self._client.reusable_requests)
 
+    @cached_property
+    def audit_logs(self) -> audit_logs.AuditLogsResourceWithStreamingResponse:
+        from .resources.audit_logs import AuditLogsResourceWithStreamingResponse
+
+        return AuditLogsResourceWithStreamingResponse(self._client.audit_logs)
+
 
 class AsyncKnockMgmtWithStreamedResponse:
     _client: AsyncKnockMgmt
@@ -1648,6 +1680,12 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.reusable_requests import AsyncReusableRequestsResourceWithStreamingResponse
 
         return AsyncReusableRequestsResourceWithStreamingResponse(self._client.reusable_requests)
+
+    @cached_property
+    def audit_logs(self) -> audit_logs.AsyncAuditLogsResourceWithStreamingResponse:
+        from .resources.audit_logs import AsyncAuditLogsResourceWithStreamingResponse
+
+        return AsyncAuditLogsResourceWithStreamingResponse(self._client.audit_logs)
 
 
 Client = KnockMgmt
