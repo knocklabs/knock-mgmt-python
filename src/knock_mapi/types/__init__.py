@@ -102,6 +102,7 @@ from .schema_list_params import SchemaListParams as SchemaListParams
 from .sms_template_param import SMSTemplateParam as SMSTemplateParam
 from .workflow_chat_step import WorkflowChatStep as WorkflowChatStep
 from .workflow_push_step import WorkflowPushStep as WorkflowPushStep
+from .asset_create_params import AssetCreateParams as AssetCreateParams
 from .channel_list_params import ChannelListParams as ChannelListParams
 from .chat_template_param import ChatTemplateParam as ChatTemplateParam
 from .goal_archive_params import GoalArchiveParams as GoalArchiveParams
@@ -118,6 +119,7 @@ from .workflow_email_step import WorkflowEmailStep as WorkflowEmailStep
 from .workflow_fetch_step import WorkflowFetchStep as WorkflowFetchStep
 from .workflow_run_params import WorkflowRunParams as WorkflowRunParams
 from .workflow_step_param import WorkflowStepParam as WorkflowStepParam
+from .asset_uploads_params import AssetUploadsParams as AssetUploadsParams
 from .audience_list_params import AudienceListParams as AudienceListParams
 from .auth_verify_response import AuthVerifyResponse as AuthVerifyResponse
 from .branch_create_params import BranchCreateParams as BranchCreateParams
@@ -139,6 +141,7 @@ from .source_request_param import SourceRequestParam as SourceRequestParam
 from .variable_list_params import VariableListParams as VariableListParams
 from .workflow_branch_step import WorkflowBranchStep as WorkflowBranchStep
 from .workflow_list_params import WorkflowListParams as WorkflowListParams
+from .asset_delete_response import AssetDeleteResponse as AssetDeleteResponse
 from .audit_log_list_params import AuditLogListParams as AuditLogListParams
 from .broadcast_list_params import BroadcastListParams as BroadcastListParams
 from .broadcast_send_params import BroadcastSendParams as BroadcastSendParams
@@ -154,6 +157,7 @@ from .partial_upsert_params import PartialUpsertParams as PartialUpsertParams
 from .push_channel_settings import PushChannelSettings as PushChannelSettings
 from .workflow_run_response import WorkflowRunResponse as WorkflowRunResponse
 from .workflow_webhook_step import WorkflowWebhookStep as WorkflowWebhookStep
+from .asset_uploads_response import AssetUploadsResponse as AssetUploadsResponse
 from .audience_request_param import AudienceRequestParam as AudienceRequestParam
 from .audience_upsert_params import AudienceUpsertParams as AudienceUpsertParams
 from .branch_retrieve_params import BranchRetrieveParams as BranchRetrieveParams

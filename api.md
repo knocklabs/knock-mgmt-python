@@ -478,12 +478,15 @@ Methods:
 Types:
 
 ```python
-from knock_mapi.types import Asset
+from knock_mapi.types import Asset, AssetDeleteResponse, AssetUploadsResponse
 ```
 
 Methods:
 
+- <code title="post /v1/assets">client.assets.<a href="./src/knock_mapi/resources/assets.py">create</a>(\*\*<a href="src/knock_mapi/types/asset_create_params.py">params</a>) -> <a href="./src/knock_mapi/types/asset.py">Asset</a></code>
 - <code title="get /v1/assets">client.assets.<a href="./src/knock_mapi/resources/assets.py">list</a>(\*\*<a href="src/knock_mapi/types/asset_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/asset.py">SyncEntriesCursor[Asset]</a></code>
+- <code title="delete /v1/assets/{asset_id}">client.assets.<a href="./src/knock_mapi/resources/assets.py">delete</a>(asset_id) -> <a href="./src/knock_mapi/types/asset_delete_response.py">AssetDeleteResponse</a></code>
+- <code title="post /v1/assets/uploads">client.assets.<a href="./src/knock_mapi/resources/assets.py">uploads</a>(\*\*<a href="src/knock_mapi/types/asset_uploads_params.py">params</a>) -> <a href="./src/knock_mapi/types/asset_uploads_response.py">AssetUploadsResponse</a></code>
 
 # Tags
 
