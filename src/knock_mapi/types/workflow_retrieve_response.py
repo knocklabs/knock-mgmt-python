@@ -10,6 +10,7 @@ from .._models import BaseModel
 from .member_user import MemberUser
 from .condition_group import ConditionGroup
 from .shared.goal_attachment import GoalAttachment
+from .workflow_trigger_events import WorkflowTriggerEvents
 
 __all__ = ["WorkflowRetrieveResponse", "Settings"]
 
@@ -110,6 +111,14 @@ class WorkflowRetrieveResponse(BaseModel):
     payload (available in templates as `{{ data.field_name }}`). Used to validate
     trigger requests. Read more in the
     [docs](https://docs.knock.app/developer-tools/validating-trigger-data).
+    """
+
+    trigger_events: Optional[List[WorkflowTriggerEvents]] = None
+    """
+    Events that automatically trigger this workflow: audience triggers (a user
+    enters an audience) or source event triggers (an event is received from an
+    integration source). All entries must share the same `type`. Omit or pass an
+    empty list for workflows triggered via the API.
     """
 
     trigger_frequency: Optional[Literal["every_trigger", "once_per_recipient", "once_per_recipient_per_tenant"]] = None

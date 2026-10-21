@@ -10,6 +10,7 @@ from ..types import (
     reusable_request_archive_params,
     reusable_request_retrieve_params,
     reusable_request_validate_params,
+    reusable_request_update_unarchive_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
@@ -28,6 +29,7 @@ from ..types.reusable_request_request_param import ReusableRequestRequestParam
 from ..types.reusable_request_upsert_response import ReusableRequestUpsertResponse
 from ..types.reusable_request_archive_response import ReusableRequestArchiveResponse
 from ..types.reusable_request_validate_response import ReusableRequestValidateResponse
+from ..types.reusable_request_update_unarchive_response import ReusableRequestUpdateUnarchiveResponse
 
 __all__ = ["ReusableRequestsResource", "AsyncReusableRequestsResource"]
 
@@ -230,6 +232,58 @@ class ReusableRequestsResource(SyncAPIResource):
                 ),
             ),
             cast_to=ReusableRequestArchiveResponse,
+        )
+
+    def update_unarchive(
+        self,
+        reusable_request_key: str,
+        *,
+        environment: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReusableRequestUpdateUnarchiveResponse:
+        """
+        Unarchives a reusable request by key, with every copy archived alongside it in
+        other environments.
+
+        Returns a 404 when the key isn't archived, including when an earlier or
+        concurrent request already restored it. Returns a 422 with the code `key_in_use`
+        when a live reusable request uses the key.
+
+        Args:
+          environment: The environment slug. When omitted, the account's default environment is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not reusable_request_key:
+            raise ValueError(
+                f"Expected a non-empty value for `reusable_request_key` but received {reusable_request_key!r}"
+            )
+        return self._put(
+            path_template(
+                "/v1/reusable_requests/{reusable_request_key}/unarchive", reusable_request_key=reusable_request_key
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {"environment": environment},
+                    reusable_request_update_unarchive_params.ReusableRequestUpdateUnarchiveParams,
+                ),
+            ),
+            cast_to=ReusableRequestUpdateUnarchiveResponse,
         )
 
     def upsert(
@@ -589,6 +643,58 @@ class AsyncReusableRequestsResource(AsyncAPIResource):
             cast_to=ReusableRequestArchiveResponse,
         )
 
+    async def update_unarchive(
+        self,
+        reusable_request_key: str,
+        *,
+        environment: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> ReusableRequestUpdateUnarchiveResponse:
+        """
+        Unarchives a reusable request by key, with every copy archived alongside it in
+        other environments.
+
+        Returns a 404 when the key isn't archived, including when an earlier or
+        concurrent request already restored it. Returns a 422 with the code `key_in_use`
+        when a live reusable request uses the key.
+
+        Args:
+          environment: The environment slug. When omitted, the account's default environment is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not reusable_request_key:
+            raise ValueError(
+                f"Expected a non-empty value for `reusable_request_key` but received {reusable_request_key!r}"
+            )
+        return await self._put(
+            path_template(
+                "/v1/reusable_requests/{reusable_request_key}/unarchive", reusable_request_key=reusable_request_key
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {"environment": environment},
+                    reusable_request_update_unarchive_params.ReusableRequestUpdateUnarchiveParams,
+                ),
+            ),
+            cast_to=ReusableRequestUpdateUnarchiveResponse,
+        )
+
     async def upsert(
         self,
         reusable_request_key: str,
@@ -759,6 +865,9 @@ class ReusableRequestsResourceWithRawResponse:
         self.archive = to_raw_response_wrapper(
             reusable_requests.archive,
         )
+        self.update_unarchive = to_raw_response_wrapper(
+            reusable_requests.update_unarchive,
+        )
         self.upsert = to_raw_response_wrapper(
             reusable_requests.upsert,
         )
@@ -779,6 +888,9 @@ class AsyncReusableRequestsResourceWithRawResponse:
         )
         self.archive = async_to_raw_response_wrapper(
             reusable_requests.archive,
+        )
+        self.update_unarchive = async_to_raw_response_wrapper(
+            reusable_requests.update_unarchive,
         )
         self.upsert = async_to_raw_response_wrapper(
             reusable_requests.upsert,
@@ -801,6 +913,9 @@ class ReusableRequestsResourceWithStreamingResponse:
         self.archive = to_streamed_response_wrapper(
             reusable_requests.archive,
         )
+        self.update_unarchive = to_streamed_response_wrapper(
+            reusable_requests.update_unarchive,
+        )
         self.upsert = to_streamed_response_wrapper(
             reusable_requests.upsert,
         )
@@ -821,6 +936,9 @@ class AsyncReusableRequestsResourceWithStreamingResponse:
         )
         self.archive = async_to_streamed_response_wrapper(
             reusable_requests.archive,
+        )
+        self.update_unarchive = async_to_streamed_response_wrapper(
+            reusable_requests.update_unarchive,
         )
         self.upsert = async_to_streamed_response_wrapper(
             reusable_requests.upsert,

@@ -104,6 +104,14 @@ from .partials import (
     PartialsResourceWithStreamingResponse,
     AsyncPartialsResourceWithStreamingResponse,
 )
+from .webhooks import (
+    WebhooksResource,
+    AsyncWebhooksResource,
+    WebhooksResourceWithRawResponse,
+    AsyncWebhooksResourceWithRawResponse,
+    WebhooksResourceWithStreamingResponse,
+    AsyncWebhooksResourceWithStreamingResponse,
+)
 from .audiences import (
     AudiencesResource,
     AsyncAudiencesResource,
@@ -394,4 +402,10 @@ __all__ = [
     "AsyncAuditLogsResourceWithRawResponse",
     "AuditLogsResourceWithStreamingResponse",
     "AsyncAuditLogsResourceWithStreamingResponse",
+    "WebhooksResource",
+    "AsyncWebhooksResource",
+    "WebhooksResourceWithRawResponse",
+    "AsyncWebhooksResourceWithRawResponse",
+    "WebhooksResourceWithStreamingResponse",
+    "AsyncWebhooksResourceWithStreamingResponse",
 ]

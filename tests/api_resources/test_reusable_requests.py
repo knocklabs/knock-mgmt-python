@@ -14,6 +14,7 @@ from knock_mapi.types import (
     ReusableRequestUpsertResponse,
     ReusableRequestArchiveResponse,
     ReusableRequestValidateResponse,
+    ReusableRequestUpdateUnarchiveResponse,
 )
 from knock_mapi.pagination import SyncEntriesCursor, AsyncEntriesCursor
 
@@ -167,6 +168,57 @@ class TestReusableRequests:
     def test_path_params_archive(self, client: KnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `reusable_request_key` but received ''"):
             client.reusable_requests.with_raw_response.archive(
+                reusable_request_key="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_unarchive(self, client: KnockMgmt) -> None:
+        reusable_request = client.reusable_requests.update_unarchive(
+            reusable_request_key="fetch-user",
+        )
+        assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_method_update_unarchive_with_all_params(self, client: KnockMgmt) -> None:
+        reusable_request = client.reusable_requests.update_unarchive(
+            reusable_request_key="fetch-user",
+            environment="development",
+        )
+        assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_raw_response_update_unarchive(self, client: KnockMgmt) -> None:
+        response = client.reusable_requests.with_raw_response.update_unarchive(
+            reusable_request_key="fetch-user",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reusable_request = response.parse()
+        assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_streaming_response_update_unarchive(self, client: KnockMgmt) -> None:
+        with client.reusable_requests.with_streaming_response.update_unarchive(
+            reusable_request_key="fetch-user",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reusable_request = response.parse()
+            assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    def test_path_params_update_unarchive(self, client: KnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `reusable_request_key` but received ''"):
+            client.reusable_requests.with_raw_response.update_unarchive(
                 reusable_request_key="",
             )
 
@@ -531,6 +583,57 @@ class TestAsyncReusableRequests:
     async def test_path_params_archive(self, async_client: AsyncKnockMgmt) -> None:
         with pytest.raises(ValueError, match=r"Expected a non-empty value for `reusable_request_key` but received ''"):
             await async_client.reusable_requests.with_raw_response.archive(
+                reusable_request_key="",
+            )
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_unarchive(self, async_client: AsyncKnockMgmt) -> None:
+        reusable_request = await async_client.reusable_requests.update_unarchive(
+            reusable_request_key="fetch-user",
+        )
+        assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_method_update_unarchive_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
+        reusable_request = await async_client.reusable_requests.update_unarchive(
+            reusable_request_key="fetch-user",
+            environment="development",
+        )
+        assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_raw_response_update_unarchive(self, async_client: AsyncKnockMgmt) -> None:
+        response = await async_client.reusable_requests.with_raw_response.update_unarchive(
+            reusable_request_key="fetch-user",
+        )
+
+        assert response.is_closed is True
+        assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+        reusable_request = await response.parse()
+        assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_streaming_response_update_unarchive(self, async_client: AsyncKnockMgmt) -> None:
+        async with async_client.reusable_requests.with_streaming_response.update_unarchive(
+            reusable_request_key="fetch-user",
+        ) as response:
+            assert not response.is_closed
+            assert response.http_request.headers.get("X-Stainless-Lang") == "python"
+
+            reusable_request = await response.parse()
+            assert_matches_type(ReusableRequestUpdateUnarchiveResponse, reusable_request, path=["response"])
+
+        assert cast(Any, response.is_closed) is True
+
+    @pytest.mark.skip(reason="Mock server tests are disabled")
+    @parametrize
+    async def test_path_params_update_unarchive(self, async_client: AsyncKnockMgmt) -> None:
+        with pytest.raises(ValueError, match=r"Expected a non-empty value for `reusable_request_key` but received ''"):
+            await async_client.reusable_requests.with_raw_response.update_unarchive(
                 reusable_request_key="",
             )
 

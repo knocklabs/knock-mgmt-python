@@ -8,6 +8,7 @@ from typing_extensions import Literal, Required, TypedDict
 from .._types import SequenceNotStr
 from .condition_group_param import ConditionGroupParam
 from .shared_params.goal_attachment import GoalAttachment
+from .workflow_trigger_events_param import WorkflowTriggerEventsParam
 
 __all__ = ["WorkflowRequestParam", "Settings"]
 
@@ -70,6 +71,14 @@ class WorkflowRequestParam(TypedDict, total=False):
     payload (available in templates as `{{ data.field_name }}`). Used to validate
     trigger requests. Read more in the
     [docs](https://docs.knock.app/developer-tools/validating-trigger-data).
+    """
+
+    trigger_events: Iterable[WorkflowTriggerEventsParam]
+    """
+    Events that automatically trigger this workflow: audience triggers (a user
+    enters an audience) or source event triggers (an event is received from an
+    integration source). All entries must share the same `type`. Omit or pass an
+    empty list for workflows triggered via the API.
     """
 
     trigger_frequency: Literal["every_trigger", "once_per_recipient", "once_per_recipient_per_tenant"]

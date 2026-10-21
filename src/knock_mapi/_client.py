@@ -49,6 +49,7 @@ if TYPE_CHECKING:
         branches,
         channels,
         partials,
+        webhooks,
         audiences,
         templates,
         variables,
@@ -78,6 +79,7 @@ if TYPE_CHECKING:
     from .resources.branches import BranchesResource, AsyncBranchesResource
     from .resources.channels import ChannelsResource, AsyncChannelsResource
     from .resources.partials import PartialsResource, AsyncPartialsResource
+    from .resources.webhooks import WebhooksResource, AsyncWebhooksResource
     from .resources.audiences import AudiencesResource, AsyncAudiencesResource
     from .resources.templates import TemplatesResource, AsyncTemplatesResource
     from .resources.variables import VariablesResource, AsyncVariablesResource
@@ -369,6 +371,12 @@ class KnockMgmt(SyncAPIClient):
         from .resources.audit_logs import AuditLogsResource
 
         return AuditLogsResource(self)
+
+    @cached_property
+    def webhooks(self) -> WebhooksResource:
+        from .resources.webhooks import WebhooksResource
+
+        return WebhooksResource(self)
 
     @cached_property
     def with_raw_response(self) -> KnockMgmtWithRawResponse:
@@ -748,6 +756,12 @@ class AsyncKnockMgmt(AsyncAPIClient):
         return AsyncAuditLogsResource(self)
 
     @cached_property
+    def webhooks(self) -> AsyncWebhooksResource:
+        from .resources.webhooks import AsyncWebhooksResource
+
+        return AsyncWebhooksResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncKnockMgmtWithRawResponse:
         return AsyncKnockMgmtWithRawResponse(self)
 
@@ -1066,6 +1080,12 @@ class KnockMgmtWithRawResponse:
 
         return AuditLogsResourceWithRawResponse(self._client.audit_logs)
 
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithRawResponse:
+        from .resources.webhooks import WebhooksResourceWithRawResponse
+
+        return WebhooksResourceWithRawResponse(self._client.webhooks)
+
 
 class AsyncKnockMgmtWithRawResponse:
     _client: AsyncKnockMgmt
@@ -1272,6 +1292,12 @@ class AsyncKnockMgmtWithRawResponse:
         from .resources.audit_logs import AsyncAuditLogsResourceWithRawResponse
 
         return AsyncAuditLogsResourceWithRawResponse(self._client.audit_logs)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithRawResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithRawResponse
+
+        return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
 
 
 class KnockMgmtWithStreamedResponse:
@@ -1480,6 +1506,12 @@ class KnockMgmtWithStreamedResponse:
 
         return AuditLogsResourceWithStreamingResponse(self._client.audit_logs)
 
+    @cached_property
+    def webhooks(self) -> webhooks.WebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import WebhooksResourceWithStreamingResponse
+
+        return WebhooksResourceWithStreamingResponse(self._client.webhooks)
+
 
 class AsyncKnockMgmtWithStreamedResponse:
     _client: AsyncKnockMgmt
@@ -1686,6 +1718,12 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.audit_logs import AsyncAuditLogsResourceWithStreamingResponse
 
         return AsyncAuditLogsResourceWithStreamingResponse(self._client.audit_logs)
+
+    @cached_property
+    def webhooks(self) -> webhooks.AsyncWebhooksResourceWithStreamingResponse:
+        from .resources.webhooks import AsyncWebhooksResourceWithStreamingResponse
+
+        return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)
 
 
 Client = KnockMgmt

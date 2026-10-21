@@ -330,6 +330,13 @@ class TestWorkflows:
                 },
                 "tags": ["string"],
                 "trigger_data_json_schema": {"foo": "bar"},
+                "trigger_events": [
+                    {
+                        "audience_action_type": "member_added",
+                        "audience_key": "pro-users",
+                        "type": "audience",
+                    }
+                ],
                 "trigger_frequency": "every_trigger",
             },
             allow_empty=True,
@@ -491,6 +498,13 @@ class TestWorkflows:
                 },
                 "tags": ["string"],
                 "trigger_data_json_schema": {"foo": "bar"},
+                "trigger_events": [
+                    {
+                        "audience_action_type": "member_added",
+                        "audience_key": "pro-users",
+                        "type": "audience",
+                    }
+                ],
                 "trigger_frequency": "every_trigger",
             },
             branch="feature-branch",
@@ -873,6 +887,13 @@ class TestAsyncWorkflows:
                 },
                 "tags": ["string"],
                 "trigger_data_json_schema": {"foo": "bar"},
+                "trigger_events": [
+                    {
+                        "audience_action_type": "member_added",
+                        "audience_key": "pro-users",
+                        "type": "audience",
+                    }
+                ],
                 "trigger_frequency": "every_trigger",
             },
             allow_empty=True,
@@ -1034,6 +1055,13 @@ class TestAsyncWorkflows:
                 },
                 "tags": ["string"],
                 "trigger_data_json_schema": {"foo": "bar"},
+                "trigger_events": [
+                    {
+                        "audience_action_type": "member_added",
+                        "audience_key": "pro-users",
+                        "type": "audience",
+                    }
+                ],
                 "trigger_frequency": "every_trigger",
             },
             branch="feature-branch",

@@ -159,6 +159,7 @@ from knock_mapi.types import (
     WorkflowSMSStep,
     WorkflowStep,
     WorkflowThrottleStep,
+    WorkflowTriggerEvents,
     WorkflowTriggerWorkflowStep,
     WorkflowUpdateDataStep,
     WorkflowUpdateObjectStep,
@@ -575,6 +576,7 @@ from knock_mapi.types import (
     ReusableRequestRequest,
     ReusableRequestSettings,
     ReusableRequestArchiveResponse,
+    ReusableRequestUpdateUnarchiveResponse,
     ReusableRequestUpsertResponse,
     ReusableRequestValidateResponse,
 )
@@ -585,6 +587,7 @@ Methods:
 - <code title="get /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">retrieve</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request.py">ReusableRequest</a></code>
 - <code title="get /v1/reusable_requests">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">list</a>(\*\*<a href="src/knock_mapi/types/reusable_request_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request.py">SyncEntriesCursor[ReusableRequest]</a></code>
 - <code title="delete /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">archive</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_archive_response.py">ReusableRequestArchiveResponse</a></code>
+- <code title="put /v1/reusable_requests/{reusable_request_key}/unarchive">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">update_unarchive</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_update_unarchive_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_update_unarchive_response.py">ReusableRequestUpdateUnarchiveResponse</a></code>
 - <code title="put /v1/reusable_requests/{reusable_request_key}">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">upsert</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_upsert_response.py">ReusableRequestUpsertResponse</a></code>
 - <code title="put /v1/reusable_requests/{reusable_request_key}/validate">client.reusable_requests.<a href="./src/knock_mapi/resources/reusable_requests.py">validate</a>(reusable_request_key, \*\*<a href="src/knock_mapi/types/reusable_request_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/reusable_request_validate_response.py">ReusableRequestValidateResponse</a></code>
 
@@ -599,3 +602,25 @@ from knock_mapi.types import AuditLogListResponse
 Methods:
 
 - <code title="get /v1/audit_logs">client.audit_logs.<a href="./src/knock_mapi/resources/audit_logs.py">list</a>(\*\*<a href="src/knock_mapi/types/audit_log_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/audit_log_list_response.py">SyncEntriesCursor[AuditLogListResponse]</a></code>
+
+# Webhooks
+
+Types:
+
+```python
+from knock_mapi.types import (
+    Webhook,
+    WebhookRequest,
+    WebhookCreateResponse,
+    WebhookUpdateResponse,
+    WebhookDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/webhooks">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">create</a>(\*\*<a href="src/knock_mapi/types/webhook_create_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook_create_response.py">WebhookCreateResponse</a></code>
+- <code title="get /v1/webhooks/{id}">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">retrieve</a>(id, \*\*<a href="src/knock_mapi/types/webhook_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook.py">Webhook</a></code>
+- <code title="put /v1/webhooks/{id}">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">update</a>(id, \*\*<a href="src/knock_mapi/types/webhook_update_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
+- <code title="get /v1/webhooks">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">list</a>(\*\*<a href="src/knock_mapi/types/webhook_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook.py">SyncEntriesCursor[Webhook]</a></code>
+- <code title="delete /v1/webhooks/{id}">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">delete</a>(id, \*\*<a href="src/knock_mapi/types/webhook_delete_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook_delete_response.py">WebhookDeleteResponse</a></code>
