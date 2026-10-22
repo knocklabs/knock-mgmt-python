@@ -41,7 +41,11 @@ class Settings(TypedDict, total=False):
     """Settings that control how the broadcast run executes."""
 
     sandbox_mode: bool
-    """Whether to generate messages without sending them to downstream providers."""
+    """Whether to generate messages without sending them to downstream providers.
+
+    When omitted, each channel's sandbox mode setting in the environment applies.
+    When false, messages are sent even through channels in sandbox mode.
+    """
 
     skip_delay: bool
     """Whether to skip delay steps during the run."""
