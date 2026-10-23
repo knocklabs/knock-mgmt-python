@@ -275,6 +275,7 @@ class WorkflowsResource(SyncAPIResource):
         actor: Optional[workflow_run_params.Actor] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
+        step_id: Optional[str] | Omit = omit,
         tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -306,6 +307,9 @@ class WorkflowsResource(SyncAPIResource):
               templates as `{{ data.field_name }}`. See
               [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
 
+          step_id: When set, runs only this message-sending channel step. Guide steps, legacy
+              in-app steps, and unknown ids are rejected.
+
           tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
@@ -326,6 +330,7 @@ class WorkflowsResource(SyncAPIResource):
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
+                    "step_id": step_id,
                     "tenant": tenant,
                 },
                 workflow_run_params.WorkflowRunParams,
@@ -723,6 +728,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
         actor: Optional[workflow_run_params.Actor] | Omit = omit,
         cancellation_key: Optional[str] | Omit = omit,
         data: Dict[str, object] | Omit = omit,
+        step_id: Optional[str] | Omit = omit,
         tenant: str | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -754,6 +760,9 @@ class AsyncWorkflowsResource(AsyncAPIResource):
               templates as `{{ data.field_name }}`. See
               [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
 
+          step_id: When set, runs only this message-sending channel step. Guide steps, legacy
+              in-app steps, and unknown ids are rejected.
+
           tenant: The tenant to associate the workflow run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
@@ -774,6 +783,7 @@ class AsyncWorkflowsResource(AsyncAPIResource):
                     "actor": actor,
                     "cancellation_key": cancellation_key,
                     "data": data,
+                    "step_id": step_id,
                     "tenant": tenant,
                 },
                 workflow_run_params.WorkflowRunParams,

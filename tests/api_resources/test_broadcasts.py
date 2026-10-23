@@ -195,6 +195,7 @@ class TestBroadcasts:
                 "sandbox_mode": True,
                 "skip_delay": True,
             },
+            step_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             tenant="tenant_1",
         )
         assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])
@@ -759,6 +760,7 @@ class TestAsyncBroadcasts:
                 "sandbox_mode": True,
                 "skip_delay": True,
             },
+            step_id="182bd5e5-6e1a-4fe4-a799-aa6d9a6ab26e",
             tenant="tenant_1",
         )
         assert_matches_type(BroadcastRunResponse, broadcast, path=["response"])

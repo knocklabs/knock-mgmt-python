@@ -50,6 +50,12 @@ class WorkflowRunParams(TypedDict, total=False):
     [trigger data validation docs](https://docs.knock.app/developer-tools/validating-trigger-data).
     """
 
+    step_id: Optional[str]
+    """When set, runs only this message-sending channel step.
+
+    Guide steps, legacy in-app steps, and unknown ids are rejected.
+    """
+
     tenant: str
     """The tenant to associate the workflow run with. Must not contain whitespace."""
 

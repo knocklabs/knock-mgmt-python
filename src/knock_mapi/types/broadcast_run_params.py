@@ -26,6 +26,12 @@ class BroadcastRunParams(TypedDict, total=False):
     settings: Settings
     """Settings that control how the broadcast run executes."""
 
+    step_id: Optional[str]
+    """When set, runs only this message-sending channel step.
+
+    Guide steps, legacy in-app steps, and unknown ids are rejected.
+    """
+
     tenant: Optional[str]
     """The tenant to associate the broadcast run with. Must not contain whitespace."""
 

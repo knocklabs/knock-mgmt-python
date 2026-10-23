@@ -252,6 +252,7 @@ class BroadcastsResource(SyncAPIResource):
         branch: str | Omit = omit,
         environment: str | Omit = omit,
         settings: broadcast_run_params.Settings | Omit = omit,
+        step_id: Optional[str] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -275,6 +276,9 @@ class BroadcastsResource(SyncAPIResource):
 
           settings: Settings that control how the broadcast run executes.
 
+          step_id: When set, runs only this message-sending channel step. Guide steps, legacy
+              in-app steps, and unknown ids are rejected.
+
           tenant: The tenant to associate the broadcast run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
@@ -293,6 +297,7 @@ class BroadcastsResource(SyncAPIResource):
                 {
                     "recipient": recipient,
                     "settings": settings,
+                    "step_id": step_id,
                     "tenant": tenant,
                 },
                 broadcast_run_params.BroadcastRunParams,
@@ -699,6 +704,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
         branch: str | Omit = omit,
         environment: str | Omit = omit,
         settings: broadcast_run_params.Settings | Omit = omit,
+        step_id: Optional[str] | Omit = omit,
         tenant: Optional[str] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
@@ -722,6 +728,9 @@ class AsyncBroadcastsResource(AsyncAPIResource):
 
           settings: Settings that control how the broadcast run executes.
 
+          step_id: When set, runs only this message-sending channel step. Guide steps, legacy
+              in-app steps, and unknown ids are rejected.
+
           tenant: The tenant to associate the broadcast run with. Must not contain whitespace.
 
           extra_headers: Send extra headers
@@ -740,6 +749,7 @@ class AsyncBroadcastsResource(AsyncAPIResource):
                 {
                     "recipient": recipient,
                     "settings": settings,
+                    "step_id": step_id,
                     "tenant": tenant,
                 },
                 broadcast_run_params.BroadcastRunParams,
