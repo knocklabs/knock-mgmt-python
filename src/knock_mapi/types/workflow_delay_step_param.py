@@ -53,7 +53,8 @@ class Settings(TypedDict, total=False):
     delay_until_field_path: str
     """
     When set will use the path to resolve the delay into a timestamp from the
-    property referenced
+    property referenced. The resolved timestamp must be 365 days or less from when
+    the step runs.
     """
 
     delay_until_time_windows: Optional[Iterable[SettingsDelayUntilTimeWindow]]

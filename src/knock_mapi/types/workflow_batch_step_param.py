@@ -44,7 +44,8 @@ class Settings(TypedDict, total=False):
     batch_until_field_path: Optional[str]
     """The data path to resolve the batch window.
 
-    The resolved value must be an ISO-8601 timestamp.
+    The resolved value must be an ISO-8601 timestamp 90 days or less from when the
+    batch opens.
     """
 
     batch_window: Optional[DurationParam]

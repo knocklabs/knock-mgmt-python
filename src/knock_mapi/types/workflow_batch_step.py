@@ -43,7 +43,8 @@ class Settings(BaseModel):
     batch_until_field_path: Optional[str] = None
     """The data path to resolve the batch window.
 
-    The resolved value must be an ISO-8601 timestamp.
+    The resolved value must be an ISO-8601 timestamp 90 days or less from when the
+    batch opens.
     """
 
     batch_window: Optional[Duration] = None
