@@ -467,12 +467,31 @@ from knock_mapi.types import (
 
 Methods:
 
-- <code title="get /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals.py">retrieve</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal.py">Goal</a></code>
-- <code title="get /v1/goals">client.goals.<a href="./src/knock_mapi/resources/goals.py">list</a>(\*\*<a href="src/knock_mapi/types/goal_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal.py">SyncEntriesCursor[Goal]</a></code>
-- <code title="delete /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals.py">archive</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_archive_response.py">GoalArchiveResponse</a></code>
-- <code title="post /v1/goals/{goal_key}/clone">client.goals.<a href="./src/knock_mapi/resources/goals.py">clone</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_clone_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_clone_response.py">GoalCloneResponse</a></code>
-- <code title="put /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals.py">upsert</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_upsert_response.py">GoalUpsertResponse</a></code>
-- <code title="put /v1/goals/{goal_key}/validate">client.goals.<a href="./src/knock_mapi/resources/goals.py">validate</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_validate_response.py">GoalValidateResponse</a></code>
+- <code title="get /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals/goals.py">retrieve</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal.py">Goal</a></code>
+- <code title="get /v1/goals">client.goals.<a href="./src/knock_mapi/resources/goals/goals.py">list</a>(\*\*<a href="src/knock_mapi/types/goal_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal.py">SyncEntriesCursor[Goal]</a></code>
+- <code title="delete /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals/goals.py">archive</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_archive_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_archive_response.py">GoalArchiveResponse</a></code>
+- <code title="post /v1/goals/{goal_key}/clone">client.goals.<a href="./src/knock_mapi/resources/goals/goals.py">clone</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_clone_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_clone_response.py">GoalCloneResponse</a></code>
+- <code title="put /v1/goals/{goal_key}">client.goals.<a href="./src/knock_mapi/resources/goals/goals.py">upsert</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_upsert_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_upsert_response.py">GoalUpsertResponse</a></code>
+- <code title="put /v1/goals/{goal_key}/validate">client.goals.<a href="./src/knock_mapi/resources/goals/goals.py">validate</a>(goal_key, \*\*<a href="src/knock_mapi/types/goal_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/goal_validate_response.py">GoalValidateResponse</a></code>
+
+## Attachments
+
+Types:
+
+```python
+from knock_mapi.types.goals import (
+    GoalResourceAttachment,
+    AttachmentUpdateResponse,
+    AttachmentListResponse,
+    AttachmentDeleteResponse,
+)
+```
+
+Methods:
+
+- <code title="put /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}">client.goals.attachments.<a href="./src/knock_mapi/resources/goals/attachments.py">update</a>(resource_key, \*, goal_key, resource_type, \*\*<a href="src/knock_mapi/types/goals/attachment_update_params.py">params</a>) -> <a href="./src/knock_mapi/types/goals/attachment_update_response.py">AttachmentUpdateResponse</a></code>
+- <code title="get /v1/goals/{goal_key}/attachments">client.goals.attachments.<a href="./src/knock_mapi/resources/goals/attachments.py">list</a>(goal_key, \*\*<a href="src/knock_mapi/types/goals/attachment_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/goals/attachment_list_response.py">AttachmentListResponse</a></code>
+- <code title="delete /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}">client.goals.attachments.<a href="./src/knock_mapi/resources/goals/attachments.py">delete</a>(resource_key, \*, goal_key, resource_type, \*\*<a href="src/knock_mapi/types/goals/attachment_delete_params.py">params</a>) -> <a href="./src/knock_mapi/types/goals/attachment_delete_response.py">AttachmentDeleteResponse</a></code>
 
 # Assets
 

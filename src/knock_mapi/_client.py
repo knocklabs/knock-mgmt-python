@@ -68,7 +68,6 @@ if TYPE_CHECKING:
     )
     from .resources.auth import AuthResource, AsyncAuthResource
     from .resources.tags import TagsResource, AsyncTagsResource
-    from .resources.goals import GoalsResource, AsyncGoalsResource
     from .resources.assets import AssetsResource, AsyncAssetsResource
     from .resources.guides import GuidesResource, AsyncGuidesResource
     from .resources.billing import BillingResource, AsyncBillingResource
@@ -85,6 +84,7 @@ if TYPE_CHECKING:
     from .resources.variables import VariablesResource, AsyncVariablesResource
     from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
+    from .resources.goals.goals import GoalsResource, AsyncGoalsResource
     from .resources.data_sources import DataSourcesResource, AsyncDataSourcesResource
     from .resources.environments import EnvironmentsResource, AsyncEnvironmentsResource
     from .resources.translations import TranslationsResource, AsyncTranslationsResource

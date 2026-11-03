@@ -4,7 +4,7 @@ from __future__ import annotations
 
 import httpx
 
-from ..types import (
+from ...types import (
     goal_list_params,
     goal_clone_params,
     goal_upsert_params,
@@ -12,24 +12,32 @@ from ..types import (
     goal_retrieve_params,
     goal_validate_params,
 )
-from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
-from .._utils import path_template, maybe_transform, async_maybe_transform
-from .._compat import cached_property
-from .._resource import SyncAPIResource, AsyncAPIResource
-from .._response import (
+from ..._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
+from ..._utils import path_template, maybe_transform, async_maybe_transform
+from ..._compat import cached_property
+from ..._resource import SyncAPIResource, AsyncAPIResource
+from ..._response import (
     to_raw_response_wrapper,
     to_streamed_response_wrapper,
     async_to_raw_response_wrapper,
     async_to_streamed_response_wrapper,
 )
-from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
-from ..types.goal import Goal
-from .._base_client import AsyncPaginator, make_request_options
-from ..types.goal_request_param import GoalRequestParam
-from ..types.goal_clone_response import GoalCloneResponse
-from ..types.goal_upsert_response import GoalUpsertResponse
-from ..types.goal_archive_response import GoalArchiveResponse
-from ..types.goal_validate_response import GoalValidateResponse
+from .attachments import (
+    AttachmentsResource,
+    AsyncAttachmentsResource,
+    AttachmentsResourceWithRawResponse,
+    AsyncAttachmentsResourceWithRawResponse,
+    AttachmentsResourceWithStreamingResponse,
+    AsyncAttachmentsResourceWithStreamingResponse,
+)
+from ...pagination import SyncEntriesCursor, AsyncEntriesCursor
+from ...types.goal import Goal
+from ..._base_client import AsyncPaginator, make_request_options
+from ...types.goal_request_param import GoalRequestParam
+from ...types.goal_clone_response import GoalCloneResponse
+from ...types.goal_upsert_response import GoalUpsertResponse
+from ...types.goal_archive_response import GoalArchiveResponse
+from ...types.goal_validate_response import GoalValidateResponse
 
 __all__ = ["GoalsResource", "AsyncGoalsResource"]
 
@@ -38,6 +46,13 @@ class GoalsResource(SyncAPIResource):
     """
     Goals define event conditions that are tracked and attributed to messaging resources.
     """
+
+    @cached_property
+    def attachments(self) -> AttachmentsResource:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        return AttachmentsResource(self._client)
 
     @cached_property
     def with_raw_response(self) -> GoalsResourceWithRawResponse:
@@ -190,10 +205,10 @@ class GoalsResource(SyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GoalArchiveResponse:
-        """Archives a given goal across all environments.
+        """Archives a given goal in this environment.
 
-        Refuses if any workflow, guide,
-        or broadcast is attached to the goal.
+        Refuses if a workflow, guide, or
+        broadcast in this environment is attached to the goal.
 
         Args:
           environment: The environment slug. When omitted, the account's default environment is used.
@@ -381,6 +396,13 @@ class AsyncGoalsResource(AsyncAPIResource):
     """
 
     @cached_property
+    def attachments(self) -> AsyncAttachmentsResource:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        return AsyncAttachmentsResource(self._client)
+
+    @cached_property
     def with_raw_response(self) -> AsyncGoalsResourceWithRawResponse:
         """
         This property can be used as a prefix for any HTTP method call to return
@@ -531,10 +553,10 @@ class AsyncGoalsResource(AsyncAPIResource):
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> GoalArchiveResponse:
-        """Archives a given goal across all environments.
+        """Archives a given goal in this environment.
 
-        Refuses if any workflow, guide,
-        or broadcast is attached to the goal.
+        Refuses if a workflow, guide, or
+        broadcast in this environment is attached to the goal.
 
         Args:
           environment: The environment slug. When omitted, the account's default environment is used.
@@ -739,6 +761,13 @@ class GoalsResourceWithRawResponse:
             goals.validate,
         )
 
+    @cached_property
+    def attachments(self) -> AttachmentsResourceWithRawResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        return AttachmentsResourceWithRawResponse(self._goals.attachments)
+
 
 class AsyncGoalsResourceWithRawResponse:
     def __init__(self, goals: AsyncGoalsResource) -> None:
@@ -762,6 +791,13 @@ class AsyncGoalsResourceWithRawResponse:
         self.validate = async_to_raw_response_wrapper(
             goals.validate,
         )
+
+    @cached_property
+    def attachments(self) -> AsyncAttachmentsResourceWithRawResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        return AsyncAttachmentsResourceWithRawResponse(self._goals.attachments)
 
 
 class GoalsResourceWithStreamingResponse:
@@ -787,6 +823,13 @@ class GoalsResourceWithStreamingResponse:
             goals.validate,
         )
 
+    @cached_property
+    def attachments(self) -> AttachmentsResourceWithStreamingResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        return AttachmentsResourceWithStreamingResponse(self._goals.attachments)
+
 
 class AsyncGoalsResourceWithStreamingResponse:
     def __init__(self, goals: AsyncGoalsResource) -> None:
@@ -810,3 +853,10 @@ class AsyncGoalsResourceWithStreamingResponse:
         self.validate = async_to_streamed_response_wrapper(
             goals.validate,
         )
+
+    @cached_property
+    def attachments(self) -> AsyncAttachmentsResourceWithStreamingResponse:
+        """
+        Goals define event conditions that are tracked and attributed to messaging resources.
+        """
+        return AsyncAttachmentsResourceWithStreamingResponse(self._goals.attachments)

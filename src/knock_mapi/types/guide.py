@@ -62,7 +62,13 @@ class Guide(BaseModel):
     """
 
     goal_attachment: Optional[GoalAttachment] = None
-    """Attaches a goal to a workflow, guide, or broadcast for attribution tracking."""
+    """
+    Deprecated: attach goals with
+    `PUT /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}` instead.
+    Attaches a goal to a workflow, guide, or broadcast for attribution tracking. For
+    accounts on the new goal attachments, saves that include this field are rejected
+    with a 422 and responses omit it.
+    """
 
     guide_audience_conditions: Optional[ConditionGroup] = None
     """A group of conditions to be evaluated."""

@@ -1,0 +1,11 @@
+# File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
+
+from __future__ import annotations
+
+from .attachment_list_params import AttachmentListParams as AttachmentListParams
+from .attachment_delete_params import AttachmentDeleteParams as AttachmentDeleteParams
+from .attachment_list_response import AttachmentListResponse as AttachmentListResponse
+from .attachment_update_params import AttachmentUpdateParams as AttachmentUpdateParams
+from .goal_resource_attachment import GoalResourceAttachment as GoalResourceAttachment
+from .attachment_delete_response import AttachmentDeleteResponse as AttachmentDeleteResponse
+from .attachment_update_response import AttachmentUpdateResponse as AttachmentUpdateResponse
