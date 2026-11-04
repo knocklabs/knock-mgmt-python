@@ -338,8 +338,21 @@ from knock_mapi.types import Environment
 
 Methods:
 
-- <code title="get /v1/environments/{environment_slug}">client.environments.<a href="./src/knock_mapi/resources/environments.py">retrieve</a>(environment_slug) -> <a href="./src/knock_mapi/types/environment.py">Environment</a></code>
-- <code title="get /v1/environments">client.environments.<a href="./src/knock_mapi/resources/environments.py">list</a>(\*\*<a href="src/knock_mapi/types/environment_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/environment.py">SyncEntriesCursor[Environment]</a></code>
+- <code title="get /v1/environments/{environment_slug}">client.environments.<a href="./src/knock_mapi/resources/environments/environments.py">retrieve</a>(environment_slug) -> <a href="./src/knock_mapi/types/environment.py">Environment</a></code>
+- <code title="get /v1/environments">client.environments.<a href="./src/knock_mapi/resources/environments/environments.py">list</a>(\*\*<a href="src/knock_mapi/types/environment_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/environment.py">SyncEntriesCursor[Environment]</a></code>
+
+## Defaults
+
+Types:
+
+```python
+from knock_mapi.types.environments import EnvironmentDefaults, EnvironmentDefaultsPreferenceSet
+```
+
+Methods:
+
+- <code title="put /v1/environments/{environment_slug}/defaults">client.environments.defaults.<a href="./src/knock_mapi/resources/environments/defaults.py">update</a>(environment_slug, \*\*<a href="src/knock_mapi/types/environments/default_update_params.py">params</a>) -> <a href="./src/knock_mapi/types/environments/environment_defaults.py">EnvironmentDefaults</a></code>
+- <code title="get /v1/environments/{environment_slug}/defaults">client.environments.defaults.<a href="./src/knock_mapi/resources/environments/defaults.py">list</a>(environment_slug) -> <a href="./src/knock_mapi/types/environments/environment_defaults.py">EnvironmentDefaults</a></code>
 
 # Variables
 

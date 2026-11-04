@@ -86,7 +86,6 @@ if TYPE_CHECKING:
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
     from .resources.goals.goals import GoalsResource, AsyncGoalsResource
     from .resources.data_sources import DataSourcesResource, AsyncDataSourcesResource
-    from .resources.environments import EnvironmentsResource, AsyncEnvironmentsResource
     from .resources.translations import TranslationsResource, AsyncTranslationsResource
     from .resources.email_layouts import EmailLayoutsResource, AsyncEmailLayoutsResource
     from .resources.message_types import MessageTypesResource, AsyncMessageTypesResource
@@ -95,6 +94,7 @@ if TYPE_CHECKING:
     from .resources.reusable_requests import ReusableRequestsResource, AsyncReusableRequestsResource
     from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
     from .resources.preference_categories import PreferenceCategoriesResource, AsyncPreferenceCategoriesResource
+    from .resources.environments.environments import EnvironmentsResource, AsyncEnvironmentsResource
 
 __all__ = [
     "Timeout",
