@@ -2,7 +2,7 @@
 
 from __future__ import annotations
 
-from typing import Union, Iterable, Optional
+from typing import Union, Iterable
 from datetime import datetime
 from typing_extensions import Required, Annotated, TypeAlias, TypedDict
 
@@ -14,7 +14,6 @@ from .workflow_push_step_param import WorkflowPushStepParam
 from .workflow_delay_step_param import WorkflowDelayStepParam
 from .workflow_email_step_param import WorkflowEmailStepParam
 from .workflow_webhook_step_param import WorkflowWebhookStepParam
-from .shared_params.goal_attachment import GoalAttachment
 from .workflow_in_app_feed_step_param import WorkflowInAppFeedStepParam
 from .workflow_in_app_guide_step_param import WorkflowInAppGuideStepParam
 
@@ -68,15 +67,6 @@ class BroadcastRequestParam(TypedDict, total=False):
 
     Useful for adding notes about the broadcast for internal purposes. Maximum of
     280 characters allowed.
-    """
-
-    goal_attachment: Optional[GoalAttachment]
-    """
-    Deprecated: attach goals with
-    `PUT /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}` instead.
-    Attaches a goal to a workflow, guide, or broadcast for attribution tracking. For
-    accounts on the new goal attachments, saves that include this field are rejected
-    with a 422 and responses omit it.
     """
 
     scheduled_at: Annotated[Union[str, datetime, None], PropertyInfo(format="iso8601")]

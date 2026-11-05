@@ -322,10 +322,6 @@ class TestGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "guide_audience_conditions": {
                     "all": [
                         {
@@ -475,10 +471,6 @@ class TestGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "guide_audience_conditions": {
                     "all": [
                         {
@@ -878,10 +870,6 @@ class TestAsyncGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "guide_audience_conditions": {
                     "all": [
                         {
@@ -1031,10 +1019,6 @@ class TestAsyncGuides:
                 "archived_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "deleted_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "description": "A guide to help users get started with the application",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "guide_audience_conditions": {
                     "all": [
                         {

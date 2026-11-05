@@ -10,7 +10,6 @@ from .._types import SequenceNotStr
 from .._utils import PropertyInfo
 from .guide_step_param import GuideStepParam
 from .condition_group_param import ConditionGroupParam
-from .shared_params.goal_attachment import GoalAttachment
 from .guide_activation_url_pattern_param import GuideActivationURLPatternParam
 
 __all__ = ["GuideRequestParam"]
@@ -42,15 +41,6 @@ class GuideRequestParam(TypedDict, total=False):
 
     Useful for adding notes about the guide for internal purposes. Maximum of 280
     characters allowed.
-    """
-
-    goal_attachment: Optional[GoalAttachment]
-    """
-    Deprecated: attach goals with
-    `PUT /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}` instead.
-    Attaches a goal to a workflow, guide, or broadcast for attribution tracking. For
-    accounts on the new goal attachments, saves that include this field are rejected
-    with a 422 and responses omit it.
     """
 
     guide_audience_conditions: Optional[ConditionGroupParam]

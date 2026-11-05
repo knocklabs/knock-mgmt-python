@@ -356,10 +356,6 @@ class TestBroadcasts:
                 ],
                 "categories": ["announcement"],
                 "description": "A broadcast to all users",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "scheduled_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "settings": {
                     "is_commercial": True,
@@ -504,10 +500,6 @@ class TestBroadcasts:
                 ],
                 "categories": ["announcement"],
                 "description": "A broadcast to all users",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "scheduled_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "settings": {
                     "is_commercial": True,
@@ -921,10 +913,6 @@ class TestAsyncBroadcasts:
                 ],
                 "categories": ["announcement"],
                 "description": "A broadcast to all users",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "scheduled_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "settings": {
                     "is_commercial": True,
@@ -1069,10 +1057,6 @@ class TestAsyncBroadcasts:
                 ],
                 "categories": ["announcement"],
                 "description": "A broadcast to all users",
-                "goal_attachment": {
-                    "goal_key": "trial-conversion",
-                    "attribution_window_days": 7,
-                },
                 "scheduled_at": parse_datetime("2019-12-27T18:11:19.117Z"),
                 "settings": {
                     "is_commercial": True,

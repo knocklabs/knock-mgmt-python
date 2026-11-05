@@ -2,7 +2,6 @@
 
 ```python
 from knock_mapi.types import (
-    GoalAttachment,
     MessageTypeBooleanField,
     MessageTypeButtonField,
     MessageTypeColorField,

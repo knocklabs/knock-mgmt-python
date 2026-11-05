@@ -27,7 +27,6 @@ from .commit import Commit as Commit
 from .member import Member as Member
 from .shared import (
     PageInfo as PageInfo,
-    GoalAttachment as GoalAttachment,
     RecipientReference as RecipientReference,
     MessageTypeURLField as MessageTypeURLField,
     MessageTypeJsonField as MessageTypeJsonField,

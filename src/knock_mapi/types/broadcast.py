@@ -13,7 +13,6 @@ from .workflow_push_step import WorkflowPushStep
 from .workflow_delay_step import WorkflowDelayStep
 from .workflow_email_step import WorkflowEmailStep
 from .workflow_webhook_step import WorkflowWebhookStep
-from .shared.goal_attachment import GoalAttachment
 from .workflow_in_app_feed_step import WorkflowInAppFeedStep
 from .workflow_in_app_guide_step import WorkflowInAppGuideStep
 
@@ -95,15 +94,6 @@ class Broadcast(BaseModel):
 
     Useful for adding notes about the broadcast for internal purposes. Maximum of
     280 characters allowed.
-    """
-
-    goal_attachment: Optional[GoalAttachment] = None
-    """
-    Deprecated: attach goals with
-    `PUT /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}` instead.
-    Attaches a goal to a workflow, guide, or broadcast for attribution tracking. For
-    accounts on the new goal attachments, saves that include this field are rejected
-    with a 422 and responses omit it.
     """
 
     scheduled_at: Optional[datetime] = None

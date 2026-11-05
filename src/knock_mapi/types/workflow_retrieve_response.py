@@ -9,7 +9,6 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .member_user import MemberUser
 from .condition_group import ConditionGroup
-from .shared.goal_attachment import GoalAttachment
 from .workflow_trigger_events import WorkflowTriggerEvents
 
 __all__ = ["WorkflowRetrieveResponse", "Settings"]
@@ -91,15 +90,6 @@ class WorkflowRetrieveResponse(BaseModel):
 
     Useful for adding notes about the workflow for internal purposes. Maximum of 280
     characters allowed.
-    """
-
-    goal_attachment: Optional[GoalAttachment] = None
-    """
-    Deprecated: attach goals with
-    `PUT /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}` instead.
-    Attaches a goal to a workflow, guide, or broadcast for attribution tracking. For
-    accounts on the new goal attachments, saves that include this field are rejected
-    with a 422 and responses omit it.
     """
 
     settings: Optional[Settings] = None

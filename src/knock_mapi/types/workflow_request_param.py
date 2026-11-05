@@ -7,7 +7,6 @@ from typing_extensions import Literal, Required, TypedDict
 
 from .._types import SequenceNotStr
 from .condition_group_param import ConditionGroupParam
-from .shared_params.goal_attachment import GoalAttachment
 from .workflow_trigger_events_param import WorkflowTriggerEventsParam
 
 __all__ = ["WorkflowRequestParam", "Settings"]
@@ -51,15 +50,6 @@ class WorkflowRequestParam(TypedDict, total=False):
 
     Useful for adding notes about the workflow for internal purposes. Maximum of 280
     characters allowed.
-    """
-
-    goal_attachment: Optional[GoalAttachment]
-    """
-    Deprecated: attach goals with
-    `PUT /v1/goals/{goal_key}/attachments/{resource_type}/{resource_key}` instead.
-    Attaches a goal to a workflow, guide, or broadcast for attribution tracking. For
-    accounts on the new goal attachments, saves that include this field are rejected
-    with a 422 and responses omit it.
     """
 
     settings: Settings

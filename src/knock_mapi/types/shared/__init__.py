@@ -1,7 +1,6 @@
 # File generated from our OpenAPI spec by Stainless. See CONTRIBUTING.md for details.
 
 from .page_info import PageInfo as PageInfo
-from .goal_attachment import GoalAttachment as GoalAttachment
 from .recipient_reference import RecipientReference as RecipientReference
 from .message_type_url_field import MessageTypeURLField as MessageTypeURLField
 from .message_type_json_field import MessageTypeJsonField as MessageTypeJsonField
