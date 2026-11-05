@@ -28,6 +28,7 @@ class TestAPIKeys:
     def test_method_exchange_with_all_params(self, client: KnockMgmt) -> None:
         api_key = client.api_keys.exchange(
             environment="development",
+            type="secret",
         )
         assert_matches_type(APIKeyExchangeResponse, api_key, path=["response"])
 
@@ -70,6 +71,7 @@ class TestAsyncAPIKeys:
     async def test_method_exchange_with_all_params(self, async_client: AsyncKnockMgmt) -> None:
         api_key = await async_client.api_keys.exchange(
             environment="development",
+            type="secret",
         )
         assert_matches_type(APIKeyExchangeResponse, api_key, path=["response"])
 

@@ -2,6 +2,8 @@
 
 from __future__ import annotations
 
+from typing_extensions import Literal
+
 import httpx
 
 from ..types import api_key_exchange_params
@@ -45,6 +47,7 @@ class APIKeysResource(SyncAPIResource):
         self,
         *,
         environment: str | Omit = omit,
+        type: Literal["secret", "public"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -53,11 +56,15 @@ class APIKeysResource(SyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyExchangeResponse:
         """
-        Given an authenticated service token, exchanges it for a secret API key that can
-        be used to make requests to the public API.
+        Given an authenticated service token, exchanges it for an API key that can be
+        used to make requests to the public API. Returns the environment's secret key by
+        default. Pass `type=public` to get its public key instead, for client-side
+        integrations.
 
         Args:
           environment: The environment slug. When omitted, the account's default environment is used.
+
+          type: The type of API key to return: `secret` or `public`.
 
           extra_headers: Send extra headers
 
@@ -74,7 +81,13 @@ class APIKeysResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform({"environment": environment}, api_key_exchange_params.APIKeyExchangeParams),
+                query=maybe_transform(
+                    {
+                        "environment": environment,
+                        "type": type,
+                    },
+                    api_key_exchange_params.APIKeyExchangeParams,
+                ),
             ),
             cast_to=APIKeyExchangeResponse,
         )
@@ -104,6 +117,7 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         self,
         *,
         environment: str | Omit = omit,
+        type: Literal["secret", "public"] | Omit = omit,
         # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
         # The extra values given here take precedence over values defined on the client or passed to this method.
         extra_headers: Headers | None = None,
@@ -112,11 +126,15 @@ class AsyncAPIKeysResource(AsyncAPIResource):
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
     ) -> APIKeyExchangeResponse:
         """
-        Given an authenticated service token, exchanges it for a secret API key that can
-        be used to make requests to the public API.
+        Given an authenticated service token, exchanges it for an API key that can be
+        used to make requests to the public API. Returns the environment's secret key by
+        default. Pass `type=public` to get its public key instead, for client-side
+        integrations.
 
         Args:
           environment: The environment slug. When omitted, the account's default environment is used.
+
+          type: The type of API key to return: `secret` or `public`.
 
           extra_headers: Send extra headers
 
@@ -134,7 +152,11 @@ class AsyncAPIKeysResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, api_key_exchange_params.APIKeyExchangeParams
+                    {
+                        "environment": environment,
+                        "type": type,
+                    },
+                    api_key_exchange_params.APIKeyExchangeParams,
                 ),
             ),
             cast_to=APIKeyExchangeResponse,
