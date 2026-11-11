@@ -56,12 +56,15 @@ if TYPE_CHECKING:
         workflows,
         audit_logs,
         broadcasts,
+        warehouses,
         data_sources,
         environments,
         translations,
         email_layouts,
         message_types,
         channel_groups,
+        warehouse_syncs,
+        headless_accounts,
         preference_center,
         reusable_requests,
         preference_categories,
@@ -84,12 +87,15 @@ if TYPE_CHECKING:
     from .resources.variables import VariablesResource, AsyncVariablesResource
     from .resources.audit_logs import AuditLogsResource, AsyncAuditLogsResource
     from .resources.broadcasts import BroadcastsResource, AsyncBroadcastsResource
+    from .resources.warehouses import WarehousesResource, AsyncWarehousesResource
     from .resources.goals.goals import GoalsResource, AsyncGoalsResource
     from .resources.data_sources import DataSourcesResource, AsyncDataSourcesResource
     from .resources.translations import TranslationsResource, AsyncTranslationsResource
     from .resources.email_layouts import EmailLayoutsResource, AsyncEmailLayoutsResource
     from .resources.message_types import MessageTypesResource, AsyncMessageTypesResource
     from .resources.channel_groups import ChannelGroupsResource, AsyncChannelGroupsResource
+    from .resources.warehouse_syncs import WarehouseSyncsResource, AsyncWarehouseSyncsResource
+    from .resources.headless_accounts import HeadlessAccountsResource, AsyncHeadlessAccountsResource
     from .resources.preference_center import PreferenceCenterResource, AsyncPreferenceCenterResource
     from .resources.reusable_requests import ReusableRequestsResource, AsyncReusableRequestsResource
     from .resources.workflows.workflows import WorkflowsResource, AsyncWorkflowsResource
@@ -377,6 +383,31 @@ class KnockMgmt(SyncAPIClient):
         from .resources.webhooks import WebhooksResource
 
         return WebhooksResource(self)
+
+    @cached_property
+    def warehouse_syncs(self) -> WarehouseSyncsResource:
+        """
+        Warehouse syncs read rows from a warehouse on a schedule and write them to Knock.
+        """
+        from .resources.warehouse_syncs import WarehouseSyncsResource
+
+        return WarehouseSyncsResource(self)
+
+    @cached_property
+    def headless_accounts(self) -> HeadlessAccountsResource:
+        """
+        Headless accounts let an agent create a Knock account on its own and hand it to a person to claim.
+        """
+        from .resources.headless_accounts import HeadlessAccountsResource
+
+        return HeadlessAccountsResource(self)
+
+    @cached_property
+    def warehouses(self) -> WarehousesResource:
+        """Warehouses are the databases in your data warehouse that Knock reads from."""
+        from .resources.warehouses import WarehousesResource
+
+        return WarehousesResource(self)
 
     @cached_property
     def with_raw_response(self) -> KnockMgmtWithRawResponse:
@@ -762,6 +793,31 @@ class AsyncKnockMgmt(AsyncAPIClient):
         return AsyncWebhooksResource(self)
 
     @cached_property
+    def warehouse_syncs(self) -> AsyncWarehouseSyncsResource:
+        """
+        Warehouse syncs read rows from a warehouse on a schedule and write them to Knock.
+        """
+        from .resources.warehouse_syncs import AsyncWarehouseSyncsResource
+
+        return AsyncWarehouseSyncsResource(self)
+
+    @cached_property
+    def headless_accounts(self) -> AsyncHeadlessAccountsResource:
+        """
+        Headless accounts let an agent create a Knock account on its own and hand it to a person to claim.
+        """
+        from .resources.headless_accounts import AsyncHeadlessAccountsResource
+
+        return AsyncHeadlessAccountsResource(self)
+
+    @cached_property
+    def warehouses(self) -> AsyncWarehousesResource:
+        """Warehouses are the databases in your data warehouse that Knock reads from."""
+        from .resources.warehouses import AsyncWarehousesResource
+
+        return AsyncWarehousesResource(self)
+
+    @cached_property
     def with_raw_response(self) -> AsyncKnockMgmtWithRawResponse:
         return AsyncKnockMgmtWithRawResponse(self)
 
@@ -1086,6 +1142,31 @@ class KnockMgmtWithRawResponse:
 
         return WebhooksResourceWithRawResponse(self._client.webhooks)
 
+    @cached_property
+    def warehouse_syncs(self) -> warehouse_syncs.WarehouseSyncsResourceWithRawResponse:
+        """
+        Warehouse syncs read rows from a warehouse on a schedule and write them to Knock.
+        """
+        from .resources.warehouse_syncs import WarehouseSyncsResourceWithRawResponse
+
+        return WarehouseSyncsResourceWithRawResponse(self._client.warehouse_syncs)
+
+    @cached_property
+    def headless_accounts(self) -> headless_accounts.HeadlessAccountsResourceWithRawResponse:
+        """
+        Headless accounts let an agent create a Knock account on its own and hand it to a person to claim.
+        """
+        from .resources.headless_accounts import HeadlessAccountsResourceWithRawResponse
+
+        return HeadlessAccountsResourceWithRawResponse(self._client.headless_accounts)
+
+    @cached_property
+    def warehouses(self) -> warehouses.WarehousesResourceWithRawResponse:
+        """Warehouses are the databases in your data warehouse that Knock reads from."""
+        from .resources.warehouses import WarehousesResourceWithRawResponse
+
+        return WarehousesResourceWithRawResponse(self._client.warehouses)
+
 
 class AsyncKnockMgmtWithRawResponse:
     _client: AsyncKnockMgmt
@@ -1298,6 +1379,31 @@ class AsyncKnockMgmtWithRawResponse:
         from .resources.webhooks import AsyncWebhooksResourceWithRawResponse
 
         return AsyncWebhooksResourceWithRawResponse(self._client.webhooks)
+
+    @cached_property
+    def warehouse_syncs(self) -> warehouse_syncs.AsyncWarehouseSyncsResourceWithRawResponse:
+        """
+        Warehouse syncs read rows from a warehouse on a schedule and write them to Knock.
+        """
+        from .resources.warehouse_syncs import AsyncWarehouseSyncsResourceWithRawResponse
+
+        return AsyncWarehouseSyncsResourceWithRawResponse(self._client.warehouse_syncs)
+
+    @cached_property
+    def headless_accounts(self) -> headless_accounts.AsyncHeadlessAccountsResourceWithRawResponse:
+        """
+        Headless accounts let an agent create a Knock account on its own and hand it to a person to claim.
+        """
+        from .resources.headless_accounts import AsyncHeadlessAccountsResourceWithRawResponse
+
+        return AsyncHeadlessAccountsResourceWithRawResponse(self._client.headless_accounts)
+
+    @cached_property
+    def warehouses(self) -> warehouses.AsyncWarehousesResourceWithRawResponse:
+        """Warehouses are the databases in your data warehouse that Knock reads from."""
+        from .resources.warehouses import AsyncWarehousesResourceWithRawResponse
+
+        return AsyncWarehousesResourceWithRawResponse(self._client.warehouses)
 
 
 class KnockMgmtWithStreamedResponse:
@@ -1512,6 +1618,31 @@ class KnockMgmtWithStreamedResponse:
 
         return WebhooksResourceWithStreamingResponse(self._client.webhooks)
 
+    @cached_property
+    def warehouse_syncs(self) -> warehouse_syncs.WarehouseSyncsResourceWithStreamingResponse:
+        """
+        Warehouse syncs read rows from a warehouse on a schedule and write them to Knock.
+        """
+        from .resources.warehouse_syncs import WarehouseSyncsResourceWithStreamingResponse
+
+        return WarehouseSyncsResourceWithStreamingResponse(self._client.warehouse_syncs)
+
+    @cached_property
+    def headless_accounts(self) -> headless_accounts.HeadlessAccountsResourceWithStreamingResponse:
+        """
+        Headless accounts let an agent create a Knock account on its own and hand it to a person to claim.
+        """
+        from .resources.headless_accounts import HeadlessAccountsResourceWithStreamingResponse
+
+        return HeadlessAccountsResourceWithStreamingResponse(self._client.headless_accounts)
+
+    @cached_property
+    def warehouses(self) -> warehouses.WarehousesResourceWithStreamingResponse:
+        """Warehouses are the databases in your data warehouse that Knock reads from."""
+        from .resources.warehouses import WarehousesResourceWithStreamingResponse
+
+        return WarehousesResourceWithStreamingResponse(self._client.warehouses)
+
 
 class AsyncKnockMgmtWithStreamedResponse:
     _client: AsyncKnockMgmt
@@ -1724,6 +1855,31 @@ class AsyncKnockMgmtWithStreamedResponse:
         from .resources.webhooks import AsyncWebhooksResourceWithStreamingResponse
 
         return AsyncWebhooksResourceWithStreamingResponse(self._client.webhooks)
+
+    @cached_property
+    def warehouse_syncs(self) -> warehouse_syncs.AsyncWarehouseSyncsResourceWithStreamingResponse:
+        """
+        Warehouse syncs read rows from a warehouse on a schedule and write them to Knock.
+        """
+        from .resources.warehouse_syncs import AsyncWarehouseSyncsResourceWithStreamingResponse
+
+        return AsyncWarehouseSyncsResourceWithStreamingResponse(self._client.warehouse_syncs)
+
+    @cached_property
+    def headless_accounts(self) -> headless_accounts.AsyncHeadlessAccountsResourceWithStreamingResponse:
+        """
+        Headless accounts let an agent create a Knock account on its own and hand it to a person to claim.
+        """
+        from .resources.headless_accounts import AsyncHeadlessAccountsResourceWithStreamingResponse
+
+        return AsyncHeadlessAccountsResourceWithStreamingResponse(self._client.headless_accounts)
+
+    @cached_property
+    def warehouses(self) -> warehouses.AsyncWarehousesResourceWithStreamingResponse:
+        """Warehouses are the databases in your data warehouse that Knock reads from."""
+        from .resources.warehouses import AsyncWarehousesResourceWithStreamingResponse
+
+        return AsyncWarehousesResourceWithStreamingResponse(self._client.warehouses)
 
 
 Client = KnockMgmt

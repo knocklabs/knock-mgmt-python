@@ -655,3 +655,64 @@ Methods:
 - <code title="put /v1/webhooks/{id}">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">update</a>(id, \*\*<a href="src/knock_mapi/types/webhook_update_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook_update_response.py">WebhookUpdateResponse</a></code>
 - <code title="get /v1/webhooks">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">list</a>(\*\*<a href="src/knock_mapi/types/webhook_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook.py">SyncEntriesCursor[Webhook]</a></code>
 - <code title="delete /v1/webhooks/{id}">client.webhooks.<a href="./src/knock_mapi/resources/webhooks.py">delete</a>(id, \*\*<a href="src/knock_mapi/types/webhook_delete_params.py">params</a>) -> <a href="./src/knock_mapi/types/webhook_delete_response.py">WebhookDeleteResponse</a></code>
+
+# WarehouseSyncs
+
+Types:
+
+```python
+from knock_mapi.types import (
+    WarehouseSync,
+    WarehouseSyncChangeTracking,
+    WarehouseSyncMapping,
+    WarehouseSyncRequest,
+    WarehouseSyncSource,
+    WarehouseSyncTarget,
+    WarehouseSyncUpdateResponse,
+    WarehouseSyncRetrieveRunsResponse,
+    WarehouseSyncUpdateRunResponse,
+    WarehouseSyncUpdateSettingsResponse,
+    WarehouseSyncUpdateValidateResponse,
+)
+```
+
+Methods:
+
+- <code title="get /v1/warehouse_syncs/{warehouse_sync_key}">client.warehouse_syncs.<a href="./src/knock_mapi/resources/warehouse_syncs.py">retrieve</a>(warehouse_sync_key, \*\*<a href="src/knock_mapi/types/warehouse_sync_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse_sync.py">WarehouseSync</a></code>
+- <code title="put /v1/warehouse_syncs/{warehouse_sync_key}">client.warehouse_syncs.<a href="./src/knock_mapi/resources/warehouse_syncs.py">update</a>(warehouse_sync_key, \*\*<a href="src/knock_mapi/types/warehouse_sync_update_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse_sync_update_response.py">WarehouseSyncUpdateResponse</a></code>
+- <code title="get /v1/warehouse_syncs">client.warehouse_syncs.<a href="./src/knock_mapi/resources/warehouse_syncs.py">list</a>(\*\*<a href="src/knock_mapi/types/warehouse_sync_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse_sync.py">SyncEntriesCursor[WarehouseSync]</a></code>
+- <code title="get /v1/warehouse_syncs/{warehouse_sync_key}/runs">client.warehouse_syncs.<a href="./src/knock_mapi/resources/warehouse_syncs.py">retrieve_runs</a>(warehouse_sync_key, \*\*<a href="src/knock_mapi/types/warehouse_sync_retrieve_runs_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse_sync_retrieve_runs_response.py">WarehouseSyncRetrieveRunsResponse</a></code>
+- <code title="put /v1/warehouse_syncs/{warehouse_sync_key}/run">client.warehouse_syncs.<a href="./src/knock_mapi/resources/warehouse_syncs.py">update_run</a>(warehouse_sync_key, \*\*<a href="src/knock_mapi/types/warehouse_sync_update_run_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse_sync_update_run_response.py">WarehouseSyncUpdateRunResponse</a></code>
+- <code title="put /v1/warehouse_syncs/{warehouse_sync_key}/settings">client.warehouse_syncs.<a href="./src/knock_mapi/resources/warehouse_syncs.py">update_settings</a>(warehouse_sync_key, \*\*<a href="src/knock_mapi/types/warehouse_sync_update_settings_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse_sync_update_settings_response.py">WarehouseSyncUpdateSettingsResponse</a></code>
+- <code title="put /v1/warehouse_syncs/{warehouse_sync_key}/validate">client.warehouse_syncs.<a href="./src/knock_mapi/resources/warehouse_syncs.py">update_validate</a>(warehouse_sync_key, \*\*<a href="src/knock_mapi/types/warehouse_sync_update_validate_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse_sync_update_validate_response.py">WarehouseSyncUpdateValidateResponse</a></code>
+
+# HeadlessAccounts
+
+Types:
+
+```python
+from knock_mapi.types import (
+    HeadlessAccountCreateResponse,
+    HeadlessAccountClaimResponse,
+    HeadlessAccountRetrieveStatusResponse,
+)
+```
+
+Methods:
+
+- <code title="post /v1/headless_accounts">client.headless_accounts.<a href="./src/knock_mapi/resources/headless_accounts.py">create</a>() -> <a href="./src/knock_mapi/types/headless_account_create_response.py">HeadlessAccountCreateResponse</a></code>
+- <code title="post /v1/headless_accounts/claim">client.headless_accounts.<a href="./src/knock_mapi/resources/headless_accounts.py">claim</a>(\*\*<a href="src/knock_mapi/types/headless_account_claim_params.py">params</a>) -> <a href="./src/knock_mapi/types/headless_account_claim_response.py">HeadlessAccountClaimResponse</a></code>
+- <code title="get /v1/headless_accounts/status">client.headless_accounts.<a href="./src/knock_mapi/resources/headless_accounts.py">retrieve_status</a>() -> <a href="./src/knock_mapi/types/headless_account_retrieve_status_response.py">HeadlessAccountRetrieveStatusResponse</a></code>
+
+# Warehouses
+
+Types:
+
+```python
+from knock_mapi.types import Warehouse
+```
+
+Methods:
+
+- <code title="get /v1/warehouses/{warehouse_key}">client.warehouses.<a href="./src/knock_mapi/resources/warehouses.py">retrieve</a>(warehouse_key, \*\*<a href="src/knock_mapi/types/warehouse_retrieve_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse.py">Warehouse</a></code>
+- <code title="get /v1/warehouses">client.warehouses.<a href="./src/knock_mapi/resources/warehouses.py">list</a>(\*\*<a href="src/knock_mapi/types/warehouse_list_params.py">params</a>) -> <a href="./src/knock_mapi/types/warehouse.py">SyncEntriesCursor[Warehouse]</a></code>

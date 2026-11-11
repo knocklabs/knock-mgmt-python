@@ -160,6 +160,14 @@ from .broadcasts import (
     BroadcastsResourceWithStreamingResponse,
     AsyncBroadcastsResourceWithStreamingResponse,
 )
+from .warehouses import (
+    WarehousesResource,
+    AsyncWarehousesResource,
+    WarehousesResourceWithRawResponse,
+    AsyncWarehousesResourceWithRawResponse,
+    WarehousesResourceWithStreamingResponse,
+    AsyncWarehousesResourceWithStreamingResponse,
+)
 from .data_sources import (
     DataSourcesResource,
     AsyncDataSourcesResource,
@@ -207,6 +215,22 @@ from .channel_groups import (
     AsyncChannelGroupsResourceWithRawResponse,
     ChannelGroupsResourceWithStreamingResponse,
     AsyncChannelGroupsResourceWithStreamingResponse,
+)
+from .warehouse_syncs import (
+    WarehouseSyncsResource,
+    AsyncWarehouseSyncsResource,
+    WarehouseSyncsResourceWithRawResponse,
+    AsyncWarehouseSyncsResourceWithRawResponse,
+    WarehouseSyncsResourceWithStreamingResponse,
+    AsyncWarehouseSyncsResourceWithStreamingResponse,
+)
+from .headless_accounts import (
+    HeadlessAccountsResource,
+    AsyncHeadlessAccountsResource,
+    HeadlessAccountsResourceWithRawResponse,
+    AsyncHeadlessAccountsResourceWithRawResponse,
+    HeadlessAccountsResourceWithStreamingResponse,
+    AsyncHeadlessAccountsResourceWithStreamingResponse,
 )
 from .preference_center import (
     PreferenceCenterResource,
@@ -408,4 +432,22 @@ __all__ = [
     "AsyncWebhooksResourceWithRawResponse",
     "WebhooksResourceWithStreamingResponse",
     "AsyncWebhooksResourceWithStreamingResponse",
+    "WarehouseSyncsResource",
+    "AsyncWarehouseSyncsResource",
+    "WarehouseSyncsResourceWithRawResponse",
+    "AsyncWarehouseSyncsResourceWithRawResponse",
+    "WarehouseSyncsResourceWithStreamingResponse",
+    "AsyncWarehouseSyncsResourceWithStreamingResponse",
+    "HeadlessAccountsResource",
+    "AsyncHeadlessAccountsResource",
+    "HeadlessAccountsResourceWithRawResponse",
+    "AsyncHeadlessAccountsResourceWithRawResponse",
+    "HeadlessAccountsResourceWithStreamingResponse",
+    "AsyncHeadlessAccountsResourceWithStreamingResponse",
+    "WarehousesResource",
+    "AsyncWarehousesResource",
+    "WarehousesResourceWithRawResponse",
+    "AsyncWarehousesResourceWithRawResponse",
+    "WarehousesResourceWithStreamingResponse",
+    "AsyncWarehousesResourceWithStreamingResponse",
 ]

@@ -48,7 +48,7 @@ class SourceEventTriggerTriggerParameters(BaseModel):
 
 class SourceEventTrigger(BaseModel):
     """
-    A source event trigger that triggers the workflow when an event is received from an integration source. Read more in the [docs](https://docs.knock.app/integrations/sources/overview).
+    A source event trigger that triggers the workflow when an event is received from an integration source. Read more in the [docs](https://docs.knock.app/integrations/sources/streams).
     """
 
     event_name: str

@@ -226,9 +226,10 @@ class VariablesResource(SyncAPIResource):
               omitted or null is left unchanged. An empty string clears the override, so the
               default value applies.
 
-          value: The default value of the variable. Required when creating a variable. When
-              omitted or null on an update, the existing value is kept. An empty string clears
-              the default value.
+          value: The default value of the variable. Required when creating a variable, unless
+              `environment_values` sets a value for at least one environment. When omitted or
+              null on an update, the existing value is kept. An empty string clears the
+              default value.
 
           extra_headers: Send extra headers
 
@@ -461,9 +462,10 @@ class AsyncVariablesResource(AsyncAPIResource):
               omitted or null is left unchanged. An empty string clears the override, so the
               default value applies.
 
-          value: The default value of the variable. Required when creating a variable. When
-              omitted or null on an update, the existing value is kept. An empty string clears
-              the default value.
+          value: The default value of the variable. Required when creating a variable, unless
+              `environment_values` sets a value for at least one environment. When omitted or
+              null on an update, the existing value is kept. An empty string clears the
+              default value.
 
           extra_headers: Send extra headers
 
