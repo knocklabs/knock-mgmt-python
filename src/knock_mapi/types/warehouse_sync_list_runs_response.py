@@ -7,7 +7,7 @@ from typing_extensions import Literal
 from .._models import BaseModel
 from .shared.page_info import PageInfo
 
-__all__ = ["WarehouseSyncRetrieveRunsResponse", "Entry", "EntryError"]
+__all__ = ["WarehouseSyncListRunsResponse", "Entry", "EntryError"]
 
 
 class EntryError(BaseModel):
@@ -63,7 +63,7 @@ class Entry(BaseModel):
     """When the run was queued."""
 
 
-class WarehouseSyncRetrieveRunsResponse(BaseModel):
+class WarehouseSyncListRunsResponse(BaseModel):
     """A paginated list of WarehouseSyncRun.
 
     Contains a list of entries and page information.

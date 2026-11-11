@@ -3,10 +3,10 @@
 from .._models import BaseModel
 from .warehouse_sync_request import WarehouseSyncRequest
 
-__all__ = ["WarehouseSyncUpdateValidateResponse"]
+__all__ = ["WarehouseSyncValidateResponse"]
 
 
-class WarehouseSyncUpdateValidateResponse(BaseModel):
+class WarehouseSyncValidateResponse(BaseModel):
     """Wraps the WarehouseSyncRequest response under the `warehouse_sync` key."""
 
     warehouse_sync: WarehouseSyncRequest

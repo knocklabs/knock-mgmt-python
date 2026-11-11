@@ -3,10 +3,10 @@
 from .._models import BaseModel
 from .warehouse_sync import WarehouseSync
 
-__all__ = ["WarehouseSyncUpdateRunResponse"]
+__all__ = ["WarehouseSyncRunResponse"]
 
 
-class WarehouseSyncUpdateRunResponse(BaseModel):
+class WarehouseSyncRunResponse(BaseModel):
     """Wraps the WarehouseSync response under the `warehouse_sync` key."""
 
     warehouse_sync: WarehouseSync

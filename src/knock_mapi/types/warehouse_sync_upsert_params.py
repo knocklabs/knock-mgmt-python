@@ -6,10 +6,10 @@ from typing_extensions import Required, TypedDict
 
 from .warehouse_sync_request_param import WarehouseSyncRequestParam
 
-__all__ = ["WarehouseSyncUpdateParams"]
+__all__ = ["WarehouseSyncUpsertParams"]
 
 
-class WarehouseSyncUpdateParams(TypedDict, total=False):
+class WarehouseSyncUpsertParams(TypedDict, total=False):
     warehouse_sync: Required[WarehouseSyncRequestParam]
     """A warehouse sync payload for upsert or validate.
 

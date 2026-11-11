@@ -7,13 +7,13 @@ from typing_extensions import Literal
 import httpx
 
 from ..types import (
+    warehouse_sync_run_params,
     warehouse_sync_list_params,
-    warehouse_sync_update_params,
+    warehouse_sync_upsert_params,
     warehouse_sync_retrieve_params,
-    warehouse_sync_update_run_params,
-    warehouse_sync_retrieve_runs_params,
+    warehouse_sync_validate_params,
+    warehouse_sync_list_runs_params,
     warehouse_sync_update_settings_params,
-    warehouse_sync_update_validate_params,
 )
 from .._types import Body, Omit, Query, Headers, NotGiven, omit, not_given
 from .._utils import path_template, maybe_transform, async_maybe_transform
@@ -28,12 +28,12 @@ from .._response import (
 from ..pagination import SyncEntriesCursor, AsyncEntriesCursor
 from .._base_client import AsyncPaginator, make_request_options
 from ..types.warehouse_sync import WarehouseSync
+from ..types.warehouse_sync_run_response import WarehouseSyncRunResponse
 from ..types.warehouse_sync_request_param import WarehouseSyncRequestParam
-from ..types.warehouse_sync_update_response import WarehouseSyncUpdateResponse
-from ..types.warehouse_sync_update_run_response import WarehouseSyncUpdateRunResponse
-from ..types.warehouse_sync_retrieve_runs_response import WarehouseSyncRetrieveRunsResponse
+from ..types.warehouse_sync_upsert_response import WarehouseSyncUpsertResponse
+from ..types.warehouse_sync_validate_response import WarehouseSyncValidateResponse
+from ..types.warehouse_sync_list_runs_response import WarehouseSyncListRunsResponse
 from ..types.warehouse_sync_update_settings_response import WarehouseSyncUpdateSettingsResponse
-from ..types.warehouse_sync_update_validate_response import WarehouseSyncUpdateValidateResponse
 
 __all__ = ["WarehouseSyncsResource", "AsyncWarehouseSyncsResource"]
 
@@ -112,71 +112,6 @@ class WarehouseSyncsResource(SyncAPIResource):
             cast_to=WarehouseSync,
         )
 
-    def update(
-        self,
-        warehouse_sync_key: str,
-        *,
-        warehouse_sync: WarehouseSyncRequestParam,
-        commit: bool | Omit = omit,
-        commit_message: str | Omit = omit,
-        environment: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncUpdateResponse:
-        """Creates a warehouse sync, or saves a new draft of it if it exists.
-
-        Fields left
-        out keep their current values. Pass `commit=true` to publish the draft. A draft
-        that fails to publish stays saved.
-
-        Args:
-          warehouse_sync: A warehouse sync payload for upsert or validate. Fields left out keep their
-              current values. `warehouse_key`, `target_type`, and `target` are required to
-              create a sync and can't change after. Change `enabled` and `frequency_minutes`
-              with the settings endpoint.
-
-          commit: Whether to commit the resource at the same time as modifying it.
-
-          commit_message: The message to commit the resource with, only used if `commit` is `true`.
-
-          environment: The environment slug. When omitted, the account's default environment is used.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not warehouse_sync_key:
-            raise ValueError(f"Expected a non-empty value for `warehouse_sync_key` but received {warehouse_sync_key!r}")
-        return self._put(
-            path_template("/v1/warehouse_syncs/{warehouse_sync_key}", warehouse_sync_key=warehouse_sync_key),
-            body=maybe_transform(
-                {"warehouse_sync": warehouse_sync}, warehouse_sync_update_params.WarehouseSyncUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=maybe_transform(
-                    {
-                        "commit": commit,
-                        "commit_message": commit_message,
-                        "environment": environment,
-                    },
-                    warehouse_sync_update_params.WarehouseSyncUpdateParams,
-                ),
-            ),
-            cast_to=WarehouseSyncUpdateResponse,
-        )
-
     def list(
         self,
         *,
@@ -237,7 +172,7 @@ class WarehouseSyncsResource(SyncAPIResource):
             model=WarehouseSync,
         )
 
-    def retrieve_runs(
+    def list_runs(
         self,
         warehouse_sync_key: str,
         *,
@@ -248,7 +183,7 @@ class WarehouseSyncsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncRetrieveRunsResponse:
+    ) -> WarehouseSyncListRunsResponse:
         """
         Returns the most recent runs of a warehouse sync, newest first.
 
@@ -273,13 +208,13 @@ class WarehouseSyncsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment}, warehouse_sync_retrieve_runs_params.WarehouseSyncRetrieveRunsParams
+                    {"environment": environment}, warehouse_sync_list_runs_params.WarehouseSyncListRunsParams
                 ),
             ),
-            cast_to=WarehouseSyncRetrieveRunsResponse,
+            cast_to=WarehouseSyncListRunsResponse,
         )
 
-    def update_run(
+    def run(
         self,
         warehouse_sync_key: str,
         *,
@@ -290,7 +225,7 @@ class WarehouseSyncsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncUpdateRunResponse:
+    ) -> WarehouseSyncRunResponse:
         """
         Starts a run of the published warehouse sync now, instead of waiting for its
         schedule. Refused while a run is in progress.
@@ -315,11 +250,9 @@ class WarehouseSyncsResource(SyncAPIResource):
                 extra_query=extra_query,
                 extra_body=extra_body,
                 timeout=timeout,
-                query=maybe_transform(
-                    {"environment": environment}, warehouse_sync_update_run_params.WarehouseSyncUpdateRunParams
-                ),
+                query=maybe_transform({"environment": environment}, warehouse_sync_run_params.WarehouseSyncRunParams),
             ),
-            cast_to=WarehouseSyncUpdateRunResponse,
+            cast_to=WarehouseSyncRunResponse,
         )
 
     def update_settings(
@@ -380,7 +313,72 @@ class WarehouseSyncsResource(SyncAPIResource):
             cast_to=WarehouseSyncUpdateSettingsResponse,
         )
 
-    def update_validate(
+    def upsert(
+        self,
+        warehouse_sync_key: str,
+        *,
+        warehouse_sync: WarehouseSyncRequestParam,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> WarehouseSyncUpsertResponse:
+        """Creates a warehouse sync, or saves a new draft of it if it exists.
+
+        Fields left
+        out keep their current values. Pass `commit=true` to publish the draft. A draft
+        that fails to publish stays saved.
+
+        Args:
+          warehouse_sync: A warehouse sync payload for upsert or validate. Fields left out keep their
+              current values. `warehouse_key`, `target_type`, and `target` are required to
+              create a sync and can't change after. Change `enabled` and `frequency_minutes`
+              with the settings endpoint.
+
+          commit: Whether to commit the resource at the same time as modifying it.
+
+          commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not warehouse_sync_key:
+            raise ValueError(f"Expected a non-empty value for `warehouse_sync_key` but received {warehouse_sync_key!r}")
+        return self._put(
+            path_template("/v1/warehouse_syncs/{warehouse_sync_key}", warehouse_sync_key=warehouse_sync_key),
+            body=maybe_transform(
+                {"warehouse_sync": warehouse_sync}, warehouse_sync_upsert_params.WarehouseSyncUpsertParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=maybe_transform(
+                    {
+                        "commit": commit,
+                        "commit_message": commit_message,
+                        "environment": environment,
+                    },
+                    warehouse_sync_upsert_params.WarehouseSyncUpsertParams,
+                ),
+            ),
+            cast_to=WarehouseSyncUpsertResponse,
+        )
+
+    def validate(
         self,
         warehouse_sync_key: str,
         *,
@@ -392,7 +390,7 @@ class WarehouseSyncsResource(SyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncUpdateValidateResponse:
+    ) -> WarehouseSyncValidateResponse:
         """
         Checks a warehouse sync payload the way an upsert would, without saving it.
         Returns the payload as sent.
@@ -418,8 +416,7 @@ class WarehouseSyncsResource(SyncAPIResource):
         return self._put(
             path_template("/v1/warehouse_syncs/{warehouse_sync_key}/validate", warehouse_sync_key=warehouse_sync_key),
             body=maybe_transform(
-                {"warehouse_sync": warehouse_sync},
-                warehouse_sync_update_validate_params.WarehouseSyncUpdateValidateParams,
+                {"warehouse_sync": warehouse_sync}, warehouse_sync_validate_params.WarehouseSyncValidateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -427,11 +424,10 @@ class WarehouseSyncsResource(SyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=maybe_transform(
-                    {"environment": environment},
-                    warehouse_sync_update_validate_params.WarehouseSyncUpdateValidateParams,
+                    {"environment": environment}, warehouse_sync_validate_params.WarehouseSyncValidateParams
                 ),
             ),
-            cast_to=WarehouseSyncUpdateValidateResponse,
+            cast_to=WarehouseSyncValidateResponse,
         )
 
 
@@ -509,71 +505,6 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
             cast_to=WarehouseSync,
         )
 
-    async def update(
-        self,
-        warehouse_sync_key: str,
-        *,
-        warehouse_sync: WarehouseSyncRequestParam,
-        commit: bool | Omit = omit,
-        commit_message: str | Omit = omit,
-        environment: str | Omit = omit,
-        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
-        # The extra values given here take precedence over values defined on the client or passed to this method.
-        extra_headers: Headers | None = None,
-        extra_query: Query | None = None,
-        extra_body: Body | None = None,
-        timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncUpdateResponse:
-        """Creates a warehouse sync, or saves a new draft of it if it exists.
-
-        Fields left
-        out keep their current values. Pass `commit=true` to publish the draft. A draft
-        that fails to publish stays saved.
-
-        Args:
-          warehouse_sync: A warehouse sync payload for upsert or validate. Fields left out keep their
-              current values. `warehouse_key`, `target_type`, and `target` are required to
-              create a sync and can't change after. Change `enabled` and `frequency_minutes`
-              with the settings endpoint.
-
-          commit: Whether to commit the resource at the same time as modifying it.
-
-          commit_message: The message to commit the resource with, only used if `commit` is `true`.
-
-          environment: The environment slug. When omitted, the account's default environment is used.
-
-          extra_headers: Send extra headers
-
-          extra_query: Add additional query parameters to the request
-
-          extra_body: Add additional JSON properties to the request
-
-          timeout: Override the client-level default timeout for this request, in seconds
-        """
-        if not warehouse_sync_key:
-            raise ValueError(f"Expected a non-empty value for `warehouse_sync_key` but received {warehouse_sync_key!r}")
-        return await self._put(
-            path_template("/v1/warehouse_syncs/{warehouse_sync_key}", warehouse_sync_key=warehouse_sync_key),
-            body=await async_maybe_transform(
-                {"warehouse_sync": warehouse_sync}, warehouse_sync_update_params.WarehouseSyncUpdateParams
-            ),
-            options=make_request_options(
-                extra_headers=extra_headers,
-                extra_query=extra_query,
-                extra_body=extra_body,
-                timeout=timeout,
-                query=await async_maybe_transform(
-                    {
-                        "commit": commit,
-                        "commit_message": commit_message,
-                        "environment": environment,
-                    },
-                    warehouse_sync_update_params.WarehouseSyncUpdateParams,
-                ),
-            ),
-            cast_to=WarehouseSyncUpdateResponse,
-        )
-
     def list(
         self,
         *,
@@ -634,7 +565,7 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
             model=WarehouseSync,
         )
 
-    async def retrieve_runs(
+    async def list_runs(
         self,
         warehouse_sync_key: str,
         *,
@@ -645,7 +576,7 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncRetrieveRunsResponse:
+    ) -> WarehouseSyncListRunsResponse:
         """
         Returns the most recent runs of a warehouse sync, newest first.
 
@@ -670,13 +601,13 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, warehouse_sync_retrieve_runs_params.WarehouseSyncRetrieveRunsParams
+                    {"environment": environment}, warehouse_sync_list_runs_params.WarehouseSyncListRunsParams
                 ),
             ),
-            cast_to=WarehouseSyncRetrieveRunsResponse,
+            cast_to=WarehouseSyncListRunsResponse,
         )
 
-    async def update_run(
+    async def run(
         self,
         warehouse_sync_key: str,
         *,
@@ -687,7 +618,7 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncUpdateRunResponse:
+    ) -> WarehouseSyncRunResponse:
         """
         Starts a run of the published warehouse sync now, instead of waiting for its
         schedule. Refused while a run is in progress.
@@ -713,10 +644,10 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment}, warehouse_sync_update_run_params.WarehouseSyncUpdateRunParams
+                    {"environment": environment}, warehouse_sync_run_params.WarehouseSyncRunParams
                 ),
             ),
-            cast_to=WarehouseSyncUpdateRunResponse,
+            cast_to=WarehouseSyncRunResponse,
         )
 
     async def update_settings(
@@ -777,7 +708,72 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
             cast_to=WarehouseSyncUpdateSettingsResponse,
         )
 
-    async def update_validate(
+    async def upsert(
+        self,
+        warehouse_sync_key: str,
+        *,
+        warehouse_sync: WarehouseSyncRequestParam,
+        commit: bool | Omit = omit,
+        commit_message: str | Omit = omit,
+        environment: str | Omit = omit,
+        # Use the following arguments if you need to pass additional parameters to the API that aren't available via kwargs.
+        # The extra values given here take precedence over values defined on the client or passed to this method.
+        extra_headers: Headers | None = None,
+        extra_query: Query | None = None,
+        extra_body: Body | None = None,
+        timeout: float | httpx.Timeout | None | NotGiven = not_given,
+    ) -> WarehouseSyncUpsertResponse:
+        """Creates a warehouse sync, or saves a new draft of it if it exists.
+
+        Fields left
+        out keep their current values. Pass `commit=true` to publish the draft. A draft
+        that fails to publish stays saved.
+
+        Args:
+          warehouse_sync: A warehouse sync payload for upsert or validate. Fields left out keep their
+              current values. `warehouse_key`, `target_type`, and `target` are required to
+              create a sync and can't change after. Change `enabled` and `frequency_minutes`
+              with the settings endpoint.
+
+          commit: Whether to commit the resource at the same time as modifying it.
+
+          commit_message: The message to commit the resource with, only used if `commit` is `true`.
+
+          environment: The environment slug. When omitted, the account's default environment is used.
+
+          extra_headers: Send extra headers
+
+          extra_query: Add additional query parameters to the request
+
+          extra_body: Add additional JSON properties to the request
+
+          timeout: Override the client-level default timeout for this request, in seconds
+        """
+        if not warehouse_sync_key:
+            raise ValueError(f"Expected a non-empty value for `warehouse_sync_key` but received {warehouse_sync_key!r}")
+        return await self._put(
+            path_template("/v1/warehouse_syncs/{warehouse_sync_key}", warehouse_sync_key=warehouse_sync_key),
+            body=await async_maybe_transform(
+                {"warehouse_sync": warehouse_sync}, warehouse_sync_upsert_params.WarehouseSyncUpsertParams
+            ),
+            options=make_request_options(
+                extra_headers=extra_headers,
+                extra_query=extra_query,
+                extra_body=extra_body,
+                timeout=timeout,
+                query=await async_maybe_transform(
+                    {
+                        "commit": commit,
+                        "commit_message": commit_message,
+                        "environment": environment,
+                    },
+                    warehouse_sync_upsert_params.WarehouseSyncUpsertParams,
+                ),
+            ),
+            cast_to=WarehouseSyncUpsertResponse,
+        )
+
+    async def validate(
         self,
         warehouse_sync_key: str,
         *,
@@ -789,7 +785,7 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
         extra_query: Query | None = None,
         extra_body: Body | None = None,
         timeout: float | httpx.Timeout | None | NotGiven = not_given,
-    ) -> WarehouseSyncUpdateValidateResponse:
+    ) -> WarehouseSyncValidateResponse:
         """
         Checks a warehouse sync payload the way an upsert would, without saving it.
         Returns the payload as sent.
@@ -815,8 +811,7 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
         return await self._put(
             path_template("/v1/warehouse_syncs/{warehouse_sync_key}/validate", warehouse_sync_key=warehouse_sync_key),
             body=await async_maybe_transform(
-                {"warehouse_sync": warehouse_sync},
-                warehouse_sync_update_validate_params.WarehouseSyncUpdateValidateParams,
+                {"warehouse_sync": warehouse_sync}, warehouse_sync_validate_params.WarehouseSyncValidateParams
             ),
             options=make_request_options(
                 extra_headers=extra_headers,
@@ -824,11 +819,10 @@ class AsyncWarehouseSyncsResource(AsyncAPIResource):
                 extra_body=extra_body,
                 timeout=timeout,
                 query=await async_maybe_transform(
-                    {"environment": environment},
-                    warehouse_sync_update_validate_params.WarehouseSyncUpdateValidateParams,
+                    {"environment": environment}, warehouse_sync_validate_params.WarehouseSyncValidateParams
                 ),
             ),
-            cast_to=WarehouseSyncUpdateValidateResponse,
+            cast_to=WarehouseSyncValidateResponse,
         )
 
 
@@ -839,23 +833,23 @@ class WarehouseSyncsResourceWithRawResponse:
         self.retrieve = to_raw_response_wrapper(
             warehouse_syncs.retrieve,
         )
-        self.update = to_raw_response_wrapper(
-            warehouse_syncs.update,
-        )
         self.list = to_raw_response_wrapper(
             warehouse_syncs.list,
         )
-        self.retrieve_runs = to_raw_response_wrapper(
-            warehouse_syncs.retrieve_runs,
+        self.list_runs = to_raw_response_wrapper(
+            warehouse_syncs.list_runs,
         )
-        self.update_run = to_raw_response_wrapper(
-            warehouse_syncs.update_run,
+        self.run = to_raw_response_wrapper(
+            warehouse_syncs.run,
         )
         self.update_settings = to_raw_response_wrapper(
             warehouse_syncs.update_settings,
         )
-        self.update_validate = to_raw_response_wrapper(
-            warehouse_syncs.update_validate,
+        self.upsert = to_raw_response_wrapper(
+            warehouse_syncs.upsert,
+        )
+        self.validate = to_raw_response_wrapper(
+            warehouse_syncs.validate,
         )
 
 
@@ -866,23 +860,23 @@ class AsyncWarehouseSyncsResourceWithRawResponse:
         self.retrieve = async_to_raw_response_wrapper(
             warehouse_syncs.retrieve,
         )
-        self.update = async_to_raw_response_wrapper(
-            warehouse_syncs.update,
-        )
         self.list = async_to_raw_response_wrapper(
             warehouse_syncs.list,
         )
-        self.retrieve_runs = async_to_raw_response_wrapper(
-            warehouse_syncs.retrieve_runs,
+        self.list_runs = async_to_raw_response_wrapper(
+            warehouse_syncs.list_runs,
         )
-        self.update_run = async_to_raw_response_wrapper(
-            warehouse_syncs.update_run,
+        self.run = async_to_raw_response_wrapper(
+            warehouse_syncs.run,
         )
         self.update_settings = async_to_raw_response_wrapper(
             warehouse_syncs.update_settings,
         )
-        self.update_validate = async_to_raw_response_wrapper(
-            warehouse_syncs.update_validate,
+        self.upsert = async_to_raw_response_wrapper(
+            warehouse_syncs.upsert,
+        )
+        self.validate = async_to_raw_response_wrapper(
+            warehouse_syncs.validate,
         )
 
 
@@ -893,23 +887,23 @@ class WarehouseSyncsResourceWithStreamingResponse:
         self.retrieve = to_streamed_response_wrapper(
             warehouse_syncs.retrieve,
         )
-        self.update = to_streamed_response_wrapper(
-            warehouse_syncs.update,
-        )
         self.list = to_streamed_response_wrapper(
             warehouse_syncs.list,
         )
-        self.retrieve_runs = to_streamed_response_wrapper(
-            warehouse_syncs.retrieve_runs,
+        self.list_runs = to_streamed_response_wrapper(
+            warehouse_syncs.list_runs,
         )
-        self.update_run = to_streamed_response_wrapper(
-            warehouse_syncs.update_run,
+        self.run = to_streamed_response_wrapper(
+            warehouse_syncs.run,
         )
         self.update_settings = to_streamed_response_wrapper(
             warehouse_syncs.update_settings,
         )
-        self.update_validate = to_streamed_response_wrapper(
-            warehouse_syncs.update_validate,
+        self.upsert = to_streamed_response_wrapper(
+            warehouse_syncs.upsert,
+        )
+        self.validate = to_streamed_response_wrapper(
+            warehouse_syncs.validate,
         )
 
 
@@ -920,21 +914,21 @@ class AsyncWarehouseSyncsResourceWithStreamingResponse:
         self.retrieve = async_to_streamed_response_wrapper(
             warehouse_syncs.retrieve,
         )
-        self.update = async_to_streamed_response_wrapper(
-            warehouse_syncs.update,
-        )
         self.list = async_to_streamed_response_wrapper(
             warehouse_syncs.list,
         )
-        self.retrieve_runs = async_to_streamed_response_wrapper(
-            warehouse_syncs.retrieve_runs,
+        self.list_runs = async_to_streamed_response_wrapper(
+            warehouse_syncs.list_runs,
         )
-        self.update_run = async_to_streamed_response_wrapper(
-            warehouse_syncs.update_run,
+        self.run = async_to_streamed_response_wrapper(
+            warehouse_syncs.run,
         )
         self.update_settings = async_to_streamed_response_wrapper(
             warehouse_syncs.update_settings,
         )
-        self.update_validate = async_to_streamed_response_wrapper(
-            warehouse_syncs.update_validate,
+        self.upsert = async_to_streamed_response_wrapper(
+            warehouse_syncs.upsert,
+        )
+        self.validate = async_to_streamed_response_wrapper(
+            warehouse_syncs.validate,
         )

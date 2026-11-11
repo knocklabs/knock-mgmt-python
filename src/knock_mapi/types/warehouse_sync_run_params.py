@@ -4,9 +4,9 @@ from __future__ import annotations
 
 from typing_extensions import TypedDict
 
-__all__ = ["WarehouseSyncUpdateRunParams"]
+__all__ = ["WarehouseSyncRunParams"]
 
 
-class WarehouseSyncUpdateRunParams(TypedDict, total=False):
+class WarehouseSyncRunParams(TypedDict, total=False):
     environment: str
     """The environment slug. When omitted, the account's default environment is used."""
